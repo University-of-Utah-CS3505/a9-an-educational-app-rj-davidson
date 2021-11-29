@@ -1,3 +1,5 @@
+// Used for Cursor and Click tracking in the view.
+
 #ifndef CUBEWIDGET_H
 #define CUBEWIDGET_H
 
