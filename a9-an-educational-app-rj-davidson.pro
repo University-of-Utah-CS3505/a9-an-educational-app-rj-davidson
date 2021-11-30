@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     Cube.cpp \
+    CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     Cube.h \
+    CubeFace.h \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h

@@ -2,6 +2,7 @@
 #define RUBIKSEDU_H
 
 #include <QMainWindow>
+#include "Model.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class RubiksEdu; }
@@ -12,7 +13,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-    RubiksEdu(QWidget *parent = nullptr);
+    RubiksEdu(QWidget *parent = nullptr, Model *model = nullptr);
     ~RubiksEdu();
 
 private:
