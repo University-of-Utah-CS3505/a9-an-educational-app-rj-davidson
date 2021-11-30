@@ -11,12 +11,14 @@ CONFIG += c++11
 SOURCES += \
     Cube.cpp \
     CubeWidget.cpp \
+    Model.cpp \
     main.cpp \
     RubiksEdu.cpp
 
 HEADERS += \
     Cube.h \
     CubeWidget.h \
+    Model.h \
     RubiksEdu.h
 
 FORMS += \
