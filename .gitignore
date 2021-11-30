@@ -1,1 +1,4 @@
 *.pro.user
+*.in
+.DS_Store
+box2d-master/*
