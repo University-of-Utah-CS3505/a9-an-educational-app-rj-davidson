@@ -1,4 +1,4 @@
 *.pro.user
-*.in
 .DS_Store
-box2d-master/*
+mac/box2d-master/*
+windows/box2d-master/*

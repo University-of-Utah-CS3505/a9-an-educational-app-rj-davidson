@@ -26,3 +26,10 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+macx: LIBS += -L$$PWD/mac/box2d-master/build/bin/ -lbox2d
+
+INCLUDEPATH += $$PWD/mac/box2d-master/include
+DEPENDPATH += $$PWD/mac/box2d-master/include
+
+macx: PRE_TARGETDEPS += $$PWD/mac/box2d-master/build/bin/libbox2d.a
