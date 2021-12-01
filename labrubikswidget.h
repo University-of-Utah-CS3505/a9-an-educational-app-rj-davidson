@@ -3,6 +3,7 @@
 
 #include <box2d/box2d.h>
 
+#include <QKeyEvent>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPixmap>
@@ -18,6 +19,7 @@ class LabRubiksWidget : public QWidget {
 
  protected:
   void paintEvent(QPaintEvent* event) override;
+  void keyPressEvent(QKeyEvent* event) override;
 
  private:
   QPixmap pm;
