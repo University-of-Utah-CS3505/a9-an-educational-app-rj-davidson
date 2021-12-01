@@ -13,6 +13,7 @@ SOURCES += \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
+    labrubikswidget.cpp \
     main.cpp \
     RubiksEdu.cpp
 
@@ -21,7 +22,8 @@ HEADERS += \
     CubeFace.h \
     CubeWidget.h \
     Model.h \
-    RubiksEdu.h
+    RubiksEdu.h \
+    labrubikswidget.h
 
 FORMS += \
     RubiksEdu.ui
@@ -48,4 +50,10 @@ DEPENDPATH += $$PWD/windows/box2d-master/include
 
 PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 }
+
+DISTFILES += \
+    rubiks_face.png
+
+RESOURCES += \
+    resources.qrc
 
