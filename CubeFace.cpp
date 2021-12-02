@@ -2,16 +2,16 @@
 
 CubeFace::CubeFace()
 {
-    std::vector<int> row(3, 0);
-    std::vector<std::vector<int> > completeFace(3, row);
+    std::vector<char> row(3, 'g');
+    std::vector<std::vector<char> > completeFace(3, row);
     face = completeFace;
 
 }
 
-CubeFace::CubeFace(int faceColor)
+CubeFace::CubeFace(char faceColor)
 {
-    std::vector<int> row(3, faceColor);
-    std::vector<std::vector<int> > completeFace(3, row);
+    std::vector<char> row(3, faceColor);
+    std::vector<std::vector<char> > completeFace(3, row);
     face = completeFace;
 }
 
@@ -20,31 +20,45 @@ CubeFace::CubeFace(const CubeFace &other)
     face = other.face;
 }
 
-std::vector<std::vector<int>> CubeFace::getFace()
+std::vector<std::vector<char>> CubeFace::getFace()
 {
     return face;
 }
 
-std::vector<int> CubeFace::getRow(int y)
+std::vector<char> CubeFace::getRow(int y)
 {
     return face[y];
 }
 
-std::vector<int> CubeFace::getCol(int x)
+std::vector<char> CubeFace::getCol(int x)
 {
-    std::vector<int> col;
+    std::vector<char> col;
     for (int i = 0; i < (int) face.size(); i++)
         col.push_back(face[i][x]);
     return col;
 }
 
-void CubeFace::setRow(int y, std::vector<int> row)
+void CubeFace::setRow(int y, std::vector<char> row)
 {
     face[y] = row;
 }
 
-void CubeFace::setColumn(int x, std::vector<int> col)
+void CubeFace::setColumn(int x, std::vector<char> col)
 {
     for (int i = 0; i < (int) face.size(); i++)
         face[i][x] = col[i];
+}
+
+bool CubeFace::complete()
+{
+    char standard = face[0][0];
+    for (std::vector<char> row : face)
+    {
+        for (char c : row)
+        {
+            if (c != standard)
+                return false;
+        }
+    }
+    return true;
 }

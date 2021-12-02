@@ -32,10 +32,17 @@ public:
     void topRight();
 
     // Getters
-    void getFace(int); //TODO: Shoudl this return a CubeFace object?
-    void getCube();
+    CubeFace getFace(int); //TODO: Shoudl this return a CubeFace object?
+    std::vector<CubeFace> getCube();
+
+    // Setters
+    void setCurrentFace(int);
+
+    // Solved Check
+    bool solved();
 
 private:
     std::vector<CubeFace> cubeFaces;
+    int currentFace;
 };
 #endif // CUBE_H
