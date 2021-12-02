@@ -2,6 +2,8 @@
 #define CUBEFACE_H
 
 #include <vector>
+#include <QImage>
+#include <QColor>
 
 class CubeFace
 {
@@ -21,6 +23,9 @@ public:
 
     // Complete Checker
     bool complete();
+
+    QImage toQImage();
+
 private:
     std::vector<std::vector<char>> face;
 };

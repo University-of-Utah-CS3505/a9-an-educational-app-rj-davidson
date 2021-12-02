@@ -62,3 +62,37 @@ bool CubeFace::complete()
     }
     return true;
 }
+
+QImage CubeFace::toQImage()
+{
+    QImage image(3, 3, QImage::Format_RGBA64);
+
+    for (int i = 0; i < (int) face.size(); i++)
+    {
+        for (int j = 0; j < (int) face[i].size(); j++)
+        {
+            switch(face[i][j])
+            {
+                case 'g':
+                    image.setPixelColor(j, i, QColor("green"));
+                    break;
+                case 'r':
+                    image.setPixelColor(j, i, QColor("red"));
+                    break;
+                case 'y':
+                    image.setPixelColor(j, i, QColor("yellow"));
+                    break;
+                case 'w':
+                    image.setPixelColor(j, i, QColor("white"));
+                    break;
+                case 'o':
+                    image.setPixelColor(j, i, QColor("black")); // TODO: QColor orange
+                    break;
+                default:
+                    image.setPixelColor(j, i, QColor("blue"));
+            }
+        }
+    }
+
+    return image;
+}

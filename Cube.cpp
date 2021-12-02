@@ -12,6 +12,48 @@ Cube::Cube()
     cubeFaces.push_back(CubeFace('b'));
 }
 
+void Cube::move(int moveID)
+{
+    switch (moveID)
+    {
+        case 0:
+            leftTop();
+            break;
+        case 1:
+            leftMid();
+            break;
+        case 2:
+            leftBttm();
+            break;
+        case 3:
+            bttmLeft();
+            break;
+        case 4:
+            bttmMid();
+            break;
+        case 5:
+            bttmRight();
+            break;
+        case 6:
+            rightBttm();
+            break;
+        case 7:
+            rightMid();
+            break;
+        case 8:
+            rightTop();
+            break;
+        case 9:
+            topRight();
+            break;
+        case 10:
+            topMid();
+            break;
+        default:
+            topLeft();
+    }
+}
+
 // Left Controls
 void Cube::leftTop()
 {
@@ -100,4 +142,13 @@ bool Cube::solved()
         if (!f.complete())
             return false;
     return true;
+}
+
+// Converts Cube to List of QImages
+std::vector<QImage> Cube::toQImageList()
+{
+    std::vector<QImage> list;
+    for (CubeFace f : cubeFaces)
+        list.push_back(f.toQImage());
+    return list;
 }
