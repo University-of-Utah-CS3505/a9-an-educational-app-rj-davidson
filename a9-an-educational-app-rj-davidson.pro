@@ -31,21 +31,12 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-macx: {
-LIBS += -L$$PWD/mac/box2d-master/build/bin/ -lbox2d
+RESOURCES +=
 
-INCLUDEPATH += $$PWD/mac/box2d-master/include
-DEPENDPATH += $$PWD/mac/box2d-master/include
+win32: LIBS += -L$$PWD/box2d/build/ -lbox2d
 
-PRE_TARGETDEPS += $$PWD/mac/box2d-master/build/bin/libbox2d.a
-}
+INCLUDEPATH += $$PWD/box2d/include
+DEPENDPATH += $$PWD/box2d/include
 
-win32: {
-LIBS += -L$$PWD/windows/box2d-master/build/bin/ -lbox2d
-
-INCLUDEPATH += $$PWD/windows/box2d-master/include
-DEPENDPATH += $$PWD/windows/box2d-master/include
-
-PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
-}
-
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/box2d/build/box2d.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/box2d/build/libbox2d.a
