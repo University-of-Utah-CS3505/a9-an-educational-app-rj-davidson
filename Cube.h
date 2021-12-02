@@ -35,7 +35,7 @@ public:
     void topLeft();
 
     // Getters
-    CubeFace getFace(int); //TODO: Shoudl this return a CubeFace object?
+    CubeFace getFace(int); //TODO: Should this return a CubeFace object?
     std::vector<CubeFace> getCube();
 
     // Setters

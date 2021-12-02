@@ -19,7 +19,11 @@ public:
 
     // Setters
     void setRow(int, std::vector<char>);
-    void setColumn(int, std::vector<char>);
+    void setCol(int, std::vector<char>);
+
+    // Rotate Face
+    void rotateClockwise();
+    void rotateCounterClockwise();
 
     // Complete Checker
     bool complete();

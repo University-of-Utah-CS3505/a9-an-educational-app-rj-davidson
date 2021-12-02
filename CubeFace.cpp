@@ -43,10 +43,38 @@ void CubeFace::setRow(int y, std::vector<char> row)
     face[y] = row;
 }
 
-void CubeFace::setColumn(int x, std::vector<char> col)
+void CubeFace::setCol(int x, std::vector<char> col)
 {
     for (int i = 0; i < (int) face.size(); i++)
         face[i][x] = col[i];
+}
+
+void CubeFace::rotateClockwise()
+{
+    std::vector<char> r0 = getRow(0);
+    std::vector<char> r1 = getRow(1);
+    std::vector<char> r2 = getRow(2);
+
+    for (int i = 0; i < (int) face.size(); i++)
+    {
+        face[i][0] = r2[i];
+        face[i][1] = r1[i];
+        face[i][0] = r0[i];
+    }
+}
+
+void CubeFace::rotateCounterClockwise()
+{
+    std::vector<char> c0 = getCol(0);
+    std::vector<char> c1 = getCol(1);
+    std::vector<char> c2 = getCol(2);
+
+    for (int i = 0; i < (int) face.size(); i++)
+    {
+        face[0][i] = c2[i];
+        face[0][i] = c1[i];
+        face[0][i] = c0[i];
+    }
 }
 
 bool CubeFace::complete()
@@ -86,7 +114,7 @@ QImage CubeFace::toQImage()
                     image.setPixelColor(j, i, QColor("white"));
                     break;
                 case 'o':
-                    image.setPixelColor(j, i, QColor("black")); // TODO: QColor orange
+                    image.setPixelColor(j, i, QColor("orange"));
                     break;
                 default:
                     image.setPixelColor(j, i, QColor("blue"));
