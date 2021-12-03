@@ -20,34 +20,22 @@ void Cube::move(int moveID)
             leftTop();
             break;
         case 1:
-            leftMid();
-            break;
-        case 2:
             leftBttm();
             break;
-        case 3:
+        case 2:
             bttmLeft();
             break;
-        case 4:
-            bttmMid();
-            break;
-        case 5:
+        case 3:
             bttmRight();
             break;
-        case 6:
+        case 4:
             rightBttm();
             break;
-        case 7:
-            rightMid();
-            break;
-        case 8:
+        case 5:
             rightTop();
             break;
-        case 9:
+        case 6:
             topRight();
-            break;
-        case 10:
-            topMid();
             break;
         default:
             topLeft();
@@ -56,11 +44,6 @@ void Cube::move(int moveID)
 
 // Left Controls
 void Cube::leftTop()
-{
-
-}
-
-void Cube::leftMid()
 {
 
 }
@@ -76,11 +59,6 @@ void Cube::rightTop()
 
 }
 
-void Cube::rightMid()
-{
-
-}
-
 void Cube::rightBttm()
 {
 
@@ -92,11 +70,6 @@ void Cube::bttmLeft()
 
 }
 
-void Cube::bttmMid()
-{
-
-}
-
 void Cube::bttmRight()
 {
 
@@ -104,11 +77,6 @@ void Cube::bttmRight()
 
 // Top Controls
 void Cube::topLeft()
-{
-
-}
-
-void Cube::topMid()
 {
 
 }

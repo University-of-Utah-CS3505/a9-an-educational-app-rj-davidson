@@ -16,22 +16,18 @@ public:
 
     // Left Controls
     void leftTop();
-    void leftMid();
     void leftBttm();
 
     // Bottom Controls
     void bttmLeft();
-    void bttmMid();
     void bttmRight();
 
     // Right Controls
     void rightBttm();
-    void rightMid();
     void rightTop();
 
     // Top Controls
     void topRight();
-    void topMid();
     void topLeft();
 
     // Getters
