@@ -12,9 +12,9 @@ Cube::Cube()
     cubeFaces.push_back(CubeFace('b'));
 }
 
-void Cube::move(int rotationID)
+void Cube::move(int moveID)
 {
-    switch (rotationID)
+    switch (moveID)
     {
         case 0:
             leftTop();
