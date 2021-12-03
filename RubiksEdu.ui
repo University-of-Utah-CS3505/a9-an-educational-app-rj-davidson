@@ -14,7 +14,7 @@
    <string>RubiksEdu</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="cubeWidget" native="true">
+   <widget class="ViewCube" name="cubeWidget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -323,6 +323,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ViewCube</class>
+   <extends>QWidget</extends>
+   <header location="global">ViewCube.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

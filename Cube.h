@@ -30,6 +30,20 @@ public:
     void topRight();
     void topLeft();
 
+    // Moves
+    void move1();
+    void move2();
+    void move3();
+    void move4();
+    void move5();
+    void move6();
+    void move7();
+    void move8();
+    void move9();
+    void move10();
+    void move11();
+    void move12();
+
     // Getters
     CubeFace getFace(int); //TODO: Should this return a CubeFace object?
     std::vector<CubeFace> getCube();
