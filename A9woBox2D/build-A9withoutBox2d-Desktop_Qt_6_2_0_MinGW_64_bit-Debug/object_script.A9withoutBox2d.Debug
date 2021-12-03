@@ -1,0 +1,10 @@
+debug/cube.o
+debug/cubeface.o
+debug/cubewidget.o
+debug/main.o
+debug/mainwindow.o
+debug/model.o
+debug/rubiksedu.o
+debug/moc_mainwindow.o
+debug/moc_model.o
+debug/moc_rubiksedu.o

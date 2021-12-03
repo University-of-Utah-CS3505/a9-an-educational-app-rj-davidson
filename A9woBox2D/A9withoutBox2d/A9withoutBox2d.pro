@@ -9,11 +9,19 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    cube.cpp \
+    cubeface.cpp \
+    cubewidget.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    model.cpp
 
 HEADERS += \
-    mainwindow.h
+    cube.h \
+    cubeface.h \
+    cubewidget.h \
+    mainwindow.h \
+    model.h
 
 FORMS += \
     mainwindow.ui
