@@ -48,22 +48,22 @@ void Cube::leftTop()
     switch (currentFace)
     {
         case 1: // r1
-            move1();
+            y2Clockwise();
             break;
         case 2: // y2
-            move9();
+            b5Clockwise();
             break;
         case 3: // w3
-            move1();
+            y2Clockwise();
             break;
         case 4: // o4
-            move11();
+            g0Clockwise();
             break;
         case 5: // b5
-            move1();
+            y2Clockwise();
             break;
         default: // g0
-            move1();
+            y2Clockwise();
     }
 }
 
@@ -72,22 +72,22 @@ void Cube::leftBttm()
     switch (currentFace)
     {
         case 1: // r1
-            move2();
+            o4CounterClockwise();
             break;
         case 2: // y2
-            move10();
+            g0CounterClockwise();
             break;
         case 3: // w3
-            move2();
+            o4CounterClockwise();
             break;
         case 4: // o4
-            move12();
+            b5CounterClockwise();
             break;
         case 5: // b5
-            move2();
+            o4CounterClockwise();
             break;
         default: // g0
-            move2();
+            o4CounterClockwise();
     }
 }
 
@@ -97,22 +97,22 @@ void Cube::bttmLeft()
     switch (currentFace)
     {
         case 1: // r1
-            move9();
+            b5Clockwise();
             break;
         case 2: // y2
-            move3();
+            r1Clockwise();
             break;
         case 3: // w3
-            move11();
+            g0Clockwise();
             break;
         case 4: // o4
-            move3();
+            r1Clockwise();
             break;
         case 5: // b5
-            move7();
+            w3Clockwise();
             break;
         default: // g0
-            move3();
+            r1Clockwise();
     }
 }
 
@@ -121,22 +121,22 @@ void Cube::bttmRight()
     switch (currentFace)
     {
         case 1: // r1
-            move10();
+            g0CounterClockwise();
             break;
         case 2: // y2
-            move4();
+            w3CounterClockwise();
             break;
         case 3: // w3
-            move12();
+            b5CounterClockwise();
             break;
         case 4: // o4
-            move4();
+            w3CounterClockwise();
             break;
         case 5: // b5
-            move8();
+            r1CounterClockwise();
             break;
         default: // g0
-            move4();
+            w3CounterClockwise();
     }
 }
 
@@ -146,22 +146,22 @@ void Cube::rightBttm()
     switch (currentFace)
     {
         case 1: // r1
-            move5();
+            o4Clockwise();
             break;
         case 2: // y2
-            move11();
+            g0Clockwise();
             break;
         case 3: // w3
-            move5();
+            o4Clockwise();
             break;
         case 4: // o4
-            move9();
+            b5Clockwise();
             break;
         case 5: // b5
-            move5();
+            o4Clockwise();
             break;
         default: // g0
-            move5();
+            o4Clockwise();
     }
 }
 
@@ -170,22 +170,22 @@ void Cube::rightTop()
     switch (currentFace)
     {
         case 1: // r1
-            move6();
+            y2CounterClockwise();
             break;
         case 2: // y2
-            move12();
+            b5CounterClockwise();
             break;
         case 3: // w3
-            move6();
+            y2CounterClockwise();
             break;
         case 4: // o4
-            move10();
+            g0CounterClockwise();
             break;
         case 5: // b5
-            move6();
+            y2CounterClockwise();
             break;
         default: // g0
-            move6();
+            y2CounterClockwise();
     }
 }
 
@@ -195,22 +195,22 @@ void Cube::topRight()
     switch (currentFace)
     {
         case 1: // r1
-            move11();
+            g0Clockwise();
             break;
         case 2: // y2
-            move7();
+            w3Clockwise();
             break;
         case 3: // w3
-            move9();
+            b5Clockwise();
             break;
         case 4: // o4
-            move7();
+            w3Clockwise();
             break;
         case 5: // b5
-            move3();
+            r1Clockwise();
             break;
         default: // g0
-            move7();
+            w3Clockwise();
     }
 }
 
@@ -219,61 +219,69 @@ void Cube::topLeft()
     switch (currentFace)
     {
         case 1: // r1
-            move12();
+            b5CounterClockwise();
             break;
         case 2: // y2
-            move8();
+            r1CounterClockwise();
             break;
         case 3: // w3
-            move10();
+            g0CounterClockwise();
             break;
         case 4: // o4
-            move8();
+            r1CounterClockwise();
             break;
         case 5: // b5
-            move4();
+            w3CounterClockwise();
             break;
         default: // g0
-            move8();
+            r1CounterClockwise();
     }
 }
 
 // Moves
-void Cube::move1()
+void Cube::g0Clockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
+    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
+    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
+    std::reverse(y2Temp.begin(), y2Temp.end());
+    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
+    std::reverse(w3Temp.begin(), w3Temp.end());
+    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
 
-    // Set r1 row 0 to g0Temp
-    cubeFaces[1].setRow(0, g0Temp);
-    // Set b5 row 0 to r1Temp
-    cubeFaces[5].setRow(0, r1Temp);
-    // Set w3 row 0 to b5Temp
-    cubeFaces[3].setRow(0, b5Temp);
-    // Set g0 row 0 to w3Temp
-    cubeFaces[0].setRow(0, w3Temp);
+    // Set y2 row 2 to r1Temp
+    cubeFaces[2].setRow(2, r1Temp);
+    // Set w3 col 0 to y2Temp
+    cubeFaces[3].setCol(0, y2Temp);
+    // Set o4 row 0 to w3Temp
+    cubeFaces[4].setRow(0, w3Temp);
+    // Set r1 col 2 to o4Temp
+    cubeFaces[1].setCol(2, o4Temp);
+    // Rotate g0 Clockwise
+    cubeFaces[0].rotateClockwise();
 }
 
-void Cube::move2()
+void Cube::g0CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
+    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
+    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
+    std::reverse(o4Temp.begin(), o4Temp.end());
+    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
+    std::reverse(w3Temp.begin(), w3Temp.end());
+    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
 
-    // Set r1 row 2 to g0Temp
-    cubeFaces[1].setRow(2, g0Temp);
-    // Set b5 row 2 to r1Temp
-    cubeFaces[5].setRow(2, r1Temp);
-    // Set w3 row 2 to b5Temp
-    cubeFaces[3].setRow(2, b5Temp);
-    // Set g0 row 2 to w3Temp
-    cubeFaces[0].setRow(2, w3Temp);
+    // Set o4 row 0 to r1Temp
+    cubeFaces[4].setRow(0, r1Temp);
+    // Set w3 col 0 to o4Temp
+    cubeFaces[3].setCol(0, o4Temp);
+    // Set y2 row 2 to w3Temp
+    cubeFaces[2].setRow(2, w3Temp);
+    // Set r1 col 2 to y2Temp
+    cubeFaces[1].setCol(2, y2Temp);
+    // Rotate g0 Counter Clockwise
+    cubeFaces[0].rotateCounterClockwise();
 }
 
-void Cube::move3()
+void Cube::r1Clockwise()
 {
     std::vector<char> g0Temp = cubeFaces[0].getCol(0);
     std::vector<char> o4Temp = cubeFaces[4].getCol(0);
@@ -290,9 +298,91 @@ void Cube::move3()
     cubeFaces[2].setCol(0, b5Temp);
     // Set g0 col 0 to y2Temp
     cubeFaces[0].setCol(0, y2Temp);
+    // Rotate r1 Clockwise
+    cubeFaces[1].rotateClockwise();
 }
 
-void Cube::move4()
+void Cube::r1CounterClockwise()
+{
+    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
+    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
+    std::reverse(y2Temp.begin(), y2Temp.end());
+    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
+    std::reverse(b5Temp.begin(), b5Temp.end());
+    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
+
+    // Set y2 col 0 to g0Temp
+    cubeFaces[2].setCol(0, g0Temp);
+    // Set b5 col 2 to y2Temp
+    cubeFaces[5].setCol(2, y2Temp);
+    // Set o4 col 0 to b5Temp
+    cubeFaces[4].setCol(0, b5Temp);
+    // Set g0 col 0 to o4Temp
+    cubeFaces[0].setCol(0, o4Temp);
+    // Rotate r1 Counter Clockwise
+    cubeFaces[1].rotateCounterClockwise();
+}
+
+void Cube::y2CounterClockwise()
+{
+    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
+
+    // Set w3 row 2 to g0Temp
+    cubeFaces[3].setRow(0, g0Temp);
+    // Set b5 row 2 to w3Temp
+    cubeFaces[5].setRow(0, w3Temp);
+    // Set r1 row 2 to b5Temp
+    cubeFaces[1].setRow(0, b5Temp);
+    // Set g0 row 2 to r1Temp
+    cubeFaces[0].setRow(0, r1Temp);
+    // Rotate y2 Counter Clockwise
+    cubeFaces[2].rotateCounterClockwise();
+}
+
+void Cube::y2Clockwise()
+{
+    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
+
+    // Set r1 row 0 to g0Temp
+    cubeFaces[1].setRow(0, g0Temp);
+    // Set b5 row 0 to r1Temp
+    cubeFaces[5].setRow(0, r1Temp);
+    // Set w3 row 0 to b5Temp
+    cubeFaces[3].setRow(0, b5Temp);
+    // Set g0 row 0 to w3Temp
+    cubeFaces[0].setRow(0, w3Temp);
+    // Rotate y2 Clockwise
+    cubeFaces[2].rotateClockwise();
+}
+
+void Cube::w3Clockwise()
+{
+    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
+    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
+    std::reverse(y2Temp.begin(), y2Temp.end());
+    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
+    std::reverse(b5Temp.begin(), b5Temp.end());
+    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
+
+    // Set y2 col 2 to g0Temp
+    cubeFaces[2].setCol(2, g0Temp);
+    // Set b5 col 0 to y2Temp
+    cubeFaces[5].setCol(0, y2Temp);
+    // Set o4 col 2 to b5Temp
+    cubeFaces[4].setCol(2, b5Temp);
+    // Set g0 col 2 to o4Temp
+    cubeFaces[0].setCol(2, o4Temp);
+    // Rotate w3 Clockwise
+    cubeFaces[3].rotateClockwise();
+}
+
+void Cube::w3CounterClockwise()
 {
     std::vector<char> g0Temp = cubeFaces[0].getCol(2);
     std::vector<char> o4Temp = cubeFaces[4].getCol(2);
@@ -309,9 +399,11 @@ void Cube::move4()
     cubeFaces[2].setCol(2, b5Temp);
     // Set g0 col 2 to y2Temp
     cubeFaces[0].setCol(2, y2Temp);
+    // Rotate w3 Counter Clockwise
+    cubeFaces[3].rotateCounterClockwise();
 }
 
-void Cube::move5()
+void Cube::o4Clockwise()
 {
     std::vector<char> g0Temp = cubeFaces[0].getRow(2);
     std::vector<char> w3Temp = cubeFaces[3].getRow(2);
@@ -326,55 +418,70 @@ void Cube::move5()
     cubeFaces[1].setRow(2, b5Temp);
     // Set g0 row 2 to r1Temp
     cubeFaces[0].setRow(2, r1Temp);
+    // Rotate o4 Clockwise
+    cubeFaces[4].rotateClockwise();
 }
 
-void Cube::move6()
+void Cube::o4CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
+    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
 
-    // Set w3 row 2 to g0Temp
-    cubeFaces[3].setRow(0, g0Temp);
-    // Set b5 row 2 to w3Temp
-    cubeFaces[5].setRow(0, w3Temp);
-    // Set r1 row 2 to b5Temp
-    cubeFaces[1].setRow(0, b5Temp);
-    // Set g0 row 2 to r1Temp
-    cubeFaces[0].setRow(0, r1Temp);
+    // Set r1 row 2 to g0Temp
+    cubeFaces[1].setRow(2, g0Temp);
+    // Set b5 row 2 to r1Temp
+    cubeFaces[5].setRow(2, r1Temp);
+    // Set w3 row 2 to b5Temp
+    cubeFaces[3].setRow(2, b5Temp);
+    // Set g0 row 2 to w3Temp
+    cubeFaces[0].setRow(2, w3Temp);
+    // Rotate 04 Counter Clockwise
+    cubeFaces[4].rotateCounterClockwise();
 }
 
-void Cube::move7()
+void Cube::b5Clockwise()
 {
+    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
+    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
+    std::reverse(o4Temp.begin(), o4Temp.end());
+    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
+    std::reverse(w3Temp.begin(), w3Temp.end());
+    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
 
+    // Set o4 row 2 to r1Temp
+    cubeFaces[4].setRow(2, r1Temp);
+    // Set w3 col 2 to o4Temp
+    cubeFaces[3].setCol(2, o4Temp);
+    // Set y2 row 0 to w3Temp
+    cubeFaces[2].setRow(0, w3Temp);
+    // Set r1 col 0 to y2Temp
+    cubeFaces[1].setCol(0, y2Temp);
+    // Rotate b5 Clockwise
+    cubeFaces[5].rotateClockwise();
 }
 
-void Cube::move8()
+void Cube::b5CounterClockwise()
 {
+    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
+    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
+    std::reverse(y2Temp.begin(), y2Temp.end());
+    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
+    std::reverse(w3Temp.begin(), w3Temp.end());
+    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
 
+    // Set y2 row 0 to r1Temp
+    cubeFaces[2].setRow(0, r1Temp);
+    // Set w3 col 2 to y2Temp
+    cubeFaces[3].setCol(2, y2Temp);
+    // Set o4 row 2 to w3Temp
+    cubeFaces[4].setRow(2, w3Temp);
+    // Set r1 col 0 to o4Temp
+    cubeFaces[1].setCol(0, o4Temp);
+    // Rotate b5 Counter Clockwise
+    cubeFaces[5].rotateCounterClockwise();
 }
-
-void Cube::move9()
-{
-
-}
-
-void Cube::move10()
-{
-
-}
-
-void Cube::move11()
-{
-
-}
-
-void Cube::move12()
-{
-
-}
-
 
 // Getters
 CubeFace Cube::getFace(int i)

@@ -32,21 +32,21 @@ public:
     void topLeft();
 
     // Moves
-    void move1();
-    void move2();
-    void move3();
-    void move4();
-    void move5();
-    void move6();
-    void move7();
-    void move8();
-    void move9();
-    void move10();
-    void move11();
-    void move12();
+    void g0Clockwise();
+    void g0CounterClockwise();
+    void r1Clockwise();
+    void r1CounterClockwise();
+    void y2Clockwise();
+    void y2CounterClockwise();
+    void w3Clockwise();
+    void w3CounterClockwise();
+    void o4Clockwise();
+    void o4CounterClockwise();
+    void b5Clockwise();
+    void b5CounterClockwise();
 
     // Getters
-    CubeFace getFace(int); //TODO: Should this return a CubeFace object?
+    CubeFace getFace(int);
     std::vector<CubeFace> getCube();
 
     // Setters
