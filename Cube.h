@@ -6,6 +6,7 @@
 #include "CubeFace.h"
 #include <vector>
 #include <QImage>
+#include <algorithm>
 
 class Cube
 {

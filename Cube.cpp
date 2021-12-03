@@ -241,32 +241,108 @@ void Cube::topLeft()
 // Moves
 void Cube::move1()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
 
+    // Set r1 row 0 to g0Temp
+    cubeFaces[1].setRow(0, g0Temp);
+    // Set b5 row 0 to r1Temp
+    cubeFaces[5].setRow(0, r1Temp);
+    // Set w3 row 0 to b5Temp
+    cubeFaces[3].setRow(0, b5Temp);
+    // Set g0 row 0 to w3Temp
+    cubeFaces[0].setRow(0, w3Temp);
 }
 
 void Cube::move2()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
 
+    // Set r1 row 2 to g0Temp
+    cubeFaces[1].setRow(2, g0Temp);
+    // Set b5 row 2 to r1Temp
+    cubeFaces[5].setRow(2, r1Temp);
+    // Set w3 row 2 to b5Temp
+    cubeFaces[3].setRow(2, b5Temp);
+    // Set g0 row 2 to w3Temp
+    cubeFaces[0].setRow(2, w3Temp);
 }
 
 void Cube::move3()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
+    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
+    std::reverse(o4Temp.begin(), o4Temp.end());
+    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
+    std::reverse(b5Temp.begin(), b5Temp.end());
+    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
 
+    // Set o4 col 0 to g0Temp
+    cubeFaces[4].setCol(0, g0Temp);
+    // Set b5 col 2 to o4Temp
+    cubeFaces[5].setCol(2, o4Temp);
+    // Set y2 col 0 to b5Temp
+    cubeFaces[2].setCol(0, b5Temp);
+    // Set g0 col 0 to y2Temp
+    cubeFaces[0].setCol(0, y2Temp);
 }
 
 void Cube::move4()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
+    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
+    std::reverse(o4Temp.begin(), o4Temp.end());
+    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
+    std::reverse(b5Temp.begin(), b5Temp.end());
+    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
 
+    // Set o4 col 2 to g0Temp
+    cubeFaces[4].setCol(2, g0Temp);
+    // Set b5 col 0 to o4Temp
+    cubeFaces[5].setCol(0, o4Temp);
+    // Set y2 col 2 to b5Temp
+    cubeFaces[2].setCol(2, b5Temp);
+    // Set g0 col 2 to y2Temp
+    cubeFaces[0].setCol(2, y2Temp);
 }
 
 void Cube::move5()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
 
+    // Set w3 row 2 to g0Temp
+    cubeFaces[3].setRow(2, g0Temp);
+    // Set b5 row 2 to w3Temp
+    cubeFaces[5].setRow(2, w3Temp);
+    // Set r1 row 2 to b5Temp
+    cubeFaces[1].setRow(2, b5Temp);
+    // Set g0 row 2 to r1Temp
+    cubeFaces[0].setRow(2, r1Temp);
 }
 
 void Cube::move6()
 {
+    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
+    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
+    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
+    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
 
+    // Set w3 row 2 to g0Temp
+    cubeFaces[3].setRow(0, g0Temp);
+    // Set b5 row 2 to w3Temp
+    cubeFaces[5].setRow(0, w3Temp);
+    // Set r1 row 2 to b5Temp
+    cubeFaces[1].setRow(0, b5Temp);
+    // Set g0 row 2 to r1Temp
+    cubeFaces[0].setRow(0, r1Temp);
 }
 
 void Cube::move7()
