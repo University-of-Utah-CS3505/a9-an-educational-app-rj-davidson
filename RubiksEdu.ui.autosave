@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RubiksEdu</class>
+ <widget class="QMainWindow" name="RubiksEdu">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RubiksEdu</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="ViewCube" name="cubeWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>60</y>
+      <width>600</width>
+      <height>440</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
+    <widget class="QLabel" name="face0">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>160</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face1">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>160</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face2">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>0</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face3">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>160</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face3</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face5">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>160</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face5</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face4">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>320</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face4</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="modeSelect">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>91</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="currentText">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="leftTopButton">
+     <property name="geometry">
+      <rect>
+       <x>128</x>
+       <y>168</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="topLeftButton">
+     <property name="geometry">
+      <rect>
+       <x>168</x>
+       <y>128</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>^</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="topRightButton">
+     <property name="geometry">
+      <rect>
+       <x>248</x>
+       <y>128</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>^</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="leftBttmButton">
+     <property name="geometry">
+      <rect>
+       <x>128</x>
+       <y>248</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rightTopButton">
+     <property name="geometry">
+      <rect>
+       <x>288</x>
+       <y>168</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rightBttmButton">
+     <property name="geometry">
+      <rect>
+       <x>288</x>
+       <y>248</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bttmLeftButton">
+     <property name="geometry">
+      <rect>
+       <x>168</x>
+       <y>288</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>v</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bttmRightButton">
+     <property name="geometry">
+      <rect>
+       <x>248</x>
+       <y>288</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>v</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="resetButton">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>0</y>
+       <width>80</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="guideWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>171</width>
+      <height>231</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="infoWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>280</y>
+      <width>171</width>
+      <height>261</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ViewCube</class>
+   <extends>QWidget</extends>
+   <header location="global">ViewCube.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
