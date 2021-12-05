@@ -20,6 +20,7 @@
 #include <QVector>
 #include <iostream>
 #include <QString>
+#include <QPushButton>
 
 
 using namespace std;
@@ -43,6 +44,10 @@ public slots:
     void open3DCubeWindow();
 
 
+
+
+private slots:
+    void on_leftPushBtn_clicked();
 
 private:
     Ui::Window3DCube *ui;

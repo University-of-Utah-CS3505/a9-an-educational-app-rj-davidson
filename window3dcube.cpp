@@ -10,8 +10,9 @@ Window3DCube::Window3DCube(QWidget *parent) :
     ui(new Ui::Window3DCube)
 {
     ui->setupUi(this);
-
+    connect(ui->leftPushBtn,&QPushButton::clicked,this,&Window3DCube::on_leftPushBtn_clicked);
    scene1= new QGraphicsScene;
+
 createLeftOfCube();
 
 createRightOfCube();
@@ -29,6 +30,7 @@ createTopOfCube();
     ui->cubeGraphicsView->scale(-1,1);
 
 
+
 }
 
 /*
@@ -39,6 +41,7 @@ Window3DCube::~Window3DCube()
     vector.clear();
     delete ui;
 }
+
 
 /*
  *
@@ -75,7 +78,7 @@ void Window3DCube::createLeftOfCube(){
             path1.lineTo(point4x, point4y);
             path1.lineTo(point1x, point1y);
             itemRLeft = scene1->addPath(path1);
-            itemRLeft->setBrush(Qt::black);
+            itemRLeft->setBrush(Qt::yellow);
             vector.append(itemRLeft);
             qDebug()<<vector.size();
         }
@@ -106,7 +109,7 @@ void Window3DCube::createRightOfCube(){
             path2.lineTo(point4x, point4y);
             path2.lineTo(point1x, point1y);
             itemRRight = scene1->addPath(path2);
-            itemRRight->setBrush(Qt::blue);
+            itemRRight->setBrush(Qt::red);
             vector.append(itemRRight);
             qDebug()<<vector.size();
         }
@@ -142,7 +145,7 @@ void Window3DCube::createTopOfCube(){
             path3.lineTo(point4x, point4y);
             path3.lineTo(point1x, point1y);
             itemRTop = scene1->addPath(path3);
-            itemRTop->setBrush(Qt::gray);
+            itemRTop->setBrush(Qt::green);
             vector.append(itemRTop);
         }
     }
@@ -150,23 +153,29 @@ void Window3DCube::createTopOfCube(){
 
 }
 
-///*
-// *save inside vector2d to be used later so that they don't have to be created
-// *each time again when repainting
-//*/
-//void Window3DCube::save2DCubeXY(){
+/*
+ *save inside vector2d to be used later so that they don't have to be created
+ *each time again when repainting
+*/
+void Window3DCube::save2DCubeXY(){
 
-//QByteArray arrayFaceLeft;
-//arrayFaceLeft.resize(8);
-//arrayFaceLeft[0] = point1x;
-//arrayFaceLeft[1] = point1y;
-//arrayFaceLeft[2] = point2x;
-//arrayFaceLeft[3] = point2y;
-//arrayFaceLeft[4] = point3x;
-//arrayFaceLeft[5] = point3y;
-//arrayFaceLeft[6] = point4x;
-//arrayFaceLeft[7] = point4y;
+QByteArray arrayFaceLeft;
+arrayFaceLeft.resize(8);
+arrayFaceLeft[0] = point1x;
+arrayFaceLeft[1] = point1y;
+arrayFaceLeft[2] = point2x;
+arrayFaceLeft[3] = point2y;
+arrayFaceLeft[4] = point3x;
+arrayFaceLeft[5] = point3y;
+arrayFaceLeft[6] = point4x;
+arrayFaceLeft[7] = point4y;
 
-//qDebug()<<arrayFaceLeft[7];
+qDebug()<<arrayFaceLeft[7];
 
-//}
+}
+
+void Window3DCube::on_leftPushBtn_clicked()
+{
+
+}
+
