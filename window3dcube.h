@@ -15,7 +15,17 @@
 #include <QRectF>
 #include <QSize>
 #include <QDebug>
-#include <QMatrix3x3>
+#include <QImage>
+#include <QByteArray>
+#include <QVector>
+#include <iostream>
+#include <QString>
+
+
+using namespace std;
+
+
+
 
 namespace Ui {
 class Window3DCube;
@@ -37,8 +47,11 @@ public slots:
 private:
     Ui::Window3DCube *ui;
 QGraphicsScene *scene1;
-QGraphicsRectItem *faceWidget1;
-QGraphicsPathItem *itemR;
+QGraphicsPathItem *itemRLeft;
+QGraphicsPathItem *itemRRight;
+QGraphicsPathItem *itemRTop;
+QVector<QGraphicsPathItem*> vector;
+
 
 QPainterPath path1;
 QPainterPath path2;
@@ -68,6 +81,7 @@ float yScale = 0.5;		//sin(30deg)
 
 float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
+void save2DCubeXY();
 
 };
 

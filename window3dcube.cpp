@@ -11,11 +11,6 @@ Window3DCube::Window3DCube(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    faceWidget1 = new QGraphicsRectItem;
-
-//     faceWidget1->setZValue(1);
-//   faceWidget1->setRect(320, 210 , 100, 100);
-
    scene1= new QGraphicsScene;
 createLeftOfCube();
 
@@ -30,10 +25,9 @@ createTopOfCube();
    scene1->setBackgroundBrush(Qt::white);
 
 
-    //scene1->addItem(itemR);
     ui->cubeGraphicsView->setScene(scene1);
     ui->cubeGraphicsView->scale(-1,1);
-   // ui->cubeGraphicsView->setVisible(false);
+
 
 }
 
@@ -42,6 +36,7 @@ createTopOfCube();
 */
 Window3DCube::~Window3DCube()
 {
+    vector.clear();
     delete ui;
 }
 
@@ -73,15 +68,19 @@ void Window3DCube::createLeftOfCube(){
             point3y = eSize*(yPos+1)+eSize*yScale;
             point4x = -eSize*xPos*xScale;
             point4y = eSize*(yPos+1);
+
+            path1.moveTo(point1x, point1y);
+            path1.lineTo(point2x, point2y);
+            path1.lineTo(point3x, point3y);
+            path1.lineTo(point4x, point4y);
+            path1.lineTo(point1x, point1y);
+            itemRLeft = scene1->addPath(path1);
+            itemRLeft->setBrush(Qt::black);
+            vector.append(itemRLeft);
+            qDebug()<<vector.size();
         }
     }
-    path1.moveTo(point1x, point1y);
-    path1.lineTo(point2x, point2y);
-    path1.lineTo(point3x, point3y);
-    path1.lineTo(point4x, point4y);
-    path1.lineTo(point1x, point1y);
-    itemR = scene1->addPath(path1);
-    itemR->setBrush(Qt::black);
+
 }
 
 /*
@@ -100,15 +99,23 @@ void Window3DCube::createRightOfCube(){
             point3y = eSize*(yPos+1)+eSize*yScale;
             point4x = eSize*xPos*xScale;
             point4y = eSize*(yPos+1);
+
+            path2.moveTo(point1x, point1y);
+            path2.lineTo(point2x, point2y);
+            path2.lineTo(point3x, point3y);
+            path2.lineTo(point4x, point4y);
+            path2.lineTo(point1x, point1y);
+            itemRRight = scene1->addPath(path2);
+            itemRRight->setBrush(Qt::blue);
+            vector.append(itemRRight);
+            qDebug()<<vector.size();
         }
+
     }
- path2.moveTo(point1x, point1y);
- path2.lineTo(point2x, point2y);
- path2.lineTo(point3x, point3y);
- path2.lineTo(point4x, point4y);
- path2.lineTo(point1x, point1y);
- itemR = scene1->addPath(path2);
- itemR->setBrush(Qt::blue);
+
+
+
+save2DCubeXY();
 }
 
 /*
@@ -128,13 +135,38 @@ void Window3DCube::createTopOfCube(){
             point3y = cubeSize+(xPos+yPos+1)*eSize*yScale+eSize*yScale;
             point4x = (xPos-1-yPos)*eSize*xScale;
             point4y = cubeSize+(xPos+yPos)*eSize*yScale+eSize*yScale;
+
+            path3.moveTo(point1x, point1y);
+            path3.lineTo(point2x, point2y);
+            path3.lineTo(point3x, point3y);
+            path3.lineTo(point4x, point4y);
+            path3.lineTo(point1x, point1y);
+            itemRTop = scene1->addPath(path3);
+            itemRTop->setBrush(Qt::gray);
+            vector.append(itemRTop);
         }
     }
-    path3.moveTo(point1x, point1y);
-    path3.lineTo(point2x, point2y);
-    path3.lineTo(point3x, point3y);
-    path3.lineTo(point4x, point4y);
-    path3.lineTo(point1x, point1y);
-    itemR = scene1->addPath(path3);
-    itemR->setBrush(Qt::gray);
+    qDebug()<<vector.size();
+
 }
+
+///*
+// *save inside vector2d to be used later so that they don't have to be created
+// *each time again when repainting
+//*/
+//void Window3DCube::save2DCubeXY(){
+
+//QByteArray arrayFaceLeft;
+//arrayFaceLeft.resize(8);
+//arrayFaceLeft[0] = point1x;
+//arrayFaceLeft[1] = point1y;
+//arrayFaceLeft[2] = point2x;
+//arrayFaceLeft[3] = point2y;
+//arrayFaceLeft[4] = point3x;
+//arrayFaceLeft[5] = point3y;
+//arrayFaceLeft[6] = point4x;
+//arrayFaceLeft[7] = point4y;
+
+//qDebug()<<arrayFaceLeft[7];
+
+//}
