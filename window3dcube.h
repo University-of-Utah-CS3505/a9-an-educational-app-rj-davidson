@@ -2,6 +2,13 @@
 #define WINDOW3DCUBE_H
 
 #include <QMainWindow>
+#include <QGraphicsView>
+#include <QtCore>
+#include <QtWidgets>
+#include <QGraphicsWidget>
+#include <QtStateMachine/QStateMachine>
+#include <QtStateMachine/QState>
+#include <QtStateMachine/QAbstractTransition>
 
 
 namespace Ui {
