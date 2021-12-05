@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Window3DCube.qml</file>
+    </qresource>
+</RCC>

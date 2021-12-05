@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+    quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,7 +15,6 @@ SOURCES += \
     CubeWidget.cpp \
     Model.cpp \
     ViewCube.cpp \
-    cube3dview.cpp \
     main.cpp \
     RubiksEdu.cpp \
     window3dcube.cpp
@@ -26,12 +26,18 @@ HEADERS += \
     Model.h \
     RubiksEdu.h \
     ViewCube.h \
-    cube3dview.h \
     window3dcube.h
 
 FORMS += \
     RubiksEdu.ui \
     window3dcube.ui
+
+
+# Additional import path used to resolve QML modules in Qt Creator's code model
+QML_IMPORT_PATH =
+
+# Additional import path used to resolve QML modules just for Qt Quick Designer
+QML_DESIGNER_IMPORT_PATH =
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -55,4 +61,10 @@ DEPENDPATH += $$PWD/windows/box2d-master/include
 
 PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 }
+
+RESOURCES += \
+    qml.qrc \
+    shaders.qrc
+
+DISTFILES +=
 
