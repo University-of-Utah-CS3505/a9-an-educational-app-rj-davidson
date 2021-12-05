@@ -13,6 +13,7 @@ SOURCES += \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
+    ViewCube.cpp \
     main.cpp \
     RubiksEdu.cpp
 
@@ -21,7 +22,8 @@ HEADERS += \
     CubeFace.h \
     CubeWidget.h \
     Model.h \
-    RubiksEdu.h
+    RubiksEdu.h \
+    ViewCube.h
 
 FORMS += \
     RubiksEdu.ui

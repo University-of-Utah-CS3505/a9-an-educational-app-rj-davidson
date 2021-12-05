@@ -27,11 +27,23 @@ void Model::setEduMode(int i)
     }
 }
 
-void Model::moveCube(int moveID)
+
+/*
+ * TODO Elizabeth
+ *
+ *
+*/
+void Model::moveCube(int moveID) // TODO: moveWorker and moveCube do the same thing?
 {
     moveWorker(moveID);
 }
 
+
+/*
+ * TODO Elizabeth
+ *
+ *
+*/
 void Model::moveWorker(int moveID)
 {
     cube.move(moveID);
@@ -42,13 +54,29 @@ void Model::moveWorker(int moveID)
     emit updateCube(cube.toQImageList());
 }
 
+
+//createNewCube()
+
+/*
+ * TODO Elizabeth
+ *
+ *
+*/
 void Model::setupAndRandomizeCube()
 {
     setupMode = true;
+    //make new cube object here
+
     for (int i = 0; i < 20; i++)
     {
         // Randomize Moves and Store to
+        //make a bunch of random cubes
+        //randomize face 0-5
+        //randomize moveid 0-7
+
     }
+    //set new cube object but don't modify the cube in use until the very end this way it gets sent in the end
     cube.setCurrentFace(0);
     setupMode = false;
+    //emit updateCube(pass list of qImages);
 }

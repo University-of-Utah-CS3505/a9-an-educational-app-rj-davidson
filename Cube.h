@@ -6,6 +6,7 @@
 #include "CubeFace.h"
 #include <vector>
 #include <QImage>
+#include <algorithm>
 
 class Cube
 {
@@ -16,26 +17,36 @@ public:
 
     // Left Controls
     void leftTop();
-    void leftMid();
     void leftBttm();
 
     // Bottom Controls
     void bttmLeft();
-    void bttmMid();
     void bttmRight();
 
     // Right Controls
     void rightBttm();
-    void rightMid();
     void rightTop();
 
     // Top Controls
     void topRight();
-    void topMid();
     void topLeft();
 
+    // Moves
+    void g0Clockwise();
+    void g0CounterClockwise();
+    void r1Clockwise();
+    void r1CounterClockwise();
+    void y2Clockwise();
+    void y2CounterClockwise();
+    void w3Clockwise();
+    void w3CounterClockwise();
+    void o4Clockwise();
+    void o4CounterClockwise();
+    void b5Clockwise();
+    void b5CounterClockwise();
+
     // Getters
-    CubeFace getFace(int); //TODO: Should this return a CubeFace object?
+    CubeFace getFace(int);
     std::vector<CubeFace> getCube();
 
     // Setters
