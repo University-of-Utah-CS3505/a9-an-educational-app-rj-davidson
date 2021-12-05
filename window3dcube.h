@@ -13,6 +13,9 @@
 #include <QGraphicsScene>
 #include <QPainterPath>
 #include <QRectF>
+#include <QSize>
+#include <QDebug>
+#include <QMatrix3x3>
 
 namespace Ui {
 class Window3DCube;
@@ -36,6 +39,11 @@ private:
 QGraphicsScene *scene1;
 QGraphicsRectItem *faceWidget1;
 QGraphicsPathItem *itemR;
+
+//float cubeSize,eSizexPosxScale,eSize,point1,point2,point3,point4,point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,viewAngle,xScale,yScale,eSizePosxScale,eSizeyPos;
+
+
+
 
 };
 
