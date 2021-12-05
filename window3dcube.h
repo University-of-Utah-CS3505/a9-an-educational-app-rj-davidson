@@ -35,6 +35,7 @@ private:
     Ui::Window3DCube *ui;
 QGraphicsScene *scene1;
 QGraphicsRectItem *faceWidget1;
+QGraphicsPathItem *itemR;
 
 };
 
