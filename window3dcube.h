@@ -9,7 +9,10 @@
 #include <QtStateMachine/QStateMachine>
 #include <QtStateMachine/QState>
 #include <QtStateMachine/QAbstractTransition>
-
+#include <QGraphicsRectItem>
+#include <QGraphicsScene>
+#include <QPainterPath>
+#include <QRectF>
 
 namespace Ui {
 class Window3DCube;
@@ -30,8 +33,8 @@ public slots:
 
 private:
     Ui::Window3DCube *ui;
-
-
+QGraphicsScene *scene1;
+QGraphicsRectItem *faceWidget1;
 
 };
 
