@@ -34,7 +34,7 @@ Window3DCube::Window3DCube(QWidget *parent) :
    float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
    //left side
-   QPainterPath path1;
+
    for(int xPos = 0; xPos<3; xPos++)
    {
        for(int yPos = 0; yPos<3; yPos++)
@@ -60,7 +60,7 @@ Window3DCube::Window3DCube(QWidget *parent) :
 
 
    //right side
-   QPainterPath path2;
+
    for(int xPos = 0; xPos<3; xPos++)
    {
        for(int yPos = 0; yPos<3; yPos++)
@@ -75,17 +75,6 @@ Window3DCube::Window3DCube(QWidget *parent) :
            point4y = eSize*(yPos+1);
        }
    }
-
-      qDebug()<<point1x;
-      qDebug()<<point1y;
-      qDebug()<<point2x;
-      qDebug()<<point2y;
-      qDebug()<<point3x;
-      qDebug()<<point3y;
-      qDebug()<<point4x;
-      qDebug()<<point4y;
-
-
 path2.moveTo(point1x, point1y);
 path2.lineTo(point2x, point2y);
 path2.lineTo(point3x, point3y);
@@ -96,7 +85,7 @@ itemR->setBrush(Qt::blue);
 
 
    //top side
-QPainterPath path3;
+
    for(int xPos = 0; xPos<3; xPos++)
    {
        for(int yPos = 0; yPos<3; yPos++)

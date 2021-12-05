@@ -40,6 +40,10 @@ QGraphicsScene *scene1;
 QGraphicsRectItem *faceWidget1;
 QGraphicsPathItem *itemR;
 
+QPainterPath path1;
+QPainterPath path2;
+QPainterPath path3;
+
 //float cubeSize,eSizexPosxScale,eSize,point1,point2,point3,point4,point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,viewAngle,xScale,yScale,eSizePosxScale,eSizeyPos;
 
 
