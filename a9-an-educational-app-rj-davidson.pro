@@ -14,8 +14,10 @@ SOURCES += \
     CubeWidget.cpp \
     Model.cpp \
     ViewCube.cpp \
+    cube3dview.cpp \
     main.cpp \
-    RubiksEdu.cpp
+    RubiksEdu.cpp \
+    window3dcube.cpp
 
 HEADERS += \
     Cube.h \
@@ -23,10 +25,13 @@ HEADERS += \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h \
-    ViewCube.h
+    ViewCube.h \
+    cube3dview.h \
+    window3dcube.h
 
 FORMS += \
-    RubiksEdu.ui
+    RubiksEdu.ui \
+    window3dcube.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

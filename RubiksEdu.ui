@@ -17,10 +17,10 @@
    <widget class="ViewCube" name="cubeWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>600</width>
-      <height>440</height>
+      <x>0</x>
+      <y>0</y>
+      <width>601</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -300,16 +300,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="controlBox" native="true">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>420</y>
-      <width>491</width>
-      <height>80</height>
-     </rect>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -320,8 +310,20 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu3D_Cube">
+    <property name="title">
+     <string>3D Cube</string>
+    </property>
+    <addaction name="actionUse_3D_Cube"/>
+   </widget>
+   <addaction name="menu3D_Cube"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionUse_3D_Cube">
+   <property name="text">
+    <string>Use 3D Cube</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
