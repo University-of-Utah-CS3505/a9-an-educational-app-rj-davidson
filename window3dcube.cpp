@@ -11,6 +11,9 @@ Window3DCube::Window3DCube(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->leftPushBtn,&QPushButton::clicked,this,&Window3DCube::on_leftPushBtn_clicked);
+    connect(ui->rightPushBtn,&QPushButton::clicked,this,&Window3DCube::on_rightPushBtn_clicked);
+    connect(ui->upPushBtn,&QPushButton::clicked,this,&Window3DCube::on_upPushBtn_clicked);
+
    scene1= new QGraphicsScene;
 
 createLeftOfCube();
@@ -193,6 +196,18 @@ qDebug()<<arrayFaceLeft[7];
 }
 
 void Window3DCube::on_leftPushBtn_clicked()
+{
+
+}
+
+
+void Window3DCube::on_rightPushBtn_clicked()
+{
+
+}
+
+
+void Window3DCube::on_upPushBtn_clicked()
 {
 
 }
