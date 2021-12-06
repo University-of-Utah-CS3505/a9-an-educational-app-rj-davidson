@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TestBed" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\TestBed" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\TestBed" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-DFREEGLUT_STATIC" />
+			<Add directory="..\..\..\Box2D\freeglut" />
+			<Add directory="..\..\..\Box2D\glui" />
+			<Add directory="..\..\..\Box2D" />
+		</Compiler>
+		<Linker>
+			<Add library="libBox2D.a" />
+			<Add library="libFreeGLUT.a" />
+			<Add library="libGLUI.a" />
+			<Add library="GLU32" />
+			<Add library="OpenGL32" />
+			<Add library="WinMM" />
+			<Add library="GDI32" />
+			<Add directory="..\..\Library" />
+		</Linker>
+		<Unit filename="..\..\..\Box2D\Testbed\Framework\Main.cpp" />
+		<Unit filename="..\..\..\Box2D\Testbed\Framework\Render.cpp" />
+		<Unit filename="..\..\..\Box2D\Testbed\Framework\Render.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Framework\Test.cpp" />
+		<Unit filename="..\..\..\Box2D\Testbed\Framework\Test.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\ApplyForce.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\BodyTypes.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Breakable.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Bridge.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Cantilever.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Chain.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\CharacterCollision.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\CollisionFiltering.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\CollisionProcessing.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\CompoundShapes.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Confined.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\ContinuousTest.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\DistanceTest.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Dominos.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\DynamicTreeTest.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\EdgeShapes.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Gears.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\LineJoint.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\OneSidedPlatform.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\PolyCollision.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\PolyShapes.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Prismatic.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Pulleys.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Pyramid.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\RayCast.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Revolute.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\SensorTest.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\ShapeEditing.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\SliderCrank.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\SphereStack.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\TestEntries.cpp" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\TheoJansen.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\TimeOfImpact.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\VaryingFriction.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\VaryingRestitution.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\VerticalStack.h" />
+		<Unit filename="..\..\..\Box2D\Testbed\Tests\Web.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
