@@ -11,28 +11,28 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     Cube.cpp \
+    Cube2dWindow.cpp \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
     TutorialBrowser.cpp \
     ViewCube.cpp \
-    Window2dCube.cpp \
     main.cpp \
     RubiksEdu.cpp
 
 HEADERS += \
     Cube.h \
+    Cube2dWindow.h \
     CubeFace.h \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h \
-    TutorialBrowser.h \
-    ViewCube.h \
-    Window2dCube.h
+     TutorialBrowser.h \   
+     ViewCube.h
 
 FORMS += \
-    RubiksEdu.ui \
-    Window2dCube.ui
+    Cube2dWindow.ui \
+    RubiksEdu.ui
 
 
 # Default rules for deployment.
