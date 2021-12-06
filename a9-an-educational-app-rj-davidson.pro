@@ -1,8 +1,9 @@
-QT       += core gui
+QT       += core gui \
+    quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -14,6 +15,7 @@ SOURCES += \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
+    TutorialBrowser.cpp \
     ViewCube.cpp \
     main.cpp \
     RubiksEdu.cpp
@@ -25,10 +27,13 @@ HEADERS += \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h \
-    ViewCube.h
+     TutorialBrowser.h \
+     ViewCube.h
 
 FORMS += \
+    Cube2dWindow.ui \
     RubiksEdu.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -53,3 +58,7 @@ DEPENDPATH += $$PWD/windows/box2d-master/include
 PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 }
 
+RESOURCES += \
+    tutorial-html/tutorial.qrc
+
+DISTFILES +=

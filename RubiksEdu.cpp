@@ -2,7 +2,11 @@
 #include "ui_RubiksEdu.h"
 #include <iostream>
 
-RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
+#include <QMenuBar>
+#include <QMainWindow>
+#include <QAction>
+
+RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *cube2dWindow)
     : QMainWindow(parent)
     , ui(new Ui::RubiksEdu)
 {
@@ -10,6 +14,11 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     connect(this,&RubiksEdu::sendMove,controller,&CubeController::MoveCube);
     connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
+    connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow);
+        // TODO: delete, this is for testing:
+    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [] (int step) {
+        qDebug() << step;
+    });
 }
 RubiksEdu::~RubiksEdu()
 {
@@ -94,4 +103,3 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 }
-
