@@ -1,0 +1,18 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  b2Island.cpp
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\b2Island.cpp(315,3): error C2220: the following warning is treated as an error
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\b2Island.cpp(315,3): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\b2Island.cpp(310,13): message : see declaration of 'i'
+  b2WheelJoint.cpp
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Joints\b2WheelJoint.cpp(144,16): error C2220: the following warning is treated as an error
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Joints\b2WheelJoint.cpp(144,16): warning C4456: declaration of 'd' hides previous local declaration
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Joints\b2WheelJoint.cpp(106,9): message : see declaration of 'd'
+  b2ContactSolver.cpp
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Contacts\b2ContactSolver.cpp(348,4): error C2220: the following warning is treated as an error
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Contacts\b2ContactSolver.cpp(348,4): warning C4456: declaration of 'i' hides previous local declaration
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Dynamics\Contacts\b2ContactSolver.cpp(293,13): message : see declaration of 'i'
+  b2CollideCircle.cpp
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Collision\b2CollideCircle.cpp(141,24): error C2220: the following warning is treated as an error
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Collision\b2CollideCircle.cpp(141,24): warning C4456: declaration of 'separation' hides previous local declaration
+C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Box2D\Collision\b2CollideCircle.cpp(64,10): message : see declaration of 'separation'
+  Generating Code...

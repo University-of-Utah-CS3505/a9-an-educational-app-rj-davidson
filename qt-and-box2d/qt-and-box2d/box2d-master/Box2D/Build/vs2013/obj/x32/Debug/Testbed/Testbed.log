@@ -1,0 +1,9 @@
+﻿cl : command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  TestEntries.cpp
+  Test.cpp
+  RenderGL3.cpp
+  Main.cpp
+  imgui.cpp
+  DebugDraw.cpp
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'C:\Users\elukn\OneDrive\Documents\CS3505\CS3505AssignmentCode\A9\a9-an-educational-app-rj-davidson\qt-and-box2d\qt-and-box2d\box2d-master\Box2D\Build\vs2013\bin\x32\Debug\Box2D.lib'
