@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <iostream>
 
-CubeController::CubeController(QWidget *parent, ViewCube *cubeView) : QWidget(parent)
+CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     setupAndRandomizeCube();
-    connect(cubeView,&ViewCube::faceSelected,this,&CubeController::switchFace);
 }
 
 void CubeController::switchFace(int faceNumber)

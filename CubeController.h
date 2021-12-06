@@ -12,7 +12,7 @@ class CubeController: public QWidget
 {
     Q_OBJECT
 public:
-    explicit CubeController(QWidget *parent = nullptr,ViewCube *cubeView = nullptr);
+    explicit CubeController(QWidget *parent = nullptr);
 signals:
     void updateCube(std::vector<QImage>);
 private:

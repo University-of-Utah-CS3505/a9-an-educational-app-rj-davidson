@@ -16,7 +16,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-    RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr,ViewCube *cubeView = nullptr);
+    RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr);
     ~RubiksEdu();
 
 private slots:
@@ -35,7 +35,6 @@ private slots:
     void on_rightBttmButton_clicked();
     void on_rightTopButton_clicked();
     void displayCube(std::vector<QImage>);
-    void switchFace(int);
 signals:
     void sendMove(int);
 private:
