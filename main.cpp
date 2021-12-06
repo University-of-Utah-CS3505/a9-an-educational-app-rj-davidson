@@ -1,6 +1,6 @@
 #include "RubiksEdu.h"
 #include "Model.h"
-#include "window3dcube.h"
+#include "Window2dCube.h"
 #include <QApplication>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>

@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "Model.h"
-#include "window3dcube.h"
+#include "Window2dCube.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class RubiksEdu; }

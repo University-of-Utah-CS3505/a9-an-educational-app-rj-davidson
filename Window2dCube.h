@@ -1,5 +1,5 @@
-#ifndef WINDOW3DCUBE_H
-#define WINDOW3DCUBE_H
+#ifndef WINDOW2DCUBE_H
+#define WINDOW2DCUBE_H
 
 #include <QMainWindow>
 #include <QGraphicsView>
@@ -49,13 +49,25 @@ public slots:
 private slots:
     void on_leftPushBtn_clicked();
 
+    void on_rightPushBtn_clicked();
+
+    void on_upPushBtn_clicked();
+
 private:
     Ui::Window3DCube *ui;
 QGraphicsScene *scene1;
 QGraphicsPathItem *itemRLeft;
 QGraphicsPathItem *itemRRight;
 QGraphicsPathItem *itemRTop;
-QVector<QGraphicsPathItem*> vector;
+
+QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
+QVector<QGraphicsPathItem*> vctrFace0;
+QVector<QGraphicsPathItem*> vctrFace1;
+QVector<QGraphicsPathItem*> vctrFace2;
+QVector<QGraphicsPathItem*> vctrFace3;
+QVector<QGraphicsPathItem*> vctrFace4;
+QVector<QGraphicsPathItem*> vctrFace5;
+
 
 
 QPainterPath path1;
@@ -66,8 +78,6 @@ void createLeftOfCube();
 void createRightOfCube();
 void createTopOfCube();
 
-//float cubeSize,eSizexPosxScale,eSize,point1,point2,point3,point4,point1x,point1y,point2x,point2y,point3x,point3y,point4x,point4y,viewAngle,xScale,yScale,eSizePosxScale,eSizeyPos;
-
 float cubeSize = 120;
 
 float eSize = cubeSize / 3; //size of each element
@@ -76,9 +86,6 @@ float eSize = cubeSize / 3; //size of each element
 //
 // so left view is negative, right view is positive
 
-
-//float viewAngle = 30;
-
 float xScale = 0.866025403784; //cos(30deg)
 
 float yScale = 0.5;		//sin(30deg)
@@ -86,8 +93,8 @@ float yScale = 0.5;		//sin(30deg)
 
 float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
-void save2DCubeXY();
+//void save2DCubeXY();
 
 };
 
-#endif // WINDOW3DCUBE_H
+#endif // WINDOW2DCUBE_H

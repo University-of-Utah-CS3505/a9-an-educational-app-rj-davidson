@@ -1,6 +1,6 @@
 #include "RubiksEdu.h"
 #include "ui_RubiksEdu.h"
-#include "window3dcube.h"
+#include "Window2dCube.h"
 #include "ui_window3dcube.h"
 #include <QMenuBar>
 #include <QMainWindow>
