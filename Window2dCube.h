@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QGraphicsView>
-#include <QtCore>
 #include <QtWidgets>
 #include <QGraphicsWidget>
 #include <QGraphicsRectItem>
