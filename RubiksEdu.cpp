@@ -16,9 +16,22 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
     connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow);
         // TODO: delete, this is for testing:
+    // Tutorial Widget Connections
     connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [] (int step) {
         qDebug() << step;
     });
+    connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=] (int stepIndex) {
+        ui->tutorialTextBrowser->setTutorialStep(stepIndex + 1);
+    });
+    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [=] (int stepID) {
+        ui->stepSelect->setCurrentIndex(stepID-1);
+    });
+    connect(ui->homeButton, &QPushButton::pressed, this, [=] () {
+       ui->tutorialTextBrowser->setTutorialStep(-1);
+       ui->stepSelect->setCurrentIndex(-1);
+    });
+
+   connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow);
 }
 RubiksEdu::~RubiksEdu()
 {

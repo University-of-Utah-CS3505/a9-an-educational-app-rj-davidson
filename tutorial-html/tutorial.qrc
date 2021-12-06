@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/html">
         <file>home.html</file>
+        <file>step1.html</file>
+        <file>step2.html</file>
+        <file>step3.html</file>
+        <file>step4.html</file>
+        <file>step5.html</file>
+        <file>step6.html</file>
+        <file>step7.html</file>
+        <file>step8.html</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

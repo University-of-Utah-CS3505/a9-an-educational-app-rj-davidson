@@ -188,19 +188,6 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="modeSelect">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string/>
-     </property>
-    </widget>
     <widget class="QPushButton" name="leftTopButton">
      <property name="geometry">
       <rect>
@@ -312,7 +299,7 @@
       <x>10</x>
       <y>20</y>
       <width>261</width>
-      <height>481</height>
+      <height>501</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="tutorialWidget">
@@ -322,6 +309,82 @@
         <bool>false</bool>
        </property>
       </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="homeButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>H</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="stepSelect">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentText">
+          <string/>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+         <property name="placeholderText">
+          <string>Choose A Step</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Step 1: Pick Color</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 2: First Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 3: First Corners</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 4: Neighbor Edges</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 5: Second Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 6: Orient Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 7: Place Corners</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 8: Orient Corners</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
