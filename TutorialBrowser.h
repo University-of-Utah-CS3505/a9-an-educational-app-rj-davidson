@@ -12,6 +12,9 @@ public:
 signals:
     void tutorialStepChanged(int stepNumber);
 
+public slots:
+    void setTutorialStep(int stepNumber);
+
 private slots:
     void handleAnchorClicked(QUrl url);
 };
