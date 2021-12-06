@@ -12,3 +12,21 @@ Cube2dWindow::~Cube2dWindow()
 {
     delete ui;
 }
+
+void Cube2dWindow::on_leftPushBtn_clicked()
+{
+
+}
+
+
+void Cube2dWindow::on_rightPushBtn_clicked()
+{
+
+}
+
+
+void Cube2dWindow::on_upPushBtn_clicked()
+{
+
+}
+
