@@ -16,7 +16,6 @@ SOURCES += \
     CubeWidget.cpp \
     Model.cpp \
     ViewCube.cpp \
-    Window2dCube.cpp \
     main.cpp \
     RubiksEdu.cpp
 
@@ -27,13 +26,11 @@ HEADERS += \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h \
-    ViewCube.h \
-    Window2dCube.h
+    ViewCube.h
 
 FORMS += \
     Cube2dWindow.ui \
-    RubiksEdu.ui \
-    Window2dCube.ui
+    RubiksEdu.ui
 
 
 # Default rules for deployment.
