@@ -2,7 +2,6 @@
 #define RUBIKSEDU_H
 
 #include <QMainWindow>
-#include "Model.h"
 #include "CubeController.h"
 #include <QImage>
 #include <vector>

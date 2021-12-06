@@ -1,7 +1,6 @@
 #include "RubiksEdu.h"
 
 #include "CubeController.h"
-#include "Model.h"
 #include "Cube2dWindow.h"
 #include <QApplication>
 
@@ -12,9 +11,6 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     CubeController m;
-    RubiksEdu w(nullptr, &m);
-
-    Model m;
     Cube2dWindow cube2dWindow;
     RubiksEdu w(nullptr,&m,&cube2dWindow);
 
