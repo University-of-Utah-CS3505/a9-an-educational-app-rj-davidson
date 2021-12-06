@@ -35,8 +35,10 @@ private slots:
     void on_rightBttmButton_clicked();
     void on_rightTopButton_clicked();
     void displayCube(std::vector<QImage>);
+
 signals:
     void sendMove(int);
+
 private:
     Ui::RubiksEdu *ui;
 

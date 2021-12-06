@@ -18,6 +18,10 @@
 #include <QString>
 #include <QPushButton>
 
+#include "Cube.h"
+#include "CubeController.h"
+#include "TutorialBrowser.h"
+
 using namespace std;
 
 namespace Ui {
@@ -29,11 +33,13 @@ class Cube2dWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Cube2dWindow(QWidget *parent = nullptr);
+    explicit Cube2dWindow(QWidget *parent = nullptr,CubeController *controller=nullptr);
     ~Cube2dWindow();
 
 public slots:
     void open2DCubeWindow();
+
+
 
 private slots:
     void on_leftPushBtn_clicked();
@@ -41,6 +47,10 @@ private slots:
     void on_rightPushBtn_clicked();
 
     void on_upPushBtn_clicked();
+
+    //the cube controller will tell what to display at the same time as the mainwindow cube
+    void update2DCubeView(std::vector<QImage>);
+
 
 private:
     Ui::Cube2dWindow *ui;
@@ -83,6 +93,18 @@ private:
     float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
     void createBtnConnection();
+
+//    Cube userCube;
+//    void setupAndRandomizeCube();
+//    void setEduMode(int);
+
+    void updateFace0(QImage f0,QImage scaled);
+    void updateFace1(QImage f1,QImage scaled);
+    void updateFace2(QImage f2,QImage scaled);
+    void updateFace3(QImage f3,QImage scaled);
+    void updateFace4(QImage f4,QImage scaled);
+    void updateFace5(QImage f5,QImage scaled);
+
 
 };
 

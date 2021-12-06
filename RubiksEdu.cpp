@@ -31,7 +31,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
        ui->stepSelect->setCurrentIndex(-1);
     });
 
-   connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow);
+   //connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow); delete duplicate of line 17
 }
 RubiksEdu::~RubiksEdu()
 {

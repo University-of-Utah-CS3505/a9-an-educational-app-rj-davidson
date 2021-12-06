@@ -4,7 +4,7 @@
 /*
  *
 */
-Cube2dWindow::Cube2dWindow(QWidget *parent) :
+Cube2dWindow::Cube2dWindow(QWidget *parent,CubeController *controller) :
     QMainWindow(parent),
     ui(new Ui::Cube2dWindow)
 {
@@ -19,6 +19,36 @@ Cube2dWindow::Cube2dWindow(QWidget *parent) :
     scene1->setBackgroundBrush(Qt::white);
     ui->cube2DGraphicsView->setScene(scene1);
     ui->cube2DGraphicsView->scale(1,-1);
+
+
+
+//    connect(this,&Cube2dWindow::sendMove,controller,&CubeController::MoveCube);
+    connect(controller,&CubeController::updateCube,this, &Cube2dWindow::update2DCubeView);
+
+
+//    connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
+//        // TODO: delete, this is for testing:
+//    // Tutorial Widget Connections
+//    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [] (int step) {
+//        qDebug() << step;
+//    });
+//    connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=] (int stepIndex) {
+//        ui->tutorialTextBrowser->setTutorialStep(stepIndex + 1);
+//    });
+//    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [=] (int stepID) {
+//        ui->stepSelect->setCurrentIndex(stepID-1);
+//    });
+
+
+//    connect(ui->homeButton, &QPushButton::pressed, this, [=] () {
+//       ui->tutorialTextBrowser->setTutorialStep(-1);
+//       ui->stepSelect->setCurrentIndex(-1);
+//    });
+
+
+
+
+
 }
 
 /*
@@ -272,4 +302,94 @@ void Cube2dWindow::createTopOfCube(){
     }
 
 }
+
+
+/*
+ *TODO
+*/
+void Cube2dWindow::update2DCubeView(std::vector<QImage> faces)
+{
+
+    QImage centerFace = faces.back();
+    faces.pop_back();
+    QImage centerFaceScaled = centerFace.scaled(120,120);
+    updateFace0(centerFace,centerFaceScaled);
+
+    QImage rightFace = faces.back();
+    faces.pop_back();
+    QImage rightFaceScaled = rightFace.scaled(120,120);
+    updateFace1(rightFace,rightFaceScaled);
+
+    QImage leftFace = faces.back();
+    faces.pop_back();
+    QImage leftFaceScaled = leftFace.scaled(120,120);
+    updateFace2(leftFace,leftFaceScaled);
+
+    QImage topFace = faces.back();
+    faces.pop_back();
+    QImage topFaceScaled = topFace.scaled(120,120);
+    updateFace3(topFace,topFaceScaled);
+
+    QImage bottomFace = faces.back();
+    faces.pop_back();
+    QImage bottomFaceScaled = bottomFace.scaled(120,120);
+    updateFace4(bottomFace,bottomFaceScaled);
+
+    QImage farRightFace = faces.back();
+    faces.pop_back();
+    QImage farRightFaceScaled = farRightFace.scaled(120,120);
+    updateFace5(farRightFace,farRightFaceScaled);
+
+}
+
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace0(QImage face0,QImage scaled ){
+    //ui->face0->setPixmap(QPixmap::fromImage(scaled));
+
+//    ui->face0->setScaledContents( true );
+//    ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
+
+}
+
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace1(QImage face1,QImage scaled ){
+    //ui->face1->setPixmap(QPixmap::fromImage(scaled));
+
+}
+
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace2(QImage face2,QImage scaled ){
+   // ui->face2->setPixmap(QPixmap::fromImage(scaled));
+
+}
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace3(QImage face3,QImage scaled ){
+   // ui->face3->setPixmap(QPixmap::fromImage(scaled));
+
+}
+
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace4(QImage face4,QImage scaled ){
+   // ui->face4->setPixmap(QPixmap::fromImage(scaled));
+
+}
+
+/*
+ *TODO
+*/
+void Cube2dWindow::updateFace5(QImage face5,QImage scaled ){
+     //  ui->face5->setPixmap(QPixmap::fromImage(scaled));
+}
+
+
 
