@@ -310,18 +310,18 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu3D_Cube">
+   <widget class="QMenu" name="menu2D_Cube">
     <property name="title">
-     <string>3D Cube</string>
+     <string>View 2D Cube</string>
     </property>
-    <addaction name="actionUse_3D_Cube"/>
+    <addaction name="actionUse_2D_Cube"/>
    </widget>
-   <addaction name="menu3D_Cube"/>
+   <addaction name="menu2D_Cube"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionUse_3D_Cube">
+  <action name="actionUse_2D_Cube">
    <property name="text">
-    <string>Use 3D Cube</string>
+    <string>Open 2D Cube</string>
    </property>
   </action>
  </widget>

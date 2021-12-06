@@ -12,7 +12,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, Model *model,Window3DCube *window3DCube)
 {
     ui->setupUi(this);
 
-   connect(ui->actionUse_3D_Cube,&QAction::triggered,window3DCube,&Window3DCube::open3DCubeWindow);
+   connect(ui->actionUse_2D_Cube,&QAction::triggered,window3DCube,&Window3DCube::open3DCubeWindow);
 
 }
 
