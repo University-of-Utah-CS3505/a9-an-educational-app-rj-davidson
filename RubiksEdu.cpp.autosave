@@ -1,0 +1,22 @@
+#include "RubiksEdu.h"
+#include "ui_RubiksEdu.h"
+#include <QMenuBar>
+#include <QMainWindow>
+
+RubiksEdu::RubiksEdu(QWidget *parent, Model *model,Window3DCube *window3DCube)
+    : QMainWindow(parent)
+    , ui(new Ui::RubiksEdu)
+{
+    ui->setupUi(this);
+   connect(ui->actionUse_3D_Cube,&QMenuBar::triggered,th,&Window3DCube::open3DCubeWindow);
+
+}
+
+RubiksEdu::~RubiksEdu()
+{
+    delete ui;
+}
+
+void RubiksEdu::on_actionUse3DCube_triggered(){
+    
+}
