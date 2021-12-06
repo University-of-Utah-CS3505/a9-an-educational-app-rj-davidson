@@ -6,6 +6,7 @@
 #include "CubeController.h"
 #include <QImage>
 #include <vector>
+#include "Cube2dWindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class RubiksEdu; }
@@ -16,7 +17,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-    RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr);
+     RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr,Cube2dWindow *cube2dWindow=nullptr);
     ~RubiksEdu();
 
 private slots:
@@ -39,5 +40,7 @@ signals:
     void sendMove(int);
 private:
     Ui::RubiksEdu *ui;
+
+
 };
 #endif // RUBIKSEDU_H

@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>988</width>
     <height>600</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>RubiksEdu</string>
@@ -17,10 +23,10 @@
    <widget class="ViewCube" name="cubeWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>600</width>
-      <height>440</height>
+      <x>290</x>
+      <y>20</y>
+      <width>601</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -182,19 +188,6 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="modeSelect">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>80</width>
-       <height>24</height>
-      </rect>
-     </property>
-     <property name="currentText">
-      <string/>
-     </property>
-    </widget>
     <widget class="QPushButton" name="leftTopButton">
      <property name="geometry">
       <rect>
@@ -300,15 +293,100 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="controlBox" native="true">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>420</y>
-      <width>491</width>
-      <height>80</height>
+      <x>10</x>
+      <y>20</y>
+      <width>261</width>
+      <height>501</height>
      </rect>
     </property>
+    <layout class="QVBoxLayout" name="tutorialWidget">
+     <item>
+      <widget class="TutorialBrowser" name="tutorialTextBrowser">
+       <property name="tabChangesFocus">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="homeButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>H</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="stepSelect">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="currentText">
+          <string/>
+         </property>
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+         <property name="placeholderText">
+          <string>Choose A Step</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>Step 1: Pick Color</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 2: First Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 3: First Corners</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 4: Neighbor Edges</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 5: Second Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 6: Orient Cross</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 7: Place Corners</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Step 8: Orient Corners</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -316,12 +394,24 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>988</width>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu2D_Cube">
+    <property name="title">
+     <string>View 2D Cube</string>
+    </property>
+    <addaction name="actionUse_2D_Cube"/>
+   </widget>
+   <addaction name="menu2D_Cube"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionUse_2D_Cube">
+   <property name="text">
+    <string>Open 2D Cube</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -329,6 +419,11 @@
    <extends>QWidget</extends>
    <header location="global">ViewCube.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TutorialBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>TutorialBrowser.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
