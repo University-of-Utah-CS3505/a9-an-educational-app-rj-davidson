@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "Model.h"
+#include "CubeController.h"
+#include <QImage>
+#include <vector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class RubiksEdu; }
@@ -13,9 +16,28 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-    RubiksEdu(QWidget *parent = nullptr, Model *model = nullptr);
+    RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr,ViewCube *cubeView = nullptr);
     ~RubiksEdu();
 
+private slots:
+    void on_topLeftButton_clicked();
+
+    void on_topRightButton_clicked();
+
+    void on_leftTopButton_clicked();
+
+    void on_leftBttmButton_clicked();
+
+    void on_bttmLeftButton_clicked();
+
+    void on_bttmRightButton_clicked();
+
+    void on_rightBttmButton_clicked();
+    void on_rightTopButton_clicked();
+    void displayCube(std::vector<QImage>);
+    void switchFace(int);
+signals:
+    void sendMove(int);
 private:
     Ui::RubiksEdu *ui;
 };

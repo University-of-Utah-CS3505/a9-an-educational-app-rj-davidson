@@ -33,10 +33,6 @@ void Model::setEduMode(int i)
  *
  *
 */
-void Model::moveCube(int moveID) // TODO: moveWorker and moveCube do the same thing?
-{
-    moveWorker(moveID);
-}
 
 
 /*
