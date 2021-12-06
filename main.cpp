@@ -11,14 +11,16 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     Model m;
-    Window2DCube cube2DWindow;
-    RubiksEdu w(nullptr, &m,&cube2DWindow);
+    //Window2DCube cube2DWindow;
+    //RubiksEdu w(nullptr, &m,&cube2DWindow);
+    Cube2dWindow cube2dWindow;
+    RubiksEdu w(nullptr,&m,&cube2dWindow);
 
     w.setFixedSize(w.size());
     w.show();
 
-    Cube2dWindow cube2dWindow(nullptr);
-    cube2dWindow.show();
+//    Cube2dWindow cube2dWindow(nullptr);
+//    cube2dWindow.show();
 
 
    return a.exec();
