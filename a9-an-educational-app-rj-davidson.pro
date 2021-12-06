@@ -14,6 +14,7 @@ SOURCES += \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model.cpp \
+    TutorialBrowser.cpp \
     ViewCube.cpp \
     Window2dCube.cpp \
     main.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     CubeWidget.h \
     Model.h \
     RubiksEdu.h \
+    TutorialBrowser.h \
     ViewCube.h \
     Window2dCube.h
 
@@ -56,7 +58,8 @@ DEPENDPATH += $$PWD/windows/box2d-master/include
 PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 }
 
-RESOURCES +=
+RESOURCES += \
+    tutorial-html/tutorial.qrc
 
 DISTFILES +=
 

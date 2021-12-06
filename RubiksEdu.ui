@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>988</width>
     <height>600</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
    <widget class="ViewCube" name="cubeWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>290</x>
       <y>20</y>
       <width>601</width>
       <height>481</height>
@@ -311,28 +311,17 @@
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>160</width>
-      <height>251</height>
+      <width>261</width>
+      <height>481</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="tutorialWidget">
      <item>
-      <widget class="QTextBrowser" name="textBrowser"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>160</width>
-      <height>251</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="infoWidget">
-     <item>
-      <widget class="QTextBrowser" name="infoBrowser"/>
+      <widget class="TutorialBrowser" name="tutorialTextBrowser">
+       <property name="tabChangesFocus">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -342,7 +331,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>988</width>
      <height>21</height>
     </rect>
    </property>
@@ -367,6 +356,11 @@
    <extends>QWidget</extends>
    <header location="global">ViewCube.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TutorialBrowser</class>
+   <extends>QTextBrowser</extends>
+   <header>TutorialBrowser.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
