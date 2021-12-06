@@ -5,7 +5,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QtGui>
-#include <QtQuick3D/qquick3d.h>
 
 int main(int argc, char *argv[])
 {
@@ -16,8 +15,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     QApplication a(argc, argv);
     Model m;
-    Window3DCube cube3DWindow;
-    RubiksEdu w(nullptr, &m,&cube3DWindow);
+    Window2DCube cube2DWindow;
+    RubiksEdu w(nullptr, &m,&cube2DWindow);
     //Window3DCube s(nullptr);
     //s.show();
 
@@ -31,7 +30,9 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    w.setFixedSize(w.size());
     w.show();
+
     app.exec();
    return a.exec();
     //return app.exec();

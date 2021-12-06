@@ -6,9 +6,6 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QGraphicsWidget>
-#include <QtStateMachine/QStateMachine>
-#include <QtStateMachine/QState>
-#include <QtStateMachine/QAbstractTransition>
 #include <QGraphicsRectItem>
 #include <QGraphicsScene>
 #include <QPainterPath>
@@ -22,26 +19,25 @@
 #include <QString>
 #include <QPushButton>
 
-
 using namespace std;
 
 
 
 
 namespace Ui {
-class Window3DCube;
+class Window2DCube;
 }
 
-class Window3DCube : public QMainWindow
+class Window2DCube : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Window3DCube(QWidget *parent = nullptr);
-    ~Window3DCube();
+    explicit Window2DCube(QWidget *parent = nullptr);
+    ~Window2DCube();
 
 public slots:
-    void open3DCubeWindow();
+    void open2DCubeWindow();
 
 
 
@@ -54,7 +50,7 @@ private slots:
     void on_upPushBtn_clicked();
 
 private:
-    Ui::Window3DCube *ui;
+    Ui::Window2DCube *ui;
 QGraphicsScene *scene1;
 QGraphicsPathItem *itemRLeft;
 QGraphicsPathItem *itemRRight;

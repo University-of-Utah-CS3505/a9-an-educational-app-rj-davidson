@@ -14,7 +14,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-    RubiksEdu(QWidget *parent = nullptr, Model *model = nullptr,Window3DCube *window3DCube=nullptr);
+    RubiksEdu(QWidget *parent = nullptr, Model *model = nullptr,Window2DCube *window2DCube=nullptr);
     ~RubiksEdu();
 
 private:

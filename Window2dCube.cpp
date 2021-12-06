@@ -1,18 +1,18 @@
 #include "Window2dCube.h"
-#include "ui_window3dcube.h"
+#include "ui_Window2dCube.h"
 
 
 /*
  *
 */
-Window3DCube::Window3DCube(QWidget *parent) :
+Window2DCube::Window2DCube(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Window3DCube)
+    ui(new Ui::Window2DCube)
 {
     ui->setupUi(this);
-    connect(ui->leftPushBtn,&QPushButton::clicked,this,&Window3DCube::on_leftPushBtn_clicked);
-    connect(ui->rightPushBtn,&QPushButton::clicked,this,&Window3DCube::on_rightPushBtn_clicked);
-    connect(ui->upPushBtn,&QPushButton::clicked,this,&Window3DCube::on_upPushBtn_clicked);
+    connect(ui->leftPushBtn,&QPushButton::clicked,this,&Window2DCube::on_leftPushBtn_clicked);
+    connect(ui->rightPushBtn,&QPushButton::clicked,this,&Window2DCube::on_rightPushBtn_clicked);
+    connect(ui->upPushBtn,&QPushButton::clicked,this,&Window2DCube::on_upPushBtn_clicked);
 
    scene1= new QGraphicsScene;
 
@@ -39,7 +39,7 @@ createTopOfCube();
 /*
  *
 */
-Window3DCube::~Window3DCube()
+Window2DCube::~Window2DCube()
 {
     vctrTester.clear();
     delete ui;
@@ -49,7 +49,7 @@ Window3DCube::~Window3DCube()
 /*
  *
 */
-void Window3DCube::open3DCubeWindow(){
+void Window2DCube::open2DCubeWindow(){
 
     this->show();
 
@@ -59,7 +59,7 @@ void Window3DCube::open3DCubeWindow(){
 /*
  *left side
 */
-void Window3DCube::createLeftOfCube(){
+void Window2DCube::createLeftOfCube(){
 
     for(int xPos = 0; xPos<3; xPos++)
     {
@@ -105,7 +105,7 @@ void Window3DCube::createLeftOfCube(){
 /*
  *right side
 */
-void Window3DCube::createRightOfCube(){
+void Window2DCube::createRightOfCube(){
     for(int xPos = 0; xPos<3; xPos++)
     {
         for(int yPos = 0; yPos<3; yPos++)
@@ -140,7 +140,7 @@ void Window3DCube::createRightOfCube(){
 /*
  *top side
 */
-void Window3DCube::createTopOfCube(){
+void Window2DCube::createTopOfCube(){
 
     for(int xPos = 0; xPos<3; xPos++)
     {
@@ -178,7 +178,7 @@ void Window3DCube::createTopOfCube(){
 // *save inside vector2d to be used later so that they don't have to be created
 // *each time again when repainting
 //*/
-//void Window3DCube::save2DCubeXY(){
+//void Window2DCube::save2DCubeXY(){
 
 //QByteArray arrayFaceLeft;
 //arrayFaceLeft.resize(8);
@@ -195,7 +195,7 @@ void Window3DCube::createTopOfCube(){
 
 //}
 
-void Window3DCube::on_leftPushBtn_clicked()
+void Window2DCube::on_leftPushBtn_clicked()
 {
     for(int xPos = 0; xPos<3; xPos++)
     {
@@ -237,7 +237,7 @@ void Window3DCube::on_leftPushBtn_clicked()
 }
 
 
-void Window3DCube::on_rightPushBtn_clicked()
+void Window2DCube::on_rightPushBtn_clicked()
 {
     for(int xPos = 0; xPos<3; xPos++)
     {
@@ -271,7 +271,7 @@ void Window3DCube::on_rightPushBtn_clicked()
 }
 
 
-void Window3DCube::on_upPushBtn_clicked()
+void Window2DCube::on_upPushBtn_clicked()
 {
     for(int xPos = 0; xPos<3; xPos++)
     {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Window3DCube</class>
- <widget class="QMainWindow" name="Window3DCube">
+ <class>Window2DCube</class>
+ <widget class="QMainWindow" name="Window2DCube">
   <property name="geometry">
    <rect>
     <x>0</x>
