@@ -4,6 +4,9 @@
 #include <vector>
 #include <QImage>
 #include <QColor>
+#include <iostream>
+#include <string>
+using std::string;
 
 class CubeFace
 {
@@ -11,6 +14,7 @@ public:
     CubeFace();
     CubeFace(char);
     CubeFace(const CubeFace &); // Do we need this?
+    CubeFace(string, char);
 
     // Getters
     std::vector<std::vector<char>> getFace();

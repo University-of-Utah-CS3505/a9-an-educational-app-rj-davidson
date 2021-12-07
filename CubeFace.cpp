@@ -20,6 +20,27 @@ CubeFace::CubeFace(const CubeFace &other)
     face = other.face;
 }
 
+CubeFace::CubeFace(string faceString, char faceColor)
+{
+    std::vector<char> row(3, faceColor);
+    std::vector<std::vector<char> > completeFace(3, row);
+    face = completeFace;
+    //start cross
+    if(faceString == "firstCrossMainFace")
+        face[1][1] = 'r';
+    if(faceString == "firstCrossRightFace")
+        face[0][1] = 'r';
+    if(faceString == "firstCrossBelowFace")
+        face[1][0] = 'r';
+    if(faceString == "firstCrossAboveFace")
+        face[1][1] = 'r';
+    if(faceString == "firstCrossLeftFace")
+        face[2][1] = 'r';
+
+    //start corners
+
+}
+
 std::vector<std::vector<char>> CubeFace::getFace()
 {
     return face;
@@ -116,6 +137,8 @@ QImage CubeFace::toQImage()
                 case 'o':
                     image.setPixelColor(j, i, QColor("orange"));
                     break;
+                case 'x':
+                    image.setPixelColor(j, i, QColor("grey"));
                 default:
                     image.setPixelColor(j, i, QColor("blue"));
             }
