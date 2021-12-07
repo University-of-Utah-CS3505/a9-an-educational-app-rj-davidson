@@ -19,9 +19,9 @@ int main(int argc, char *argv[])
     w.show();
 
 //    For testing purposes of the 2d cube
-//    Cube2dWindow cube2dWindow;
-//    Cube2dWindow c(nullptr,&m);
-//    c.show();
+    Cube2dWindow cube2dWindow;
+    Cube2dWindow c(nullptr,&m);
+    c.show();
 
    return a.exec();
 }

@@ -17,6 +17,7 @@ SOURCES += \
     CubeWidget.cpp \
     Model3DCube.cpp \
     TutorialBrowser.cpp \
+    View3DCube.cpp \
     ViewCube.cpp \
     main.cpp \
     RubiksEdu.cpp
@@ -30,6 +31,7 @@ HEADERS += \
     Model3DCube.h \
     RubiksEdu.h \
      TutorialBrowser.h \
+    View3DCube.h \
      ViewCube.h
 
 FORMS += \
