@@ -18,7 +18,15 @@ signals:
 private:
     Cube userCube;
     void setupAndRandomizeCube();
+    void setUpFirstCross();
+    void setUpFirstCorners();
+    void setUpNeighbors();
+    void setUpBottomCross();
+    void setUpFinalCorners();
+
+public:
     void setEduMode(int);
+
 public slots:
     void switchFace(int);
     void MoveCube(int);

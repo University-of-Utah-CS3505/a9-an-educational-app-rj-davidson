@@ -4,7 +4,8 @@
 
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
-    setupAndRandomizeCube();
+    //setupAndRandomizeCube();
+    setUpFirstCross();
 }
 
 void CubeController::switchFace(int faceNumber)
@@ -23,14 +24,21 @@ void CubeController::setEduMode(int mode)
 {
     switch(mode)
     {
-    case 0:
-        break;
-    case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
+//    case 0:
+//        setUpFirstCross();
+//        break;
+//    case 1:
+//        setUpFirstCorners();
+//        break;
+//    case 2:
+//        setUpNeighbors();
+//        break;
+//    case 3:
+//        setUpBottomCross();
+//        break;
+//    case 4:
+//        setUpFinalCorners();
+//        break;
     default:
         setupAndRandomizeCube();
     }
@@ -56,4 +64,32 @@ void CubeController::setupAndRandomizeCube()
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
     //emit updateCube(pass list of qImages);
+}
+
+void CubeController::setUpFirstCross()
+{
+    userCube = Cube(1);
+    userCube.setCurrentFace(0);
+    emit updateCube(userCube.toQImageList());
+//    Cube newCube = Cube(1);
+}
+
+void CubeController::setUpFirstCorners()
+{
+
+}
+
+void CubeController::setUpNeighbors()
+{
+
+}
+
+void CubeController::setUpBottomCross()
+{
+
+}
+
+void CubeController::setUpFinalCorners()
+{
+
 }
