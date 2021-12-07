@@ -16,7 +16,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-     RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr,Cube2dWindow *cube2dWindow=nullptr);
+     RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr,Cube2dWindow *cube2dWindow=nullptr, TutorialBrowser *tutorial =nullptr);
     ~RubiksEdu();
 
 private slots:

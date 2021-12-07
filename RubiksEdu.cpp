@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QAction>
 
-RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *cube2dWindow)
+RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *cube2dWindow, TutorialBrowser *tutorial)
     : QMainWindow(parent)
     , ui(new Ui::RubiksEdu)
 {
@@ -29,6 +29,9 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
     connect(ui->homeButton, &QPushButton::pressed, this, [=] () {
        ui->tutorialTextBrowser->setTutorialStep(-1);
        ui->stepSelect->setCurrentIndex(-1);
+    });
+    connect(tutorial, &TutorialBrowser::tutorialStepChanged, controller, [=] () {
+       &CubeController::setEduMode;
     });
 
    //connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow); delete duplicate of line 17

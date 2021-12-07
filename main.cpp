@@ -2,6 +2,7 @@
 
 #include "CubeController.h"
 #include "Cube2dWindow.h"
+#include "TutorialBrowser.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -12,7 +13,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     CubeController m;
     Cube2dWindow cube2dWindow;
-    RubiksEdu w(nullptr,&m,&cube2dWindow);
+    TutorialBrowser tutorial;
+    RubiksEdu w(nullptr,&m,&cube2dWindow,&tutorial);
 
     w.setFixedSize(w.size());
     w.show();
