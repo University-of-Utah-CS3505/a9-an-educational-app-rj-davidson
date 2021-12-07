@@ -36,6 +36,10 @@ private slots:
     void on_rightTopButton_clicked();
     void displayCube(std::vector<QImage>);
 
+    void on_clockwiseButton_clicked();
+
+    void on_counterClockwiseButton_clicked();
+
 signals:
     void sendMove(int);
 

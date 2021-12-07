@@ -32,6 +32,10 @@ public:
     void topRight();
     void topLeft();
 
+    // Rotation Controls
+    void counterClockwiseMove();
+    void clockwiseMove();
+
     // Moves
     void g0Clockwise();
     void g0CounterClockwise();

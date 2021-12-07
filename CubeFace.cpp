@@ -92,8 +92,8 @@ void CubeFace::rotateCounterClockwise()
 
     for (int i = 0; i < (int) face.size(); i++)
     {
-        face[0][i] = c2[i];
-        face[0][i] = c1[i];
+        face[2][i] = c2[i];
+        face[1][i] = c1[i];
         face[0][i] = c0[i];
     }
 }

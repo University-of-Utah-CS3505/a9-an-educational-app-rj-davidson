@@ -91,6 +91,15 @@ void Cube::move(int moveID)
         case 6:
             topRight();
             break;
+        case 7:
+            topLeft();
+            break;
+        case 8:
+            clockwiseMove();
+            break;
+        case 9:
+            counterClockwiseMove();
+            break;
         default:
             topLeft();
     }
@@ -289,6 +298,54 @@ void Cube::topLeft()
             break;
         default: // g0
             r1CounterClockwise();
+    }
+}
+
+void Cube::clockwiseMove()
+{
+    switch (currentFace)
+    {
+        case 1: // r1
+            r1CounterClockwise();
+            break;
+        case 2: // y2
+            y2CounterClockwise();
+            break;
+        case 3: // w3
+            w3CounterClockwise();
+            break;
+        case 4: // o4
+            o4CounterClockwise();
+            break;
+        case 5: // b5
+            b5CounterClockwise();
+            break;
+        default: // g0
+            g0CounterClockwise();
+    }
+}
+
+void Cube::counterClockwiseMove()
+{
+    switch (currentFace)
+    {
+        case 1: // r1
+            r1CounterClockwise();
+            break;
+        case 2: // y2
+            y2CounterClockwise();
+            break;
+        case 3: // w3
+            w3CounterClockwise();
+            break;
+        case 4: // o4
+            o4CounterClockwise();
+            break;
+        case 5: // b5
+            b5CounterClockwise();
+            break;
+        default: // g0
+            g0CounterClockwise();
     }
 }
 

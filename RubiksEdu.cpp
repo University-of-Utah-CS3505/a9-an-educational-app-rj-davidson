@@ -35,6 +35,10 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
     });
 
    //connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow); delete duplicate of line 17
+    // Displays initial cube
+    on_leftTopButton_clicked();
+    on_rightTopButton_clicked();
+
 }
 RubiksEdu::~RubiksEdu()
 {
@@ -119,3 +123,15 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 }
+
+void RubiksEdu::on_clockwiseButton_clicked()
+{
+    emit sendMove(8);
+}
+
+
+void RubiksEdu::on_counterClockwiseButton_clicked()
+{
+    emit sendMove(9);
+}
+

@@ -292,13 +292,39 @@
       <string>v</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="counterClockwiseButton">
+     <property name="geometry">
+      <rect>
+       <x>288</x>
+       <y>128</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="clockwiseButton">
+     <property name="geometry">
+      <rect>
+       <x>128</x>
+       <y>128</y>
+       <width>24</width>
+       <height>24</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>261</width>
+      <width>264</width>
       <height>501</height>
      </rect>
     </property>
