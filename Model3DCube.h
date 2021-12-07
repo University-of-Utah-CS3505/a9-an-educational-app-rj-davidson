@@ -27,7 +27,9 @@
 using namespace std;
 
 /*
- * controller tells model when to update and
+ * the model will need to know the way each face needs to look and keep track of the 3dcube orientation, and faces hidden and visible
+ *
+ * controller tells model when to update with qImage qvector data
  *
  * model notifies whats the controller does with the data for the 3dcube specefic data
 */

@@ -30,6 +30,12 @@ using namespace std;
  * controller tells view to update
  *
  * the view tels the controller when there is user action
+*
+*In real time the 3d cube will change with the main 1d cube
+*
+*It will also change with the button's changing up, right, left 180deg accordingly
+*
+*the view will need to know which faces are viewed and hidden of itself from buttons actions
 */
 class View3DCube
 {
