@@ -1,15 +1,69 @@
 #include "Cube.h"
 
-Cube::Cube()
+Cube::Cube(int style)
 {
     currentFace = 0;
+    switch(style) {
+        case 0:
+        cubeFaces.push_back(CubeFace('g'));
+        cubeFaces.push_back(CubeFace('r'));
+        cubeFaces.push_back(CubeFace('y'));
+        cubeFaces.push_back(CubeFace('w'));
+        cubeFaces.push_back(CubeFace('o'));
+        cubeFaces.push_back(CubeFace('b'));
+        break;
+    case 1:
+        cubeFaces.push_back(CubeFace("firstCrossMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossOppositeFace", 'x'));
+        break;
+    case 2:
+        cubeFaces.push_back(CubeFace("firstCornersMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersOppositeFace", 'x'));
+        break;
+    case 3:
+        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        break;
+    case 4:
+        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        break;
+    case 5:
+        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        break;
+    }
+}
 
-    cubeFaces.push_back(CubeFace('g'));
-    cubeFaces.push_back(CubeFace('r'));
-    cubeFaces.push_back(CubeFace('y'));
-    cubeFaces.push_back(CubeFace('w'));
-    cubeFaces.push_back(CubeFace('o'));
-    cubeFaces.push_back(CubeFace('b'));
+Cube::Cube(){
+    currentFace = 0;
+
+        cubeFaces.push_back(CubeFace('g'));
+        cubeFaces.push_back(CubeFace('r'));
+        cubeFaces.push_back(CubeFace('y'));
+        cubeFaces.push_back(CubeFace('w'));
+        cubeFaces.push_back(CubeFace('o'));
+        cubeFaces.push_back(CubeFace('b'));
 }
 
 void Cube::move(int moveID)

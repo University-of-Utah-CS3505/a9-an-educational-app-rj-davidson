@@ -12,6 +12,7 @@ class Cube
 {
 public:
     Cube();
+    Cube(int);
 
     void move(int);
 
@@ -60,6 +61,12 @@ public:
 
 private:
     std::vector<CubeFace> cubeFaces;
+    std::vector<CubeFace> firstCross;
+    std::vector<CubeFace> firstCorners;
+    std::vector<CubeFace> neighbors;
+    std::vector<CubeFace> oppositeCross;
+    std::vector<CubeFace> finalCorners;
     int currentFace;
+
 };
 #endif // CUBE_H
