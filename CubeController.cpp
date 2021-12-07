@@ -6,11 +6,77 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     //setupAndRandomizeCube();
 //    setUpFirstCross();
+    emit updateCube(userCube.toQImageList());
 }
 
 void CubeController::switchFace(int faceNumber)
 {
     std::cout << "Current Face: " << faceNumber << std::endl;
+    switch(userCube.getCurrentFace())
+    {
+        case 1:
+            if (faceNumber == 1)
+                userCube.setCurrentFace(5);
+            else if (faceNumber == 2)
+                userCube.setCurrentFace(2);
+            else if (faceNumber == 3)
+                userCube.setCurrentFace(0);
+            else if (faceNumber == 4)
+                userCube.setCurrentFace(4);
+            else if (faceNumber == 5)
+                userCube.setCurrentFace(3);
+            break;
+        case 2:
+            if (faceNumber == 1)
+                userCube.setCurrentFace(1);
+            else if (faceNumber == 2)
+                userCube.setCurrentFace(5);
+            else if (faceNumber == 3)
+                userCube.setCurrentFace(3);
+            else if (faceNumber == 4)
+                userCube.setCurrentFace(0);
+            else if (faceNumber == 5)
+                userCube.setCurrentFace(4);
+            break;
+        case 3:
+            if (faceNumber == 1)
+                userCube.setCurrentFace(0);
+            else if (faceNumber == 2)
+                userCube.setCurrentFace(2);
+            else if (faceNumber == 3)
+                userCube.setCurrentFace(5);
+            else if (faceNumber == 4)
+                userCube.setCurrentFace(4);
+            else if (faceNumber == 5)
+                userCube.setCurrentFace(1);
+            break;
+        case 4:
+            if (faceNumber == 1)
+                userCube.setCurrentFace(1);
+            else if (faceNumber == 2)
+                userCube.setCurrentFace(0);
+            else if (faceNumber == 3)
+                userCube.setCurrentFace(3);
+            else if (faceNumber == 4)
+                userCube.setCurrentFace(5);
+            else if (faceNumber == 5)
+                userCube.setCurrentFace(2);
+            break;
+        case 5:
+            if (faceNumber == 1)
+                userCube.setCurrentFace(3);
+            else if (faceNumber == 2)
+                userCube.setCurrentFace(2);
+            else if (faceNumber == 3)
+                userCube.setCurrentFace(1);
+            else if (faceNumber == 4)
+                userCube.setCurrentFace(4);
+            else if (faceNumber == 5)
+                userCube.setCurrentFace(0);
+            break;
+        default:
+            userCube.setCurrentFace(faceNumber);
+    }
     userCube.setCurrentFace(faceNumber);
     emit updateCube(userCube.toQImageList());
 }

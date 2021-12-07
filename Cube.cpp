@@ -548,6 +548,11 @@ std::vector<CubeFace> Cube::getCube()
     return cubeFaces;
 }
 
+int Cube::getCurrentFace()
+{
+    return currentFace;
+}
+
 // Setters
 void Cube::setCurrentFace(int num)
 {
@@ -566,14 +571,26 @@ bool Cube::solved()
 // Converts Cube to List of QImages
 std::vector<QImage> Cube::toQImageList()
 {
-    std::vector<CubeFace> tempCubeFaces(cubeFaces);
+    std::vector<CubeFace> tempCubeFaces;
     switch (currentFace)
     {
     case 1:
+        tempCubeFaces.push_back(cubeFaces[1]);
+        tempCubeFaces.push_back(cubeFaces[5]);
+        tempCubeFaces.push_back(cubeFaces[2]);
+        tempCubeFaces.push_back(cubeFaces[0]);
+        tempCubeFaces.push_back(cubeFaces[4]);
+        tempCubeFaces.push_back(cubeFaces[3]);
         tempCubeFaces[2].rotateCounterClockwise();
         tempCubeFaces[4].rotateClockwise();
         break;
     case 2:
+        tempCubeFaces.push_back(cubeFaces[2]);
+        tempCubeFaces.push_back(cubeFaces[1]);
+        tempCubeFaces.push_back(cubeFaces[5]);
+        tempCubeFaces.push_back(cubeFaces[3]);
+        tempCubeFaces.push_back(cubeFaces[0]);
+        tempCubeFaces.push_back(cubeFaces[4]);
         tempCubeFaces[1].rotateClockwise();
         tempCubeFaces[3].rotateCounterClockwise();
         tempCubeFaces[4].rotateCounterClockwise();
@@ -582,10 +599,22 @@ std::vector<QImage> Cube::toQImageList()
         tempCubeFaces[5].rotateCounterClockwise();
         break;
     case 3:
+        tempCubeFaces.push_back(cubeFaces[3]);
+        tempCubeFaces.push_back(cubeFaces[0]);
+        tempCubeFaces.push_back(cubeFaces[2]);
+        tempCubeFaces.push_back(cubeFaces[5]);
+        tempCubeFaces.push_back(cubeFaces[4]);
+        tempCubeFaces.push_back(cubeFaces[1]);
         tempCubeFaces[2].rotateClockwise();
         tempCubeFaces[4].rotateCounterClockwise();
         break;
     case 4:
+        tempCubeFaces.push_back(cubeFaces[4]);
+        tempCubeFaces.push_back(cubeFaces[1]);
+        tempCubeFaces.push_back(cubeFaces[0]);
+        tempCubeFaces.push_back(cubeFaces[3]);
+        tempCubeFaces.push_back(cubeFaces[5]);
+        tempCubeFaces.push_back(cubeFaces[2]);
         tempCubeFaces[1].rotateCounterClockwise();
         tempCubeFaces[2].rotateClockwise();
         tempCubeFaces[2].rotateClockwise();
@@ -594,11 +623,19 @@ std::vector<QImage> Cube::toQImageList()
         tempCubeFaces[5].rotateClockwise();
         break;
     case 5:
+        tempCubeFaces.push_back(cubeFaces[5]);
+        tempCubeFaces.push_back(cubeFaces[3]);
+        tempCubeFaces.push_back(cubeFaces[2]);
+        tempCubeFaces.push_back(cubeFaces[1]);
+        tempCubeFaces.push_back(cubeFaces[4]);
+        tempCubeFaces.push_back(cubeFaces[0]);
         tempCubeFaces[2].rotateClockwise();
         tempCubeFaces[2].rotateClockwise();
         tempCubeFaces[4].rotateClockwise();
         tempCubeFaces[4].rotateClockwise();
         break;
+    default:
+        tempCubeFaces = cubeFaces;
     }
 
     std::vector<QImage> list;

@@ -49,6 +49,7 @@ public:
     // Getters
     CubeFace getFace(int);
     std::vector<CubeFace> getCube();
+    int getCurrentFace();
 
     // Setters
     void setCurrentFace(int);
