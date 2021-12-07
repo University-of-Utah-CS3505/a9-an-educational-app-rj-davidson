@@ -566,8 +566,43 @@ bool Cube::solved()
 // Converts Cube to List of QImages
 std::vector<QImage> Cube::toQImageList()
 {
+    std::vector<CubeFace> tempCubeFaces(cubeFaces);
+    switch (currentFace)
+    {
+    case 1:
+        tempCubeFaces[2].rotateCounterClockwise();
+        tempCubeFaces[4].rotateClockwise();
+        break;
+    case 2:
+        tempCubeFaces[1].rotateClockwise();
+        tempCubeFaces[3].rotateCounterClockwise();
+        tempCubeFaces[4].rotateCounterClockwise();
+        tempCubeFaces[4].rotateCounterClockwise();
+        tempCubeFaces[5].rotateCounterClockwise();
+        tempCubeFaces[5].rotateCounterClockwise();
+        break;
+    case 3:
+        tempCubeFaces[2].rotateClockwise();
+        tempCubeFaces[4].rotateCounterClockwise();
+        break;
+    case 4:
+        tempCubeFaces[1].rotateCounterClockwise();
+        tempCubeFaces[2].rotateClockwise();
+        tempCubeFaces[2].rotateClockwise();
+        tempCubeFaces[3].rotateClockwise();
+        tempCubeFaces[5].rotateClockwise();
+        tempCubeFaces[5].rotateClockwise();
+        break;
+    case 5:
+        tempCubeFaces[2].rotateClockwise();
+        tempCubeFaces[2].rotateClockwise();
+        tempCubeFaces[4].rotateClockwise();
+        tempCubeFaces[4].rotateClockwise();
+        break;
+    }
+
     std::vector<QImage> list;
-    for (CubeFace f : cubeFaces)
+    for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
     return list;
 }

@@ -5,7 +5,7 @@
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     //setupAndRandomizeCube();
-    setUpFirstCross();
+//    setUpFirstCross();
 }
 
 void CubeController::switchFace(int faceNumber)
@@ -39,8 +39,8 @@ void CubeController::setEduMode(int mode)
 //    case 4:
 //        setUpFinalCorners();
 //        break;
-    default:
-        setupAndRandomizeCube();
+//    default:
+//        setupAndRandomizeCube();
     }
 }
 

@@ -93,13 +93,13 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
 {
     QImage farRightFace = faces.back();
     faces.pop_back();
-    QImage leftFace = faces.back();
-    faces.pop_back();
-    QImage topFace = faces.back();
-    faces.pop_back();
     QImage bottomFace = faces.back();
     faces.pop_back();
     QImage rightFace = faces.back();
+    faces.pop_back();
+    QImage topFace = faces.back();
+    faces.pop_back();
+    QImage leftFace = faces.back();
     faces.pop_back();
     QImage centerFace = faces.back();
     faces.pop_back();
