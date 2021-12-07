@@ -37,7 +37,7 @@ class Model3DCube
 {
 public:
     Model3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
-    ~Model3DCube();
+   // ~Model3DCube();
 
 private slots:
 

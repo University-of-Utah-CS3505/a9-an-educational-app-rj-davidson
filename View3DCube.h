@@ -41,7 +41,7 @@ class View3DCube
 {
 public:
     View3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
-    ~View3DCube();
+ //   ~View3DCube();
 public slots:
     void open2DCubeWindow();
 
