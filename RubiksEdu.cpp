@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QAction>
 
-RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *cube2dWindow, TutorialBrowser *tutorial)
+RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowser *tutorial)
     : QMainWindow(parent)
     , ui(new Ui::RubiksEdu)
 {
@@ -13,8 +13,6 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
     connect(this,&RubiksEdu::sendMove,controller,&CubeController::MoveCube);
     connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
-
-    connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow);
         // TODO: delete, this is for testing:
     // Tutorial Widget Connections
     connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [] (int step) {
@@ -34,7 +32,6 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller,Cube2dWindow *c
        &CubeController::setEduMode;
     });
 
-   //connect(ui->actionUse_2D_Cube,&QAction::triggered,cube2dWindow,&Cube2dWindow::open2DCubeWindow); delete duplicate of line 17
     // Displays initial cube
     on_leftTopButton_clicked();
     on_rightTopButton_clicked();
