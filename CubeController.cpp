@@ -77,7 +77,6 @@ void CubeController::switchFace(int faceNumber)
         default:
             userCube.setCurrentFace(faceNumber);
     }
-    userCube.setCurrentFace(faceNumber);
     emit updateCube(userCube.toQImageList());
 }
 
