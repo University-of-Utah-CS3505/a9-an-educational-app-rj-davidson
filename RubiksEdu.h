@@ -7,6 +7,8 @@
 #include <vector>
 #include "Cube2dWindow.h"
 
+using namespace std;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class RubiksEdu; }
 QT_END_NAMESPACE
@@ -40,11 +42,22 @@ private slots:
 
     void on_counterClockwiseButton_clicked();
 
+    void on_pushLeftBtn_clicked();
+
+    void on_pushRightButton_clicked();
+
+    void on_pushUpBtn_clicked();
+
 signals:
     void sendMove(int);
+    void send3DRotation(string dirRotation);
 
 private:
     Ui::RubiksEdu *ui;
+
+    //3d cube stuff
+    void createBtnConnection();
+    void connectControllerView(CubeController *controller);
 
 
 };

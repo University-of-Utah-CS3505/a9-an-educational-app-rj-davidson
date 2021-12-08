@@ -38,12 +38,16 @@ class Model3DCube
 public:
     Model3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
    // ~Model3DCube();
+    void setScene(QGraphicsScene *scene1);
+    void scale(int x,int y);
+    std::vector<QImage> getQImageList();
 
 private slots:
+    void update3DCube(std::vector<QImage>);
 
 signals:
     //the cube controller will tell what to display at the same time as the mainwindow cube
-    void update2DCubeView(std::vector<QImage>);
+    void notify3DCubeView(std::vector<QImage>);
 
 
 private:
@@ -65,25 +69,22 @@ private:
     QPainterPath path2;
     QPainterPath path3;
 
+
+    float cubeSize = 120;
+    float eSize = cubeSize / 3; //size of each element
+
+    // (0,0) is at bottom piont on cube
+    // so left view is negative, right view is positive
+    float xScale = 0.866025403784; //cos(30deg)
+    float yScale = 0.5;		//sin(30deg)
+    float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
+
+
     void updateLeftCubeData();
     void updateRightCubeData();
     void updateTopCubeData();
 
     void updateHiddenFaces();
-
-    float cubeSize = 120;
-
-    float eSize = cubeSize / 3; //size of each element
-
-    // (0,0) is at bottom piont on cube
-    //
-    // so left view is negative, right view is positive
-
-    float xScale = 0.866025403784; //cos(30deg)
-
-    float yScale = 0.5;		//sin(30deg)
-
-    float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
     void updateFace0(QImage f0,QImage scaled);
     void updateFace1(QImage f1,QImage scaled);
@@ -91,6 +92,10 @@ private:
     void updateFace3(QImage f3,QImage scaled);
     void updateFace4(QImage f4,QImage scaled);
     void updateFace5(QImage f5,QImage scaled);
+
+
+
+
 };
 
 #endif // MODEL3DCUBE_H

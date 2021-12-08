@@ -36,6 +36,9 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
     on_leftTopButton_clicked();
     on_rightTopButton_clicked();
 
+    //3d stuff
+    createBtnConnection();
+    connectControllerView(controller);
 }
 RubiksEdu::~RubiksEdu()
 {
@@ -130,5 +133,48 @@ void RubiksEdu::on_clockwiseButton_clicked()
 void RubiksEdu::on_counterClockwiseButton_clicked()
 {
     emit sendMove(9);
+}
+
+
+/*
+ *3d
+*/
+void RubiksEdu::on_pushLeftBtn_clicked()
+{
+    emit send3DRotation("Left");
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::on_pushRightButton_clicked()
+{
+        emit send3DRotation("Right");
+
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::on_pushUpBtn_clicked()
+{
+    emit send3DRotation("Up");
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::createBtnConnection(){
+    connect(ui->pushLeftBtn,&QPushButton::clicked,this,&RubiksEdu::on_pushLeftBtn_clicked);
+    connect(ui->pushRightBtn,&QPushButton::clicked,this,&RubiksEdu::on_pushRightButton_clicked);
+    connect(ui->pushUpBtn,&QPushButton::clicked,this,&RubiksEdu::on_pushUpBtn_clicked);
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::connectControllerView(CubeController *controller){
+
+    connect(this, &RubiksEdu::send3DRotation,controller,&CubeController::rotationCube);
 }
 

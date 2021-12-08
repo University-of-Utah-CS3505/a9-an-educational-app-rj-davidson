@@ -15,14 +15,34 @@ Model3DCube::Model3DCube(QWidget *parent,CubeController *controller)
 //    delete
 //}
 
+/*
+ *
+*/
+std::vector<QImage> Model3DCube::getQImageList(){
+    //    QVector<QGraphicsPathItem*> vctrFace0;
+    //    QVector<QGraphicsPathItem*> vctrFace1;
+    //    QVector<QGraphicsPathItem*> vctrFace2;
+    //    QVector<QGraphicsPathItem*> vctrFace3;
+    //    QVector<QGraphicsPathItem*> vctrFace4;
+    //    QVector<QGraphicsPathItem*> vctrFace5;
+
+    return
+}
 
 /*
  *
 */
 //the cube controller will tell what to display at the same time as the mainwindow cube
-void Model3DCube::update2DCubeView(std::vector<QImage>)
+void Model3DCube::update3DCube(std::vector<QImage> qImageList)
 {
 
+//    QVector<QGraphicsPathItem*> vctrFace0;
+//    QVector<QGraphicsPathItem*> vctrFace1;
+//    QVector<QGraphicsPathItem*> vctrFace2;
+//    QVector<QGraphicsPathItem*> vctrFace3;
+//    QVector<QGraphicsPathItem*> vctrFace4;
+//    QVector<QGraphicsPathItem*> vctrFace5;
+    emit notify3DCubeView(qImageList);
 }
 
 /*

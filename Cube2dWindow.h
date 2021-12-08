@@ -94,10 +94,6 @@ private:
 
     void createBtnConnection();
 
-//    Cube userCube;
-//    void setupAndRandomizeCube();
-//    void setEduMode(int);
-
     void updateFace0(QImage f0,QImage scaled);
     void updateFace1(QImage f1,QImage scaled);
     void updateFace2(QImage f2,QImage scaled);

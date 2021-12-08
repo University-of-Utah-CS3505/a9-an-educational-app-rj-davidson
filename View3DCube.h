@@ -44,13 +44,11 @@ public:
  //   ~View3DCube();
 public slots:
     void open2DCubeWindow();
+    void updateBtnClicked(string dir);
 
 private slots:
-    void on_leftPushBtn_clicked();
 
-    void on_rightPushBtn_clicked();
 
-    void on_upPushBtn_clicked();
 
 private:
 //    Ui::Cube2dWindow *ui;
@@ -79,6 +77,9 @@ private:
 
    void createBtnConnection();
 
+   void leftPushBtnClicked();
+   void rightPushBtnClicked();
+   void upPushBtnClicked();
 };
 
 #endif // VIEW3DCUBE_H
