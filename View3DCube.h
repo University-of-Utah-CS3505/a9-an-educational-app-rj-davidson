@@ -44,6 +44,7 @@ public:
     void setScene(QGraphicsScene *scene1);
     void scale(int x,int y);
 
+
 signals:
     //the view tels the controller when there is user action
     void leftPushBtnClicked();
@@ -81,15 +82,19 @@ private:
     QVector<QGraphicsPathItem*> vctrVisibleFaceRight;
     QVector<QGraphicsPathItem*> vctrVisibleFaceLeft;
 
+    void create3DCube();
     void createLeftFace();
     void createRightFace();
     void createTopFace();
 
     //In real time the 3d cube will change with the main 1d cube
     //Controller will tell view to redraw when the button's changing up, right, left 180deg accordingly
-    void redrawLeftFace();
-    void redrawRightFace();
-    void redrawTopFace();
+    void redraw3DCube(std::vector<QImage>);
+    void redrawLeftFace(std::vector<QImage>);
+    void redrawRightFace(std::vector<QImage>);
+    void redrawTopFace(std::vector<QImage>);
+
+
 
 
 };
