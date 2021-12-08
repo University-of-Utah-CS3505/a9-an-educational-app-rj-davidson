@@ -7,7 +7,6 @@
 
 #include "Cube.h"
 #include "ViewCube.h"
-#include "View3DCube.h"
 #include "Model3DCube.h"
 
 
@@ -29,7 +28,6 @@ private:
 
     //3d cube stuff
     Model3DCube cube3D;
-    View3DCube  cube3DView;
 
 
 

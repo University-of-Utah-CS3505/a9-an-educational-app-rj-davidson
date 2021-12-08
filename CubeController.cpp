@@ -7,7 +7,7 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
     //setupAndRandomizeCube();
 //    setUpFirstCross();
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
-    connect(&cube3DView,&View3DCube::show3DCube, this, &CubeController::new3DCube);
+
     emit updateCube(userCube.toQImageList());
     //TODO    emit updateCube(cube3D.getQImageList());
     //TODO   emit updateCube(cube3DView.getQImageList());
