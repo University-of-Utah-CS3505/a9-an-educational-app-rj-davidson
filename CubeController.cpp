@@ -169,6 +169,9 @@ void CubeController::setUpFinalCorners()
 
 }
 
+/*
+ *TODO master of visible faces of the 3d cube
+*/
 void CubeController::create3DCubeView(){
     //Cube2dWindow(QWidget *parent,CubeController *controller)
         scene= new QGraphicsScene;

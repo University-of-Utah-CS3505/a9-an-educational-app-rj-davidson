@@ -27,59 +27,71 @@
 using namespace std;
 
 /*
- * controller tells view to update
+ * controller tells view to update visible faces of cube
  *
  * the view tels the controller when there is user action
-*
-*In real time the 3d cube will change with the main 1d cube
-*
-*It will also change with the button's changing up, right, left 180deg accordingly
-*
-*the view will need to know which faces are viewed and hidden of itself from buttons actions
+ *
+ *In real time the 3d cube will change with the main 1d cube
+ *
+ *Controller will tell view to redraw when the button's changing up, right, left 180deg accordingly
+ *
 */
 class View3DCube
 {
 public:
     View3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
  //   ~View3DCube();
+    void setScene(QGraphicsScene *scene1);
+    void scale(int x,int y);
+
+signals:
+    //the view tels the controller when there is user action
+    void leftPushBtnClicked();
+    void rightPushBtnClicked();
+    void upPushBtnClicked();
+
 public slots:
-    void open2DCubeWindow();
+    //controller tells view to update visible faces of cube
+    void updateVisibleFaces(std::vector<QImage>);
     void updateBtnClicked(string dir);
 
 private slots:
 
-
-
 private:
-//    Ui::Cube2dWindow *ui;
+    float cubeSize = 120;
+    float eSize = cubeSize / 3; //size of each element
+
+    // (0,0) is at bottom piont on cube
+    // so left view is negative, right view is positive
+    float xScale = 0.866025403784; //cos(30deg)
+    float yScale = 0.5;		//sin(30deg)
+    float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
+
+    QPainterPath path1;
+    QPainterPath path2;
+    QPainterPath path3;
+
     QGraphicsScene *scene1;
     QGraphicsPathItem *itemRLeft;
     QGraphicsPathItem *itemRRight;
     QGraphicsPathItem *itemRTop;
 
     QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
-    QVector<QGraphicsPathItem*> vctrFace0;
-    QVector<QGraphicsPathItem*> vctrFace1;
-    QVector<QGraphicsPathItem*> vctrFace2;
-    QVector<QGraphicsPathItem*> vctrFace3;
-    QVector<QGraphicsPathItem*> vctrFace4;
-    QVector<QGraphicsPathItem*> vctrFace5;
+    QVector<QGraphicsPathItem*> vctrVisibleFaceTop;
+    QVector<QGraphicsPathItem*> vctrVisibleFaceRight;
+    QVector<QGraphicsPathItem*> vctrVisibleFaceLeft;
+
+    void createLeftFace();
+    void createRightFace();
+    void createTopFace();
+
+    //In real time the 3d cube will change with the main 1d cube
+    //Controller will tell view to redraw when the button's changing up, right, left 180deg accordingly
+    void redrawLeftFace();
+    void redrawRightFace();
+    void redrawTopFace();
 
 
-
-    QPainterPath path1;
-    QPainterPath path2;
-    QPainterPath path3;
-
-    void createLeftOfCube();
-    void createRightOfCube();
-    void createTopOfCube();
-
-   void createBtnConnection();
-
-   void leftPushBtnClicked();
-   void rightPushBtnClicked();
-   void upPushBtnClicked();
 };
 
 #endif // VIEW3DCUBE_H

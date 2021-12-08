@@ -42,14 +42,15 @@ private slots:
 
     void on_counterClockwiseButton_clicked();
 
+    //3d stuff
     void on_pushLeftBtn_clicked();
-
     void on_pushRightButton_clicked();
-
     void on_pushUpBtn_clicked();
 
 signals:
     void sendMove(int);
+
+    //3d stuff
     void send3DRotation(string dirRotation);
 
 private:
