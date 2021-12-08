@@ -12,7 +12,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 SOURCES += \
     Cube.cpp \
     CubeController.cpp \
-    Cube2dWindow.cpp \
     CubeFace.cpp \
     CubeWidget.cpp \
     Model3DCube.cpp \
@@ -24,7 +23,6 @@ SOURCES += \
 HEADERS += \
     Cube.h \
     CubeController.h \
-    Cube2dWindow.h \
     CubeFace.h \
     CubeWidget.h \
     Model3DCube.h \
@@ -33,7 +31,6 @@ HEADERS += \
      ViewCube.h
 
 FORMS += \
-    Cube2dWindow.ui \
     RubiksEdu.ui
 
 

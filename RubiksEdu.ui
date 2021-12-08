@@ -116,7 +116,7 @@
     <widget class="QLabel" name="face3">
      <property name="geometry">
       <rect>
-       <x>320</x>
+       <x>330</x>
        <y>160</y>
        <width>120</width>
        <height>120</height>
@@ -486,7 +486,7 @@
      <x>0</x>
      <y>0</y>
      <width>1296</width>
-     <height>31</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

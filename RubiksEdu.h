@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 #include "CubeController.h"
+#include "TutorialBrowser.h"
 #include <QImage>
 #include <vector>
 #include <QGraphicsScene>
-#include "Cube2dWindow.h"
 
 using namespace std;
 
