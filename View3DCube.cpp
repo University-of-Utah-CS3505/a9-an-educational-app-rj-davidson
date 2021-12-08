@@ -1,17 +1,22 @@
 #include "View3DCube.h"
 
+///*
+// *TODO
+//*/
+//View3DCube::View3DCube(QWidget *parent,CubeController *controller)
+//{
+
+//    create3DCube();
+//}
+
 /*
  *TODO
 */
-View3DCube::View3DCube(QWidget *parent,CubeController *controller)
+View3DCube::View3DCube()
 {
 
     create3DCube();
 }
-
-//~View3DCube(){
-
-//}
 
 /*
  *TODO
@@ -87,14 +92,14 @@ void View3DCube::createTopFace()
 /*
  *TODO
 */
-void setScene(QGraphicsScene *scene1){
+void View3DCube::setScene(QGraphicsScene *scene1){
 
 }
 
 /*
  *TODO
 */
-void scale(int x,int y){
+void View3DCube::scale(int x,int y){
 
 }
 
@@ -103,15 +108,15 @@ void scale(int x,int y){
 */
 void View3DCube::updateBtnClicked(string dir){
 
-    if(dir=="Left"){
+    if(dir=="Left")
     emit leftPushBtnClicked();
-    }
 
-    if(dir=="Right"){
+
+    if(dir=="Right")
     emit rightPushBtnClicked();
-    }
 
-    if(dir == "Up"){
+
+    if(dir == "Up")
     emit upPushBtnClicked();
-    }
+
 }

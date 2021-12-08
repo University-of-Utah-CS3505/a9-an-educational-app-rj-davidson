@@ -21,8 +21,7 @@
 #include <QPushButton>
 
 #include "Cube.h"
-#include "CubeController.h"
-#include "TutorialBrowser.h"
+
 
 using namespace std;
 
@@ -36,14 +35,15 @@ using namespace std;
  *Controller will tell view to redraw when the button's changing up, right, left 180deg accordingly
  *
 */
-class View3DCube
+class View3DCube: public QObject
 {
+    Q_OBJECT
 public:
-    View3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
- //   ~View3DCube();
+    View3DCube();
+    //View3DCube(QWidget *parent=nullptr);
+
     void setScene(QGraphicsScene *scene1);
     void scale(int x,int y);
-
 
 signals:
     //the view tels the controller when there is user action
@@ -53,7 +53,7 @@ signals:
 
 public slots:
     //controller tells view to update visible faces of cube
-    void updateVisibleFaces(std::vector<QImage>);
+    void updateVisibleFaces(vector<QImage>);
     void updateBtnClicked(string dir);
 
 private slots:

@@ -21,8 +21,6 @@
 #include <QPushButton>
 
 #include "Cube.h"
-#include "CubeController.h"
-#include "TutorialBrowser.h"
 
 using namespace std;
 
@@ -34,11 +32,12 @@ using namespace std;
  *
  * model notifies whats the controller does with the data for the 3dcube specefic data
 */
-class Model3DCube
+class Model3DCube: public QObject
 {
+    Q_OBJECT
 public:
-    Model3DCube(QWidget *parent = nullptr,CubeController *controller=nullptr);
-   // ~Model3DCube();
+    Model3DCube();
+   // Model3DCube(QWidget *parent=nullptr,CubeController *controller=nullptr);
     std::vector<QImage> getQImageList();
 
 private slots:
@@ -49,7 +48,7 @@ private slots:
 signals:
     //the cube controller will tell what to display at the same time as the mainwindow cube
     //model notifies whats the controller does with the data for the 3dcube specefic data
-    void notify3DCubeView(std::vector<QImage>);
+    void notify3DCubeView(std::vector<QImage> qImageList);
 
 
 private:

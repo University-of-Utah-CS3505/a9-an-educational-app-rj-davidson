@@ -1,19 +1,20 @@
 #include "Model3DCube.h"
 
+///*
+// *TODO
+//*/
+//Model3DCube::Model3DCube(QWidget *parent,CubeController *controller)
+//{
+
+//}
+
 /*
  *TODO
 */
-Model3DCube::Model3DCube(QWidget *parent,CubeController *controller)
+Model3DCube::Model3DCube()
 {
 
 }
-
-/*
- *
-*/
-//~Model3DCube::Model3DCube(){
-//    delete
-//}
 
 /*
  *TODO
@@ -33,7 +34,7 @@ std::vector<QImage> Model3DCube::getQImageList(){
  *TODO
 */
 //the cube controller will tell what to display at the same time as the mainwindow cube
-void Model3DCube::update3DCube(std::vector<QImage> qImageList)
+void Model3DCube::update3DCube(vector<QImage> qImageList)
 {
 
     // the model will need to know the faces hidden and visible
