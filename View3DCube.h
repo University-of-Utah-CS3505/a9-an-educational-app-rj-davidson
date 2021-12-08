@@ -42,10 +42,9 @@ public:
     View3DCube();
     //View3DCube(QWidget *parent=nullptr);
 
-    void setScene(QGraphicsScene *scene1);
-    void scale(int x,int y);
-
 signals:
+    void show3DCube(QGraphicsScene *scene);
+    void update3DCubeScene();
     //the view tels the controller when there is user action
     void leftPushBtnClicked();
     void rightPushBtnClicked();
@@ -55,6 +54,7 @@ public slots:
     //controller tells view to update visible faces of cube
     void updateVisibleFaces(vector<QImage>);
     void updateBtnClicked(string dir);
+    void createUser3DCube();
 
 private slots:
 
@@ -72,7 +72,7 @@ private:
     QPainterPath path2;
     QPainterPath path3;
 
-    QGraphicsScene *scene1;
+    QGraphicsScene *scene;
     QGraphicsPathItem *itemRLeft;
     QGraphicsPathItem *itemRRight;
     QGraphicsPathItem *itemRTop;

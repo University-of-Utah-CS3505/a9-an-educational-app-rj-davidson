@@ -17,10 +17,13 @@ class CubeController: public QWidget
     Q_OBJECT
 public:
     explicit CubeController(QWidget *parent = nullptr);
+
 signals:
     void updateCube(std::vector<QImage>);
     void update3DCubeScene();
     void updateUserRotation(string dirRotate);
+    void makeNew3DCube(QGraphicsScene *scene);
+
 private:
     Cube userCube;
 
@@ -48,6 +51,7 @@ public slots:
     void switchFace(int);
     void MoveCube(int);
     void rotationCube(string dirRotate);
+    void new3DCube(QGraphicsScene *scene);
 };
 
 #endif // CUBECONTROLLER_H
