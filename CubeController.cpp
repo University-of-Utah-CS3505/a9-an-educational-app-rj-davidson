@@ -5,10 +5,10 @@
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     //setupAndRandomizeCube();
-//    setUpFirstCross();
+    setUpFirstCross();
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
 
-    emit updateCube(userCube.toQImageList());
+    //emit updateCube(userCube.toQImageList());
     //TODO    emit updateCube(cube3D.getQImageList());
     //TODO   emit updateCube(cube3DView.getQImageList());
 }
@@ -146,7 +146,7 @@ void CubeController::setupAndRandomizeCube()
 
 void CubeController::setUpFirstCross()
 {
-    userCube = Cube(1);
+    userCube = Cube(6);
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
 //    Cube newCube = Cube(1);

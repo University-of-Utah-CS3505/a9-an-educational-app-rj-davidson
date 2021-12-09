@@ -14,43 +14,51 @@ Cube::Cube(int style)
         break;
     case 1:
         cubeFaces.push_back(CubeFace("firstCrossMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCrossAboveFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCrossRightFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossLeftFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCrossOppositeFace", 'x'));
         break;
     case 2:
         cubeFaces.push_back(CubeFace("firstCornersMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("firstCornersAboveFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCornersRightFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCornersBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersLeftFace", 'x'));
         cubeFaces.push_back(CubeFace("firstCornersOppositeFace", 'x'));
         break;
     case 3:
-        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborRightMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborRightLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborRightAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborRightRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborRightBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace('w'));
         break;
     case 4:
-        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborLeftMainFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborLeftLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborLeftAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborLeftRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("neighborLeftBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace('w'));
         break;
     case 5:
-        cubeFaces.push_back(CubeFace("startCrossMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("startCrossOppositeFace", 'x'));
+        cubeFaces.push_back(CubeFace("finalCrossMainFace", 'x'));      
+        cubeFaces.push_back(CubeFace("finalCrossLeftFace", 'x'));
+        cubeFaces.push_back(CubeFace("finalCrossAboveFace", 'x'));
+        cubeFaces.push_back(CubeFace("finalCrossRightFace", 'x'));
+        cubeFaces.push_back(CubeFace("finalCrossBelowFace", 'x'));
+        cubeFaces.push_back(CubeFace('w'));
+        break;
+    case 6:
+        cubeFaces.push_back(CubeFace("finalCornersMainFace", 'y'));
+        cubeFaces.push_back(CubeFace("finalCornersLeftFace", 'g'));
+        cubeFaces.push_back(CubeFace("finalCornersAboveFace", 'r'));
+        cubeFaces.push_back(CubeFace("finalCornersRightFace", 'b'));
+        cubeFaces.push_back(CubeFace("finalCornersBelowFace", 'o'));
+        cubeFaces.push_back(CubeFace('w'));
         break;
     }
 }

@@ -26,19 +26,150 @@ CubeFace::CubeFace(string faceString, char faceColor)
     std::vector<std::vector<char> > completeFace(3, row);
     face = completeFace;
     //start cross
-    if(faceString == "firstCrossMainFace")
+    if(faceString == "firstCrossMainFace") {
         face[1][1] = 'r';
-    if(faceString == "firstCrossRightFace")
-        face[0][1] = 'r';
-    if(faceString == "firstCrossBelowFace")
         face[1][0] = 'r';
-    if(faceString == "firstCrossAboveFace")
+        face[0][1] = 'r';
+        face[1][2] = 'r';
+        face[2][1] = 'g';
+    }
+    if(faceString == "firstCrossRightFace") {
+        face[1][0] = 'w';
+        face[1][1] = 'w';
+    }
+    if(faceString == "firstCrossBelowFace") {
+        face[0][1] = 'r';
+        face[1][1] = 'g';
+    }
+//    if(faceString == ""){
+//        face[2][1] = 'b';
+//        face[1][1] = 'b';
+//    }
+//    if(faceString == "firstCrossLeftFace")
+//        face[2][1] = 'r';
+
+    //first corners
+    if(faceString == "firstCornersMainFace"){
+        face[0][0] = 'r';
+        face[0][1] = 'r';
+        face[0][2] = 'r';
+        face[1][0] = 'r';
         face[1][1] = 'r';
-    if(faceString == "firstCrossLeftFace")
+        face[1][2] = 'r';
+        face[2][0] = 'r';
         face[2][1] = 'r';
+    }
+    if(faceString == "firstCornersRightFace"){
+        face[0][0] = 'w';
+        face[1][0] = 'w';
+        face[1][1] = 'w';
+        face[2][2] = 'r';
+    }
+    if(faceString == "firstCornersBelowFace"){
+        face[0][0] = 'g';
+        face[0][1] = 'g';
+        face[1][1] = 'g';
+        face[2][2] = 'w';
+    }
+//    if(faceString == "firstCornersAboveFace")
+//        face[1][1] = 'r';
+//    if(faceString == "firstCornersLeftFace")
+//        face[2][1] = 'r';
+//    if(faceString == "firstCornersOppositeFace")
+//        face[2][1] = 'r';
 
-    //start corners
+    //neighbor right
+    if(faceString == "neighborRightMainFace"){
+        face[2][1] = 'b';
+        face[1][1] = 'y';
+    }
+    if(faceString == "neighborRightRightFace"){
+        face[0][2] = 'b';
+        face[1][2] = 'b';
+        face[1][1] = 'b';
+        face[2][2] = 'b';
+    }
+    if(faceString == "neighborRightBelowFace"){
+        face[0][1] = 'o';
+        face[1][1] = 'o';
+        face[2][0] = 'o';
+        face[2][1] = 'o';
+        face[2][2] = 'o';
+    }
+    if(faceString == "neighborRightAboveFace"){
+        face[0][0] = 'r';
+        face[0][1] = 'r';
+        face[1][1] = 'r';
+        face[0][2] = 'r';
+    }
+    if(faceString == "neighborRightLeftFace"){
+        face[0][0] = 'g';
+        face[1][0] = 'g';
+        face[2][0] = 'g';
+        face[1][1] = 'g';
+    }
 
+    //neighbor left
+    if(faceString == "neighborRightMainFace"){
+        face[2][1] = 'g';
+        face[1][1] = 'y';
+    }
+    if(faceString == "neighborRightRightFace"){
+        face[0][2] = 'b';
+        face[1][2] = 'b';
+        face[1][1] = 'b';
+        face[2][2] = 'b';
+    }
+    if(faceString == "neighborRightBelowFace"){
+        face[0][1] = 'o';
+        face[1][1] = 'o';
+        face[2][0] = 'o';
+        face[2][1] = 'o';
+        face[2][2] = 'o';
+    }
+    if(faceString == "neighborRightAboveFace"){
+        face[0][0] = 'r';
+        face[0][1] = 'r';
+        face[1][1] = 'r';
+        face[0][2] = 'r';
+    }
+    if(faceString == "neighborRightLeftFace"){
+        face[0][0] = 'g';
+        face[1][0] = 'g';
+        face[2][0] = 'g';
+        face[1][1] = 'g';
+    }
+
+    //final cross
+    if(faceString == "finalCrossMainFace")
+        face[1][1] = 'r';
+    if(faceString == "finalCrossRightFace")
+        face[1][0] = 'r';
+    if(faceString == "finalCrossBelowFace")
+        face[0][1] = 'r';
+    if(faceString == "finalCrossAboveFace")
+        face[2][1] = 'r';
+    if(faceString == "finalCrossLeftFace")
+        face[1][2] = 'r';
+
+    //final corners
+    if(faceString == "finalCornersMainFace"){
+        face[0][0] = 'o';
+        face[0][2] = 'g';
+        face[2][0] = 'r';
+    }
+    if(faceString == "finalCornersRightFace"){
+        face[0][0] = 'y';
+    }
+    if(faceString == "finalCornersBelowFace"){
+        face[0][0] = 'b';
+    }
+    if(faceString == "finalCornersAboveFace"){
+        face[2][0] = 'y';
+    }
+    if(faceString == "finalCornersLeftFace"){
+        face[0][2] = 'y';
+    }
 }
 
 std::vector<std::vector<char>> CubeFace::getFace()
