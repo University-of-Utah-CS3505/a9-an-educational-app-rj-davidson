@@ -45,11 +45,11 @@ private slots:
 
     void on_counterClockwiseButton_clicked();
 
-    //3d stuff
+
+    //cube3Dview stuff
     void on_pushLeftBtn_clicked();
     void on_pushRightBtn_clicked();
     void on_pushUpBtn_clicked();
-    void on_3DCubeCreation(QGraphicsScene *scene);
 
     void cube3DpaintVisibleFaces(std::vector<char> &visibleFaces);
 
@@ -57,9 +57,9 @@ private slots:
 signals:
     void sendMove(int);
 
-    //3d stuff
+    //cube3Dview stuff
     void send3DRotation(const string & dirRotation);
-   // void createNew3DCube(QGraphicsScene *scene3D);
+
 
 private:
     Ui::RubiksEdu *ui;

@@ -174,15 +174,8 @@ void CubeController::setUpFinalCorners()
 
 }
 
-/*
- *TODO master of visible faces of the 3d cube
-*/
-void CubeController::create3DCubeView(){
 
-
-        emit update3DCubeScene();
-
-}
+//cube3Dview methods
 
 /*
  * Send direction to rotate 3D cube to model so that the orientation can be updated
@@ -197,10 +190,3 @@ void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
     emit update3DCube(visibleFaceData);
 }
 
-
-/*
- *TODO
-*/
-void CubeController::new3DCube(QGraphicsScene *scene){
-    emit makeNew3DCube(scene);
-}

@@ -20,12 +20,10 @@ public:
 signals:
     void updateCube(std::vector<QImage>);
 
-    void update3DCubeScene();//unused
-    void makeNew3DCube(QGraphicsScene *scene);//unused
-
-    //currently used
+    //cube3Dview signals
     void updateUserRotation(const string &dirRotate);
     void update3DCube(std::vector<char> &visibleFaces);
+    void cube1DUpdated(Cube &cube); //needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
 
 
 private:
@@ -53,8 +51,9 @@ public:
 public slots:
     void switchFace(int);
     void MoveCube(int);
+
+    //cube3Dview slots
     void rotationCube(const string &dirRotate);
-    void new3DCube(QGraphicsScene *scene);
     void on_cube3DdataUpdated(std::vector<char> &visibleFaceData);
 };
 

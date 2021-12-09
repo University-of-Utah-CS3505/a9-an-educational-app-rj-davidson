@@ -13,19 +13,15 @@
 */
 Model3DCube::Model3DCube()
 {
-
+    //tester code to have a cube to send to view before connecting with actual cube data
+    cubeCopyOf1D = Cube();
 }
 
 /*
  *TODO
 */
 std::vector<QImage> Model3DCube::getQImageList(){
-    //    QVector<QGraphicsPathItem*> vctrFace0;
-    //    QVector<QGraphicsPathItem*> vctrFace1;
-    //    QVector<QGraphicsPathItem*> vctrFace2;
-    //    QVector<QGraphicsPathItem*> vctrFace3;
-    //    QVector<QGraphicsPathItem*> vctrFace4;
-    //    QVector<QGraphicsPathItem*> vctrFace5;
+
 
     return vctrFaces1DCube;
 }
@@ -34,12 +30,16 @@ std::vector<QImage> Model3DCube::getQImageList(){
  *TODO
 */
 //the cube controller will tell what to display at the same time as the mainwindow cube
-void Model3DCube::update3DCube(vector<QImage> qImageList)
+void Model3DCube::update3DCube(Cube const &cube)
 {
+    cubeCopyOf1D = cube;
+    updateVisibleFaces();
+
+
+
 
     // the model will need to know the faces hidden and visible
-    updateVisibleFace();
-    updateHiddenFaces();
+
 
     // the model will need to know the way each face needs to look
    //TODO updateFace0(QImage f0,QImage scaled);
@@ -50,25 +50,9 @@ void Model3DCube::update3DCube(vector<QImage> qImageList)
    //TODO updateFace5(QImage f5,QImage scaled);
 
     // the model will need to save the 3dcube orientation
-    updateOrientation();
+//    updateOrientation();
 
-    emit notify3DCubeView(qImageList);
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateVisibleFace()
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateHiddenFaces()
-{
-
+    //emit notify3DCubeView(qImageList);
 }
 
 /*
@@ -121,17 +105,64 @@ void Model3DCube::updateFace5(QImage f5,QImage scaled)
 
 /*
  *TODO
+ *
+ *In progress:
+ * need to connect this to view
+ * need to implement correct visible face rotation and flipping to match orientation
 */
 void Model3DCube::updateVisibleFaces(){
-    //left, right, up is correct order in vector
+    //actual implementation with full cube data
     visibleFaces.clear();
 
-    visibleFaces.push_back(cube3DFaceData.at(xAxisPosition));
-    int rightFacePosition = (xAxisPosition+1)%4;
-    visibleFaces.push_back(cube3DFaceData.at(rightFacePosition));
-    visibleFaces.push_back(cube3DFaceData.at(yAxisPosition+4));
-    qDebug()<< "updateVisibleFaces: " << visibleFaces.size();
-    emit notify3DCubeViewSimple(visibleFaces);
+    Cube tempCube = cubeCopyOf1D;
+    CubeFace leftFace, rightFace, topFace;
+
+    leftFace = tempCube.getFace(xAxisPosition);
+    rightFace = tempCube.getFace(getRightVisibleFacePosition());
+    topFace = tempCube.getFace(yAxisPosition+4);
+
+    if(yAxisPosition == up){
+        //need to rotate top face to match xAxisPosition
+        for(int i=0; i<xAxisPosition; i++){
+            topFace.rotateClockwise();
+        }
+    }else{
+        //if down, need to flip left and right face vertically
+
+    }
+
+
+    visibleFaces.push_back(leftFace);
+    visibleFaces.push_back(rightFace);
+    visibleFaces.push_back(topFace);
+
+    emit notify3DCubeView(visibleFaces);
+
+
+    //simple tester code:
+    //left, right, up is correct order in vector
+    visibleFacesSimple.clear();
+
+    visibleFacesSimple.push_back(cube3DFaceData.at(xAxisPosition));
+    visibleFacesSimple.push_back(cube3DFaceData.at(getRightVisibleFacePosition()));
+    visibleFacesSimple.push_back(cube3DFaceData.at(yAxisPosition+4));
+    qDebug()<< "updateVisibleFaces: " << visibleFacesSimple.size();
+    emit notify3DCubeViewSimple(visibleFacesSimple);
+}
+
+int Model3DCube::getRightVisibleFacePosition(){
+    int rightFacePosition = 0;
+    if(yAxisPosition == up){
+        rightFacePosition = (xAxisPosition+1)%4;
+    }
+    else if(yAxisPosition == down){
+        if(xAxisPosition == deg0){
+            rightFacePosition = deg270;
+        }else{
+            rightFacePosition = ((int)xAxisPosition)-1;
+        }
+    }
+    return rightFacePosition;
 }
 
 /*

@@ -43,13 +43,13 @@ public:
 public slots:
     //controller tells model when to update the qImage qvector data for the 1d cube
     //In real time the 3d cube will change with the main 1d cube
-    void update3DCube(std::vector<QImage>);
+    void update3DCube(Cube const &cube); //cube is const so that 3D cube does not modify 1D cube data on accident
     void update3DOrientation(const string &dirRotate);
 
 signals:
     //the cube controller will tell what to display at the same time as the mainwindow cube
     //model notifies whats the controller does with the data for the 3dcube specefic data
-    void notify3DCubeView(std::vector<QImage> qImageList);
+    void notify3DCubeView(QVector<CubeFace> &visibleFaces);
     void notify3DCubeViewSimple(std::vector<char> &visibleFaces);
 
 
@@ -57,19 +57,6 @@ private:
 
     //controller tells model when to update the qImage qvector data for the 1d cube
     std::vector<QImage> vctrFaces1DCube;
-
-    //this is 3d cube info data specefic
-    QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
-    QVector<QGraphicsPathItem*> vctrFace0;
-    QVector<QGraphicsPathItem*> vctrFace1;
-    QVector<QGraphicsPathItem*> vctrFace2;
-    QVector<QGraphicsPathItem*> vctrFace3;
-    QVector<QGraphicsPathItem*> vctrFace4;
-    QVector<QGraphicsPathItem*> vctrFace5;
-
-    // the model will need to know the faces hidden and visible
-    void updateVisibleFace();
-    void updateHiddenFaces();
 
     // the model will need to know the way each face needs to look
     void updateFace0(QImage f0,QImage scaled);
@@ -82,9 +69,13 @@ private:
     //temp data model with one color per face to make sure buttons are rotating cube correctly
     std::vector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
     //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'};
-    std::vector<char> visibleFaces;
+    std::vector<char> visibleFacesSimple;
+    QVector<CubeFace> visibleFaces;
+    Cube cubeCopyOf1D;
 
+    // the model will need to know the visible faces
     void updateVisibleFaces();
+    int getRightVisibleFacePosition();
 
     // the model will need to save the 3dcube orientation
     void updateOrientation();

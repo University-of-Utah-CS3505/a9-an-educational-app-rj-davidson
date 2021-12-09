@@ -138,7 +138,6 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 
-    //emit createNew3DCube(scene3D);
 }
 
 void RubiksEdu::on_clockwiseButton_clicked()
@@ -153,7 +152,7 @@ void RubiksEdu::on_counterClockwiseButton_clicked()
 }
 
 
-// 3D Cube View code starts here !!!
+// 3D Cube View code starts here !!! --------------------------------------------------------------------------
 
 void RubiksEdu::cube3DpaintVisibleFaces(std::vector<char> &visibleFaces){
     qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
@@ -193,7 +192,7 @@ void RubiksEdu::repaintLeftFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPosCorrected*3+yPos;
-            qDebug()<< "repaintLeftFace " << vctrIndex;
+            //qDebug()<< "repaintLeftFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -209,7 +208,7 @@ void RubiksEdu::repaintRightFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPos*3+yPos;
-            qDebug()<< "repaintRightFace " << vctrIndex;
+            //qDebug()<< "repaintRightFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -225,7 +224,7 @@ void RubiksEdu::repaintTopFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPos*3+yPos;
-            qDebug()<< "repaintTopFace " << vctrIndex;
+            //qDebug()<< "repaintTopFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -237,7 +236,6 @@ void RubiksEdu::repaintTopFace(QColor colorToPaint){
 */
 void RubiksEdu::on_pushLeftBtn_clicked()
 {
-    //repaintLeftFace(Qt::white);
     emit send3DRotation("Left");
 }
 
@@ -246,9 +244,7 @@ void RubiksEdu::on_pushLeftBtn_clicked()
 */
 void RubiksEdu::on_pushRightBtn_clicked()
 {
-    //repaintRightFace(QColor(255,165,0));
         emit send3DRotation("Right");
-
 }
 
 /*
@@ -256,7 +252,6 @@ void RubiksEdu::on_pushRightBtn_clicked()
 */
 void RubiksEdu::on_pushUpBtn_clicked()
 {
-    //repaintTopFace(Qt::blue);
     emit send3DRotation("Up");
 }
 
@@ -264,15 +259,7 @@ void RubiksEdu::on_pushUpBtn_clicked()
  *3d
 */
 void RubiksEdu::connectControllerView(CubeController *controller){
-   // connect(this, &RubiksEdu::createNew3DCube,controller,&CubeController::new3DCube);
     connect(this, &RubiksEdu::send3DRotation,controller,&CubeController::rotationCube);
-    connect(controller,&CubeController::makeNew3DCube,this,&RubiksEdu::on_3DCubeCreation);
-}
-
-void RubiksEdu::on_3DCubeCreation(QGraphicsScene *scene){
-    ui->cube3DGraphicsView->setScene(scene);
-    ui->cube3DGraphicsView->scale(0.75,-0.75);
-    ui->cube3DGraphicsView->show();
 }
 
 /*
@@ -306,14 +293,6 @@ void RubiksEdu::createLeftOfCube(){
             tempItemReference = scene3D->addPath(path1);
             vctrVisibleFaceLeft.append(tempItemReference);
 
-//            if(xPos == 0){
-//                tempItemReference->setBrush(Qt::green);
-//            }else if(xPos == 2){
-//                tempItemReference->setBrush(Qt::yellow);
-//            }else{
-//                tempItemReference->setBrush(Qt::black);
-//            }
-//            tempItemReference->setPen(QPen(Qt::red));
             tempItemReference->setBrush(Qt::yellow);
         }
     }
