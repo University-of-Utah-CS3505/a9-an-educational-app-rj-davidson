@@ -1,7 +1,7 @@
 #ifndef RUBIKSCELEBRATION_H
 #define RUBIKSCELEBRATION_H
 
-#include <QObject>
+#include <QWidget>
 
 #include <box2d/box2d.h>
 
@@ -12,17 +12,18 @@
 #include <QTimer>
 #include <QWidget>
 
-class RubiksCelebration : public QObject
+class RubiksCelebration : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RubiksCelebration(QObject *parent = nullptr);
+    explicit RubiksCelebration(QWidget *parent = nullptr);
 
 signals:
 
 };
 
 #endif // RUBIKSCELEBRATION_H
+
 
 
 //class LabRubiksWidget : public QWidget {
