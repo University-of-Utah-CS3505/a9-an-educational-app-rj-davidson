@@ -49,7 +49,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
 
     scene3D->setBackgroundBrush(Qt::white);
     ui->cube3DGraphicsView->setScene(scene3D);
-    ui->cube3DGraphicsView->scale(1,-1);
+    ui->cube3DGraphicsView->scale(0.75,-0.75);
 
 
     //Tester 3d:
