@@ -10,6 +10,8 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
     connect(this, &CubeController::updateUserRotation, &cube3D, &Model3DCube::update3DOrientation);
     connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCube);
 
+    //TODO need to make connection from rubiks to celebration when the cube is solved
+
     //emit updateCube(userCube.toQImageList());
     //TODO    emit updateCube(cube3D.getQImageList());
     //TODO   emit updateCube(cube3DView.getQImageList());
@@ -92,6 +94,7 @@ void CubeController::switchFace(int faceNumber)
 void CubeController::MoveCube(int moveClicked){
     userCube.move(moveClicked);
     emit updateCube(userCube.toQImageList());
+    emit cubeComplete(userCube.isComplete());
     //TODO    emit updateCube(cube3D.toQImageList());
     //TODO   emit updateCube(cube3DView.toQImageList();
 }

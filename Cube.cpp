@@ -625,7 +625,7 @@ void Cube::setCurrentFace(int num)
 }
 
 // Solved Check
-bool Cube::solved()
+bool Cube::isComplete()
 {
     for(CubeFace f : cubeFaces)
         if (!f.complete())

@@ -59,7 +59,7 @@ public:
     void setCurrentFace(int);
 
     // Solved Check
-    bool solved();
+    bool isComplete();
 
     // Converts Cube to List of QImages
     std::vector<QImage> toQImageList();
