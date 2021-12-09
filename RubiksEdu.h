@@ -47,19 +47,18 @@ private slots:
 
     //3d stuff
     void on_pushLeftBtn_clicked();
-    void on_pushRightButton_clicked();
+    void on_pushRightBtn_clicked();
     void on_pushUpBtn_clicked();
     void on_3DCubeCreation(QGraphicsScene *scene);
 
-
-
+    void cube3DpaintVisibleFaces(std::vector<char> &visibleFaces);
 
 
 signals:
     void sendMove(int);
 
     //3d stuff
-    void send3DRotation(string dirRotation);
+    void send3DRotation(const string & dirRotation);
    // void createNew3DCube(QGraphicsScene *scene3D);
 
 private:
@@ -68,7 +67,6 @@ private:
     //3d scene
     QGraphicsScene *scene3D;
     //3d cube stuff
-    void createBtnConnection();
     void connectControllerView(CubeController *controller);
 
 
@@ -94,10 +92,16 @@ private:
     QGraphicsPathItem *itemRRight;
     QGraphicsPathItem *itemRTop;
 
-    QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
+    //QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
     QVector<QGraphicsPathItem*> vctrVisibleFaceTop;
     QVector<QGraphicsPathItem*> vctrVisibleFaceRight;
     QVector<QGraphicsPathItem*> vctrVisibleFaceLeft;
+
+    void repaintLeftFace(QColor colorToPaint);
+    void repaintRightFace(QColor colorToPaint);
+    void repaintTopFace(QColor colorToPaint);
+
+    QColor getColorFromChar(char charColor);
 
 };
 #endif // RUBIKSEDU_H

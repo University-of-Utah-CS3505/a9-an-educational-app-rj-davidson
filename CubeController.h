@@ -19,9 +19,14 @@ public:
 
 signals:
     void updateCube(std::vector<QImage>);
-    void update3DCubeScene();
-    void updateUserRotation(string dirRotate);
-    void makeNew3DCube(QGraphicsScene *scene);
+
+    void update3DCubeScene();//unused
+    void makeNew3DCube(QGraphicsScene *scene);//unused
+
+    //currently used
+    void updateUserRotation(const string &dirRotate);
+    void update3DCube(std::vector<char> &visibleFaces);
+
 
 private:
     Cube userCube;
@@ -48,8 +53,9 @@ public:
 public slots:
     void switchFace(int);
     void MoveCube(int);
-    void rotationCube(string dirRotate);
+    void rotationCube(const string &dirRotate);
     void new3DCube(QGraphicsScene *scene);
+    void on_cube3DdataUpdated(std::vector<char> &visibleFaceData);
 };
 
 #endif // CUBECONTROLLER_H

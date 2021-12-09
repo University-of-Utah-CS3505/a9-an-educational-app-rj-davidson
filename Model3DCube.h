@@ -40,15 +40,17 @@ public:
    // Model3DCube(QWidget *parent=nullptr,CubeController *controller=nullptr);
     std::vector<QImage> getQImageList();
 
-private slots:
+public slots:
     //controller tells model when to update the qImage qvector data for the 1d cube
     //In real time the 3d cube will change with the main 1d cube
     void update3DCube(std::vector<QImage>);
+    void update3DOrientation(const string &dirRotate);
 
 signals:
     //the cube controller will tell what to display at the same time as the mainwindow cube
     //model notifies whats the controller does with the data for the 3dcube specefic data
     void notify3DCubeView(std::vector<QImage> qImageList);
+    void notify3DCubeViewSimple(std::vector<char> &visibleFaces);
 
 
 private:
@@ -77,8 +79,31 @@ private:
     void updateFace4(QImage f4,QImage scaled);
     void updateFace5(QImage f5,QImage scaled);
 
+    //temp data model with one color per face to make sure buttons are rotating cube correctly
+    std::vector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
+    //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'};
+    std::vector<char> visibleFaces;
+
+    void updateVisibleFaces();
+
     // the model will need to save the 3dcube orientation
     void updateOrientation();
+
+    //Data for orientation code
+    enum yAxis{ up, down };
+    enum yAxis yAxisPosition = up;
+    enum xAxis{ deg0, deg90, deg180, deg270 };
+    enum xAxis xAxisPosition = deg0;
+
+    void rotate_right();
+    void rotate_left();
+    void rotate_up();
+
+    void helper_decrease_angle();
+    void helper_increase_angle();
+
+    //orientation test functions
+    void printOrientation();
 
 
 

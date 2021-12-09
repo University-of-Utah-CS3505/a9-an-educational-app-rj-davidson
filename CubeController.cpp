@@ -7,6 +7,8 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
     //setupAndRandomizeCube();
     setUpFirstCross();
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
+    connect(this, &CubeController::updateUserRotation, &cube3D, &Model3DCube::update3DOrientation);
+    connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCube);
 
     //emit updateCube(userCube.toQImageList());
     //TODO    emit updateCube(cube3D.getQImageList());
@@ -183,11 +185,18 @@ void CubeController::create3DCubeView(){
 }
 
 /*
- *TODO
+ * Send direction to rotate 3D cube to model so that the orientation can be updated
+ *
+ * Based on what button was pressed in the view.  Either sends "Up", "Left", or "Right"
 */
-void CubeController::rotationCube(string dirRotate){
+void CubeController::rotationCube(const string & dirRotate){
      emit updateUserRotation(dirRotate);
 }
+
+void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
+    emit update3DCube(visibleFaceData);
+}
+
 
 /*
  *TODO
