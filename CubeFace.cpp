@@ -160,15 +160,23 @@ CubeFace::CubeFace(string faceString, char faceColor)
     }
     if(faceString == "finalCornersRightFace"){
         face[0][0] = 'y';
+        face[2][2] = 'y';
     }
     if(faceString == "finalCornersBelowFace"){
         face[0][0] = 'b';
+        face[2][2] = 'b';
     }
     if(faceString == "finalCornersAboveFace"){
         face[2][0] = 'y';
+        face[0][2] = 'y';
     }
     if(faceString == "finalCornersLeftFace"){
         face[0][2] = 'y';
+        face[2][0] = 'y';
+    }
+    if(faceString == "finalCornersOppositeFace"){
+        face[0][2] = 'y';
+        face[2][0] = 'y';
     }
 }
 

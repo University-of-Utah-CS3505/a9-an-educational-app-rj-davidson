@@ -148,7 +148,7 @@ void CubeController::setupAndRandomizeCube()
 
 void CubeController::setUpFirstCross()
 {
-    userCube = Cube(6);
+    userCube = Cube(2);
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
