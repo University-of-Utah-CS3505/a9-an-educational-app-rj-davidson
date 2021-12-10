@@ -486,7 +486,7 @@
      <x>0</x>
      <y>0</y>
      <width>1296</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -496,7 +496,7 @@
   <customwidget>
    <class>ViewCube</class>
    <extends>QWidget</extends>
-   <header location="global">ViewCube.h</header>
+   <header>ViewCube.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

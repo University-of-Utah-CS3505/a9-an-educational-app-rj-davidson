@@ -1,27 +1,28 @@
-#ifndef RUBIKSCELEBRATION_H
-#define RUBIKSCELEBRATION_H
+#ifndef CUBECELEBRATION_H
+#define CUBECELEBRATION_H
 
-
-
+#include <QDialog>
 #include <QWidget>
-
-
-
 #include <box2d/box2d.h>
 #include <QKeyEvent>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPixmap>
 #include <QTimer>
-#include <QWidget>
 
 
-class RubiksCelebration : public QWidget
+namespace Ui {
+class CubeCelebration;
+}
+
+class CubeCelebration : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit RubiksCelebration(QWidget *parent = nullptr);
+    explicit CubeCelebration(QWidget *parent = nullptr);
+    ~CubeCelebration();
+
 
 signals:
 
@@ -30,6 +31,7 @@ protected:
     void keyPressEvent(QKeyEvent* event) override;
 
 private:
+    Ui::CubeCelebration *ui;
     QPixmap pm;
     b2World world;
     b2Body* ground;
@@ -38,4 +40,5 @@ private:
 
 };
 
-#endif // RUBIKSCELEBRATION_H
+#endif // CUBECELEBRATION_H
+
