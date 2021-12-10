@@ -45,9 +45,6 @@ private:
     void setUpFinalCorners();
 
 
-    void create3DCubeView(); //void open2DCubeWindow();
-
-
 public:
     void setEduMode(int);
 

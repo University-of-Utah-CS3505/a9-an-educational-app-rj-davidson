@@ -37,8 +37,6 @@ class Model3DCube: public QObject
     Q_OBJECT
 public:
     Model3DCube();
-   // Model3DCube(QWidget *parent=nullptr,CubeController *controller=nullptr);
-    std::vector<QImage> getQImageList();
 
 public slots:
     //controller tells model when to update the qImage qvector data for the 1d cube
@@ -58,18 +56,10 @@ private:
     //controller tells model when to update the qImage qvector data for the 1d cube
     std::vector<QImage> vctrFaces1DCube;
 
-    // the model will need to know the way each face needs to look
-    void updateFace0(QImage f0,QImage scaled);
-    void updateFace1(QImage f1,QImage scaled);
-    void updateFace2(QImage f2,QImage scaled);
-    void updateFace3(QImage f3,QImage scaled);
-    void updateFace4(QImage f4,QImage scaled);
-    void updateFace5(QImage f5,QImage scaled);
 
     //temp data model with one color per face to make sure buttons are rotating cube correctly
     std::vector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
-  //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'}; //cubeStyle 0
-  //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'}; //cubeStyle 0
+
     std::vector<char> visibleFacesSimple;
     QVector<CubeFace> visibleFaces;
 
@@ -86,8 +76,8 @@ private:
     void updateVisibleFaces();
     int getRightVisibleFacePosition();
 
+
     // the model will need to save the 3dcube orientation
-    void updateOrientation();
 
     //Data for orientation code
     enum yAxis{ up, down };

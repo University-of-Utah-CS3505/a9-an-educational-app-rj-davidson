@@ -16,7 +16,6 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
 
     //TODO need to make connection from rubiks to celebration when the cube is solved
 
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
 
@@ -145,8 +144,6 @@ void CubeController::setupAndRandomizeCube()
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
-
-    //emit updateCube(pass list of qImages);
 }
 
 void CubeController::setUpFirstCross()
@@ -190,6 +187,9 @@ void CubeController::rotationCube(const string & dirRotate){
      emit updateUserRotation(dirRotate);
 }
 
+/*
+ * Sends 3D cube data to view to paint
+ */
 void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
     emit update3DCubeViewSimple(visibleFaceData);
 }

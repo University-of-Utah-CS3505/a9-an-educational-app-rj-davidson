@@ -1,13 +1,5 @@
 #include "Model3DCube.h"
 
-///*
-// *TODO
-//*/
-//Model3DCube::Model3DCube(QWidget *parent,CubeController *controller)
-//{
-
-//}
-
 /*
  *TODO
 */
@@ -20,48 +12,25 @@ Model3DCube::Model3DCube()
 /*
  *TODO
 */
-std::vector<QImage> Model3DCube::getQImageList(){
-
-
-    return vctrFaces1DCube;
-}
-
-/*
- *TODO
-*/
 //the cube controller will tell what to display at the same time as the mainwindow cube
 void Model3DCube::update3DCube(Cube const &cube1D)
 {
-    //qDebug()<<"model3DCube.cpp:update3DCube called";
     cubeCopyOf1D = cube1D;
     convert_cube1D_to_cube3D();
-//    cubeStyle = (cubeStyle+1)%7;
-//    cubeCopyOf1D = Cube(cubeStyle);
 
     updateVisibleFaces();
-
-
-
-
-    // the model will need to know the faces hidden and visible
-
-
-    // the model will need to know the way each face needs to look
-   //TODO updateFace0(QImage f0,QImage scaled);
-    //TODO updateFace1(QImage f1,QImage scaled);
-   //TODO updateFace2(QImage f2,QImage scaled);
-   //TODO updateFace3(QImage f3,QImage scaled);
-   //TODO updateFace4(QImage f4,QImage scaled);
-   //TODO updateFace5(QImage f5,QImage scaled);
-
-    // the model will need to save the 3dcube orientation
-//    updateOrientation();
-
-    //emit notify3DCubeView(qImageList);
 }
 
 /*
  *TODO
+ *
+ *3D cube assumes the faces are stored in the following order
+ *
+ *    deg0,  deg90, deg180, deg270,  up   ,  down
+ *
+ *    'g' ,  'y'  ,  'b'  ,  'w'  ,  'r'  ,  'o'
+ *
+ *    This function maps the 2d cube face order to the order listed above.
 */
 void Model3DCube::convert_cube1D_to_cube3D(){
 
@@ -69,65 +38,17 @@ void Model3DCube::convert_cube1D_to_cube3D(){
     QVector<CubeFace> cube3Dfaces;
 
     for(int i=0; i<6; i++){
-        cube3Dfaces.push_back(cube1Dfaces.at(conversionMap[i]));
+        CubeFace tempFace = cube1Dfaces.at(conversionMap[i]);
+        //flip all faces vertically so that zero position and x-axis, y-axis orientations of 3D cube match 2D cube.
+        tempFace.flipVertically();
+        cube3Dfaces.push_back(tempFace);
     }
     cube3D = Cube(cube3Dfaces);
 }
 
 /*
  *TODO
-*/
-void Model3DCube::updateFace0(QImage f0,QImage scaled)
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateFace1(QImage f1,QImage scaled)
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateFace2(QImage f2,QImage scaled)
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateFace3(QImage f3,QImage scaled)
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateFace4(QImage f4,QImage scaled)
-{
-
-}
-
-/*
- *TODO
-*/
-void Model3DCube::updateFace5(QImage f5,QImage scaled)
-{
-
-}
-
-/*
- *TODO
  *
- *In progress:
- * need to connect this to view
- * need to implement correct visible face rotation and flipping to match orientation
 */
 void Model3DCube::updateVisibleFaces(){
     //actual implementation with full cube data
@@ -141,24 +62,16 @@ void Model3DCube::updateVisibleFaces(){
     rightFace = tempCube.getFace(getRightVisibleFacePosition());
     topFace = tempCube.getFace(yAxisPosition+4);
 
-    leftFace.flipVertically();
-    rightFace.flipVertically();
-    topFace.flipVertically();
-
-//    topFace.printDebug();
+    //rotate top face to match xAxis orientation
     if(yAxisPosition == up){
-        //need to rotate top face to match xAxisPosition
+        //rotate top face to match xAxisPosition
         for(int i=0; i<(int)xAxisPosition; i++){
             topFace.rotateCounterClockwise();
-//            qDebug()<<" xPos: "<<i;
-//            topFace.printDebug();
         }
     }else{
-        //rotate top face the opposite direction???
+        //rotate top face the opposite direction
         for(int i=0; i<(int)xAxisPosition; i++){
             topFace.rotateClockwise();
-//            qDebug()<<" xPos: "<<i;
-//            topFace.printDebug();
         }
         //if down, need to rotate left and right face by 180
         leftFace.rotateClockwise();
@@ -170,7 +83,7 @@ void Model3DCube::updateVisibleFaces(){
     visibleFaces.push_back(leftFace);
     visibleFaces.push_back(rightFace);
     visibleFaces.push_back(topFace);
-    //qDebug()<< "updateVisibleFaces: " << visibleFaces.size();
+
     emit notify3DCubeView(visibleFaces);
 
 
@@ -184,12 +97,16 @@ void Model3DCube::updateVisibleFaces(){
     //emit notify3DCubeViewSimple(visibleFacesSimple);
 }
 
+/*
+ *
+ */
 int Model3DCube::getRightVisibleFacePosition(){
     int rightFacePosition = 0;
     if(yAxisPosition == up){
-        rightFacePosition = (xAxisPosition+1)%4;
+        rightFacePosition = (xAxisPosition+1)%4; //position one to the right
     }
     else if(yAxisPosition == down){
+        //must get position one to the left if cube is upside-down because everything is inverted
         if(xAxisPosition == deg0){
             rightFacePosition = deg270;
         }else{
@@ -199,12 +116,6 @@ int Model3DCube::getRightVisibleFacePosition(){
     return rightFacePosition;
 }
 
-/*
- *TODO
-*/
-void Model3DCube::updateOrientation(){
-
-}
 
 //Functions for orientation code -------------------------------------------------------------------------------------------------------
 
@@ -269,7 +180,6 @@ void Model3DCube::rotate_left(){
         helper_decrease_angle();
     }
 
-
     printOrientation();
 }
 
@@ -289,8 +199,8 @@ void Model3DCube::rotate_up(){
 }
 
 void Model3DCube::printOrientation(){
-    QList<QString> xOrentations = {"deg0", "deg90", "deg180", "deg270"};
-    QList<QString> yOrentations = {"up", "down"};
+    QVector<QString> xOrentations = {"deg0", "deg90", "deg180", "deg270"};
+    QVector<QString> yOrentations = {"up", "down"};
     qDebug()<<"xAxisPosition: " << xOrentations.at(xAxisPosition) << "\tyAxisPosition: " << yOrentations.at(yAxisPosition);
 }
 

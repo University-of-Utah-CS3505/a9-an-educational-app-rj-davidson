@@ -33,9 +33,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
     });
 
 
-    //3d stuff --------------------------------------------
-    connectControllerView(controller);
-
+    //3d view stuff --------------------------------------------
     scene3D= new QGraphicsScene;
 
     createLeftOfCube();
@@ -46,12 +44,11 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
     ui->cube3DGraphicsView->setScene(scene3D);
     ui->cube3DGraphicsView->scale(0.75,-0.75);
 
-    connect(controller, &CubeController::update3DCubeViewSimple, this, &RubiksEdu::cube3DpaintVisibleFacesSimple);
-    connect(controller, &CubeController::update3DCubeView, this, &RubiksEdu::cube3DpaintVisibleFaces);
+    connectControllerView(controller);
     //end of 3d view stuff ----------------------------------
 
 
-    // Displays initial cube
+    // Displays initial cube  (3D view stuff needs to happen before this so the 3D view gets painted with 2D data)
     on_leftTopButton_clicked();
     on_rightTopButton_clicked();
 }
@@ -211,7 +208,6 @@ void RubiksEdu::repaintLeftFace(CubeFace faceToPaint){
             QColor currentColor = getColorFromChar(column.at(yPos));
 
             int vctrIndex = xPosCorrected*3+yPos;
-            //qDebug()<< "repaintLeftFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -231,7 +227,6 @@ void RubiksEdu::repaintRightFace(CubeFace faceToPaint){
             QColor currentColor = getColorFromChar(column.at(yPos));
 
             int vctrIndex = xPos*3+yPos;
-            //qDebug()<< "repaintLeftFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -251,7 +246,6 @@ void RubiksEdu::repaintTopFace(CubeFace faceToPaint){
             QColor currentColor = getColorFromChar(column.at(yPos));
 
             int vctrIndex = xPos*3+yPos;
-            //qDebug()<< "repaintLeftFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -269,7 +263,6 @@ void RubiksEdu::repaintLeftFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPosCorrected*3+yPos;
-            //qDebug()<< "repaintLeftFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -285,7 +278,6 @@ void RubiksEdu::repaintRightFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPos*3+yPos;
-            //qDebug()<< "repaintRightFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -301,7 +293,6 @@ void RubiksEdu::repaintTopFace(QColor colorToPaint){
         for(int yPos = 0; yPos<3; yPos++)
         {
             int vctrIndex = xPos*3+yPos;
-            //qDebug()<< "repaintTopFace " << vctrIndex;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -337,6 +328,8 @@ void RubiksEdu::on_pushUpBtn_clicked()
 */
 void RubiksEdu::connectControllerView(CubeController *controller){
     connect(this, &RubiksEdu::send3DRotation,controller,&CubeController::rotationCube);
+    connect(controller, &CubeController::update3DCubeViewSimple, this, &RubiksEdu::cube3DpaintVisibleFacesSimple);
+    connect(controller, &CubeController::update3DCubeView, this, &RubiksEdu::cube3DpaintVisibleFaces);
 }
 
 /*
@@ -448,228 +441,4 @@ void RubiksEdu::createTopOfCube(){
     }
 
 }
-
-
-//TODO refactor notes for 3d cube
-//#include "View3DCube.h"
-
-/////*
-//// *TODO
-////*/
-////View3DCube::View3DCube(QWidget *parent,CubeController *controller)
-////{
-
-////    create3DCube();
-////}
-
-///*
-// *TODO
-//*/
-//View3DCube::View3DCube()
-//{
-
-//    create3DCube();
-//}
-
-
-//void View3DCube::create3DCube(){
-//    createUser3DCube();
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::updateVisibleFaces(std::vector<QImage>)
-//{
-//        //redraw3DCube(std::vector<QImage>);
-
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::redraw3DCube(std::vector<QImage>){
-
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::redrawLeftFace(std::vector<QImage>){
-
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::redrawRightFace(std::vector<QImage>){
-
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::redrawTopFace(std::vector<QImage>){
-
-//}
-
-///*
-// *TODO
-//*/
-//void View3DCube::createUser3DCube(){
-
-//    scene= new QGraphicsScene;
-
-//    createLeftFace();
-//    createRightFace();
-//    createTopFace();
-
-//    scene->setBackgroundBrush(Qt::white);
-
-//    emit show3DCube(scene);
-
-//}
-
-///*
-// *TODO left side
-//*/
-//void View3DCube::createLeftFace()
-//{
-//    for(int xPos = 0; xPos<3; xPos++)
-//    {
-//        int xPosCorrected = 2-xPos; //change xPosition so that 0 element is on left and 2 element is on right.
-//                                    //This ensures the face 0,0 point is on the bottom left corner for every face
-//        for(int yPos = 0; yPos<3; yPos++)
-//        {
-//            point1x = -eSize*xPosCorrected*xScale;
-//            point1y = eSize*yPos+eSize*xPosCorrected*yScale;
-//            point2x = -eSize*(xPosCorrected+1)*xScale;
-//            point2y = eSize*yPos+eSize*yScale+eSize*xPosCorrected*yScale;
-//            point3x = -eSize*(xPosCorrected+1)*xScale;
-//            point3y = eSize*(yPos+1)+eSize*yScale+eSize*xPosCorrected*yScale;
-//            point4x = -eSize*xPosCorrected*xScale;
-//            point4y = eSize*(yPos+1)+eSize*xPosCorrected*yScale;
-
-//            QPainterPath path1;
-
-//            path1.moveTo(point1x, point1y);
-//            path1.lineTo(point2x, point2y);
-//            path1.lineTo(point3x, point3y);
-//            path1.lineTo(point4x, point4y);
-//            path1.lineTo(point1x, point1y);
-//            QGraphicsPathItem *tempItemReference;
-//            tempItemReference = scene->addPath(path1);
-//            vctrTester.append(tempItemReference);
-
-////            if(xPos == 0){
-////                tempItemReference->setBrush(Qt::green);
-////            }else if(xPos == 2){
-////                tempItemReference->setBrush(Qt::yellow);
-////            }else{
-////                tempItemReference->setBrush(Qt::black);
-////            }
-////            tempItemReference->setPen(QPen(Qt::red));
-//            tempItemReference->setBrush(Qt::yellow);
-//        }
-//    }
-
-//}
-
-
-///*
-// *TODO right side
-//*/
-//void View3DCube::createRightFace()
-//{
-//    for(int xPos = 0; xPos<3; xPos++)
-//    {
-//        for(int yPos = 0; yPos<3; yPos++)
-//        {
-//            point1x = eSize*xPos*xScale;
-//            point1y = eSize*yPos+eSize*xPos*yScale;
-//            point2x = eSize*(xPos+1)*xScale;
-//            point2y = eSize*yPos+eSize*yScale+eSize*xPos*yScale;
-//            point3x = eSize*(xPos+1)*xScale;
-//            point3y = eSize*(yPos+1)+eSize*yScale+eSize*xPos*yScale;
-//            point4x = eSize*xPos*xScale;
-//            point4y = eSize*(yPos+1)+eSize*xPos*yScale;
-
-//            QPainterPath path2;
-
-//            path2.moveTo(point1x, point1y);
-//            path2.lineTo(point2x, point2y);
-//            path2.lineTo(point3x, point3y);
-//            path2.lineTo(point4x, point4y);
-//            path2.lineTo(point1x, point1y);
-
-//            QGraphicsPathItem *tempItemReference;
-//            tempItemReference = scene->addPath(path2);
-//            vctrTester.append(tempItemReference);
-
-//            tempItemReference->setBrush(Qt::red);
-//        }
-
-//    }
-
-//}
-
-
-///*
-// *TODO top side
-//*/
-//void View3DCube::createTopFace()
-//{
-
-//    for(int xPos = 0; xPos<3; xPos++)
-//    {
-//        for(int yPos = 0; yPos<3; yPos++)
-//        {
-//            point1x = (xPos-yPos)*eSize*xScale;
-//            point1y = cubeSize+(xPos+yPos)*eSize*yScale;
-//            point2x = (xPos+1-yPos)*eSize*xScale;
-//            point2y = cubeSize+(xPos+yPos)*eSize*yScale+eSize*yScale;
-//            point3x = (xPos-yPos)*eSize*xScale;
-//            point3y = cubeSize+(xPos+yPos+1)*eSize*yScale+eSize*yScale;
-//            point4x = (xPos-1-yPos)*eSize*xScale;
-//            point4y = cubeSize+(xPos+yPos)*eSize*yScale+eSize*yScale;
-
-//            QPainterPath path3;
-
-//            path3.moveTo(point1x, point1y);
-//            path3.lineTo(point2x, point2y);
-//            path3.lineTo(point3x, point3y);
-//            path3.lineTo(point4x, point4y);
-//            path3.lineTo(point1x, point1y);
-
-
-//            QGraphicsPathItem *tempItemReference;
-//            tempItemReference = scene->addPath(path3);
-//            vctrTester.append(tempItemReference);
-
-//            tempItemReference->setBrush(Qt::green);
-//        }
-//    }
-
-
-//}
-
-
-
-///*
-// *TODO
-//*/
-//void View3DCube::updateBtnClicked(string dir){
-
-//    if(dir=="Left")
-//    emit leftPushBtnClicked();
-
-
-//    if(dir=="Right")
-//    emit rightPushBtnClicked();
-
-
-//    if(dir == "Up")
-//    emit upPushBtnClicked();
-
-//}
 
