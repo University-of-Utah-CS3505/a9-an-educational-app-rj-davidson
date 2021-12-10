@@ -74,6 +74,12 @@ Cube::Cube(){
         cubeFaces.push_back(CubeFace('b'));
 }
 
+/*
+ *
+ *this is a method for the 3d cube so that the converted copy of the data
+ *can be stored in the 3d cube model
+ *
+*/
 Cube::Cube(QVector<CubeFace> &newCubeFaces){
     currentFace = 0;
     for(int i=0; i<6; i++){
@@ -620,6 +626,9 @@ std::vector<CubeFace> Cube::getCube()
     return cubeFaces;
 }
 
+/*
+ * Allows cube data to be set from a list of faces. Used to store data for the 3d cube model
+ */
 void Cube::setCube(QVector<CubeFace> newCubeFaces)
 {
     cubeFaces.clear();
