@@ -32,13 +32,9 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
        &CubeController::setEduMode;
     });
 
-    // Displays initial cube
-    on_leftTopButton_clicked();
-    on_rightTopButton_clicked();
 
-    //3d stuff
+    //3d stuff --------------------------------------------
     connectControllerView(controller);
-
 
     scene3D= new QGraphicsScene;
 
@@ -52,9 +48,12 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
 
     connect(controller, &CubeController::update3DCubeViewSimple, this, &RubiksEdu::cube3DpaintVisibleFacesSimple);
     connect(controller, &CubeController::update3DCubeView, this, &RubiksEdu::cube3DpaintVisibleFaces);
+    //end of 3d view stuff ----------------------------------
 
 
-    //Tester 3d:
+    // Displays initial cube
+    on_leftTopButton_clicked();
+    on_rightTopButton_clicked();
 }
 RubiksEdu::~RubiksEdu()
 {
@@ -158,7 +157,7 @@ void RubiksEdu::on_counterClockwiseButton_clicked()
  *
  */
 void RubiksEdu::cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces){
-    qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
+    //qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
     repaintLeftFace(getColorFromChar(visibleFaces.at(0)));
     repaintRightFace(getColorFromChar(visibleFaces.at(1)));
     repaintTopFace(getColorFromChar(visibleFaces.at(2)));
@@ -168,7 +167,7 @@ void RubiksEdu::cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces){
  *
  */
 void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces){
-    qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
+    //qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
     repaintLeftFace(visibleFaces.at(0));
     repaintRightFace(visibleFaces.at(1));
     repaintTopFace(visibleFaces.at(2));

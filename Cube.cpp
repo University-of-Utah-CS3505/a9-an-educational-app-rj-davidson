@@ -74,6 +74,13 @@ Cube::Cube(){
         cubeFaces.push_back(CubeFace('b'));
 }
 
+Cube::Cube(QVector<CubeFace> &newCubeFaces){
+    currentFace = 0;
+    for(int i=0; i<6; i++){
+        cubeFaces.push_back(newCubeFaces.at(i));
+    }
+}
+
 void Cube::move(int moveID)
 {
     switch (moveID)
@@ -611,6 +618,14 @@ CubeFace Cube::getFace(int i)
 std::vector<CubeFace> Cube::getCube()
 {
     return cubeFaces;
+}
+
+void Cube::setCube(QVector<CubeFace> newCubeFaces)
+{
+    cubeFaces.clear();
+    for(int i=0; i<6; i++){
+        cubeFaces.push_back(newCubeFaces.at(i));
+    }
 }
 
 int Cube::getCurrentFace()

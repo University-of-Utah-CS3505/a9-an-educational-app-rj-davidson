@@ -203,30 +203,42 @@ void CubeFace::setCol(int x, std::vector<char> col)
 
 void CubeFace::rotateClockwise()
 {
-    std::vector<char> r0 = getRow(0);
-    std::vector<char> r1 = getRow(1);
-    std::vector<char> r2 = getRow(2);
+    const std::vector<char> r0 = getRow(0);
+    const std::vector<char> r1 = getRow(1);
+    const std::vector<char> r2 = getRow(2);
 
     for (int i = 0; i < (int) face.size(); i++)
     {
         face[i][0] = r2[i];
         face[i][1] = r1[i];
-        face[i][0] = r0[i];
+        face[i][2] = r0[i];
     }
 }
 
 void CubeFace::rotateCounterClockwise()
 {
-    std::vector<char> c0 = getCol(0);
-    std::vector<char> c1 = getCol(1);
-    std::vector<char> c2 = getCol(2);
+    const std::vector<char> c0 = getCol(0);
+    const std::vector<char> c1 = getCol(1);
+    const std::vector<char> c2 = getCol(2);
 
     for (int i = 0; i < (int) face.size(); i++)
     {
-        face[2][i] = c2[i];
+        face[2][i] = c0[i];
         face[1][i] = c1[i];
-        face[0][i] = c0[i];
+        face[0][i] = c2[i];
     }
+}
+
+/*
+ * Flips face vertically (mirrors along x axis) (needed for cube3Dview
+ */
+void CubeFace::flipVertically()
+{
+    std::vector<char> r0 = getRow(0);
+    std::vector<char> r2 = getRow(2);
+
+    setRow(0, r2);
+    setRow(2, r0);
 }
 
 bool CubeFace::complete()
@@ -278,3 +290,11 @@ QImage CubeFace::toQImage()
 
     return image;
 }
+
+void CubeFace::printDebug(){
+    for (int irow = 0; irow < 3; irow++)
+    {
+        qDebug()<< face[irow][0] << "," << face[irow][1] << "," << face[irow][2];
+    }
+}
+

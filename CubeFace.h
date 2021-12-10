@@ -6,6 +6,7 @@
 #include <QColor>
 #include <iostream>
 #include <string>
+#include <QDebug>
 using std::string;
 
 class CubeFace
@@ -29,10 +30,15 @@ public:
     void rotateClockwise();
     void rotateCounterClockwise();
 
+    // flip face (needed for cube3Dview
+    void flipVertically();
+
     // Complete Checker
     bool complete();
 
     QImage toQImage();
+
+    void printDebug();
 
 private:
     std::vector<std::vector<char>> face;

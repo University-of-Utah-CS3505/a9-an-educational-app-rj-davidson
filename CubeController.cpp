@@ -16,9 +16,7 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
 
     //TODO need to make connection from rubiks to celebration when the cube is solved
 
-    //emit updateCube(userCube.toQImageList());
-    //TODO    emit updateCube(cube3D.getQImageList());
-    //TODO   emit updateCube(cube3DView.getQImageList());
+    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
 

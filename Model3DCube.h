@@ -68,10 +68,18 @@ private:
 
     //temp data model with one color per face to make sure buttons are rotating cube correctly
     std::vector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
-    //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'};
+  //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'}; //cubeStyle 0
+  //std::vector<char> cube3DFaceData = {'g', 'r', 'y', 'w', 'o', 'b'}; //cubeStyle 0
     std::vector<char> visibleFacesSimple;
     QVector<CubeFace> visibleFaces;
+
     Cube cubeCopyOf1D;
+    Cube cube3D;
+
+    void convert_cube1D_to_cube3D();
+    //int conversionMap[6] = {2,1,3,4,0,5}; //cubeStyle0
+    int conversionMap[6] = {0,2,5,4,1,3}; //cubeStyle6
+    //int conversionMap[6] = {0,1,2,3,4,5};
 
     // the model will need to know the visible faces
     void updateVisibleFaces();
@@ -95,6 +103,8 @@ private:
 
     //orientation test functions
     void printOrientation();
+
+    int cubeStyle = 0;
 
 
 

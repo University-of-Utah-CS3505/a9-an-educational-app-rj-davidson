@@ -30,10 +30,14 @@ std::vector<QImage> Model3DCube::getQImageList(){
  *TODO
 */
 //the cube controller will tell what to display at the same time as the mainwindow cube
-void Model3DCube::update3DCube(Cube const &cube)
+void Model3DCube::update3DCube(Cube const &cube1D)
 {
-    qDebug()<<"model3DCube.cpp:update3DCube called";
-    cubeCopyOf1D = cube;
+    //qDebug()<<"model3DCube.cpp:update3DCube called";
+    cubeCopyOf1D = cube1D;
+    convert_cube1D_to_cube3D();
+//    cubeStyle = (cubeStyle+1)%7;
+//    cubeCopyOf1D = Cube(cubeStyle);
+
     updateVisibleFaces();
 
 
@@ -54,6 +58,20 @@ void Model3DCube::update3DCube(Cube const &cube)
 //    updateOrientation();
 
     //emit notify3DCubeView(qImageList);
+}
+
+/*
+ *TODO
+*/
+void Model3DCube::convert_cube1D_to_cube3D(){
+
+    std::vector<CubeFace> cube1Dfaces = cubeCopyOf1D.getCube();
+    QVector<CubeFace> cube3Dfaces;
+
+    for(int i=0; i<6; i++){
+        cube3Dfaces.push_back(cube1Dfaces.at(conversionMap[i]));
+    }
+    cube3D = Cube(cube3Dfaces);
 }
 
 /*
@@ -116,27 +134,39 @@ void Model3DCube::updateVisibleFaces(){
     visibleFaces.clear();
 
     //makeing a copy of stored 1d cube data to calculate the visible faces and visible face orientations
-    Cube tempCube = cubeCopyOf1D;
+    Cube tempCube = cube3D;
     CubeFace leftFace, rightFace, topFace;
 
     leftFace = tempCube.getFace(xAxisPosition);
     rightFace = tempCube.getFace(getRightVisibleFacePosition());
     topFace = tempCube.getFace(yAxisPosition+4);
 
+//    topFace.printDebug();
     if(yAxisPosition == up){
         //need to rotate top face to match xAxisPosition
-        for(int i=0; i<xAxisPosition; i++){
-            topFace.rotateClockwise();
+        for(int i=0; i<(int)xAxisPosition; i++){
+            topFace.rotateCounterClockwise();
+//            qDebug()<<" xPos: "<<i;
+//            topFace.printDebug();
         }
     }else{
-        //if down, need to flip left and right face vertically
-
+        //rotate top face the opposite direction???
+        for(int i=0; i<(int)xAxisPosition; i++){
+            topFace.rotateClockwise();
+//            qDebug()<<" xPos: "<<i;
+//            topFace.printDebug();
+        }
+        //if down, need to rotate left and right face by 180
+        leftFace.rotateClockwise();
+        leftFace.rotateClockwise();
+        rightFace.rotateClockwise();
+        rightFace.rotateClockwise();
     }
 
     visibleFaces.push_back(leftFace);
     visibleFaces.push_back(rightFace);
     visibleFaces.push_back(topFace);
-    qDebug()<< "updateVisibleFaces: " << visibleFaces.size();
+    //qDebug()<< "updateVisibleFaces: " << visibleFaces.size();
     emit notify3DCubeView(visibleFaces);
 
 
