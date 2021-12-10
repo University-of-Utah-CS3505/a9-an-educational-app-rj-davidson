@@ -1,28 +1,25 @@
 #include "Model3DCube.h"
 
 /*
- *TODO
+ *tester code to have a cube to send to view before connecting with actual cube data
 */
 Model3DCube::Model3DCube()
 {
-    //tester code to have a cube to send to view before connecting with actual cube data
     cubeCopyOf1D = Cube();
 }
 
 /*
- *TODO
+ *the cube controller will tell what to display at the same time as the mainwindow cube
 */
-//the cube controller will tell what to display at the same time as the mainwindow cube
 void Model3DCube::update3DCube(Cube const &cube1D)
 {
     cubeCopyOf1D = cube1D;
-    convert_cube1D_to_cube3D();
+    convertCube1DtoCube3D();
 
     updateVisibleFaces();
 }
 
 /*
- *TODO
  *
  *3D cube assumes the faces are stored in the following order
  *
@@ -32,7 +29,7 @@ void Model3DCube::update3DCube(Cube const &cube1D)
  *
  *    This function maps the 2d cube face order to the order listed above.
 */
-void Model3DCube::convert_cube1D_to_cube3D(){
+void Model3DCube::convertCube1DtoCube3D(){
 
     std::vector<CubeFace> cube1Dfaces = cubeCopyOf1D.getCube();
     QVector<CubeFace> cube3Dfaces;
@@ -47,7 +44,7 @@ void Model3DCube::convert_cube1D_to_cube3D(){
 }
 
 /*
- *TODO
+ *method for updating visible faces
  *
 */
 void Model3DCube::updateVisibleFaces(){
@@ -98,7 +95,7 @@ void Model3DCube::updateVisibleFaces(){
 }
 
 /*
- *
+ *method for getting the right visible face position
  */
 int Model3DCube::getRightVisibleFacePosition(){
     int rightFacePosition = 0;

@@ -149,7 +149,7 @@ void RubiksEdu::on_counterClockwiseButton_clicked()
 }
 
 
-// 3D Cube View code starts here !!! --------------------------------------------------------------------------
+// 3D Cube View code starts here--------------------------------------------------------------------------
 /*
  *
  */
