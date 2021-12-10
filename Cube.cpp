@@ -327,22 +327,22 @@ void Cube::clockwiseMove()
     switch (currentFace)
     {
         case 1: // r1
-            r1CounterClockwise();
+            r1Clockwise();
             break;
         case 2: // y2
-            y2CounterClockwise();
+            y2Clockwise();
             break;
         case 3: // w3
-            w3CounterClockwise();
+            w3Clockwise();
             break;
         case 4: // o4
-            o4CounterClockwise();
+            o4Clockwise();
             break;
         case 5: // b5
-            b5CounterClockwise();
+            b5Clockwise();
             break;
         default: // g0
-            g0CounterClockwise();
+            g0Clockwise();
     }
 }
 
