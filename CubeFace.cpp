@@ -241,6 +241,18 @@ void CubeFace::flipVertically()
     setRow(2, r0);
 }
 
+/*
+ * Flips face vertically (mirrors along x axis) (needed for cube3Dview
+ */
+void CubeFace::flipHorizontally()
+{
+    std::vector<char> c0 = getCol(0);
+    std::vector<char> c2 = getCol(2);
+
+    setCol(0, c2);
+    setCol(2, c0);
+}
+
 bool CubeFace::complete()
 {
     char standard = face[0][0];

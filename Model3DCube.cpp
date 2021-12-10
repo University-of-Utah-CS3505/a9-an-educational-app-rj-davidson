@@ -141,6 +141,10 @@ void Model3DCube::updateVisibleFaces(){
     rightFace = tempCube.getFace(getRightVisibleFacePosition());
     topFace = tempCube.getFace(yAxisPosition+4);
 
+    leftFace.flipVertically();
+    rightFace.flipVertically();
+    topFace.flipVertically();
+
 //    topFace.printDebug();
     if(yAxisPosition == up){
         //need to rotate top face to match xAxisPosition

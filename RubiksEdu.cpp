@@ -182,13 +182,13 @@ QColor RubiksEdu::getColorFromChar(char charColor){
         case 'r':
             return Qt::red;
         case 'g':
-            return Qt::green;
+            return QColor("green");//Qt::green;
         case 'b':
             return Qt::blue;
         case 'w':
             return Qt::white;
         case 'o':
-            return QColor(255,165,0);
+            return QColor("orange");//QColor(255,165,0);
         case 'y':
             return Qt::yellow;
         default:

@@ -78,7 +78,8 @@ private:
 
     void convert_cube1D_to_cube3D();
     //int conversionMap[6] = {2,1,3,4,0,5}; //cubeStyle0
-    int conversionMap[6] = {0,2,5,4,1,3}; //cubeStyle6
+    //int conversionMap[6] = {0,2,5,4,1,3}; //cubeStyle6
+    int conversionMap[6] = {1,0,3,5,2,4}; //cubeStyle6
     //int conversionMap[6] = {0,1,2,3,4,5};
 
     // the model will need to know the visible faces

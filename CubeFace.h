@@ -32,6 +32,7 @@ public:
 
     // flip face (needed for cube3Dview
     void flipVertically();
+    void flipHorizontally();
 
     // Complete Checker
     bool complete();
