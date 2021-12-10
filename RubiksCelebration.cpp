@@ -12,6 +12,7 @@ RubiksCelebration::RubiksCelebration(QWidget *parent)
       b2BodyDef groundBodyDef;
       groundBodyDef.position.Set(200, 300);
       ground = world.CreateBody(&groundBodyDef);
+
       b2PolygonShape groundBox;
       groundBox.SetAsBox(200, 10.0f);
       ground->CreateFixture(&groundBox, 0.0f);
@@ -20,8 +21,10 @@ RubiksCelebration::RubiksCelebration(QWidget *parent)
       bodyDef.type = b2_dynamicBody;
       bodyDef.position.Set(150, 200);
       cube = world.CreateBody(&bodyDef);
+
       b2PolygonShape dynamicBox;
       dynamicBox.SetAsBox(25, 25);
+
       b2FixtureDef fixtureDef;
       fixtureDef.shape = &dynamicBox;
       fixtureDef.density = 1.0f;
@@ -38,7 +41,6 @@ RubiksCelebration::RubiksCelebration(QWidget *parent)
       });
       worldTimer.start();
 }
-
 
 void RubiksCelebration::paintEvent(QPaintEvent *event) {
   QPainter painter(this);

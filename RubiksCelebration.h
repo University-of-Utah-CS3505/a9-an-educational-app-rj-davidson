@@ -1,7 +1,11 @@
 #ifndef RUBIKSCELEBRATION_H
 #define RUBIKSCELEBRATION_H
 
+
+
 #include <QWidget>
+
+
 
 #include <box2d/box2d.h>
 #include <QKeyEvent>
@@ -11,9 +15,11 @@
 #include <QTimer>
 #include <QWidget>
 
+
 class RubiksCelebration : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit RubiksCelebration(QWidget *parent = nullptr);
 
@@ -29,6 +35,7 @@ private:
     b2Body* ground;
     b2Body* cube;
     QTimer worldTimer;
+
 };
 
 #endif // RUBIKSCELEBRATION_H
