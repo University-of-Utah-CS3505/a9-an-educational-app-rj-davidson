@@ -50,7 +50,8 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
     ui->cube3DGraphicsView->setScene(scene3D);
     ui->cube3DGraphicsView->scale(0.75,-0.75);
 
-    connect(controller, &CubeController::update3DCube, this, &RubiksEdu::cube3DpaintVisibleFaces);
+    connect(controller, &CubeController::update3DCubeViewSimple, this, &RubiksEdu::cube3DpaintVisibleFacesSimple);
+    connect(controller, &CubeController::update3DCubeView, this, &RubiksEdu::cube3DpaintVisibleFaces);
 
 
     //Tester 3d:
@@ -153,14 +154,29 @@ void RubiksEdu::on_counterClockwiseButton_clicked()
 
 
 // 3D Cube View code starts here !!! --------------------------------------------------------------------------
-
-void RubiksEdu::cube3DpaintVisibleFaces(std::vector<char> &visibleFaces){
-    qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
+/*
+ *
+ */
+void RubiksEdu::cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces){
+    qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
     repaintLeftFace(getColorFromChar(visibleFaces.at(0)));
     repaintRightFace(getColorFromChar(visibleFaces.at(1)));
     repaintTopFace(getColorFromChar(visibleFaces.at(2)));
 }
 
+/*
+ *
+ */
+void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces){
+    qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
+    repaintLeftFace(visibleFaces.at(0));
+    repaintRightFace(visibleFaces.at(1));
+    repaintTopFace(visibleFaces.at(2));
+}
+
+/*
+ *
+ */
 QColor RubiksEdu::getColorFromChar(char charColor){
 
     switch(charColor){
@@ -178,6 +194,68 @@ QColor RubiksEdu::getColorFromChar(char charColor){
             return Qt::yellow;
         default:
             return Qt::gray;
+    }
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::repaintLeftFace(CubeFace faceToPaint){
+    for(int xPos = 0; xPos<3; xPos++)
+    {
+        int xPosCorrected = 2-xPos; //change xPosition so that 0 element is on left and 2 element is on right.
+                                    //This ensures the face 0,0 point is on the bottom left corner for every face
+        std::vector<char> column = faceToPaint.getCol(xPosCorrected);
+
+        for(int yPos = 0; yPos<3; yPos++)
+        {
+            QColor currentColor = getColorFromChar(column.at(yPos));
+
+            int vctrIndex = xPosCorrected*3+yPos;
+            //qDebug()<< "repaintLeftFace " << vctrIndex;
+            QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
+            tempItemReference->setBrush(currentColor);
+        }
+    }
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::repaintRightFace(CubeFace faceToPaint){
+    for(int xPos = 0; xPos<3; xPos++)
+    {
+        std::vector<char> column = faceToPaint.getCol(xPos);
+
+        for(int yPos = 0; yPos<3; yPos++)
+        {
+            QColor currentColor = getColorFromChar(column.at(yPos));
+
+            int vctrIndex = xPos*3+yPos;
+            //qDebug()<< "repaintLeftFace " << vctrIndex;
+            QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
+            tempItemReference->setBrush(currentColor);
+        }
+    }
+}
+
+/*
+ *3d
+*/
+void RubiksEdu::repaintTopFace(CubeFace faceToPaint){
+    for(int xPos = 0; xPos<3; xPos++)
+    {
+        std::vector<char> column = faceToPaint.getCol(xPos);
+
+        for(int yPos = 0; yPos<3; yPos++)
+        {
+            QColor currentColor = getColorFromChar(column.at(yPos));
+
+            int vctrIndex = xPos*3+yPos;
+            //qDebug()<< "repaintLeftFace " << vctrIndex;
+            QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
+            tempItemReference->setBrush(currentColor);
+        }
     }
 }
 

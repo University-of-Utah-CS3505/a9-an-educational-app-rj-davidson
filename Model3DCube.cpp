@@ -32,6 +32,7 @@ std::vector<QImage> Model3DCube::getQImageList(){
 //the cube controller will tell what to display at the same time as the mainwindow cube
 void Model3DCube::update3DCube(Cube const &cube)
 {
+    qDebug()<<"model3DCube.cpp:update3DCube called";
     cubeCopyOf1D = cube;
     updateVisibleFaces();
 
@@ -114,6 +115,7 @@ void Model3DCube::updateVisibleFaces(){
     //actual implementation with full cube data
     visibleFaces.clear();
 
+    //makeing a copy of stored 1d cube data to calculate the visible faces and visible face orientations
     Cube tempCube = cubeCopyOf1D;
     CubeFace leftFace, rightFace, topFace;
 
@@ -131,23 +133,21 @@ void Model3DCube::updateVisibleFaces(){
 
     }
 
-
     visibleFaces.push_back(leftFace);
     visibleFaces.push_back(rightFace);
     visibleFaces.push_back(topFace);
-
+    qDebug()<< "updateVisibleFaces: " << visibleFaces.size();
     emit notify3DCubeView(visibleFaces);
 
 
     //simple tester code:
     //left, right, up is correct order in vector
-    visibleFacesSimple.clear();
-
-    visibleFacesSimple.push_back(cube3DFaceData.at(xAxisPosition));
-    visibleFacesSimple.push_back(cube3DFaceData.at(getRightVisibleFacePosition()));
-    visibleFacesSimple.push_back(cube3DFaceData.at(yAxisPosition+4));
-    qDebug()<< "updateVisibleFaces: " << visibleFacesSimple.size();
-    emit notify3DCubeViewSimple(visibleFacesSimple);
+//    visibleFacesSimple.clear();
+//    visibleFacesSimple.push_back(cube3DFaceData.at(xAxisPosition));
+//    visibleFacesSimple.push_back(cube3DFaceData.at(getRightVisibleFacePosition()));
+//    visibleFacesSimple.push_back(cube3DFaceData.at(yAxisPosition+4));
+//    qDebug()<< "updateVisibleFacesSimple: " << visibleFacesSimple.size();
+    //emit notify3DCubeViewSimple(visibleFacesSimple);
 }
 
 int Model3DCube::getRightVisibleFacePosition(){

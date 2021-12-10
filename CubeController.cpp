@@ -7,8 +7,12 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
     //setupAndRandomizeCube();
     setUpFirstCross();
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
+
+    //3D cube view connections
     connect(this, &CubeController::updateUserRotation, &cube3D, &Model3DCube::update3DOrientation);
-    connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCube);
+    connect(this, &CubeController::cube1DUpdated, &cube3D, &Model3DCube::update3DCube);
+    connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCubeViewSimple);
+    connect(&cube3D, &Model3DCube::notify3DCubeView, this, &CubeController::update3DCubeView);
 
     //TODO need to make connection from rubiks to celebration when the cube is solved
 
@@ -87,16 +91,16 @@ void CubeController::switchFace(int faceNumber)
             userCube.setCurrentFace(faceNumber);
     }
     emit updateCube(userCube.toQImageList());
-    //TODO    emit updateCube(cube3D.toQImageList());
-    //TODO   emit updateCube(cube3DView.toQImageList();
+    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
 void CubeController::MoveCube(int moveClicked){
     userCube.move(moveClicked);
     emit updateCube(userCube.toQImageList());
     emit cubeComplete(userCube.isComplete());
-    //TODO    emit updateCube(cube3D.toQImageList());
-    //TODO   emit updateCube(cube3DView.toQImageList();
+
+    //for 3D cube view
+    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
 void CubeController::setEduMode(int mode)
@@ -142,9 +146,7 @@ void CubeController::setupAndRandomizeCube()
     //set new cube object but don't modify the cube in use until the very end this way it gets sent in the end
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
-
-//TODO    emit updateCube(cube3D.toQImageList());
-//TODO   emit updateCube(cube3DView.toQImageList();
+    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 
     //emit updateCube(pass list of qImages);
 }
@@ -154,6 +156,7 @@ void CubeController::setUpFirstCross()
     userCube = Cube(6);
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
+    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 //    Cube newCube = Cube(1);
 }
 
@@ -190,6 +193,6 @@ void CubeController::rotationCube(const string & dirRotate){
 }
 
 void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
-    emit update3DCube(visibleFaceData);
+    emit update3DCubeViewSimple(visibleFaceData);
 }
 

@@ -51,7 +51,8 @@ private slots:
     void on_pushRightBtn_clicked();
     void on_pushUpBtn_clicked();
 
-    void cube3DpaintVisibleFaces(std::vector<char> &visibleFaces);
+    void cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces);
+    void cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces);
 
 
 signals:
@@ -83,15 +84,6 @@ private:
     float yScale = 0.5;		//sin(30deg)
     float point1x, point1y, point2x, point2y, point3x, point3y, point4x, point4y;
 
-    QPainterPath path1;
-    QPainterPath path2;
-    QPainterPath path3;
-
-    QGraphicsScene *scene;
-    QGraphicsPathItem *itemRLeft;
-    QGraphicsPathItem *itemRRight;
-    QGraphicsPathItem *itemRTop;
-
     //QVector<QGraphicsPathItem*> vctrTester;//Tester only will need to be deleted when all of the face vectors are being saved into their own vectors
     QVector<QGraphicsPathItem*> vctrVisibleFaceTop;
     QVector<QGraphicsPathItem*> vctrVisibleFaceRight;
@@ -100,6 +92,10 @@ private:
     void repaintLeftFace(QColor colorToPaint);
     void repaintRightFace(QColor colorToPaint);
     void repaintTopFace(QColor colorToPaint);
+
+    void repaintLeftFace(CubeFace faceToPaint);
+    void repaintRightFace(CubeFace faceToPaint);
+    void repaintTopFace(CubeFace faceToPaint);
 
     QColor getColorFromChar(char charColor);
 

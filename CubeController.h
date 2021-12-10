@@ -19,12 +19,15 @@ public:
 
 signals:
     void updateCube(std::vector<QImage>);
+    void cubeComplete(bool); // emits true if the cube is completely solved
 
     //cube3Dview signals
     void updateUserRotation(const string &dirRotate);
-    void update3DCube(std::vector<char> &visibleFaces);
+    void update3DCubeViewSimple(std::vector<char> &visibleFaces);
+    void update3DCubeView(QVector<CubeFace> &visibleFaces);
     void cube1DUpdated(Cube &cube); //needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
-    void cubeComplete(bool); // emits true if the cube is completely solved
+
+
 
 private:
     Cube userCube;
