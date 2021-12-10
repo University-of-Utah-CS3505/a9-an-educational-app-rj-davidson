@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "CubeController.h"
 #include "TutorialBrowser.h"
+#include "CubeCelebration.h"
 #include <QImage>
 #include <vector>
 #include <QGraphicsScene>
@@ -45,6 +46,7 @@ private slots:
 
     void on_counterClockwiseButton_clicked();
 
+    void showCelebration(bool);
 
     //cube3Dview stuff
     void on_pushLeftBtn_clicked();

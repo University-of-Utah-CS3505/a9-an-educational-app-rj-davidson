@@ -34,6 +34,8 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
 
     // connect check button
     connect(ui->checkButton, &QPushButton::clicked, controller, &CubeController::checkCompletion);
+    // connection for showing the celebration
+    connect(controller, &CubeController::complete, this, &RubiksEdu::showCelebration);
 
     //3d view stuff --------------------------------------------
     scene3D= new QGraphicsScene;
@@ -448,5 +450,10 @@ void RubiksEdu::createTopOfCube(){
 void RubiksEdu::on_checkButton_clicked()
 {
     emit checkButton();
+}
+
+void RubiksEdu::showCelebration(bool complete) {
+    CubeCelebration c;
+    c.exec();
 }
 
