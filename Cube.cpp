@@ -732,3 +732,4 @@ std::vector<QImage> Cube::toQImageList()
         list.push_back(f.toQImage());
     return list;
 }
+

@@ -55,9 +55,11 @@ private slots:
     void cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces);
 
 
+    void on_checkButton_clicked();
+
 signals:
     void sendMove(int);
-
+    void checkButton();
     //cube3Dview stuff
     void send3DRotation(const string & dirRotation);
 

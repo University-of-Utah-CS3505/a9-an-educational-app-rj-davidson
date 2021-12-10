@@ -32,6 +32,8 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
        &CubeController::setEduMode;
     });
 
+    // connect check button
+    connect(ui->checkButton, &QPushButton::clicked, controller, &CubeController::checkCompletion);
 
     //3d view stuff --------------------------------------------
     scene3D= new QGraphicsScene;
@@ -440,5 +442,11 @@ void RubiksEdu::createTopOfCube(){
         }
     }
 
+}
+
+
+void RubiksEdu::on_checkButton_clicked()
+{
+    emit checkButton();
 }
 

@@ -27,7 +27,7 @@ signals:
     void update3DCubeView(QVector<CubeFace> &visibleFaces);
     void cube1DUpdated(Cube &cube); //needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
 
-
+    void complete(bool);
 
 private:
     Cube userCube;
@@ -55,6 +55,7 @@ public slots:
     //cube3Dview slots
     void rotationCube(const string &dirRotate);
     void on_cube3DdataUpdated(std::vector<char> &visibleFaceData);
+    void checkCompletion();
 };
 
 #endif // CUBECONTROLLER_H

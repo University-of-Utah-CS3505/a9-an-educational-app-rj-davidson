@@ -9,62 +9,53 @@ CubeCelebration::CubeCelebration(QWidget *parent) :
     ui(new Ui::CubeCelebration)
 {
     ui->setupUi(this);
+
+
+    setFocusPolicy(Qt::FocusPolicy::StrongFocus);
+    pm = pm.scaled(50, 50, Qt::KeepAspectRatio);
+
+    // ground
+    b2BodyDef groundBodyDef;
+    groundBodyDef.position.Set(200, 300);
+    ground = world.CreateBody(&groundBodyDef);
+
+    // shape of the ground
+    b2PolygonShape groundBox;
+    groundBox.SetAsBox(200, 10.0f);
+    ground->CreateFixture(&groundBox, 0.0f);
+
+    // rubiks cube body
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    bodyDef.position.Set(150, 200);
+    cube = world.CreateBody(&bodyDef);
+
+    // square rubiks cube
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox(25, 25);
+
+    // properties of cube
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = 0.3f;
+    cube->CreateFixture(&fixtureDef);
+
+    cube->ApplyLinearImpulse(b2Vec2(10000, -50000), cube->GetPosition(), true);
+    cube->SetAngularVelocity(500);
+
+    worldTimer.setInterval(1000.0 / 30.0);
+    connect(&worldTimer, &QTimer::timeout, this, [=]() {
+      world.Step(1.0f / 10.0f, 8, 3);
+      update();
+    });
+    worldTimer.start();
 }
 
 CubeCelebration::~CubeCelebration()
 {
     delete ui;
 }
-
-
-//#include "RubiksCelebration.h"
-
-//RubiksCelebration::RubiksCelebration(QWidget *parent)
-//    : QWidget(parent),
-//    pm(":/rubiks_face.png"),
-//    world(b2Vec2(0.0f, 10.0f)),
-//    worldTimer(this)
-//{
-//      setFocusPolicy(Qt::FocusPolicy::StrongFocus);
-//      pm = pm.scaled(50, 50, Qt::KeepAspectRatio);
-
-//      // ground
-//      b2BodyDef groundBodyDef;
-//      groundBodyDef.position.Set(200, 300);
-//      ground = world.CreateBody(&groundBodyDef);
-
-//      // shape of the ground
-//      b2PolygonShape groundBox;
-//      groundBox.SetAsBox(200, 10.0f);
-//      ground->CreateFixture(&groundBox, 0.0f);
-
-//      // rubiks cube body
-//      b2BodyDef bodyDef;
-//      bodyDef.type = b2_dynamicBody;
-//      bodyDef.position.Set(150, 200);
-//      cube = world.CreateBody(&bodyDef);
-
-//      // square rubiks cube
-//      b2PolygonShape dynamicBox;
-//      dynamicBox.SetAsBox(25, 25);
-
-//      // properties of cube
-//      b2FixtureDef fixtureDef;
-//      fixtureDef.shape = &dynamicBox;
-//      fixtureDef.density = 1.0f;
-//      fixtureDef.friction = 0.3f;
-//      cube->CreateFixture(&fixtureDef);
-
-//      cube->ApplyLinearImpulse(b2Vec2(10000, -50000), cube->GetPosition(), true);
-//      cube->SetAngularVelocity(500);
-
-//      worldTimer.setInterval(1000.0 / 30.0);
-//      connect(&worldTimer, &QTimer::timeout, this, [=]() {
-//        world.Step(1.0f / 10.0f, 8, 3);
-//        update();
-//      });
-//      worldTimer.start();
-//}
 
 void CubeCelebration::paintEvent(QPaintEvent *event) {
   QPainter painter(this);
