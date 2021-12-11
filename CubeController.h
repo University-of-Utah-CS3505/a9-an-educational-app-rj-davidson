@@ -46,9 +46,10 @@ private:
 
 
 public:
-    void setEduMode(int);
+
 
 public slots:
+    void setEduMode(int);
     void switchFace(int);
     void MoveCube(int);
 

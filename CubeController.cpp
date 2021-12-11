@@ -5,7 +5,7 @@
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     //setupAndRandomizeCube();
-    setUpFirstCross();
+    //setUpFirstCross();
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
 
     //3D cube view connections
@@ -104,23 +104,23 @@ void CubeController::setEduMode(int mode)
 {
     switch(mode)
     {
-//    case 0:
-//        setUpFirstCross();
-//        break;
-//    case 1:
-//        setUpFirstCorners();
-//        break;
-//    case 2:
-//        setUpNeighbors();
-//        break;
-//    case 3:
-//        setUpBottomCross();
-//        break;
-//    case 4:
-//        setUpFinalCorners();
-//        break;
-//    default:
-//        setupAndRandomizeCube();
+    case 0:
+        setUpFirstCross();
+        break;
+    case 1:
+        setUpFirstCorners();
+        break;
+    case 2:
+        setUpNeighbors();
+        break;
+    case 3:
+        setUpBottomCross();
+        break;
+    case 4:
+        setUpFinalCorners();
+        break;
+    default:
+        setupAndRandomizeCube();
     }
 }
 
@@ -148,7 +148,7 @@ void CubeController::setupAndRandomizeCube()
 
 void CubeController::setUpFirstCross()
 {
-    userCube = Cube(2);
+    userCube = Cube(1);
     userCube.setCurrentFace(0);
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
@@ -157,22 +157,34 @@ void CubeController::setUpFirstCross()
 
 void CubeController::setUpFirstCorners()
 {
-
+    userCube = Cube(2);
+    userCube.setCurrentFace(0);
+    emit updateCube(userCube.toQImageList());
+    emit cube1DUpdated(userCube);
 }
 
 void CubeController::setUpNeighbors()
 {
-
+    userCube = Cube(3);
+    userCube.setCurrentFace(0);
+    emit updateCube(userCube.toQImageList());
+    emit cube1DUpdated(userCube);
 }
 
 void CubeController::setUpBottomCross()
 {
-
+    userCube = Cube(5);
+    userCube.setCurrentFace(0);
+    emit updateCube(userCube.toQImageList());
+    emit cube1DUpdated(userCube);
 }
 
 void CubeController::setUpFinalCorners()
 {
-
+    userCube = Cube(6);
+    userCube.setCurrentFace(0);
+    emit updateCube(userCube.toQImageList());
+    emit cube1DUpdated(userCube);
 }
 
 
