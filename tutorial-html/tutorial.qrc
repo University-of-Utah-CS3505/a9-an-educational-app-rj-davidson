@@ -9,6 +9,19 @@
         <file>step6.html</file>
         <file>step7.html</file>
         <file>step8.html</file>
+        <file>reference.html</file>
     </qresource>
-    <qresource prefix="/"/>
+    <qresource prefix="/">
+        <file>img/part2-cube-example.png</file>
+        <file>img/move-counter-D.png</file>
+        <file>img/move-counter-F.png</file>
+        <file>img/move-counter-L.png</file>
+        <file>img/move-counter-R.png</file>
+        <file>img/move-counter-U.png</file>
+        <file>img/move-D.png</file>
+        <file>img/move-F.png</file>
+        <file>img/move-L.png</file>
+        <file>img/move-R.png</file>
+        <file>img/move-U.png</file>
+    </qresource>
 </RCC>

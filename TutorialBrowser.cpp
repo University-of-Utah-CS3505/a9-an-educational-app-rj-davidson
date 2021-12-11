@@ -19,6 +19,11 @@ void TutorialBrowser::setTutorialStep(int stepNumber) {
 
 void TutorialBrowser::handleAnchorClicked(QUrl url) {
     if(url.toString().endsWith(".html")) {
+        if(url.fileName() == "reference.html") {
+            setSource(url);
+            return;
+        }
+
         QString file = url.fileName().left(url.fileName().size() - 5);
         std::string str = file.toStdString();
         size_t lastIndex = str.find_last_not_of("0123456789");
