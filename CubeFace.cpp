@@ -302,6 +302,7 @@ QImage CubeFace::toQImage()
                     break;
                 case 'x':
                     image.setPixelColor(j, i, QColor("grey"));
+                    break;
                 default:
                     image.setPixelColor(j, i, QColor("blue"));
             }
