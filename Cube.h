@@ -12,7 +12,6 @@ class Cube
 {
 public:
     Cube();
-    Cube(int);
     Cube(QVector<CubeFace> &newCubeFaces);//used for Model3DView
 
     void move(int);
