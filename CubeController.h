@@ -31,24 +31,13 @@ signals:
 
 private:
     Cube userCube;
+    void setUserCube(Cube c);
 
     //3d cube stuff
-    Model3DCube cube3D;
-
-
-
-    void setupAndRandomizeCube();
-    void setUpFirstCross();
-    void setUpFirstCorners();
-    void setUpNeighbors();
-    void setUpBottomCross();
-    void setUpFinalCorners();
-
-
-public:
-    void setEduMode(int);
+    Model3DCube cube3D;    
 
 public slots:
+    void buildPredefinedCube(int cubeID);
     void switchFace(int);
     void MoveCube(int);
 

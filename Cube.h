@@ -60,7 +60,7 @@ public:
     void setCurrentFace(int);
 
     // used to transform data in Model3DCube
-    void setCube(QVector<CubeFace> newCubeFaces);
+    void setCubeFaces(QVector<CubeFace> newCubeFaces);
 
     // Solved Check
     bool isComplete();

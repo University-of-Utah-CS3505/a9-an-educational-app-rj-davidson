@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QAction>
 
-RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowser *tutorial)
+RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     : QMainWindow(parent)
     , ui(new Ui::RubiksEdu)
 {
@@ -13,13 +13,14 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
     connect(this,&RubiksEdu::sendMove,controller,&CubeController::MoveCube);
     connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
-        // TODO: delete, this is for testing:
-    // Tutorial Widget Connections
-    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [] (int step) {
-        qDebug() << step;
+    connect(ui->shuffleButton, &QPushButton::pressed, this, [=] () {
+       controller->buildPredefinedCube(0);
     });
+
+    // Tutorial Widget Connections
     connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=] (int stepIndex) {
         ui->tutorialTextBrowser->setTutorialStep(stepIndex + 1);
+        controller->buildPredefinedCube(stepIndex + 1);
     });
     connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [=] (int stepID) {
         ui->stepSelect->setCurrentIndex(stepID-1);
@@ -28,9 +29,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller, TutorialBrowse
        ui->tutorialTextBrowser->setTutorialStep(-1);
        ui->stepSelect->setCurrentIndex(-1);
     });
-    connect(tutorial, &TutorialBrowser::tutorialStepChanged, controller, [=] () {
-       &CubeController::setEduMode;
-    });
+    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, controller, &CubeController::buildPredefinedCube);
 
     // connect check button
     connect(ui->checkButton, &QPushButton::clicked, controller, &CubeController::checkCompletion);

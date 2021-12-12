@@ -20,7 +20,7 @@ class RubiksEdu : public QMainWindow
     Q_OBJECT
 
 public:
-     RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr, TutorialBrowser *tutorial =nullptr);
+     RubiksEdu(QWidget *parent = nullptr, CubeController *controller = nullptr);
     ~RubiksEdu();
 
 
