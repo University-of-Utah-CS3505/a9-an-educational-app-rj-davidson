@@ -25,5 +25,6 @@
         <file>img/move-U.png</file>
         <file>icons/home.png</file>
         <file>icons/reset.png</file>
+        <file>icons/app.png</file>
     </qresource>
 </RCC>

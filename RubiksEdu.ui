@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>RubiksEdu</string>
+   <string>Rubik's EDU</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="ViewCube" name="cubeWidget" native="true">
@@ -350,7 +350,7 @@
           <string>Home</string>
          </property>
          <property name="icon">
-          <iconset resource="tutorial-html/resources.qrc">
+          <iconset>
            <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
          </property>
         </widget>
@@ -522,7 +522,7 @@
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="tutorial-html/resources.qrc">
+     <iconset>
       <normaloff>:/icons/reset.png</normaloff>:/icons/reset.png</iconset>
     </property>
    </widget>
@@ -552,8 +552,6 @@
    <header>TutorialBrowser.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="tutorial-html/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

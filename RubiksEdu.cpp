@@ -10,6 +10,9 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     , ui(new Ui::RubiksEdu)
 {
     ui->setupUi(this);
+
+    setWindowIcon(QIcon(":/icons/app.png"));
+
     connect(this,&RubiksEdu::sendMove,controller,&CubeController::MoveCube);
     connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
