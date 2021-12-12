@@ -38,6 +38,10 @@ class Model3DCube: public QObject
 public:
     Model3DCube();
 
+    enum yAxis{ up, down };
+    enum xAxis{ deg0, deg90, deg180, deg270 };
+    void setOrientation(yAxis yPos, xAxis xPos);
+
 public slots:
     //controller tells model when to update the qImage qvector data for the 1d cube
     //In real time the 3d cube will change with the main 1d cube
@@ -80,10 +84,8 @@ private:
     // the model will need to save the 3dcube orientation
 
     //Data for orientation code
-    enum yAxis{ up, down };
-    enum yAxis yAxisPosition = up;
-    enum xAxis{ deg0, deg90, deg180, deg270 };
-    enum xAxis xAxisPosition = deg0;
+    yAxis yAxisPosition = up;
+    xAxis xAxisPosition = deg90;
 
     void rotate_right();
     void rotate_left();

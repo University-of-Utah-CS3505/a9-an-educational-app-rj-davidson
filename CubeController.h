@@ -42,6 +42,7 @@ public slots:
     void MoveCube(int);
 
     //cube3Dview slots
+    void reset3DCubeOrientation();
     void rotationCube(const string &dirRotate);
     void on_cube3DdataUpdated(std::vector<char> &visibleFaceData);
     void checkCompletion();

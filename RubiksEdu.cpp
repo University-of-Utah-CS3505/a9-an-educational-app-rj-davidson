@@ -48,6 +48,8 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     ui->cube3DGraphicsView->scale(0.75,-0.75);
 
     connectControllerView(controller);
+
+    connect(ui->orientationResetButton, &QPushButton::pressed, controller, &CubeController::reset3DCubeOrientation);
     //end of 3d view stuff ----------------------------------
 
 

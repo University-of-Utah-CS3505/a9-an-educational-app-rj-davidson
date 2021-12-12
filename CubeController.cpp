@@ -151,6 +151,13 @@ void CubeController::setUserCube(Cube c) {
 
 
 //cube3Dview methods
+/*
+ * Resets the orientation to the base position (matches tutorial)
+ * Added by: Maiko Tuitupou
+ */
+void CubeController::reset3DCubeOrientation() {
+    cube3D.setOrientation(Model3DCube::up, Model3DCube::deg90);
+}
 
 /*
  * Send direction to rotate 3D cube to model so that the orientation can be updated

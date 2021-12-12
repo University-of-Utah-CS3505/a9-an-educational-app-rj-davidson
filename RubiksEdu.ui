@@ -505,6 +505,19 @@
      <string>Check</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="orientationResetButton">
+    <property name="geometry">
+     <rect>
+      <x>1240</x>
+      <y>20</y>
+      <width>31</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>R</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

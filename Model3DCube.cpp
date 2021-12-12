@@ -9,6 +9,17 @@ Model3DCube::Model3DCube()
 }
 
 /*
+ * Sets the orientation to the given position
+ * Added by: Maiko Tuitupou
+ */
+void Model3DCube::setOrientation(yAxis yPos, xAxis xPos) {
+    qDebug() << "test";
+    yAxisPosition = yPos;
+    xAxisPosition = xPos;
+    updateVisibleFaces();
+}
+
+/*
  *the cube controller will tell what to display at the same time as the mainwindow cube
 */
 void Model3DCube::update3DCube(Cube const &cube1D)
