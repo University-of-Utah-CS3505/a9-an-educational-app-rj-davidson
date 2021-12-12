@@ -18,19 +18,22 @@ void TutorialBrowser::setTutorialStep(int stepNumber) {
 }
 
 void TutorialBrowser::handleAnchorClicked(QUrl url) {
-    if(url.toString().endsWith(".html")) {
-        if(url.fileName() == "reference.html") {
+    if(url.fileName() != source().fileName() && url.fileName().endsWith(".html")) {
+        if(url.fileName().startsWith("step")) {
+            QString file = url.fileName().left(url.fileName().size() - 5);
+            std::string str = file.toStdString();
+            size_t lastIndex = str.find_last_not_of("0123456789");
+            if(lastIndex != str.length()) {
+                std::string intAtEndOfString = str.substr(lastIndex+1);
+                int stepID = std::stoi(intAtEndOfString);
+                emit tutorialStepChanged(stepID);
+            }
+        }
+        else {
             setSource(url);
-            return;
         }
-
-        QString file = url.fileName().left(url.fileName().size() - 5);
-        std::string str = file.toStdString();
-        size_t lastIndex = str.find_last_not_of("0123456789");
-        if(lastIndex != str.length()) {
-            std::string intAtEndOfString = str.substr(lastIndex+1);
-            int stepID = std::stoi(intAtEndOfString);
-            emit tutorialStepChanged(stepID);
-        }
+    }
+    if(url.hasFragment()) {
+        scrollToAnchor(url.fragment());
     }
 }
