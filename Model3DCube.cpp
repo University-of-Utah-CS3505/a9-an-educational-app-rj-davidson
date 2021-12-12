@@ -13,7 +13,6 @@ Model3DCube::Model3DCube()
  * Added by: Maiko Tuitupou
  */
 void Model3DCube::setOrientation(yAxis yPos, xAxis xPos) {
-    qDebug() << "test";
     yAxisPosition = yPos;
     xAxisPosition = xPos;
     updateVisibleFaces();
