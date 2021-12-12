@@ -347,7 +347,11 @@
           </sizepolicy>
          </property>
          <property name="text">
-          <string>H</string>
+          <string>Home</string>
+         </property>
+         <property name="icon">
+          <iconset resource="tutorial-html/resources.qrc">
+           <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
          </property>
         </widget>
        </item>
@@ -515,7 +519,11 @@
      </rect>
     </property>
     <property name="text">
-     <string>R</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="tutorial-html/resources.qrc">
+      <normaloff>:/icons/reset.png</normaloff>:/icons/reset.png</iconset>
     </property>
    </widget>
   </widget>
@@ -544,6 +552,8 @@
    <header>TutorialBrowser.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="tutorial-html/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

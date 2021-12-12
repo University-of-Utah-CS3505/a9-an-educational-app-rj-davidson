@@ -23,5 +23,7 @@
         <file>img/move-L.png</file>
         <file>img/move-R.png</file>
         <file>img/move-U.png</file>
+        <file>icons/home.png</file>
+        <file>icons/reset.png</file>
     </qresource>
 </RCC>
