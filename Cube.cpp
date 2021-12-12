@@ -632,7 +632,7 @@ std::vector<CubeFace> Cube::getCube()
 /*
  * Allows cube data to be set from a list of faces. Used to store data for the 3d cube model
  */
-void Cube::setCube(QVector<CubeFace> newCubeFaces)
+void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces)
 {
     cubeFaces.clear();
     for(int i=0; i<6; i++){

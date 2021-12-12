@@ -1,11 +1,12 @@
 #include "CubeController.h"
+#include "CubeBuilder.h"
 #include <stdlib.h>
 #include <iostream>
 
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
-    //setupAndRandomizeCube();
-    //setUpFirstCross();
+    setUserCube(CubeBuilder::randomCube());
+
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
 
     //3D cube view connections
@@ -100,89 +101,50 @@ void CubeController::MoveCube(int moveClicked){
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
-void CubeController::setEduMode(int mode)
+void CubeController::buildPredefinedCube(int cubeID)
 {
-    switch(mode)
-    {
-    case 0:
-        setUpFirstCross();
+    switch (cubeID) {
+      case 1: {
+        setUserCube(CubeBuilder::generateTutorialStep1Cube());
         break;
-    case 1:
-        setUpFirstCorners();
+      }
+      case 2: {
+        setUserCube(CubeBuilder::generateTutorialStep2Cube());
         break;
-    case 2:
-        setUpNeighbors();
+      }
+      case 3: {
+        setUserCube(CubeBuilder::generateTutorialStep3Cube());
         break;
-    case 3:
-        setUpBottomCross();
+      }
+      case 4: {
+        setUserCube(CubeBuilder::generateTutorialStep4Cube());
         break;
-    case 4:
-        setUpFinalCorners();
+      }
+      case 5: {
+        setUserCube(CubeBuilder::generateTutorialStep5Cube());
         break;
-    default:
-        setupAndRandomizeCube();
+      }
+      case 6: {
+        setUserCube(CubeBuilder::generateTutorialStep6Cube());
+        break;
+      }
+      case 7: {
+        setUserCube(CubeBuilder::generateTutorialStep7Cube());
+        break;
+      }
+      case 8: {
+        setUserCube(CubeBuilder::generateTutorialStep8Cube());
+        break;
+      }
+      default: {
+        setUserCube(CubeBuilder::randomCube());
+      }
     }
 }
 
 
-void CubeController::setupAndRandomizeCube()
-{
-    //make new cube object here
-
-    for (int i = 0; i < 20; i++)
-    {
-        int randomMove = rand() % 7 + 0;
-        int randomFace = rand() % 5 + 0;
-        userCube.setCurrentFace(randomFace);
-        MoveCube(randomMove);
-        // Randomize Moves and Store to
-        //make a bunch of random cubes
-        //randomize face 0-5
-        //randomize moveid 0-7
-    }
-    //set new cube object but don't modify the cube in use until the very end this way it gets sent in the end
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
-}
-
-void CubeController::setUpFirstCross()
-{
-    userCube = Cube(1);
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
-//    Cube newCube = Cube(1);
-}
-
-void CubeController::setUpFirstCorners()
-{
-    userCube = Cube(2);
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);
-}
-
-void CubeController::setUpNeighbors()
-{
-    userCube = Cube(3);
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);
-}
-
-void CubeController::setUpBottomCross()
-{
-    userCube = Cube(5);
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);
-}
-
-void CubeController::setUpFinalCorners()
-{
-    userCube = Cube(6);
-    userCube.setCurrentFace(0);
+void CubeController::setUserCube(Cube c) {
+    userCube = c;
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);
 }

@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     Cube.cpp \
+    CubeBuilder.cpp \
     CubeCelebration.cpp \
     CubeController.cpp \
     CubeFace.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     Cube.h \
+    CubeBuilder.h \
     CubeCelebration.h \
     CubeController.h \
     CubeFace.h \

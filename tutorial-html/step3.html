@@ -5,6 +5,59 @@
 <body>
 
 <h1>Step 3: Solve the Corners</h1>
+<p>Our goal for this step is to move all the corner piece of our chosen color from 
+  the bottom middle of the cube to the top where our cross is located.</p>
 
+<h2>Helpful Algorithms</h2>
+<div class="algorithm">
+  <h3>Red Sticker Facing Right</h3>
+  <p> When the corner has a red sticker on the right face.
+  </p>
+  <div align="center">
+     <div>
+        <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+        <img src="img/move-counter-D.png" source=":/img/move-counter-D.png" width="50">
+        <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+    </div>
+    <div>
+        <code>R' D' R</code>
+    </div>
+  </div>
+</div>
+<div class="algorithm">
+  <h3>Red Sticker Facing Front</h3>
+  <p>When the corner has a red sticker on front face.
+  </p>
+  <div align="center">
+     <div>
+        <img src="img/move-F.png" source=":/img/move-F.png" width="50">
+        <img src="img/move-D.png" source=":/img/move-D.png" width="50">
+        <img src="img/move-counter-F.png" source=":/img/move-counter-F.png" width="50">
+    </div>
+    <div>
+        <code>F D F'</code>
+    </div>
+  </div>
+</div>
+<div class="algorithm">
+  <h3>Red Sticker on Bottom</h3>
+  <p>When the corner has a red sticker on the down face.
+  </p>
+  <div align="center">
+     <div>
+        <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+        <img src="img/move-counter-D.png" source=":/img/move-counter-D.png" width="50">
+        <img src="img/move-counter-D.png" source=":/img/move-counter-D.png" width="50">
+        <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+        <img src="img/move-D.png" source=":/img/move-D.png" width="50">
+        <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+        <img src="img/move-counter-D.png" source=":/img/move-counter-D.png" width="50">
+        <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+    </div>
+    <div>
+        <code>R' D2' R D R' D' R</code>
+    </div>
+  </div>
+</div>
 </body>
 </html>
