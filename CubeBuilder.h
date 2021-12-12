@@ -6,7 +6,7 @@
 class CubeBuilder
 {
 public:
-static Cube randomCube();
+static Cube generateRandomCube();
 static Cube generateTutorialStep1Cube();
 static Cube generateTutorialStep2Cube();
 static Cube generateTutorialStep3Cube();

@@ -1,13 +1,13 @@
 #include "CubeBuilder.h"
 
-Cube CubeBuilder::randomCube(){
+Cube CubeBuilder::generateRandomCube(){
     Cube c;
     for (int i = 0; i < 20; i++)
     {
-        int randomFace = rand() % 5 + 0;
+        int randomFace = rand() % 5;
         c.setCurrentFace(randomFace);
 
-        int randomMove = rand() % 7 + 0;
+        int randomMove = rand() % 7;
         c.move(randomMove);
     }
     c.setCurrentFace(0);
@@ -15,6 +15,12 @@ Cube CubeBuilder::randomCube(){
 }
 
 Cube CubeBuilder::generateTutorialStep1Cube(){
+    Cube c;
+    c.setCurrentFace(0);
+    return c;
+}
+
+Cube CubeBuilder::generateTutorialStep2Cube(){
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("firstCrossMainFace", 'x'));
@@ -28,7 +34,7 @@ Cube CubeBuilder::generateTutorialStep1Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep2Cube(){
+Cube CubeBuilder::generateTutorialStep3Cube(){
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("firstCornersMainFace", 'x'));
@@ -42,7 +48,7 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep3Cube(){
+Cube CubeBuilder::generateTutorialStep4Cube(){
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("neighborRightMainFace", 'x'));
@@ -56,7 +62,7 @@ Cube CubeBuilder::generateTutorialStep3Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep4Cube(){
+Cube CubeBuilder::generateTutorialStep5Cube(){
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("neighborLeftMainFace", 'x'));
@@ -70,7 +76,7 @@ Cube CubeBuilder::generateTutorialStep4Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep5Cube(){
+Cube CubeBuilder::generateTutorialStep6Cube(){
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("finalCrossMainFace", 'x'));
@@ -84,7 +90,8 @@ Cube CubeBuilder::generateTutorialStep5Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep6Cube(){
+Cube CubeBuilder::generateTutorialStep7Cube(){
+    // TODO: Implement correctly
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("finalCornersMainFace", 'y'));
@@ -93,21 +100,6 @@ Cube CubeBuilder::generateTutorialStep6Cube(){
     faces.append(CubeFace("finalCornersRightFace", 'b'));
     faces.append(CubeFace("finalCornersBelowFace", 'o'));
     faces.append(CubeFace("finalCornersOppositeFace", 'w'));
-    c.setCubeFaces(faces);
-    c.setCurrentFace(0);
-    return c;
-}
-
-Cube CubeBuilder::generateTutorialStep7Cube(){
-    // TODO: Implement correctly
-    Cube c;
-    QVector<CubeFace> faces;
-    faces.append(CubeFace('x'));
-    faces.append(CubeFace('x'));
-    faces.append(CubeFace('x'));
-    faces.append(CubeFace('x'));
-    faces.append(CubeFace('x'));
-    faces.append(CubeFace('x'));
     c.setCubeFaces(faces);
     c.setCurrentFace(0);
     return c;

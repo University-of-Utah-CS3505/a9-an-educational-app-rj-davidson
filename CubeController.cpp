@@ -5,7 +5,8 @@
 
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
-    setUserCube(CubeBuilder::randomCube());
+    setUserCube(CubeBuilder::generateRandomCube());
+    lastNontutorialCube = userCube;
 
 //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
 
@@ -138,14 +139,20 @@ void CubeController::buildPredefinedCube(int cubeID)
         break;
       }
       default: {
-        setUserCube(CubeBuilder::randomCube());
+        setUserCube(lastNontutorialCube);
       }
     }
+}
+
+void CubeController::buildRandomCube() {
+    setUserCube(CubeBuilder::generateRandomCube());
+    lastNontutorialCube = userCube;
 }
 
 
 void CubeController::setUserCube(Cube c) {
     userCube = c;
+
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);
 }

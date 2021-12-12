@@ -31,6 +31,8 @@ signals:
 
 private:
     Cube userCube;
+    Cube lastNontutorialCube;
+
     void setUserCube(Cube c);
 
     //3d cube stuff
@@ -38,6 +40,7 @@ private:
 
 public slots:
     void buildPredefinedCube(int cubeID);
+    void buildRandomCube();
     void switchFace(int);
     void MoveCube(int);
 
