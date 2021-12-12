@@ -40,7 +40,7 @@ public:
 
     enum yAxis{ up, down };
     enum xAxis{ deg0, deg90, deg180, deg270 };
-    void setOrientation(yAxis yPos, xAxis xPos);
+    void resetOrientation();
 
 public slots:
     //controller tells model when to update the qImage qvector data for the 1d cube
@@ -80,6 +80,7 @@ private:
     void updateVisibleFaces();
     int getRightVisibleFacePosition();
 
+    void rotateToCurrentFace();
 
     // the model will need to save the 3dcube orientation
 

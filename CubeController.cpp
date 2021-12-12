@@ -22,7 +22,6 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
 
 void CubeController::switchFace(int faceNumber)
 {
-    std::cout << "Current Face: " << faceNumber << std::endl;
     switch(userCube.getCurrentFace())
     {
         case 1:
@@ -88,6 +87,8 @@ void CubeController::switchFace(int faceNumber)
         default:
             userCube.setCurrentFace(faceNumber);
     }
+    qDebug() << "Current Face: " << userCube.getCurrentFace();
+
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
@@ -156,7 +157,7 @@ void CubeController::setUserCube(Cube c) {
  * Added by: Maiko Tuitupou
  */
 void CubeController::reset3DCubeOrientation() {
-    cube3D.setOrientation(Model3DCube::up, Model3DCube::deg90);
+    cube3D.resetOrientation();
 }
 
 /*

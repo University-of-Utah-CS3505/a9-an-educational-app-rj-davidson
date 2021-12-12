@@ -9,12 +9,11 @@ Model3DCube::Model3DCube()
 }
 
 /*
- * Sets the orientation to the given position
+ * Resets the orientation of the cube to the current face
  * Added by: Maiko Tuitupou
  */
-void Model3DCube::setOrientation(yAxis yPos, xAxis xPos) {
-    yAxisPosition = yPos;
-    xAxisPosition = xPos;
+void Model3DCube::resetOrientation() {
+    rotateToCurrentFace();
     updateVisibleFaces();
 }
 
@@ -25,7 +24,7 @@ void Model3DCube::update3DCube(Cube const &cube1D)
 {
     cubeCopyOf1D = cube1D;
     convertCube1DtoCube3D();
-
+    rotateToCurrentFace();
     updateVisibleFaces();
 }
 
@@ -51,6 +50,45 @@ void Model3DCube::convertCube1DtoCube3D(){
         cube3Dfaces.push_back(tempFace);
     }
     cube3D = Cube(cube3Dfaces);
+}
+
+/*
+ * Rotates the cube to the currently selected face
+ * Added by: Maiko Tuitupou
+ */
+void Model3DCube::rotateToCurrentFace() {
+    switch(cubeCopyOf1D.getCurrentFace()) {
+    case 0: {
+        yAxisPosition = yAxis::up;
+        xAxisPosition = xAxis::deg90;
+        break;
+    }
+    case 1: {
+        yAxisPosition = yAxis::up;
+        xAxisPosition = xAxis::deg0;
+        break;
+    }
+    case 2: {
+        yAxisPosition = yAxis::up;
+        xAxisPosition = xAxis::deg90;
+        break;
+    }
+    case 3: {
+        yAxisPosition = yAxis::up;
+        xAxisPosition = xAxis::deg180;
+        break;
+    }
+    case 4: {
+        yAxisPosition = yAxis::down;
+        xAxisPosition = xAxis::deg90;
+        break;
+    }
+    case 5: {
+        yAxisPosition = yAxis::up;
+        xAxisPosition = xAxis::deg270;
+        break;
+    }
+    }
 }
 
 /*
