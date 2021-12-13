@@ -30,5 +30,11 @@
         <file>img/part5-possible-cross-positions.png</file>
         <file>img/rubiks-notation.jpg</file>
         <file>img/step7-algorithm-diagram.svg</file>
+        <file>icons/down.png</file>
+        <file>icons/F.png</file>
+        <file>icons/F-counter.png</file>
+        <file>icons/left.png</file>
+        <file>icons/right.png</file>
+        <file>icons/up.png</file>
     </qresource>
 </RCC>

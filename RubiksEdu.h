@@ -26,6 +26,8 @@ public:
 
 
 private slots:
+    void switchButtonMode(int modeID);
+
     void on_topLeftButton_clicked();
 
     void on_topRightButton_clicked();

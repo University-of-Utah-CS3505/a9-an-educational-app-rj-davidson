@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1296</width>
-    <height>600</height>
+    <width>1282</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,7 +24,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>20</y>
+      <y>10</y>
       <width>601</width>
       <height>481</height>
      </rect>
@@ -198,7 +198,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>&lt;</string>
+      <string>U</string>
      </property>
     </widget>
     <widget class="QPushButton" name="topLeftButton">
@@ -211,7 +211,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>^</string>
+      <string>L'</string>
      </property>
     </widget>
     <widget class="QPushButton" name="topRightButton">
@@ -224,7 +224,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>^</string>
+      <string>R</string>
      </property>
     </widget>
     <widget class="QPushButton" name="leftBttmButton">
@@ -237,7 +237,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>&lt;</string>
+      <string>D'</string>
      </property>
     </widget>
     <widget class="QPushButton" name="rightTopButton">
@@ -250,7 +250,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>&gt;</string>
+      <string>U'</string>
      </property>
     </widget>
     <widget class="QPushButton" name="rightBttmButton">
@@ -263,7 +263,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>&gt;</string>
+      <string>D</string>
      </property>
     </widget>
     <widget class="QPushButton" name="bttmLeftButton">
@@ -276,7 +276,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>v</string>
+      <string>L</string>
      </property>
     </widget>
     <widget class="QPushButton" name="bttmRightButton">
@@ -289,10 +289,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>v</string>
+      <string>R'</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="counterClockwiseButton">
+    <widget class="QPushButton" name="clockwiseButton">
      <property name="geometry">
       <rect>
        <x>288</x>
@@ -302,10 +302,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>&lt;</string>
+      <string>F</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="clockwiseButton">
+    <widget class="QPushButton" name="counterClockwiseButton">
      <property name="geometry">
       <rect>
        <x>128</x>
@@ -315,17 +315,37 @@
       </rect>
      </property>
      <property name="text">
-      <string>&gt;</string>
+      <string>F'</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="buttonViewComboBox">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>0</y>
+       <width>91</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>Move Name</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Arrows</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>10</y>
       <width>356</width>
-      <height>501</height>
+      <height>511</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="tutorialWidget">
@@ -350,7 +370,7 @@
           <string>Home</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="tutorial-html/resources.qrc">
            <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
          </property>
         </widget>
@@ -422,9 +442,9 @@
     <property name="geometry">
      <rect>
       <x>1020</x>
-      <y>20</y>
-      <width>250</width>
-      <height>200</height>
+      <y>10</y>
+      <width>251</width>
+      <height>201</height>
      </rect>
     </property>
    </widget>
@@ -432,10 +452,15 @@
     <property name="geometry">
      <rect>
       <x>1020</x>
-      <y>230</y>
-      <width>250</width>
-      <height>50</height>
+      <y>210</y>
+      <width>251</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">.QFrame {
+border: 1px solid grey;
+}</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -451,6 +476,9 @@
        <width>31</width>
        <height>22</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>&lt;</string>
@@ -513,7 +541,7 @@
     <property name="geometry">
      <rect>
       <x>1240</x>
-      <y>20</y>
+      <y>10</y>
       <width>31</width>
       <height>22</height>
      </rect>
@@ -522,20 +550,10 @@
      <string/>
     </property>
     <property name="icon">
-     <iconset>
+     <iconset resource="tutorial-html/resources.qrc">
       <normaloff>:/icons/reset.png</normaloff>:/icons/reset.png</iconset>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1296</width>
-     <height>21</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
@@ -552,6 +570,8 @@
    <header>TutorialBrowser.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="tutorial-html/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

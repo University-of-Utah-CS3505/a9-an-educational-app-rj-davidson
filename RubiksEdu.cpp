@@ -17,6 +17,7 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
     connect(ui->shuffleButton, &QPushButton::pressed, controller, &CubeController::buildRandomCube);
+    connect(ui->buttonViewComboBox, &QComboBox::currentIndexChanged, this, &RubiksEdu::switchButtonMode);
 
     // Tutorial Widget Connections
     connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=] (int stepIndex) {
@@ -63,6 +64,74 @@ RubiksEdu::~RubiksEdu()
     delete ui;
 }
 
+void RubiksEdu::switchButtonMode(int modeID) {
+switch(modeID) {
+case 0: {
+    ui->clockwiseButton->setText("F");
+    ui->clockwiseButton->setIcon(QIcon());
+
+    ui->counterClockwiseButton->setText("F'");
+    ui->counterClockwiseButton->setIcon(QIcon());
+
+    ui->leftBttmButton->setText("D'");
+    ui->leftBttmButton->setIcon(QIcon());
+
+    ui->leftTopButton->setText("U");
+    ui->leftTopButton->setIcon(QIcon());
+
+    ui->rightBttmButton->setText("D");
+    ui->rightBttmButton->setIcon(QIcon());
+
+    ui->rightTopButton->setText("U'");
+    ui->rightTopButton->setIcon(QIcon());
+
+    ui->bttmLeftButton->setText("L");
+    ui->bttmLeftButton->setIcon(QIcon());
+
+    ui->bttmRightButton->setText("R'");
+    ui->bttmRightButton->setIcon(QIcon());
+
+    ui->topLeftButton->setText("L'");
+    ui->topLeftButton->setIcon(QIcon());
+
+    ui->topRightButton->setText("R");
+    ui->topRightButton->setIcon(QIcon());
+    break;
+}
+case 1: {
+    ui->clockwiseButton->setText("");
+    ui->clockwiseButton->setIcon(QIcon(":/icons/F.png"));
+
+    ui->counterClockwiseButton->setText("");
+    ui->counterClockwiseButton->setIcon(QIcon(":/icons/F-counter.png"));
+
+    ui->leftBttmButton->setText("");
+    ui->leftBttmButton->setIcon(QIcon(":/icons/left.png"));
+
+    ui->leftTopButton->setText("");
+    ui->leftTopButton->setIcon(QIcon(":/icons/left.png"));
+
+    ui->rightBttmButton->setText("");
+    ui->rightBttmButton->setIcon(QIcon(":/icons/right.png"));
+
+    ui->rightTopButton->setText("");
+    ui->rightTopButton->setIcon(QIcon(":/icons/right.png"));
+
+    ui->bttmLeftButton->setText("");
+    ui->bttmLeftButton->setIcon(QIcon(":/icons/down.png"));
+
+    ui->bttmRightButton->setText("");
+    ui->bttmRightButton->setIcon(QIcon(":/icons/down.png"));
+
+    ui->topLeftButton->setText("");
+    ui->topLeftButton->setIcon(QIcon(":/icons/up.png"));
+
+    ui->topRightButton->setText("");
+    ui->topRightButton->setIcon(QIcon(":/icons/up.png"));
+    break;
+}
+}
+}
 
 void RubiksEdu::on_topLeftButton_clicked()
 {
