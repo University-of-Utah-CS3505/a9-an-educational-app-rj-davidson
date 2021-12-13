@@ -2,9 +2,33 @@
 <html>
 <header>
 </header>
+
 <body>
 
-<h1>Step 5: Create a Cross on the Opposite Face</h1>
-
+    <h1>Step 5: Create a Cross on the Opposite Face</h1>
+    <p>Our next step is to create another cross, this time on the side opposite of our starting face. This side can have up to 4 permutations: a dot, an "L", a line, or a cross. We can use a short algorithm to go from one permutation to the next.
+    </p>
+    <img src="img/part5-possible-cross-positions.png" source=":/img/part5-possible-cross-positions.png">
+    <p>The algorithm we will use is pretty short. You will just have to repeat it until you get to the cross position.
+    </p>
+    <div class="algorithm" align="center">
+        <h3>Second L Algorithm</h3>
+        <div>
+            <div>
+                <img src="img/move-F.png" source=":/img/move-F.png" width="50">
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+                <img src="img/move-counter-F.png" source=":/img/move-counter-F.png" width="50">
+            </div>
+            <div>
+                <code>F U R U' R' F'</code>
+            </div>
+        </div>
+    </div>
+    <h2>Note About Orientation:</h2>
+    <p>Be sure to keep the top cross in the orientations given above. For example, make sure the line is <u>horizontal</u>. If it is not, the algorithm may not work correctly.</p>
 </body>
+
 </html>

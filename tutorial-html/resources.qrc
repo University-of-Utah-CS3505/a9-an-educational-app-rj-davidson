@@ -26,5 +26,9 @@
         <file>icons/home.png</file>
         <file>icons/reset.png</file>
         <file>icons/app.png</file>
+        <file>img/2d-notation.png</file>
+        <file>img/part5-possible-cross-positions.png</file>
+        <file>img/rubiks-notation.jpg</file>
+        <file>img/step7-algorithm-diagram.svg</file>
     </qresource>
 </RCC>
