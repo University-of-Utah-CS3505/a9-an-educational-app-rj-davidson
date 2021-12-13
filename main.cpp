@@ -1,7 +1,6 @@
 #include "RubiksEdu.h"
 #include "CubeController.h"
-#include "Model.h"
-#include "Cube2dWindow.h"
+#include "TutorialBrowser.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -11,11 +10,11 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     CubeController m;
-    Cube2dWindow cube2dWindow;
-    RubiksEdu w(nullptr,&m,&cube2dWindow);
+    RubiksEdu w(nullptr,&m);
 
     w.setFixedSize(w.size());
     w.show();
+
 
    return a.exec();
 }

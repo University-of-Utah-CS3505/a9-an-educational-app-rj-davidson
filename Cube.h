@@ -12,6 +12,7 @@ class Cube
 {
 public:
     Cube();
+    Cube(QVector<CubeFace> &newCubeFaces);//used for Model3DView
 
     void move(int);
 
@@ -31,6 +32,10 @@ public:
     void topRight();
     void topLeft();
 
+    // Rotation Controls
+    void counterClockwiseMove();
+    void clockwiseMove();
+
     // Moves
     void g0Clockwise();
     void g0CounterClockwise();
@@ -48,18 +53,28 @@ public:
     // Getters
     CubeFace getFace(int);
     std::vector<CubeFace> getCube();
+    int getCurrentFace();
 
     // Setters
     void setCurrentFace(int);
 
+    // used to transform data in Model3DCube
+    void setCubeFaces(QVector<CubeFace> newCubeFaces);
+
     // Solved Check
-    bool solved();
+    bool isComplete();
 
     // Converts Cube to List of QImages
     std::vector<QImage> toQImageList();
 
 private:
     std::vector<CubeFace> cubeFaces;
+    std::vector<CubeFace> firstCross;
+    std::vector<CubeFace> firstCorners;
+    std::vector<CubeFace> neighbors;
+    std::vector<CubeFace> oppositeCross;
+    std::vector<CubeFace> finalCorners;
     int currentFace;
+
 };
 #endif // CUBE_H

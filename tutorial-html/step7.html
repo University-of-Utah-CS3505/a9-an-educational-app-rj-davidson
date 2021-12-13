@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
 <header>
-  <style>
-  </style>
-  </header>
+</header>
+
 <body>
+    <h1>Step 7: Place Corners</h1>
+    <p>Congratulations, you now have a cube with everything except 4 corners! In this step, we are going to place them in their correct positions (between the colors on that corner). We will worry about rotating them in the next step. </p>
+    <p>The algorithm we are going to use in this step will switch three of the corners around while leaving one corner in the same place. Our first step, then, is to find a corner that is in the correct position. Sometimes there may not be a corner already
+        in the correct spot. That's OK, just do this algorithm once and you should then be able to find a correctly placed corner. Once you find that corner, rotate the cube so that corner is in the center (see the following diagram) and do the algorithm
+        a couple more times until all the positions are correct.</p>
+    <div align="center">
+        <img src="img/step7-algorithm-diagram.svg" source=":/img/step7-algorithm-diagram.svg" width="150">
+    </div>
+    <div class="algorithm" align="center">
+        <h3>Switching Corner Positions</h3>
+        <p>This algorithm will switch 3 of the corner's positions and keep the position of one corner.
+        </p>
+        <div>
+            <div>
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-L.png" source=":/img/move-counter-L.png" width="50">
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-L.png" source=":/img/move-L.png" width="50">
+            </div>
+            <div>
+                <code>U R U' L' U R' U' L</code>
+            </div>
+        </div>
+    </div>
+    <h3>Did You Get Lucky?</h3>
+    <p>If you're lucky, the corners will already be rotated correctly when you place them and you will have a fully solved cube. If you got this, <u>congratulations</u>! Make sure to check out the next section anyways; you will definitely need it for future
+        solves.
+    </p>
 
-<h1>Step 7: Place Corners</h1>
-
+    <footer>
+        <div align="left">
+            <a href="qrc:/html/step6.html">&laquo; Previous</a>
+        </div>
+        <div align="right">
+            <a href="qrc:/html/step8.html">Next &raquo;</a>
+        </div>
+    </footer>
 </body>
+
 </html>
