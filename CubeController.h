@@ -27,7 +27,7 @@ signals:
     void update3DCubeView(QVector<CubeFace> &visibleFaces);
     void cube1DUpdated(Cube &cube); //needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
 
-    void complete(bool);
+    void complete(bool *);
 
 private:
     Cube userCube;

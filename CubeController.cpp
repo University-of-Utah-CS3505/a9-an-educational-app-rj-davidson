@@ -185,6 +185,7 @@ void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
 
 void CubeController::checkCompletion()
 {
-    emit complete(userCube.isComplete());
+    bool c = userCube.isComplete();
+    emit complete(&c);
 }
 

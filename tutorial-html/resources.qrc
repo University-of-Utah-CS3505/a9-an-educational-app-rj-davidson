@@ -36,5 +36,13 @@
         <file>icons/left.png</file>
         <file>icons/right.png</file>
         <file>icons/up.png</file>
+        <file>img/takethew.png</file>
+        <file>img/holdthel.png</file>
+        <file>img/green.png</file>
+        <file>img/red.png</file>
+        <file>img/yellow.png</file>
+        <file>img/white.png</file>
+        <file>img/orange.png</file>
+        <file>img/blue.png</file>
     </qresource>
 </RCC>
