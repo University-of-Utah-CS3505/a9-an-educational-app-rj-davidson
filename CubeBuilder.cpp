@@ -34,7 +34,7 @@ Cube CubeBuilder::generateRandomCube(){
     return c;
 }
 
-Cube CubeBuilder::buildDebugCube() {
+Cube CubeBuilder::generateDebugCube() {
     Cube c;
     QVector<QVector<char>> face0Chars{QVector<char>{'g', 'y', 'r'},
                                       QVector<char>{'w', 'g', 'o'},
@@ -66,7 +66,7 @@ Cube CubeBuilder::buildDebugCube() {
     return c;
 }
 
-Cube CubeBuilder::buildSolvedCube() {
+Cube CubeBuilder::generateSolvedCube() {
     return Cube();
 }
 
