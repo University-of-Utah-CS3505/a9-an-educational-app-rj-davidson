@@ -283,33 +283,72 @@ QImage CubeFace::toQImage()
     {
         for (int j = 0; j < (int) face[i].size(); j++)
         {
-            switch(face[i][j])
-            {
-                case 'g':
-                    image.setPixelColor(j, i, QColor("green"));
-                    break;
-                case 'r':
-                    image.setPixelColor(j, i, QColor("red"));
-                    break;
-                case 'y':
-                    image.setPixelColor(j, i, QColor("yellow"));
-                    break;
-                case 'w':
-                    image.setPixelColor(j, i, QColor("white"));
-                    break;
-                case 'o':
-                    image.setPixelColor(j, i, QColor("orange"));
-                    break;
-                case 'x':
-                    image.setPixelColor(j, i, QColor("grey"));
-                    break;
-                default:
-                    image.setPixelColor(j, i, QColor("blue"));
+            image.setPixelColor(j,i,getColor(i,j));
+        }
+    }
+
+    return image;
+}
+
+QImage CubeFace::toQImageAlt()
+{
+    QImage image(205, 85, QImage::Format_RGBA64);
+    double angle = 45 * 3.14159265/180;
+    for (int j = 0; j < 85 ; j++)
+    {
+        for (int i = 0; i < 120 ; i++)
+        {
+            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(0,0));
+            }
+            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(1,0));
+            }
+            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(2,0));
+            }
+            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(0,1));
+            }
+            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(1,1));
+            }
+            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(2,1));
+            }
+            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(0,2));
+            }
+            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(1,2));
+            }
+            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                image.setPixelColor(i+j*cos(angle),j,getColor(2,2));
             }
         }
     }
 
     return image;
+}
+
+QColor CubeFace::getColor(int i, int j){
+    switch(face[i][j])
+    {
+        case 'g':
+            return QColor("green");
+        case 'r':
+            return QColor("red");
+        case 'y':
+            return QColor("yellow");
+        case 'w':
+            return QColor("white");
+        case 'o':
+            return QColor("orange");
+        case 'x':
+            return QColor("grey");
+        default:
+            return QColor("blue");
+    }
 }
 
 void CubeFace::printDebug(){

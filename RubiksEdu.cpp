@@ -5,10 +5,11 @@
 #include <QMenuBar>
 #include <QMainWindow>
 #include <QAction>
+#include <QTransform>
 
 RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     : QMainWindow(parent)
-    , ui(new Ui::RubiksEdu),gridLines(120,120,QImage::Format_ARGB32),testGrid(180,105,QImage::Format_ARGB32)
+    , ui(new Ui::RubiksEdu),gridLines(120,120,QImage::Format_ARGB32),testGrid(205,85,QImage::Format_ARGB32)
 {
     ui->setupUi(this);
     setGridlines();
@@ -183,6 +184,8 @@ void RubiksEdu::on_rightTopButton_clicked()
 
 void RubiksEdu::displayCube(std::vector<QImage> faces)
 {
+    QImage altTopFace = faces.back();
+    faces.pop_back();
     QImage farRightFace = faces.back();
     faces.pop_back();
     QImage bottomFace = faces.back();
@@ -213,7 +216,11 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face3Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face4Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face5Gridline->setPixmap(QPixmap::fromImage(gridLines));
-    ui->face5Gridline_5->setPixmap(QPixmap::fromImage(testGrid.mirrored(false,true)));
+    ui->face2Alt->setPixmap((QPixmap::fromImage(altTopFace.mirrored(false,true))));
+    ui->face2AltGridline->setPixmap(QPixmap::fromImage(testGrid.mirrored(false,true)));
+    QTransform matrix;
+    QImage rotatedImg = testGrid.transformed(matrix.rotate(90.0));
+    ui->face3AltGridline->setPixmap(QPixmap::fromImage(rotatedImg));
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 
@@ -542,15 +549,17 @@ void RubiksEdu::setGridlines(){
         gridLines.setPixelColor(80,i,QColor(0,0,0,255));
         gridLines.setPixelColor(40,i,QColor(0,0,0,255));
     }
-    for(int i = 0;i < 60;i++){
-        testGrid.setPixelColor(i,1.75*i,QColor(0,0,0,255));
-        testGrid.setPixelColor(i+40,1.75*i,QColor(0,0,0,255));
-        testGrid.setPixelColor(i+80,1.75*i,QColor(0,0,0,255));
-        testGrid.setPixelColor(i+120,1.75*i,QColor(0,0,0,255));
+    for(int i = 0;i < 85;i++){
+        testGrid.setPixelColor(i,i,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+40,i,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+80,i,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+120,i,QColor(0,0,0,255));
     }
     for (int i = 0;i<120;i++){
         testGrid.setPixelColor(i,0,QColor(0,0,0,255));
-        testGrid.setPixelColor(i+20,35,QColor(0,0,0,255));
-        testGrid.setPixelColor(i+40,70,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+28,28,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+56,56,QColor(0,0,0,255));
+        testGrid.setPixelColor(i+84,84,QColor(0,0,0,255));
     }
+
 }

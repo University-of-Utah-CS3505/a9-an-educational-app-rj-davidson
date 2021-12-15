@@ -38,11 +38,14 @@ public:
     bool complete();
 
     QImage toQImage();
+    QImage toQImageAlt();
+
 
     void printDebug();
 
 private:
     std::vector<std::vector<char>> face;
+    QColor getColor(int, int);
 };
 
 #endif // CUBEFACE_H

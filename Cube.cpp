@@ -665,10 +665,10 @@ std::vector<QImage> Cube::toQImageList()
     default:
         tempCubeFaces = cubeFaces;
     }
-
     std::vector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
+    list.push_back(tempCubeFaces[2].toQImageAlt());
     return list;
 }
 

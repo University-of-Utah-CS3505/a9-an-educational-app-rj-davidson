@@ -713,7 +713,7 @@ border: 1px solid grey;
       <height>351</height>
      </rect>
     </property>
-    <widget class="QLabel" name="face5Gridline_2">
+    <widget class="QLabel" name="face4Alt">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -732,13 +732,13 @@ border: 1px solid grey;
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string>face5</string>
+      <string>face4</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="face5Gridline_3">
+    <widget class="QLabel" name="face0Alt">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -757,13 +757,13 @@ border: 1px solid grey;
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string>face5</string>
+      <string>face0</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="face5Gridline_4">
+    <widget class="QLabel" name="face1Alt">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -782,24 +782,24 @@ border: 1px solid grey;
       <enum>QFrame::Box</enum>
      </property>
      <property name="text">
-      <string>face5</string>
+      <string>face1</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="face5Gridline_5">
+    <widget class="QLabel" name="face2Alt">
      <property name="geometry">
       <rect>
        <x>240</x>
-       <y>6</y>
-       <width>180</width>
-       <height>105</height>
+       <y>26</y>
+       <width>205</width>
+       <height>85</height>
       </rect>
      </property>
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>36</horstretch>
+       <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
@@ -810,7 +810,213 @@ border: 1px solid grey;
       <bool>true</bool>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>face2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face3Alt">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>25</y>
+       <width>85</width>
+       <height>205</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>face3</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face5Alt">
+     <property name="geometry">
+      <rect>
+       <x>445</x>
+       <y>25</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face5</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face0AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>110</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face0</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face1AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face2AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>26</y>
+       <width>205</width>
+       <height>85</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>face2</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face3AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>25</y>
+       <width>85</width>
+       <height>205</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>face3</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face4AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>230</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string>face4</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="face5AltGridline">
+     <property name="geometry">
+      <rect>
+       <x>445</x>
+       <y>25</y>
+       <width>120</width>
+       <height>120</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
      </property>
      <property name="text">
       <string>face5</string>
