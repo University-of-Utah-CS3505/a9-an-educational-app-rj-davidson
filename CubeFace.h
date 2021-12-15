@@ -13,6 +13,7 @@ class CubeFace
 {
 public:
     CubeFace();
+    CubeFace(std::vector<std::vector<char>>);
     CubeFace(char);
     CubeFace(const CubeFace &); // Do we need this?
     CubeFace(string, char);

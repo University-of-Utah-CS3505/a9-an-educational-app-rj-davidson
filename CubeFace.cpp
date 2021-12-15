@@ -8,6 +8,10 @@ CubeFace::CubeFace()
 
 }
 
+CubeFace::CubeFace(std::vector<std::vector<char>> face) {
+    this->face = face;
+}
+
 CubeFace::CubeFace(char faceColor)
 {
     std::vector<char> row(3, faceColor);

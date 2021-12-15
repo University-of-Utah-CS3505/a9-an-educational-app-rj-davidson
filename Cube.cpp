@@ -59,7 +59,7 @@ void Cube::move(int moveID)
             counterClockwiseMove();
             break;
         default:
-            topLeft();
+            qDebug() << "ERROR: Cube Move";
     }
 }
 
@@ -602,6 +602,9 @@ std::vector<QImage> Cube::toQImageList()
     std::vector<CubeFace> tempCubeFaces;
     switch (currentFace)
     {
+    case 0:
+        tempCubeFaces = cubeFaces;
+        break;
     case 1:
         tempCubeFaces.push_back(cubeFaces[1]);
         tempCubeFaces.push_back(cubeFaces[5]);
@@ -663,8 +666,7 @@ std::vector<QImage> Cube::toQImageList()
         tempCubeFaces[4].rotateClockwise();
         break;
     default:
-        tempCubeFaces = cubeFaces;
-        tempCubeFaces[4].flipVertically();
+        qDebug() << "Invalid cube face ID";
     }
 
     std::vector<QImage> list;
