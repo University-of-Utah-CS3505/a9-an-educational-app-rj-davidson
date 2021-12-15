@@ -135,22 +135,27 @@ void Cube::moveD(RotationDirection dir) {
 void Cube::moveL(RotationDirection dir) {
     QVector<char> fCol = rotatedCubeFaces[0].getCol(0);
     QVector<char> dCol = rotatedCubeFaces[4].getCol(0);
-    QVector<char> bCol = rotatedCubeFaces[5].getCol(2);
+    QVector<char> bCol = rotatedCubeFaces[5].getCol(0);
+    std::reverse(bCol.begin(), bCol.end());
     QVector<char> uCol = rotatedCubeFaces[2].getCol(0);
 
     if(dir == CLOCKWISE) {
         rotatedCubeFaces[1].rotateClockwise();
         rotatedCubeFaces[0].setCol(0, uCol);
         rotatedCubeFaces[4].setCol(0, fCol);
-        rotatedCubeFaces[5].setCol(2, dCol);
+        rotatedCubeFaces[5].setCol(0, dCol);
         rotatedCubeFaces[2].setCol(0, bCol);
     } else {
         rotatedCubeFaces[1].rotateCounterClockwise();
         rotatedCubeFaces[0].setCol(0, dCol);
         rotatedCubeFaces[4].setCol(0, bCol);
-        rotatedCubeFaces[5].setCol(2, uCol);
+        rotatedCubeFaces[5].setCol(0, uCol);
         rotatedCubeFaces[2].setCol(0, fCol);
     }
+
+    bCol = rotatedCubeFaces[5].getCol(0);
+    std::reverse(bCol.begin(), bCol.end());
+    rotatedCubeFaces[5].setCol(0, bCol);
 
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
@@ -158,22 +163,27 @@ void Cube::moveL(RotationDirection dir) {
 void Cube::moveR(RotationDirection dir) {
     QVector<char> fCol = rotatedCubeFaces[0].getCol(2);
     QVector<char> dCol = rotatedCubeFaces[4].getCol(2);
-    QVector<char> bCol = rotatedCubeFaces[5].getCol(0);
+    QVector<char> bCol = rotatedCubeFaces[5].getCol(2);
+    std::reverse(bCol.begin(), bCol.end());
     QVector<char> uCol = rotatedCubeFaces[2].getCol(2);
 
     if(dir == CLOCKWISE) {
         rotatedCubeFaces[3].rotateClockwise();
         rotatedCubeFaces[0].setCol(2, dCol);
         rotatedCubeFaces[4].setCol(2, bCol);
-        rotatedCubeFaces[5].setCol(0, uCol);
+        rotatedCubeFaces[5].setCol(2, uCol);
         rotatedCubeFaces[2].setCol(2, fCol);
     } else {
         rotatedCubeFaces[3].rotateCounterClockwise();
         rotatedCubeFaces[0].setCol(2, uCol);
         rotatedCubeFaces[4].setCol(2, fCol);
-        rotatedCubeFaces[5].setCol(0, dCol);
+        rotatedCubeFaces[5].setCol(2, dCol);
         rotatedCubeFaces[2].setCol(2, bCol);
     }
+
+    bCol = rotatedCubeFaces[5].getCol(2);
+    std::reverse(bCol.begin(), bCol.end());
+    rotatedCubeFaces[5].setCol(2, bCol);
 
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
@@ -193,9 +203,8 @@ QVector<QImage> Cube::toQImageList()
 {
     QVector<CubeFace> tempCubeFaces = rotatedCubeFaces;
 
-//    // Flip the back face for display
-//    tempCubeFaces[5].rotateClockwise();
-//    tempCubeFaces[5].rotateClockwise();
+    // Flip the back face for display
+    tempCubeFaces[5].flipHorizontally();
 
     QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
