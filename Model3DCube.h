@@ -60,6 +60,7 @@ private:
     //controller tells model when to update the qImage qvector data for the 1d cube
     QVector<QImage> vctrFaces1DCube;
 
+    int previouslyFocusedFaceID = 0;
 
     //temp data model with one color per face to make sure buttons are rotating cube correctly
     QVector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
@@ -80,7 +81,7 @@ private:
     void updateVisibleFaces();
     int getRightVisibleFacePosition();
 
-    void rotateToBaseFace();
+    void setRotationToCurrentFace();
 
     // the model will need to save the 3dcube orientation
 

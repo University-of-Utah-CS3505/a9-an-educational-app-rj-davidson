@@ -44,6 +44,11 @@ void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace)
 
 CubeFace Cube::getFace(int i)
 {
+    if(i == 5) {
+        CubeFace back = rotatedCubeFaces[i];
+        back.flipHorizontally();
+        return back;
+    }
     return rotatedCubeFaces[i];
 }
 
@@ -199,6 +204,12 @@ bool Cube::isSolved()
 }
 
 // -------- Converters -----------
+Cube Cube::getBaseCube() {
+    Cube c;
+    c.setCubeFaces(coreCubeFaces, false);
+    return c;
+}
+
 QVector<QImage> Cube::toQImageList()
 {
     QVector<CubeFace> tempCubeFaces = rotatedCubeFaces;

@@ -28,6 +28,7 @@ public:
     void moveL(RotationDirection dir);
     void moveR(RotationDirection dir);
 
+    Cube getBaseCube();
     QVector<CubeFace> getAllFaces();
     CubeFace getFace(int);
     int getCurrentFaceID();
