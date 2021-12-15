@@ -110,79 +110,84 @@ bool Cube::isComplete()
 // Converts Cube to List of QImages
 QVector<QImage> Cube::toQImageList()
 {
-    QVector<CubeFace> tempCubeFaces;
-    switch (currentFace)
+    QVector<CubeFace> tempCubeFaces = rotateToFace(cubeFaces, currentFace);
+    QVector<QImage> list;
+    for (CubeFace f : tempCubeFaces)
+        list.push_back(f.toQImage());
+    return list;
+}
+
+QVector<CubeFace> Cube::rotateToFace(QVector<CubeFace> original, int faceID) {
+    QVector<CubeFace> rotatedCubeFaces;
+    switch (faceID)
     {
     case 0:
-        tempCubeFaces = cubeFaces;
+        rotatedCubeFaces = original;
         break;
     case 1:
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces[2].rotateCounterClockwise();
-        tempCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces.push_back(original[1]);
+        rotatedCubeFaces.push_back(original[5]);
+        rotatedCubeFaces.push_back(original[2]);
+        rotatedCubeFaces.push_back(original[0]);
+        rotatedCubeFaces.push_back(original[4]);
+        rotatedCubeFaces.push_back(original[3]);
+        rotatedCubeFaces[2].rotateCounterClockwise();
+        rotatedCubeFaces[4].rotateClockwise();
         break;
     case 2:
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces[1].rotateClockwise();
-        tempCubeFaces[3].rotateCounterClockwise();
-        tempCubeFaces[5].rotateCounterClockwise();
-        tempCubeFaces[5].rotateCounterClockwise();
-        tempCubeFaces[2].rotateCounterClockwise();
-        tempCubeFaces[2].rotateCounterClockwise();
+        rotatedCubeFaces.push_back(original[2]);
+        rotatedCubeFaces.push_back(original[1]);
+        rotatedCubeFaces.push_back(original[5]);
+        rotatedCubeFaces.push_back(original[3]);
+        rotatedCubeFaces.push_back(original[0]);
+        rotatedCubeFaces.push_back(original[4]);
+        rotatedCubeFaces[1].rotateClockwise();
+        rotatedCubeFaces[3].rotateCounterClockwise();
+        rotatedCubeFaces[5].rotateCounterClockwise();
+        rotatedCubeFaces[5].rotateCounterClockwise();
+        rotatedCubeFaces[2].rotateCounterClockwise();
+        rotatedCubeFaces[2].rotateCounterClockwise();
         break;
     case 3:
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[4].rotateCounterClockwise();
+        rotatedCubeFaces.push_back(original[3]);
+        rotatedCubeFaces.push_back(original[0]);
+        rotatedCubeFaces.push_back(original[2]);
+        rotatedCubeFaces.push_back(original[5]);
+        rotatedCubeFaces.push_back(original[4]);
+        rotatedCubeFaces.push_back(original[1]);
+        rotatedCubeFaces[2].rotateClockwise();
+        rotatedCubeFaces[4].rotateCounterClockwise();
         break;
     case 4:
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces[1].rotateCounterClockwise();
-        tempCubeFaces[5].rotateClockwise();
-        tempCubeFaces[5].rotateClockwise();
-        tempCubeFaces[3].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces.push_back(original[4]);
+        rotatedCubeFaces.push_back(original[1]);
+        rotatedCubeFaces.push_back(original[0]);
+        rotatedCubeFaces.push_back(original[3]);
+        rotatedCubeFaces.push_back(original[5]);
+        rotatedCubeFaces.push_back(original[2]);
+        rotatedCubeFaces[1].rotateCounterClockwise();
+        rotatedCubeFaces[5].rotateClockwise();
+        rotatedCubeFaces[5].rotateClockwise();
+        rotatedCubeFaces[3].rotateClockwise();
+        rotatedCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces[4].rotateClockwise();
         break;
     case 5:
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces.push_back(original[5]);
+        rotatedCubeFaces.push_back(original[3]);
+        rotatedCubeFaces.push_back(original[2]);
+        rotatedCubeFaces.push_back(original[1]);
+        rotatedCubeFaces.push_back(original[4]);
+        rotatedCubeFaces.push_back(original[0]);
+        rotatedCubeFaces[2].rotateClockwise();
+        rotatedCubeFaces[2].rotateClockwise();
+        rotatedCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces[4].rotateClockwise();
         break;
     default:
         qDebug() << "Invalid cube face ID";
     }
 
-    QVector<QImage> list;
-    for (CubeFace f : tempCubeFaces)
-        list.push_back(f.toQImage());
-    return list;
+    return rotatedCubeFaces;
 }
 

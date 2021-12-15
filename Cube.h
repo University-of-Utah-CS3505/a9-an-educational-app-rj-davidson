@@ -52,5 +52,6 @@ private:
     QVector<CubeFace> finalCorners;
     int currentFace;
 
+    static QVector<CubeFace> rotateToFace(QVector<CubeFace> original, int faceID);
 };
 #endif // CUBE_H
