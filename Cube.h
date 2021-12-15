@@ -16,9 +16,11 @@ class Cube
 {
 public:
     Cube();
-    Cube(QVector<CubeFace> &cubeFaces);
+    Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace);
 
-    void setCubeFaces(QVector<CubeFace> newCubeFaces);
+    void setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace);
+
+    void flipBackFace();
 
     void moveF(RotationDirection dir);
     void moveU(RotationDirection dir);
@@ -40,7 +42,7 @@ public:
 private:
     QVector<CubeFace> rotatedCubeFaces;
     QVector<CubeFace> baseCubeFaces;
-    int currentFaceID;
+    int currentFaceID = 0;
 
     static QVector<CubeFace> rotateToFace(QVector<CubeFace> original, int faceID);
 };

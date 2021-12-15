@@ -182,7 +182,7 @@ void RubiksEdu::on_rightTopButton_clicked()
 
 void RubiksEdu::displayCube(QVector<QImage> faces)
 {
-    QImage farRightFace = faces.back();
+    QImage backFace = faces.back();
     faces.pop_back();
     QImage bottomFace = faces.back();
     faces.pop_back();
@@ -199,14 +199,14 @@ void RubiksEdu::displayCube(QVector<QImage> faces)
     QImage leftFaceScaled = leftFace.scaled(120,120);
     QImage topFaceScaled = topFace.scaled(120,120);
     QImage bottomFaceScaled = bottomFace.scaled(120,120);
-    QImage farRightFaceScaled = farRightFace.scaled(120,120);
+    QImage backFaceScaled = backFace.scaled(120,120);
 
     ui->face0->setPixmap(QPixmap::fromImage(centerFaceScaled));
     ui->face1->setPixmap(QPixmap::fromImage(leftFaceScaled));
     ui->face2->setPixmap(QPixmap::fromImage(topFaceScaled));
     ui->face3->setPixmap(QPixmap::fromImage(rightFaceScaled));
     ui->face4->setPixmap(QPixmap::fromImage(bottomFaceScaled));
-    ui->face5->setPixmap(QPixmap::fromImage(farRightFaceScaled));
+    ui->face5->setPixmap(QPixmap::fromImage(backFaceScaled));
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 

@@ -23,6 +23,8 @@ void Model3DCube::resetOrientation() {
 void Model3DCube::update3DCube(Cube const &cube1D)
 {
     cubeCopyOf1D = cube1D;
+    cubeCopyOf1D.flipBackFace();
+
     convertCube1DtoCube3D();
     rotateToBaseFace();
     updateVisibleFaces();
@@ -51,6 +53,7 @@ void Model3DCube::convertCube1DtoCube3D(){
         cube3Dfaces.push_back(tempFace);
     }
     cube3D = Cube(cube3Dfaces, true); // TODO: Consult Elizabeth
+    cube3D.flipBackFace();
 }
 
 /*

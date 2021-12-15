@@ -113,10 +113,10 @@ void CubeController::MoveCube(int moveClicked){
                 userCube.moveD(CLOCKWISE);
                 break;
             case 5:
-                userCube.moveD(COUNTERCLOCKWISE);
+                userCube.moveU(COUNTERCLOCKWISE);
                 break;
             case 6:
-                userCube.moveU(CLOCKWISE);
+                userCube.moveR(CLOCKWISE);
                 break;
             case 7:
                 userCube.moveL(COUNTERCLOCKWISE);
@@ -179,7 +179,7 @@ void CubeController::buildPredefinedCube(int cubeID)
 }
 
 void CubeController::buildRandomCube() {
-    setUserCube(CubeBuilder::generateRandomCube());
+    setUserCube(CubeBuilder::buildSolvedCube());
     lastNontutorialCube = userCube;
 }
 
