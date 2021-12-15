@@ -49,7 +49,7 @@ private:
 
     int currentFaceID = 0;
     std::function<bool(Cube)> cubeSolverFunc = [](Cube c) -> bool {
-        for(CubeFace face : c.rotatedCubeFaces) {
+        for(CubeFace face : c.coreCubeFaces) {
             if(!face.complete()) {
                 return false;
             }
