@@ -179,7 +179,17 @@ void CubeController::buildPredefinedCube(int cubeID)
 }
 
 void CubeController::buildRandomCube() {
-    setUserCube(CubeBuilder::buildDebugCube());
+    setUserCube(CubeBuilder::generateRandomCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::buildDebugCube() {
+    setUserCube(CubeBuilder::generateDebugCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::buildSolvedCube() {
+    setUserCube(CubeBuilder::generateSolvedCube());
     lastNontutorialCube = userCube;
 }
 

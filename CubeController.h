@@ -41,6 +41,8 @@ private:
 public slots:
     void buildPredefinedCube(int cubeID);
     void buildRandomCube();
+    void buildDebugCube();
+    void buildSolvedCube();
     void switchFace(int);
     void MoveCube(int);
 
