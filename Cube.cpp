@@ -664,6 +664,7 @@ std::vector<QImage> Cube::toQImageList()
         break;
     default:
         tempCubeFaces = cubeFaces;
+        tempCubeFaces[4].flipVertically();
     }
 
     std::vector<QImage> list;
