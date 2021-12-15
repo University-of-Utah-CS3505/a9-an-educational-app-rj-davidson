@@ -38,7 +38,8 @@ public:
     QVector<QImage> toQImageList();
 
 private:
-    QVector<CubeFace> cubeFaces;
+    QVector<CubeFace> rotatedCubeFaces;
+    QVector<CubeFace> baseCubeFaces;
     int currentFaceID;
 
     static QVector<CubeFace> rotateToFace(QVector<CubeFace> original, int faceID);

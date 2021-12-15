@@ -80,7 +80,7 @@ private:
     void updateVisibleFaces();
     int getRightVisibleFacePosition();
 
-    void rotateToCurrentFace();
+    void rotateToBaseFace();
 
     // the model will need to save the 3dcube orientation
 

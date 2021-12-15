@@ -33,13 +33,13 @@ Cube CubeBuilder::generateRandomCube(){
                                              QVector<char>{'y', 'b', 'w'}};
     QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
 Cube CubeBuilder::generateTutorialStep1Cube(){
     Cube c;
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -53,7 +53,7 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     faces.append(CubeFace("firstCrossBelowFace", 'x'));
     faces.append(CubeFace("firstCrossOppositeFace", 'x'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -67,7 +67,7 @@ Cube CubeBuilder::generateTutorialStep3Cube(){
     faces.append(CubeFace("firstCornersBelowFace", 'x'));
     faces.append(CubeFace("firstCornersOppositeFace", 'x'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -81,7 +81,7 @@ Cube CubeBuilder::generateTutorialStep4Cube(){
     faces.append(CubeFace("neighborRightBelowFace", 'x'));
     faces.append(CubeFace('w'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -95,7 +95,7 @@ Cube CubeBuilder::generateTutorialStep5Cube(){
     faces.append(CubeFace("neighborLeftBelowFace", 'x'));
     faces.append(CubeFace('w'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -109,7 +109,7 @@ Cube CubeBuilder::generateTutorialStep6Cube(){
     faces.append(CubeFace("finalCrossBelowFace", 'x'));
     faces.append(CubeFace('w'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -124,7 +124,7 @@ Cube CubeBuilder::generateTutorialStep7Cube(){
     faces.append(CubeFace("finalCornersBelowFace", 'o'));
     faces.append(CubeFace("finalCornersOppositeFace", 'w'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }
 
@@ -139,6 +139,6 @@ Cube CubeBuilder::generateTutorialStep8Cube(){
     faces.append(CubeFace('x'));
     faces.append(CubeFace('x'));
     c.setCubeFaces(faces);
-    c.setCurrentFace(0);
+    c.setCurrentFaceID(0);
     return c;
 }

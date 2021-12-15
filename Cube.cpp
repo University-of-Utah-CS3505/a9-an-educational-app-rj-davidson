@@ -1,38 +1,38 @@
 #include "Cube.h"
 
 Cube::Cube(){
-    currentFaceID = 0;
-
-        cubeFaces.push_back(CubeFace('g'));
-        cubeFaces.push_back(CubeFace('r'));
-        cubeFaces.push_back(CubeFace('y'));
-        cubeFaces.push_back(CubeFace('w'));
-        cubeFaces.push_back(CubeFace('o'));
-        cubeFaces.push_back(CubeFace('b'));
+    baseCubeFaces.push_back(CubeFace('g'));
+    baseCubeFaces.push_back(CubeFace('r'));
+    baseCubeFaces.push_back(CubeFace('y'));
+    baseCubeFaces.push_back(CubeFace('w'));
+    baseCubeFaces.push_back(CubeFace('o'));
+    baseCubeFaces.push_back(CubeFace('b'));
+    setCurrentFaceID(0);
 }
 
 Cube::Cube(QVector<CubeFace> &cubeFaces){
-    currentFaceID = 0;
-    this->cubeFaces = cubeFaces;
+    this->baseCubeFaces = cubeFaces;
+    setCurrentFaceID(0);
 }
 
 // ---------- Cube Faces ----------
 QVector<CubeFace> Cube::getAllFaces()
 {
-    return cubeFaces;
+    return rotatedCubeFaces;
 }
 
 void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces)
 {
-    cubeFaces.clear();
+    baseCubeFaces.clear();
     for(int i=0; i<6; i++){
-        cubeFaces.push_back(newCubeFaces.at(i));
+        baseCubeFaces.push_back(newCubeFaces.at(i));
     }
+    setCurrentFaceID(0);
 }
 
 CubeFace Cube::getFace(int i)
 {
-    return cubeFaces[i];
+    return rotatedCubeFaces[i];
 }
 
 int Cube::getCurrentFaceID()
@@ -42,6 +42,7 @@ int Cube::getCurrentFaceID()
 
 void Cube::setCurrentFaceID(int num)
 {
+    rotatedCubeFaces = rotateToFace(baseCubeFaces, num);
     currentFaceID = num;
 }
 
@@ -90,7 +91,7 @@ void Cube::moveR(RotationDirection dir) {
 // ----------- Solve Function --------
 bool Cube::isSolved()
 {
-    for(CubeFace f : cubeFaces)
+    for(CubeFace f : rotatedCubeFaces)
         if (!f.complete())
             return false;
     return true;
@@ -99,7 +100,7 @@ bool Cube::isSolved()
 // -------- Converters -----------
 QVector<QImage> Cube::toQImageList()
 {
-    QVector<CubeFace> tempCubeFaces = rotateToFace(cubeFaces, currentFaceID);
+    QVector<CubeFace> tempCubeFaces = rotateToFace(baseCubeFaces, currentFaceID);
     QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
