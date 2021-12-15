@@ -35,7 +35,7 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][0] = 'r';
         face[0][1] = 'r';
         face[1][2] = 'r';
-        face[2][2] = 'x';
+        face[2][1] = 'g';
     }
     if(faceString == "firstCrossRightFace") {
         face[0][1] = 'w';

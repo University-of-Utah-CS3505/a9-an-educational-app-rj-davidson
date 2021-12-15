@@ -79,12 +79,31 @@ Cube CubeBuilder::generateTutorialStep1Cube(){
 Cube CubeBuilder::generateTutorialStep2Cube(){
     Cube c;
     QVector<CubeFace> faces;
-    faces.append(CubeFace("firstCrossMainFace", 'x'));
-    faces.append(CubeFace("firstCrossLeftFace", 'x'));
-    faces.append(CubeFace("firstCrossAboveFace", 'x'));
-    faces.append(CubeFace("firstCrossRightFace", 'x'));
-    faces.append(CubeFace("firstCrossBelowFace", 'x'));
-    faces.append(CubeFace("firstCrossOppositeFace", 'x'));
+    QVector<QVector<char>> frontChars{QVector<char>{'x', 'r', 'x'},
+                                      QVector<char>{'x', 'g', 'x'},
+                                      QVector<char>{'x', 'x', 'x'}};
+
+    QVector<QVector<char>> leftChars{QVector<char>{'x', 'w', 'x'},
+                                     QVector<char>{'x', 'w', 'x'},
+                                     QVector<char>{'x', 'x', 'x'}};
+
+    QVector<QVector<char>> upChars{QVector<char>{'x', 'r', 'x'},
+                                   QVector<char>{'r', 'r', 'r'},
+                                   QVector<char>{'x', 'g', 'x'}};
+
+    QVector<QVector<char>> rightChars{QVector<char>{'x', 'y', 'x'},
+                                      QVector<char>{'x', 'y', 'x'},
+                                      QVector<char>{'x', 'x', 'x'}};
+
+    QVector<QVector<char>> downChars{QVector<char>{'x', 'x', 'x'},
+                                     QVector<char>{'x', 'x', 'x'},
+                                     QVector<char>{'x', 'x', 'x'}};
+
+    QVector<QVector<char>> backChars{QVector<char>{'x', 'b', 'x'},
+                                     QVector<char>{'x', 'b', 'x'},
+                                     QVector<char>{'x', 'x', 'x'}};
+
+    faces = {frontChars, leftChars, upChars, rightChars, downChars, backChars};
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
     return c;

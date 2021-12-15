@@ -123,7 +123,7 @@ void Model3DCube::updateVisibleFaces(){
     if(yAxisPosition == up){
         //rotate top face to match xAxisPosition
         for(int i=0; i<(int)xAxisPosition; i++){
-            topFace.rotateClockwise(); // TODO: Might need to rotate counter clockwise instead
+            topFace.rotateCounterClockwise();
         }
     }else{
         //rotate top face the opposite direction
