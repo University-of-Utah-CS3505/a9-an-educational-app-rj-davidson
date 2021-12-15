@@ -101,8 +101,6 @@ void Model3DCube::setRotationToCurrentFace() {
             break;
         }
         }
-    qDebug() << yAxisPosition;
-    qDebug() << xAxisPosition;
 }
 
 /*
