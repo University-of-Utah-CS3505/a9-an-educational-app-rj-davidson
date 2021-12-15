@@ -1,7 +1,7 @@
 #include "Cube.h"
 
 Cube::Cube(){
-    currentFace = 0;
+    currentFaceID = 0;
 
         cubeFaces.push_back(CubeFace('g'));
         cubeFaces.push_back(CubeFace('r'));
@@ -11,17 +11,38 @@ Cube::Cube(){
         cubeFaces.push_back(CubeFace('b'));
 }
 
-/*
- *
- *this is a method for the 3d cube so that the converted copy of the data
- *can be stored in the 3d cube model
- *
-*/
-Cube::Cube(QVector<CubeFace> &newCubeFaces){
-    currentFace = 0;
+Cube::Cube(QVector<CubeFace> &cubeFaces){
+    currentFaceID = 0;
+    this->cubeFaces = cubeFaces;
+}
+
+// ---------- Cube Faces ----------
+QVector<CubeFace> Cube::getAllFaces()
+{
+    return cubeFaces;
+}
+
+void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces)
+{
+    cubeFaces.clear();
     for(int i=0; i<6; i++){
         cubeFaces.push_back(newCubeFaces.at(i));
     }
+}
+
+CubeFace Cube::getFace(int i)
+{
+    return cubeFaces[i];
+}
+
+int Cube::getCurrentFaceID()
+{
+    return currentFaceID;
+}
+
+void Cube::setCurrentFaceID(int num)
+{
+    currentFaceID = num;
 }
 
 // ------------ Moves ---------
@@ -65,41 +86,9 @@ void Cube::moveR(RotationDirection dir) {
     }
 }
 
-// Getters
-CubeFace Cube::getFace(int i)
-{
-    return cubeFaces[i];
-}
 
-QVector<CubeFace> Cube::getCube()
-{
-    return cubeFaces;
-}
-
-/*
- * Allows cube data to be set from a list of faces. Used to store data for the 3d cube model
- */
-void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces)
-{
-    cubeFaces.clear();
-    for(int i=0; i<6; i++){
-        cubeFaces.push_back(newCubeFaces.at(i));
-    }
-}
-
-int Cube::getCurrentFace()
-{
-    return currentFace;
-}
-
-// Setters
-void Cube::setCurrentFace(int num)
-{
-    currentFace = num;
-}
-
-// Solved Check
-bool Cube::isComplete()
+// ----------- Solve Function --------
+bool Cube::isSolved()
 {
     for(CubeFace f : cubeFaces)
         if (!f.complete())
@@ -107,10 +96,10 @@ bool Cube::isComplete()
     return true;
 }
 
-// Converts Cube to List of QImages
+// -------- Converters -----------
 QVector<QImage> Cube::toQImageList()
 {
-    QVector<CubeFace> tempCubeFaces = rotateToFace(cubeFaces, currentFace);
+    QVector<CubeFace> tempCubeFaces = rotateToFace(cubeFaces, currentFaceID);
     QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
