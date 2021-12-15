@@ -66,19 +66,21 @@ void Cube::setCurrentFaceID(int num)
 // ------------ Moves ---------
 void Cube::moveF(RotationDirection dir) {
     QVector<char> lCol = rotatedCubeFaces[1].getCol(2);
-    std::reverse(lCol.begin(), lCol.end());
     QVector<char> uRow = rotatedCubeFaces[2].getRow(2);
     QVector<char> rCol = rotatedCubeFaces[3].getCol(0);
-    std::reverse(rCol.begin(), rCol.end());
     QVector<char> dRow = rotatedCubeFaces[4].getRow(0);
 
     if(dir == CLOCKWISE) {
+        std::reverse(lCol.begin(), lCol.end());
+        std::reverse(rCol.begin(), rCol.end());
         rotatedCubeFaces[0].rotateClockwise();
         rotatedCubeFaces[1].setCol(2, dRow);
         rotatedCubeFaces[2].setRow(2, lCol);
         rotatedCubeFaces[3].setCol(0, uRow);
         rotatedCubeFaces[4].setRow(0, rCol);
     } else {
+        std::reverse(uRow.begin(), uRow.end());
+        std::reverse(dRow.begin(), dRow.end());
         rotatedCubeFaces[0].rotateCounterClockwise();
         rotatedCubeFaces[1].setCol(2, uRow);
         rotatedCubeFaces[2].setRow(2, rCol);
