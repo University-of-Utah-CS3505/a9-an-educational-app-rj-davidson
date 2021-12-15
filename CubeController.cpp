@@ -179,7 +179,7 @@ void CubeController::rotationCube(const string & dirRotate){
 /*
  * Sends 3D cube data to view to paint
  */
-void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
+void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData){
     emit update3DCubeViewSimple(visibleFaceData);
 }
 

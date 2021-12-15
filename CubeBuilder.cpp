@@ -13,24 +13,24 @@ Cube CubeBuilder::generateRandomCube(){
 //    c.setCurrentFace(0);
 //    return c;
     Cube c;
-    std::vector<std::vector<char>> face0Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'g', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
-    std::vector<std::vector<char>> face1Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'r', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
-    std::vector<std::vector<char>> face2Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'b', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
-    std::vector<std::vector<char>> face3Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'y', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
-    std::vector<std::vector<char>> face4Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'o', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
-    std::vector<std::vector<char>> face5Chars{std::vector<char>{'g', 'y', 'r'},
-                                             std::vector<char>{'w', 'w', 'o'},
-                                             std::vector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face0Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'g', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face1Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'r', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face2Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'b', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face3Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'y', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face4Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'o', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char>> face5Chars{QVector<char>{'g', 'y', 'r'},
+                                             QVector<char>{'w', 'w', 'o'},
+                                             QVector<char>{'y', 'b', 'w'}};
     QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
     c.setCubeFaces(faces);
     c.setCurrentFace(0);

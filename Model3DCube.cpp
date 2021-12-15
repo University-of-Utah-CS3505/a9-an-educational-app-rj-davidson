@@ -40,7 +40,7 @@ void Model3DCube::update3DCube(Cube const &cube1D)
 */
 void Model3DCube::convertCube1DtoCube3D(){
 
-    std::vector<CubeFace> cube1Dfaces = cubeCopyOf1D.getCube();
+    QVector<CubeFace> cube1Dfaces = cubeCopyOf1D.getCube();
     QVector<CubeFace> cube3Dfaces;
 
     for(int i=0; i<6; i++){

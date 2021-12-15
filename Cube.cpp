@@ -310,12 +310,12 @@ void Cube::counterClockwiseMove()
 // Moves
 void Cube::g0Clockwise()
 {
-    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
+    QVector<char> r1Temp = cubeFaces[1].getCol(2);
     std::reverse(r1Temp.begin(), r1Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getRow(2);
+    QVector<char> w3Temp = cubeFaces[3].getCol(0);
     std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
+    QVector<char> o4Temp = cubeFaces[4].getRow(0);
 
     // Set y2 row 2 to r1Temp
     cubeFaces[2].setRow(2, r1Temp);
@@ -331,11 +331,11 @@ void Cube::g0Clockwise()
 
 void Cube::g0CounterClockwise()
 {
-    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
-    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
+    QVector<char> r1Temp = cubeFaces[1].getCol(2);
+    QVector<char> o4Temp = cubeFaces[4].getRow(0);
     std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
+    QVector<char> w3Temp = cubeFaces[3].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getRow(2);
     std::reverse(y2Temp.begin(), y2Temp.end());
 
     // Set o4 row 0 to r1Temp
@@ -352,12 +352,12 @@ void Cube::g0CounterClockwise()
 
 void Cube::r1Clockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
+    QVector<char> g0Temp = cubeFaces[0].getCol(0);
     std::reverse(g0Temp.begin(), g0Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
-    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
+    QVector<char> o4Temp = cubeFaces[4].getCol(0);
+    QVector<char> b5Temp = cubeFaces[5].getCol(2);
     std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getCol(0);
 
     // Set o4 col 0 to g0Temp
     cubeFaces[4].setCol(0, g0Temp);
@@ -373,11 +373,11 @@ void Cube::r1Clockwise()
 
 void Cube::r1CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
+    QVector<char> g0Temp = cubeFaces[0].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getCol(0);
     std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
-    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
+    QVector<char> b5Temp = cubeFaces[5].getCol(2);
+    QVector<char> o4Temp = cubeFaces[4].getCol(0);
     std::reverse(o4Temp.begin(), o4Temp.end());
 
     // Set y2 col 0 to g0Temp
@@ -394,10 +394,10 @@ void Cube::r1CounterClockwise()
 
 void Cube::y2Clockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
+    QVector<char> g0Temp = cubeFaces[0].getRow(0);
+    QVector<char> r1Temp = cubeFaces[1].getRow(0);
+    QVector<char> b5Temp = cubeFaces[5].getRow(0);
+    QVector<char> w3Temp = cubeFaces[3].getRow(0);
 
     // Set r1 row 0 to g0Temp
     cubeFaces[1].setRow(0, g0Temp);
@@ -413,10 +413,10 @@ void Cube::y2Clockwise()
 
 void Cube::y2CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
+    QVector<char> g0Temp = cubeFaces[0].getRow(0);
+    QVector<char> w3Temp = cubeFaces[3].getRow(0);
+    QVector<char> b5Temp = cubeFaces[5].getRow(0);
+    QVector<char> r1Temp = cubeFaces[1].getRow(0);
 
     // Set w3 row 2 to g0Temp
     cubeFaces[3].setRow(0, g0Temp);
@@ -432,13 +432,13 @@ void Cube::y2CounterClockwise()
 
 void Cube::w3Clockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
+    QVector<char> g0Temp = cubeFaces[0].getCol(2);
     std::reverse(g0Temp.begin(), g0Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
+    QVector<char> y2Temp = cubeFaces[2].getCol(2);
     std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
+    QVector<char> b5Temp = cubeFaces[5].getCol(0);
     std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
+    QVector<char> o4Temp = cubeFaces[4].getCol(2);
     std::reverse(o4Temp.begin(), o4Temp.end());
 
     // Set y2 col 2 to g0Temp
@@ -455,11 +455,11 @@ void Cube::w3Clockwise()
 
 void Cube::w3CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
-    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
+    QVector<char> g0Temp = cubeFaces[0].getCol(2);
+    QVector<char> o4Temp = cubeFaces[4].getCol(2);
     std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
+    QVector<char> b5Temp = cubeFaces[5].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getCol(2);
     std::reverse(y2Temp.begin(), y2Temp.end());
 
     // Set o4 col 2 to g0Temp
@@ -476,10 +476,10 @@ void Cube::w3CounterClockwise()
 
 void Cube::o4Clockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
+    QVector<char> g0Temp = cubeFaces[0].getRow(2);
+    QVector<char> w3Temp = cubeFaces[3].getRow(2);
+    QVector<char> b5Temp = cubeFaces[5].getRow(2);
+    QVector<char> r1Temp = cubeFaces[1].getRow(2);
 
     // Set w3 row 2 to g0Temp
     cubeFaces[3].setRow(2, g0Temp);
@@ -495,10 +495,10 @@ void Cube::o4Clockwise()
 
 void Cube::o4CounterClockwise()
 {
-    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
+    QVector<char> g0Temp = cubeFaces[0].getRow(2);
+    QVector<char> r1Temp = cubeFaces[1].getRow(2);
+    QVector<char> b5Temp = cubeFaces[5].getRow(2);
+    QVector<char> w3Temp = cubeFaces[3].getRow(2);
 
     // Set r1 row 2 to g0Temp
     cubeFaces[1].setRow(2, g0Temp);
@@ -514,12 +514,12 @@ void Cube::o4CounterClockwise()
 
 void Cube::b5Clockwise()
 {
-    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
-    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
+    QVector<char> r1Temp = cubeFaces[1].getCol(0);
+    QVector<char> o4Temp = cubeFaces[4].getRow(2);
     std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
+    QVector<char> w3Temp = cubeFaces[3].getCol(2);
     std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
+    QVector<char> y2Temp = cubeFaces[2].getRow(0);
 
     // Set o4 row 2 to r1Temp
     cubeFaces[4].setRow(2, r1Temp);
@@ -535,12 +535,12 @@ void Cube::b5Clockwise()
 
 void Cube::b5CounterClockwise()
 {
-    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
+    QVector<char> r1Temp = cubeFaces[1].getCol(0);
+    QVector<char> y2Temp = cubeFaces[2].getRow(0);
     std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
+    QVector<char> w3Temp = cubeFaces[3].getCol(2);
     std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
+    QVector<char> o4Temp = cubeFaces[4].getRow(2);
 
     // Set y2 row 0 to r1Temp
     cubeFaces[2].setRow(0, r1Temp);
@@ -560,7 +560,7 @@ CubeFace Cube::getFace(int i)
     return cubeFaces[i];
 }
 
-std::vector<CubeFace> Cube::getCube()
+QVector<CubeFace> Cube::getCube()
 {
     return cubeFaces;
 }
@@ -597,9 +597,9 @@ bool Cube::isComplete()
 }
 
 // Converts Cube to List of QImages
-std::vector<QImage> Cube::toQImageList()
+QVector<QImage> Cube::toQImageList()
 {
-    std::vector<CubeFace> tempCubeFaces;
+    QVector<CubeFace> tempCubeFaces;
     switch (currentFace)
     {
     case 0:
@@ -669,7 +669,7 @@ std::vector<QImage> Cube::toQImageList()
         qDebug() << "Invalid cube face ID";
     }
 
-    std::vector<QImage> list;
+    QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
     return list;

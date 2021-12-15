@@ -52,7 +52,7 @@ public:
 
     // Getters
     CubeFace getFace(int);
-    std::vector<CubeFace> getCube();
+    QVector<CubeFace> getCube();
     int getCurrentFace();
 
     // Setters
@@ -65,15 +65,15 @@ public:
     bool isComplete();
 
     // Converts Cube to List of QImages
-    std::vector<QImage> toQImageList();
+    QVector<QImage> toQImageList();
 
 private:
-    std::vector<CubeFace> cubeFaces;
-    std::vector<CubeFace> firstCross;
-    std::vector<CubeFace> firstCorners;
-    std::vector<CubeFace> neighbors;
-    std::vector<CubeFace> oppositeCross;
-    std::vector<CubeFace> finalCorners;
+    QVector<CubeFace> cubeFaces;
+    QVector<CubeFace> firstCross;
+    QVector<CubeFace> firstCorners;
+    QVector<CubeFace> neighbors;
+    QVector<CubeFace> oppositeCross;
+    QVector<CubeFace> finalCorners;
     int currentFace;
 
 };
