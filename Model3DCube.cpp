@@ -47,9 +47,10 @@ void Model3DCube::convertCube1DtoCube3D(){
         CubeFace tempFace = cube1Dfaces.at(conversionMap[i]);
         //flip all faces vertically so that zero position and x-axis, y-axis orientations of 3D cube match 2D cube.
         tempFace.flipVertically();
+
         cube3Dfaces.push_back(tempFace);
     }
-    cube3D = Cube(cube3Dfaces);
+    cube3D = Cube(cube3Dfaces, true); // TODO: Consult Elizabeth
 }
 
 /*
@@ -93,6 +94,8 @@ void Model3DCube::updateVisibleFaces(){
         leftFace.rotateClockwise();
         rightFace.rotateClockwise();
         rightFace.rotateClockwise();
+        topFace.rotateClockwise();
+        topFace.rotateClockwise();
     }
 
     visibleFaces.push_back(leftFace);
