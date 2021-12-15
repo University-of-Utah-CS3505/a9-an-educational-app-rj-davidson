@@ -41,8 +41,11 @@ public:
 
 private:
     QVector<CubeFace> rotatedCubeFaces;
+    QVector<CubeFace> coreCubeFaces;
+
     int currentFaceID = 0;
 
-    static QVector<CubeFace> rotateToFace(QVector<CubeFace> original, int faceID);
+    static QVector<CubeFace> convertCoreToRotated(QVector<CubeFace> original, int targetFaceID);
+    static QVector<CubeFace> convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID);
 };
 #endif // CUBE_H

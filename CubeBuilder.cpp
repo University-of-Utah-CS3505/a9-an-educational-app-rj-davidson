@@ -57,7 +57,7 @@ Cube CubeBuilder::buildDebugCube() {
                                       QVector<char>{'y', 'b', 'w'}};
 
     QVector<QVector<char>> face5Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'w', 'o'},
+                                      QVector<char>{'w', 'b', 'o'},
                                       QVector<char>{'y', 'b', 'w'}};
 
     QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
