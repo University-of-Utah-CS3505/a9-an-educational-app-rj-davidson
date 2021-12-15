@@ -1,15 +1,38 @@
 #include "CubeBuilder.h"
 
 Cube CubeBuilder::generateRandomCube(){
-    Cube c;
-    for (int i = 0; i < 20; i++)
-    {
-        int randomFace = rand() % 5;
-        c.setCurrentFace(randomFace);
+//    Cube c;
+//    for (int i = 0; i < 20; i++)
+//    {
+//        int randomFace = rand() % 5;
+//        c.setCurrentFace(randomFace);
 
-        int randomMove = rand() % 7;
-        c.move(randomMove);
-    }
+//        int randomMove = rand() % 7;
+//        c.move(randomMove);
+//    }
+//    c.setCurrentFace(0);
+//    return c;
+    Cube c;
+    std::vector<std::vector<char>> face0Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'g', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    std::vector<std::vector<char>> face1Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'r', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    std::vector<std::vector<char>> face2Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'b', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    std::vector<std::vector<char>> face3Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'y', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    std::vector<std::vector<char>> face4Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'o', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    std::vector<std::vector<char>> face5Chars{std::vector<char>{'g', 'y', 'r'},
+                                             std::vector<char>{'w', 'w', 'o'},
+                                             std::vector<char>{'y', 'b', 'w'}};
+    QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
+    c.setCubeFaces(faces);
     c.setCurrentFace(0);
     return c;
 }
