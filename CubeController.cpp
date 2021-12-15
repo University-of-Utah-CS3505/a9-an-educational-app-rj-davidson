@@ -23,81 +23,115 @@ CubeController::CubeController(QWidget *parent) : QWidget(parent)
 
 void CubeController::switchFace(int faceNumber)
 {
-    switch(userCube.getCurrentFace())
+    switch(userCube.getCurrentFaceID())
     {
         case 1:
             if (faceNumber == 1)
-                userCube.setCurrentFace(5);
+                userCube.setCurrentFaceID(5);
             else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
+                userCube.setCurrentFaceID(2);
             else if (faceNumber == 3)
-                userCube.setCurrentFace(0);
+                userCube.setCurrentFaceID(0);
             else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
+                userCube.setCurrentFaceID(4);
             else if (faceNumber == 5)
-                userCube.setCurrentFace(3);
+                userCube.setCurrentFaceID(3);
             break;
         case 2:
             if (faceNumber == 1)
-                userCube.setCurrentFace(1);
+                userCube.setCurrentFaceID(1);
             else if (faceNumber == 2)
-                userCube.setCurrentFace(5);
+                userCube.setCurrentFaceID(5);
             else if (faceNumber == 3)
-                userCube.setCurrentFace(3);
+                userCube.setCurrentFaceID(3);
             else if (faceNumber == 4)
-                userCube.setCurrentFace(0);
+                userCube.setCurrentFaceID(0);
             else if (faceNumber == 5)
-                userCube.setCurrentFace(4);
+                userCube.setCurrentFaceID(4);
             break;
         case 3:
             if (faceNumber == 1)
-                userCube.setCurrentFace(0);
+                userCube.setCurrentFaceID(0);
             else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
+                userCube.setCurrentFaceID(2);
             else if (faceNumber == 3)
-                userCube.setCurrentFace(5);
+                userCube.setCurrentFaceID(5);
             else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
+                userCube.setCurrentFaceID(4);
             else if (faceNumber == 5)
-                userCube.setCurrentFace(1);
+                userCube.setCurrentFaceID(1);
             break;
         case 4:
             if (faceNumber == 1)
-                userCube.setCurrentFace(1);
+                userCube.setCurrentFaceID(1);
             else if (faceNumber == 2)
-                userCube.setCurrentFace(0);
+                userCube.setCurrentFaceID(0);
             else if (faceNumber == 3)
-                userCube.setCurrentFace(3);
+                userCube.setCurrentFaceID(3);
             else if (faceNumber == 4)
-                userCube.setCurrentFace(5);
+                userCube.setCurrentFaceID(5);
             else if (faceNumber == 5)
-                userCube.setCurrentFace(2);
+                userCube.setCurrentFaceID(2);
             break;
         case 5:
             if (faceNumber == 1)
-                userCube.setCurrentFace(3);
+                userCube.setCurrentFaceID(3);
             else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
+                userCube.setCurrentFaceID(2);
             else if (faceNumber == 3)
-                userCube.setCurrentFace(1);
+                userCube.setCurrentFaceID(1);
             else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
+                userCube.setCurrentFaceID(4);
             else if (faceNumber == 5)
-                userCube.setCurrentFace(0);
+                userCube.setCurrentFaceID(0);
             break;
         default:
-            userCube.setCurrentFace(faceNumber);
+            userCube.setCurrentFaceID(faceNumber);
     }
-    qDebug() << "Current Face: " << userCube.getCurrentFace();
+    qDebug() << "Current Face: " << userCube.getCurrentFaceID();
 
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
 }
 
 void CubeController::MoveCube(int moveClicked){
-    userCube.move(moveClicked);
+    switch (moveClicked)
+        {
+            case 0:
+                userCube.moveU(CLOCKWISE);
+                break;
+            case 1:
+                userCube.moveD(COUNTERCLOCKWISE);
+                break;
+            case 2:
+                userCube.moveL(CLOCKWISE);
+                break;
+            case 3:
+                userCube.moveR(COUNTERCLOCKWISE);
+                break;
+            case 4:
+                userCube.moveD(CLOCKWISE);
+                break;
+            case 5:
+                userCube.moveU(COUNTERCLOCKWISE);
+                break;
+            case 6:
+                userCube.moveR(CLOCKWISE);
+                break;
+            case 7:
+                userCube.moveL(COUNTERCLOCKWISE);
+                break;
+            case 8:
+                userCube.moveF(CLOCKWISE);
+                break;
+            case 9:
+                userCube.moveF(COUNTERCLOCKWISE);
+                break;
+            default:
+                qDebug() << "ERROR: Cube Move";
+        }
     emit updateCube(userCube.toQImageList());
-    emit cubeComplete(userCube.isComplete());
+    emit cubeComplete(userCube.isSolved());
 
     //for 3D cube view
     emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
@@ -149,6 +183,16 @@ void CubeController::buildRandomCube() {
     lastNontutorialCube = userCube;
 }
 
+void CubeController::buildDebugCube() {
+    setUserCube(CubeBuilder::generateDebugCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::buildSolvedCube() {
+    setUserCube(CubeBuilder::generateSolvedCube());
+    lastNontutorialCube = userCube;
+}
+
 
 void CubeController::setUserCube(Cube c) {
     userCube = c;
@@ -179,13 +223,13 @@ void CubeController::rotationCube(const string & dirRotate){
 /*
  * Sends 3D cube data to view to paint
  */
-void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
+void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData){
     emit update3DCubeViewSimple(visibleFaceData);
 }
 
 void CubeController::checkCompletion()
 {
-    bool c = userCube.isComplete();
+    bool c = userCube.isSolved();
     emit complete(&c);
 }
 

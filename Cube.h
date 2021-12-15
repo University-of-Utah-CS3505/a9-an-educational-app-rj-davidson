@@ -8,73 +8,45 @@
 #include <QImage>
 #include <algorithm>
 
+enum RotationDirection {
+    CLOCKWISE, COUNTERCLOCKWISE
+};
+
 class Cube
 {
 public:
     Cube();
-    Cube(QVector<CubeFace> &newCubeFaces);//used for Model3DView
+    Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace);
 
-    void move(int);
+    void setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace);
 
-    // Left Controls
-    void leftTop();
-    void leftBttm();
+    void flipBackFace();
 
-    // Bottom Controls
-    void bttmLeft();
-    void bttmRight();
+    void moveF(RotationDirection dir);
+    void moveU(RotationDirection dir);
+    void moveD(RotationDirection dir);
+    void moveL(RotationDirection dir);
+    void moveR(RotationDirection dir);
 
-    // Right Controls
-    void rightBttm();
-    void rightTop();
-
-    // Top Controls
-    void topRight();
-    void topLeft();
-
-    // Rotation Controls
-    void counterClockwiseMove();
-    void clockwiseMove();
-
-    // Moves
-    void g0Clockwise();
-    void g0CounterClockwise();
-    void r1Clockwise();
-    void r1CounterClockwise();
-    void y2Clockwise();
-    void y2CounterClockwise();
-    void w3Clockwise();
-    void w3CounterClockwise();
-    void o4Clockwise();
-    void o4CounterClockwise();
-    void b5Clockwise();
-    void b5CounterClockwise();
-
-    // Getters
+    Cube getBaseCube();
+    QVector<CubeFace> getAllFaces();
     CubeFace getFace(int);
-    std::vector<CubeFace> getCube();
-    int getCurrentFace();
-
-    // Setters
-    void setCurrentFace(int);
-
-    // used to transform data in Model3DCube
-    void setCubeFaces(QVector<CubeFace> newCubeFaces);
+    int getCurrentFaceID();
+    void setCurrentFaceID(int);
 
     // Solved Check
-    bool isComplete();
+    bool isSolved();
 
     // Converts Cube to List of QImages
-    std::vector<QImage> toQImageList();
+    QVector<QImage> toQImageList();
 
 private:
-    std::vector<CubeFace> cubeFaces;
-    std::vector<CubeFace> firstCross;
-    std::vector<CubeFace> firstCorners;
-    std::vector<CubeFace> neighbors;
-    std::vector<CubeFace> oppositeCross;
-    std::vector<CubeFace> finalCorners;
-    int currentFace;
+    QVector<CubeFace> rotatedCubeFaces;
+    QVector<CubeFace> coreCubeFaces;
 
+    int currentFaceID = 0;
+
+    static QVector<CubeFace> convertCoreToRotated(QVector<CubeFace> original, int targetFaceID);
+    static QVector<CubeFace> convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID);
 };
 #endif // CUBE_H

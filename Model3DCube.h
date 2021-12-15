@@ -52,19 +52,20 @@ signals:
     //the cube controller will tell what to display at the same time as the mainwindow cube
     //model notifies whats the controller does with the data for the 3dcube specefic data
     void notify3DCubeView(QVector<CubeFace> &visibleFaces);
-    void notify3DCubeViewSimple(std::vector<char> &visibleFaces);
+    void notify3DCubeViewSimple(QVector<char> &visibleFaces);
 
 
 private:
 
     //controller tells model when to update the qImage qvector data for the 1d cube
-    std::vector<QImage> vctrFaces1DCube;
+    QVector<QImage> vctrFaces1DCube;
 
+    int previouslyFocusedFaceID = 0;
 
     //temp data model with one color per face to make sure buttons are rotating cube correctly
-    std::vector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
+    QVector<char> cube3DFaceData = {'y', 'r', 'w', 'o', 'g', 'b'};
 
-    std::vector<char> visibleFacesSimple;
+    QVector<char> visibleFacesSimple;
     QVector<CubeFace> visibleFaces;
 
     Cube cubeCopyOf1D;
@@ -80,7 +81,7 @@ private:
     void updateVisibleFaces();
     int getRightVisibleFacePosition();
 
-    void rotateToCurrentFace();
+    void setRotationToCurrentFace();
 
     // the model will need to save the 3dcube orientation
 

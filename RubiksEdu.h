@@ -42,7 +42,7 @@ private slots:
 
     void on_rightBttmButton_clicked();
     void on_rightTopButton_clicked();
-    void displayCube(std::vector<QImage>);
+    void displayCube(QVector<QImage>);
 
     void on_clockwiseButton_clicked();
 
@@ -55,7 +55,7 @@ private slots:
     void on_pushRightBtn_clicked();
     void on_pushUpBtn_clicked();
 
-    void cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces);
+    void cube3DpaintVisibleFacesSimple(QVector<char> &visibleFaces);
     void cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces);
 
 

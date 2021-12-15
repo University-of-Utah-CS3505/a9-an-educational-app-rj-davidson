@@ -2,20 +2,20 @@
 
 CubeFace::CubeFace()
 {
-    std::vector<char> row(3, 'g');
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, 'g');
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
 
 }
 
-CubeFace::CubeFace(std::vector<std::vector<char>> face) {
+CubeFace::CubeFace(QVector<QVector<char>> face) {
     this->face = face;
 }
 
 CubeFace::CubeFace(char faceColor)
 {
-    std::vector<char> row(3, faceColor);
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, faceColor);
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
 }
 
@@ -26,8 +26,8 @@ CubeFace::CubeFace(const CubeFace &other)
 
 CubeFace::CubeFace(string faceString, char faceColor)
 {
-    std::vector<char> row(3, faceColor);
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, faceColor);
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
     //start cross
     if(faceString == "firstCrossMainFace") {
@@ -35,7 +35,7 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][0] = 'r';
         face[0][1] = 'r';
         face[1][2] = 'r';
-        face[2][2] = 'x';
+        face[2][1] = 'g';
     }
     if(faceString == "firstCrossRightFace") {
         face[0][1] = 'w';
@@ -204,30 +204,30 @@ CubeFace::CubeFace(string faceString, char faceColor)
     }
 }
 
-std::vector<std::vector<char>> CubeFace::getFace()
+QVector<QVector<char>> CubeFace::getFace()
 {
     return face;
 }
 
-std::vector<char> CubeFace::getRow(int y)
+QVector<char> CubeFace::getRow(int y)
 {
     return face[y];
 }
 
-std::vector<char> CubeFace::getCol(int x)
+QVector<char> CubeFace::getCol(int x)
 {
-    std::vector<char> col;
+    QVector<char> col;
     for (int i = 0; i < (int) face.size(); i++)
         col.push_back(face[i][x]);
     return col;
 }
 
-void CubeFace::setRow(int y, std::vector<char> row)
+void CubeFace::setRow(int y, QVector<char> row)
 {
     face[y] = row;
 }
 
-void CubeFace::setCol(int x, std::vector<char> col)
+void CubeFace::setCol(int x, QVector<char> col)
 {
     for (int i = 0; i < (int) face.size(); i++)
         face[i][x] = col[i];
@@ -235,9 +235,9 @@ void CubeFace::setCol(int x, std::vector<char> col)
 
 void CubeFace::rotateClockwise()
 {
-    const std::vector<char> r0 = getRow(0);
-    const std::vector<char> r1 = getRow(1);
-    const std::vector<char> r2 = getRow(2);
+    const QVector<char> r0 = getRow(0);
+    const QVector<char> r1 = getRow(1);
+    const QVector<char> r2 = getRow(2);
 
     for (int i = 0; i < (int) face.size(); i++)
     {
@@ -249,9 +249,9 @@ void CubeFace::rotateClockwise()
 
 void CubeFace::rotateCounterClockwise()
 {
-    const std::vector<char> c0 = getCol(0);
-    const std::vector<char> c1 = getCol(1);
-    const std::vector<char> c2 = getCol(2);
+    const QVector<char> c0 = getCol(0);
+    const QVector<char> c1 = getCol(1);
+    const QVector<char> c2 = getCol(2);
 
     for (int i = 0; i < (int) face.size(); i++)
     {
@@ -266,8 +266,8 @@ void CubeFace::rotateCounterClockwise()
  */
 void CubeFace::flipVertically()
 {
-    std::vector<char> r0 = getRow(0);
-    std::vector<char> r2 = getRow(2);
+    QVector<char> r0 = getRow(0);
+    QVector<char> r2 = getRow(2);
 
     setRow(0, r2);
     setRow(2, r0);
@@ -278,8 +278,8 @@ void CubeFace::flipVertically()
  */
 void CubeFace::flipHorizontally()
 {
-    std::vector<char> c0 = getCol(0);
-    std::vector<char> c2 = getCol(2);
+    QVector<char> c0 = getCol(0);
+    QVector<char> c2 = getCol(2);
 
     setCol(0, c2);
     setCol(2, c0);
@@ -288,7 +288,7 @@ void CubeFace::flipHorizontally()
 bool CubeFace::complete()
 {
     char standard = face[0][0];
-    for (std::vector<char> row : face)
+    for (QVector<char> row : face)
     {
         for (char c : row)
         {
