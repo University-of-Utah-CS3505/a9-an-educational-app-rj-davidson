@@ -197,6 +197,7 @@ void Cube::moveR(RotationDirection dir) {
 // ----------- Solve Function --------
 bool Cube::isSolved()
 {
+    // NOTE $$$$$$$$$$$$$$$$ CubeController Currently emits 'complete()' to launch celebration
     for(CubeFace f : rotatedCubeFaces)
         if (!f.complete())
             return false;

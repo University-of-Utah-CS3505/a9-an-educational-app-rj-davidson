@@ -48,7 +48,7 @@ private slots:
 
     void on_counterClockwiseButton_clicked();
 
-    void showCelebration(bool *);
+    void showCelebration();
 
     //cube3Dview stuff
     void on_pushLeftBtn_clicked();

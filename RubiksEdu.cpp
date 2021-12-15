@@ -523,8 +523,8 @@ void RubiksEdu::on_checkButton_clicked()
     emit checkButton();
 }
 
-void RubiksEdu::showCelebration(bool *complete) {
-    CubeCelebration c(nullptr, complete);
+void RubiksEdu::showCelebration() {
+    CubeCelebration c;
     c.exec();
 }
 

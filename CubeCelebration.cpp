@@ -23,7 +23,7 @@ CubeCelebration::CubeCelebration(QWidget *parent) :
     pmWhite = pmWhite.scaled(30, 30, Qt::KeepAspectRatio);
     pmOrange = pmOrange.scaled(30, 30, Qt::KeepAspectRatio);
     pmBlue = pmBlue.scaled(30, 30, Qt::KeepAspectRatio);
-    pmW = pmW.scaled(30, 30, Qt::KeepAspectRatio);
+    pmW = pmW.scaled(140, 30, Qt::KeepAspectRatio);
 
     // Ground body
     b2BodyDef groundBody;
@@ -49,6 +49,14 @@ CubeCelebration::CubeCelebration(QWidget *parent) :
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
+
+    // Properties for take the w sign
+    b2PolygonShape dynamicRect;
+    dynamicRect.SetAsBox(70, 15);
+    b2FixtureDef fixtureDefRect;
+    fixtureDefRect.shape = &dynamicRect;
+    fixtureDefRect.density = 2.0f;
+    fixtureDefRect.friction = 0.3f;
 
         // Blue body
         b2BodyDef blueBody;
@@ -109,7 +117,7 @@ CubeCelebration::CubeCelebration(QWidget *parent) :
         wBody.type = b2_dynamicBody;
         wBody.position.Set(rand() % 200, rand() % 200);
         wCube = world.CreateBody(&wBody);
-        wCube->CreateFixture(&fixtureDef);
+        wCube->CreateFixture(&fixtureDefRect);
         wCube->ApplyLinearImpulse(b2Vec2(10000, -50000), wCube->GetPosition(), true);
         wCube->SetAngularVelocity(500);
 

@@ -230,6 +230,6 @@ void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData){
 void CubeController::checkCompletion()
 {
     bool c = userCube.isSolved();
-    emit complete(&c);
+    emit complete();
 }
 
