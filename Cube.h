@@ -8,6 +8,10 @@
 #include <QImage>
 #include <algorithm>
 
+enum RotationDirection {
+    CLOCKWISE, COUNTERCLOCKWISE
+};
+
 class Cube
 {
 public:
@@ -16,39 +20,11 @@ public:
 
     void move(int);
 
-    // Left Controls
-    void leftTop();
-    void leftBttm();
-
-    // Bottom Controls
-    void bttmLeft();
-    void bttmRight();
-
-    // Right Controls
-    void rightBttm();
-    void rightTop();
-
-    // Top Controls
-    void topRight();
-    void topLeft();
-
-    // Rotation Controls
-    void counterClockwiseMove();
-    void clockwiseMove();
-
-    // Moves
-    void g0Clockwise();
-    void g0CounterClockwise();
-    void r1Clockwise();
-    void r1CounterClockwise();
-    void y2Clockwise();
-    void y2CounterClockwise();
-    void w3Clockwise();
-    void w3CounterClockwise();
-    void o4Clockwise();
-    void o4CounterClockwise();
-    void b5Clockwise();
-    void b5CounterClockwise();
+    void moveF(RotationDirection dir);
+    void moveU(RotationDirection dir);
+    void moveD(RotationDirection dir);
+    void moveL(RotationDirection dir);
+    void moveR(RotationDirection dir);
 
     // Getters
     CubeFace getFace(int);

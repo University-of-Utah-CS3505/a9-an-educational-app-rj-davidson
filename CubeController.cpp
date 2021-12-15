@@ -95,7 +95,41 @@ void CubeController::switchFace(int faceNumber)
 }
 
 void CubeController::MoveCube(int moveClicked){
-    userCube.move(moveClicked);
+    switch (moveClicked)
+        {
+            case 0:
+                userCube.moveU(CLOCKWISE);
+                break;
+            case 1:
+                userCube.moveD(COUNTERCLOCKWISE);
+                break;
+            case 2:
+                userCube.moveL(CLOCKWISE);
+                break;
+            case 3:
+                userCube.moveR(COUNTERCLOCKWISE);
+                break;
+            case 4:
+                userCube.moveD(CLOCKWISE);
+                break;
+            case 5:
+                userCube.moveD(COUNTERCLOCKWISE);
+                break;
+            case 6:
+                userCube.moveU(CLOCKWISE);
+                break;
+            case 7:
+                userCube.moveL(COUNTERCLOCKWISE);
+                break;
+            case 8:
+                userCube.moveF(CLOCKWISE);
+                break;
+            case 9:
+                userCube.moveF(COUNTERCLOCKWISE);
+                break;
+            default:
+                qDebug() << "ERROR: Cube Move";
+        }
     emit updateCube(userCube.toQImageList());
     emit cubeComplete(userCube.isComplete());
 
