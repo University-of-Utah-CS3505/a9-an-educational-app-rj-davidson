@@ -13,13 +13,13 @@ class CubeFace
 {
 public:
     CubeFace();
-    CubeFace(QVector<QVector<char>>);
+    CubeFace(QVector<QVector<char> >);
     CubeFace(char);
     CubeFace(const CubeFace &); // Do we need this?
     CubeFace(string, char);
 
     // Getters
-    QVector<QVector<char>> getFace();
+    QVector<QVector<char> > getFace();
     QVector<char> getRow(int);
     QVector<char> getCol(int);
 
@@ -43,7 +43,7 @@ public:
     void printDebug();
 
 private:
-    QVector<QVector<char>> face;
+    QVector<QVector<char> > face;
 };
 
 #endif // CUBEFACE_H
