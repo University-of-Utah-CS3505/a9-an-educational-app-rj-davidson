@@ -8,8 +8,10 @@
 #include <QImage>
 #include <algorithm>
 
-enum RotationDirection {
-    CLOCKWISE, COUNTERCLOCKWISE
+enum RotationDirection
+{
+    CLOCKWISE,
+    COUNTERCLOCKWISE
 };
 
 class Cube

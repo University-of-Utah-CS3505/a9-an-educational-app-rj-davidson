@@ -2,5 +2,4 @@
 
 CubeWidget::CubeWidget(QWidget *parent) : QWidget(parent)
 {
-
 }

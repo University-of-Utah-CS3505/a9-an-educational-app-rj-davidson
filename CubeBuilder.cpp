@@ -1,6 +1,7 @@
 #include "CubeBuilder.h"
 
-Cube CubeBuilder::generateRandomCube(){
+Cube CubeBuilder::generateRandomCube()
+{
     Cube c;
     for (int i = 0; i < 20; i++)
     {
@@ -8,11 +9,13 @@ Cube CubeBuilder::generateRandomCube(){
         c.setCurrentFaceID(randomFace);
 
         RotationDirection dir = CLOCKWISE;
-        if(rand() % 2 == 1) {
+        if (rand() % 2 == 1)
+        {
             dir = COUNTERCLOCKWISE;
         }
 
-        switch(rand() % 5) {
+        switch (rand() % 5)
+        {
         case 0:
             c.moveF(dir);
             break;
@@ -34,31 +37,32 @@ Cube CubeBuilder::generateRandomCube(){
     return c;
 }
 
-Cube CubeBuilder::generateDebugCube() {
+Cube CubeBuilder::generateDebugCube()
+{
     Cube c;
-    QVector<QVector<char>> face0Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'g', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face0Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'g', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
-    QVector<QVector<char>> face1Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'r', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face1Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'r', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
-    QVector<QVector<char>> face2Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'y', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face2Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'y', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
-    QVector<QVector<char>> face3Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'o', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face3Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'o', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
-    QVector<QVector<char>> face4Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'w', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face4Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'w', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
-    QVector<QVector<char>> face5Chars{QVector<char>{'g', 'y', 'r'},
-                                      QVector<char>{'w', 'b', 'o'},
-                                      QVector<char>{'y', 'b', 'w'}};
+    QVector<QVector<char> > face5Chars{QVector<char>{'g', 'y', 'r'},
+                                       QVector<char>{'w', 'b', 'o'},
+                                       QVector<char>{'y', 'b', 'w'}};
 
     QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
     c.setCubeFaces(faces, true);
@@ -66,42 +70,45 @@ Cube CubeBuilder::generateDebugCube() {
     return c;
 }
 
-Cube CubeBuilder::generateSolvedCube() {
+Cube CubeBuilder::generateSolvedCube()
+{
     return Cube();
 }
 
-Cube CubeBuilder::generateTutorialStep1Cube(){
+Cube CubeBuilder::generateTutorialStep1Cube()
+{
     Cube c;
     c.setCurrentFaceID(0);
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep2Cube(){
+Cube CubeBuilder::generateTutorialStep2Cube()
+{
     Cube c;
     QVector<CubeFace> faces;
-    QVector<QVector<char>> frontChars{QVector<char>{'x', 'r', 'x'},
-                                      QVector<char>{'x', 'g', 'x'},
+    QVector<QVector<char> > frontChars{QVector<char>{'x', 'r', 'x'},
+                                       QVector<char>{'x', 'g', 'x'},
+                                       QVector<char>{'x', 'x', 'x'}};
+
+    QVector<QVector<char> > leftChars{QVector<char>{'x', 'w', 'x'},
+                                      QVector<char>{'x', 'w', 'x'},
                                       QVector<char>{'x', 'x', 'x'}};
 
-    QVector<QVector<char>> leftChars{QVector<char>{'x', 'w', 'x'},
-                                     QVector<char>{'x', 'w', 'x'},
-                                     QVector<char>{'x', 'x', 'x'}};
+    QVector<QVector<char> > upChars{QVector<char>{'x', 'r', 'x'},
+                                    QVector<char>{'r', 'r', 'r'},
+                                    QVector<char>{'x', 'g', 'x'}};
 
-    QVector<QVector<char>> upChars{QVector<char>{'x', 'r', 'x'},
-                                   QVector<char>{'r', 'r', 'r'},
-                                   QVector<char>{'x', 'g', 'x'}};
+    QVector<QVector<char> > rightChars{QVector<char>{'x', 'y', 'x'},
+                                       QVector<char>{'x', 'y', 'x'},
+                                       QVector<char>{'x', 'x', 'x'}};
 
-    QVector<QVector<char>> rightChars{QVector<char>{'x', 'y', 'x'},
-                                      QVector<char>{'x', 'y', 'x'},
+    QVector<QVector<char> > downChars{QVector<char>{'x', 'x', 'x'},
+                                      QVector<char>{'x', 'x', 'x'},
                                       QVector<char>{'x', 'x', 'x'}};
 
-    QVector<QVector<char>> downChars{QVector<char>{'x', 'x', 'x'},
-                                     QVector<char>{'x', 'x', 'x'},
-                                     QVector<char>{'x', 'x', 'x'}};
-
-    QVector<QVector<char>> backChars{QVector<char>{'x', 'b', 'x'},
-                                     QVector<char>{'x', 'b', 'x'},
-                                     QVector<char>{'x', 'x', 'x'}};
+    QVector<QVector<char> > backChars{QVector<char>{'x', 'b', 'x'},
+                                      QVector<char>{'x', 'b', 'x'},
+                                      QVector<char>{'x', 'x', 'x'}};
 
     faces = {frontChars, leftChars, upChars, rightChars, downChars, backChars};
     c.setCubeFaces(faces, true);
@@ -109,7 +116,8 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep3Cube(){
+Cube CubeBuilder::generateTutorialStep3Cube()
+{
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("firstCornersMainFace", 'x'));
@@ -123,7 +131,8 @@ Cube CubeBuilder::generateTutorialStep3Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep4Cube(){
+Cube CubeBuilder::generateTutorialStep4Cube()
+{
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("neighborRightMainFace", 'x'));
@@ -137,7 +146,8 @@ Cube CubeBuilder::generateTutorialStep4Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep5Cube(){
+Cube CubeBuilder::generateTutorialStep5Cube()
+{
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("neighborLeftMainFace", 'x'));
@@ -151,7 +161,8 @@ Cube CubeBuilder::generateTutorialStep5Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep6Cube(){
+Cube CubeBuilder::generateTutorialStep6Cube()
+{
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("finalCrossMainFace", 'x'));
@@ -165,7 +176,8 @@ Cube CubeBuilder::generateTutorialStep6Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep7Cube(){
+Cube CubeBuilder::generateTutorialStep7Cube()
+{
     // TODO: Implement correctly
     Cube c;
     QVector<CubeFace> faces;
@@ -180,7 +192,8 @@ Cube CubeBuilder::generateTutorialStep7Cube(){
     return c;
 }
 
-Cube CubeBuilder::generateTutorialStep8Cube(){
+Cube CubeBuilder::generateTutorialStep8Cube()
+{
     // TODO: Implement correctly
     Cube c;
     QVector<CubeFace> faces;

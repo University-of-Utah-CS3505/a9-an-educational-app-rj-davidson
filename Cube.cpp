@@ -1,6 +1,7 @@
 #include "Cube.h"
 
-Cube::Cube(){
+Cube::Cube()
+{
     coreCubeFaces.push_back(CubeFace('g'));
     coreCubeFaces.push_back(CubeFace('r'));
     coreCubeFaces.push_back(CubeFace('y'));
@@ -10,10 +11,12 @@ Cube::Cube(){
     setCurrentFaceID(0);
 }
 
-Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace){
+Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace)
+{
     coreCubeFaces = cubeFaces;
 
-    if(flipBackFace) {
+    if (flipBackFace)
+    {
         this->flipBackFace();
     }
 
@@ -21,7 +24,8 @@ Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace){
 }
 
 // ---------- Cube Faces ----------
-void Cube::flipBackFace() {
+void Cube::flipBackFace()
+{
     coreCubeFaces[5].flipHorizontally();
     rotatedCubeFaces = convertCoreToRotated(coreCubeFaces, currentFaceID);
 }
@@ -35,7 +39,8 @@ void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace)
 {
     coreCubeFaces = newCubeFaces;
 
-    if(flipBackFace) {
+    if (flipBackFace)
+    {
         this->flipBackFace();
     }
 
@@ -44,7 +49,8 @@ void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace)
 
 CubeFace Cube::getFace(int i)
 {
-    if(i == 5) {
+    if (i == 5)
+    {
         CubeFace back = rotatedCubeFaces[i];
         back.flipHorizontally();
         return back;
@@ -64,7 +70,8 @@ void Cube::setCurrentFaceID(int num)
 }
 
 // ------------ Moves ---------
-void Cube::moveF(RotationDirection dir) {
+void Cube::moveF(RotationDirection dir)
+{
     QVector<char> lCol = rotatedCubeFaces[1].getCol(2);
     std::reverse(lCol.begin(), lCol.end());
     QVector<char> uRow = rotatedCubeFaces[2].getRow(2);
@@ -72,13 +79,16 @@ void Cube::moveF(RotationDirection dir) {
     std::reverse(rCol.begin(), rCol.end());
     QVector<char> dRow = rotatedCubeFaces[4].getRow(0);
 
-    if(dir == CLOCKWISE) {
+    if (dir == CLOCKWISE)
+    {
         rotatedCubeFaces[0].rotateClockwise();
         rotatedCubeFaces[1].setCol(2, dRow);
         rotatedCubeFaces[2].setRow(2, lCol);
         rotatedCubeFaces[3].setCol(0, uRow);
         rotatedCubeFaces[4].setRow(0, rCol);
-    } else {
+    }
+    else
+    {
         rotatedCubeFaces[0].rotateCounterClockwise();
         rotatedCubeFaces[1].setCol(2, uRow);
         rotatedCubeFaces[2].setRow(2, rCol);
@@ -89,19 +99,23 @@ void Cube::moveF(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-void Cube::moveU(RotationDirection dir) {
+void Cube::moveU(RotationDirection dir)
+{
     rotatedCubeFaces[5].flipHorizontally();
     QVector<char> lRow = rotatedCubeFaces[1].getRow(0);
     QVector<char> fRow = rotatedCubeFaces[0].getRow(0);
     QVector<char> rRow = rotatedCubeFaces[3].getRow(0);
     QVector<char> bRow = rotatedCubeFaces[5].getRow(0);
-    if(dir == CLOCKWISE) {
+    if (dir == CLOCKWISE)
+    {
         rotatedCubeFaces[2].rotateClockwise();
         rotatedCubeFaces[1].setRow(0, fRow);
         rotatedCubeFaces[0].setRow(0, rRow);
         rotatedCubeFaces[3].setRow(0, bRow);
         rotatedCubeFaces[5].setRow(0, lRow);
-    } else {
+    }
+    else
+    {
         rotatedCubeFaces[2].rotateCounterClockwise();
         rotatedCubeFaces[1].setRow(0, bRow);
         rotatedCubeFaces[0].setRow(0, lRow);
@@ -113,19 +127,23 @@ void Cube::moveU(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-void Cube::moveD(RotationDirection dir) {
+void Cube::moveD(RotationDirection dir)
+{
     rotatedCubeFaces[5].flipHorizontally();
     QVector<char> lRow = rotatedCubeFaces[1].getRow(2);
     QVector<char> fRow = rotatedCubeFaces[0].getRow(2);
     QVector<char> rRow = rotatedCubeFaces[3].getRow(2);
     QVector<char> bRow = rotatedCubeFaces[5].getRow(2);
-    if(dir == CLOCKWISE) {
+    if (dir == CLOCKWISE)
+    {
         rotatedCubeFaces[4].rotateClockwise();
         rotatedCubeFaces[1].setRow(2, bRow);
         rotatedCubeFaces[0].setRow(2, lRow);
         rotatedCubeFaces[3].setRow(2, fRow);
         rotatedCubeFaces[5].setRow(2, rRow);
-    } else {
+    }
+    else
+    {
         rotatedCubeFaces[4].rotateCounterClockwise();
         rotatedCubeFaces[1].setRow(2, fRow);
         rotatedCubeFaces[0].setRow(2, rRow);
@@ -137,20 +155,24 @@ void Cube::moveD(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-void Cube::moveL(RotationDirection dir) {
+void Cube::moveL(RotationDirection dir)
+{
     QVector<char> fCol = rotatedCubeFaces[0].getCol(0);
     QVector<char> dCol = rotatedCubeFaces[4].getCol(0);
     QVector<char> bCol = rotatedCubeFaces[5].getCol(0);
     std::reverse(bCol.begin(), bCol.end());
     QVector<char> uCol = rotatedCubeFaces[2].getCol(0);
 
-    if(dir == CLOCKWISE) {
+    if (dir == CLOCKWISE)
+    {
         rotatedCubeFaces[1].rotateClockwise();
         rotatedCubeFaces[0].setCol(0, uCol);
         rotatedCubeFaces[4].setCol(0, fCol);
         rotatedCubeFaces[5].setCol(0, dCol);
         rotatedCubeFaces[2].setCol(0, bCol);
-    } else {
+    }
+    else
+    {
         rotatedCubeFaces[1].rotateCounterClockwise();
         rotatedCubeFaces[0].setCol(0, dCol);
         rotatedCubeFaces[4].setCol(0, bCol);
@@ -165,20 +187,24 @@ void Cube::moveL(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-void Cube::moveR(RotationDirection dir) {
+void Cube::moveR(RotationDirection dir)
+{
     QVector<char> fCol = rotatedCubeFaces[0].getCol(2);
     QVector<char> dCol = rotatedCubeFaces[4].getCol(2);
     QVector<char> bCol = rotatedCubeFaces[5].getCol(2);
     std::reverse(bCol.begin(), bCol.end());
     QVector<char> uCol = rotatedCubeFaces[2].getCol(2);
 
-    if(dir == CLOCKWISE) {
+    if (dir == CLOCKWISE)
+    {
         rotatedCubeFaces[3].rotateClockwise();
         rotatedCubeFaces[0].setCol(2, dCol);
         rotatedCubeFaces[4].setCol(2, bCol);
         rotatedCubeFaces[5].setCol(2, uCol);
         rotatedCubeFaces[2].setCol(2, fCol);
-    } else {
+    }
+    else
+    {
         rotatedCubeFaces[3].rotateCounterClockwise();
         rotatedCubeFaces[0].setCol(2, uCol);
         rotatedCubeFaces[4].setCol(2, fCol);
@@ -193,19 +219,19 @@ void Cube::moveR(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-
 // ----------- Solve Function --------
 bool Cube::isSolved()
 {
     // NOTE $$$$$$$$$$$$$$$$ CubeController Currently emits 'complete()' to launch celebration
-    for(CubeFace f : rotatedCubeFaces)
+    for (CubeFace f : rotatedCubeFaces)
         if (!f.complete())
             return false;
     return true;
 }
 
 // -------- Converters -----------
-Cube Cube::getBaseCube() {
+Cube Cube::getBaseCube()
+{
     Cube c;
     c.setCubeFaces(coreCubeFaces, false);
     return c;
@@ -224,7 +250,8 @@ QVector<QImage> Cube::toQImageList()
     return list;
 }
 
-QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int targetFaceID) {
+QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int targetFaceID)
+{
     QVector<CubeFace> rotated;
     original[5].flipHorizontally();
     switch (targetFaceID)
@@ -301,7 +328,8 @@ QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int tar
     return rotated;
 }
 
-QVector<CubeFace> Cube::convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID) {
+QVector<CubeFace> Cube::convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID)
+{
     QVector<CubeFace> core;
     rotated[5].flipHorizontally();
     qDebug() << currentFaceID;
