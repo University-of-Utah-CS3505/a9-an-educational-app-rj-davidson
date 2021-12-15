@@ -199,10 +199,11 @@ void Cube::moveR(RotationDirection dir) {
 // ----------- Solve Function --------
 bool Cube::isSolved()
 {
-    for(CubeFace f : rotatedCubeFaces)
-        if (!f.complete())
-            return false;
-    return true;
+    return cubeSolverFunc(*this);
+}
+
+void Cube::setSolverFunction(std::function<bool(Cube)> func) {
+    cubeSolverFunc = func;
 }
 
 // -------- Converters -----------

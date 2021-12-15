@@ -38,6 +38,7 @@ public:
 
     // Solved Check
     bool isSolved();
+    void setSolverFunction(std::function<bool(Cube)>);
 
     // Converts Cube to List of QImages
     QVector<QImage> toQImageList();
@@ -47,6 +48,14 @@ private:
     QVector<CubeFace> coreCubeFaces;
 
     int currentFaceID = 0;
+    std::function<bool(Cube)> cubeSolverFunc = [](Cube c) -> bool {
+        for(CubeFace face : c.rotatedCubeFaces) {
+            if(!face.complete()) {
+                return false;
+            }
+        }
+        return true;
+    };
 
     static QVector<CubeFace> convertCoreToRotated(QVector<CubeFace> original, int targetFaceID);
     static QVector<CubeFace> convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID);
