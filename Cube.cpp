@@ -433,13 +433,13 @@ void Cube::y2CounterClockwise()
 void Cube::w3Clockwise()
 {
     std::vector<char> g0Temp = cubeFaces[0].getCol(2);
-    std::reverse(g0Temp.begin(), g0Temp.end());
+    //std::reverse(g0Temp.begin(), g0Temp.end());
     std::vector<char> y2Temp = cubeFaces[2].getCol(2);
     std::reverse(y2Temp.begin(), y2Temp.end());
     std::vector<char> b5Temp = cubeFaces[5].getCol(0);
     std::reverse(b5Temp.begin(), b5Temp.end());
     std::vector<char> o4Temp = cubeFaces[4].getCol(2);
-    std::reverse(o4Temp.begin(), o4Temp.end());
+    //std::reverse(o4Temp.begin(), o4Temp.end());
 
     // Set y2 col 2 to g0Temp
     cubeFaces[2].setCol(2, g0Temp);
@@ -456,11 +456,13 @@ void Cube::w3Clockwise()
 void Cube::w3CounterClockwise()
 {
     std::vector<char> g0Temp = cubeFaces[0].getCol(2);
+    //std::reverse(g0Temp.begin(), g0Temp.end());
     std::vector<char> o4Temp = cubeFaces[4].getCol(2);
     std::reverse(o4Temp.begin(), o4Temp.end());
     std::vector<char> b5Temp = cubeFaces[5].getCol(0);
+    std::reverse(b5Temp.begin(), b5Temp.end());
     std::vector<char> y2Temp = cubeFaces[2].getCol(2);
-    std::reverse(y2Temp.begin(), y2Temp.end());
+    //std::reverse(y2Temp.begin(), y2Temp.end());
 
     // Set o4 col 2 to g0Temp
     cubeFaces[4].setCol(2, g0Temp);
@@ -666,7 +668,12 @@ std::vector<QImage> Cube::toQImageList()
         tempCubeFaces[4].rotateClockwise();
         break;
     default:
-        qDebug() << "Invalid cube face ID";
+//<<<<<<< Updated upstream
+//        qDebug() << "Invalid cube face ID";
+//=======
+        tempCubeFaces = cubeFaces;
+        //tempCubeFaces[4].flipVertically();
+//>>>>>>> Stashed changes
     }
 
     std::vector<QImage> list;

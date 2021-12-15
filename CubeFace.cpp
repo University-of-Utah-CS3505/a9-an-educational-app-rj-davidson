@@ -35,7 +35,7 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][0] = 'r';
         face[0][1] = 'r';
         face[1][2] = 'r';
-        face[2][1] = 'g';
+        face[2][2] = 'x';
     }
     if(faceString == "firstCrossRightFace") {
         face[0][1] = 'w';
@@ -62,12 +62,9 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][1] = 'g';
         face[2][2] = 'g';
     }
-//    if(faceString == "firstCornersAboveFace")
-//        face[1][1] = 'r';
-//    if(faceString == "firstCornersLeftFace")
-//        face[2][1] = 'r';
-//    if(faceString == "firstCornersOppositeFace")
-//        face[2][1] = 'r';
+    if(faceString == "firstCornersAboveFace")
+        face[0][2] = 'w';
+
 
     //neighbor right
     if(faceString == "neighborRightMainFace"){
@@ -132,15 +129,14 @@ CubeFace::CubeFace(string faceString, char faceColor)
     }
 
     //final cross
-    if(faceString == "finalCrossMainFace")
+    if(faceString == "finalCrossMainFace") {
         face[1][1] = 'r';
+        face[1][0] = 'r';
+        face[0][1] = 'r';
+    }
     if(faceString == "finalCrossRightFace")
         face[0][1] = 'r';
     if(faceString == "finalCrossBelowFace")
-        face[0][1] = 'r';
-    if(faceString == "finalCrossAboveFace")
-        face[0][1] = 'r';
-    if(faceString == "finalCrossLeftFace")
         face[0][1] = 'r';
 
     //final edges
