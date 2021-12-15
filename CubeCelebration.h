@@ -48,7 +48,7 @@ private:
     b2Body* lCube;
     b2Body* coalCube;
     QTimer worldTimer;
-    std::vector<b2Body*> cubes;
+    QVector<b2Body*> cubes;
     bool completed;
 };
 

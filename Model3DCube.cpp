@@ -13,7 +13,7 @@ Model3DCube::Model3DCube()
  * Added by: Maiko Tuitupou
  */
 void Model3DCube::resetOrientation() {
-    rotateToCurrentFace();
+    setRotationToCurrentFace();
     updateVisibleFaces();
 }
 
@@ -23,8 +23,19 @@ void Model3DCube::resetOrientation() {
 void Model3DCube::update3DCube(Cube const &cube1D)
 {
     cubeCopyOf1D = cube1D;
+
+    if(cubeCopyOf1D.getCurrentFaceID() != previouslyFocusedFaceID) {
+        setRotationToCurrentFace();
+        previouslyFocusedFaceID = cubeCopyOf1D.getCurrentFaceID();
+    }
+
+    // We want the non-rotated cube
+    cubeCopyOf1D = cubeCopyOf1D.getBaseCube();
+
+    // Flip the back face since it is flipped in the model
+    cubeCopyOf1D.flipBackFace();
+
     convertCube1DtoCube3D();
-    rotateToCurrentFace();
     updateVisibleFaces();
 }
 
@@ -40,55 +51,56 @@ void Model3DCube::update3DCube(Cube const &cube1D)
 */
 void Model3DCube::convertCube1DtoCube3D(){
 
-    std::vector<CubeFace> cube1Dfaces = cubeCopyOf1D.getCube();
+    QVector<CubeFace> cube1Dfaces = cubeCopyOf1D.getAllFaces();
     QVector<CubeFace> cube3Dfaces;
 
     for(int i=0; i<6; i++){
         CubeFace tempFace = cube1Dfaces.at(conversionMap[i]);
         //flip all faces vertically so that zero position and x-axis, y-axis orientations of 3D cube match 2D cube.
         tempFace.flipVertically();
+
         cube3Dfaces.push_back(tempFace);
     }
-    cube3D = Cube(cube3Dfaces);
+    cube3D = Cube(cube3Dfaces, true);
 }
 
 /*
  * Rotates the cube to the currently selected face
  * Added by: Maiko Tuitupou
  */
-void Model3DCube::rotateToCurrentFace() {
-    switch(cubeCopyOf1D.getCurrentFace()) {
-    case 0: {
-        yAxisPosition = yAxis::up;
-        xAxisPosition = xAxis::deg90;
-        break;
-    }
-    case 1: {
-        yAxisPosition = yAxis::up;
-        xAxisPosition = xAxis::deg0;
-        break;
-    }
-    case 2: {
-        yAxisPosition = yAxis::up;
-        xAxisPosition = xAxis::deg90;
-        break;
-    }
-    case 3: {
-        yAxisPosition = yAxis::up;
-        xAxisPosition = xAxis::deg180;
-        break;
-    }
-    case 4: {
-        yAxisPosition = yAxis::down;
-        xAxisPosition = xAxis::deg90;
-        break;
-    }
-    case 5: {
-        yAxisPosition = yAxis::up;
-        xAxisPosition = xAxis::deg270;
-        break;
-    }
-    }
+void Model3DCube::setRotationToCurrentFace() {
+    switch(cubeCopyOf1D.getCurrentFaceID()) {
+        case 0: {
+            yAxisPosition = yAxis::up;
+            xAxisPosition = xAxis::deg90;
+            break;
+        }
+        case 1: {
+            yAxisPosition = yAxis::up;
+            xAxisPosition = xAxis::deg0;
+            break;
+        }
+        case 2: {
+            yAxisPosition = yAxis::up;
+            xAxisPosition = xAxis::deg90;
+            break;
+        }
+        case 3: {
+            yAxisPosition = yAxis::up;
+            xAxisPosition = xAxis::deg180;
+            break;
+        }
+        case 4: {
+            yAxisPosition = yAxis::down;
+            xAxisPosition = xAxis::deg90;
+            break;
+        }
+        case 5: {
+            yAxisPosition = yAxis::up;
+            xAxisPosition = xAxis::deg270;
+            break;
+        }
+        }
 }
 
 /*
@@ -116,13 +128,15 @@ void Model3DCube::updateVisibleFaces(){
     }else{
         //rotate top face the opposite direction
         for(int i=0; i<(int)xAxisPosition; i++){
-            topFace.rotateClockwise();
+            topFace.rotateCounterClockwise();
         }
         //if down, need to rotate left and right face by 180
         leftFace.rotateClockwise();
         leftFace.rotateClockwise();
         rightFace.rotateClockwise();
         rightFace.rotateClockwise();
+        topFace.rotateClockwise();
+        topFace.rotateClockwise();
     }
 
     visibleFaces.push_back(leftFace);
