@@ -35,52 +35,36 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][0] = 'r';
         face[0][1] = 'r';
         face[1][2] = 'r';
-        face[2][1] = 'g';
+        face[2][2] = 'x';
     }
     if(faceString == "firstCrossRightFace") {
-        face[1][0] = 'w';
+        face[0][1] = 'w';
         face[1][1] = 'w';
     }
     if(faceString == "firstCrossBelowFace") {
         face[0][1] = 'r';
         face[1][1] = 'g';
     }
-//    if(faceString == ""){
-//        face[2][1] = 'b';
-//        face[1][1] = 'b';
-//    }
-//    if(faceString == "firstCrossLeftFace")
-//        face[2][1] = 'r';
 
     //first corners
     if(faceString == "firstCornersMainFace"){
-        face[0][0] = 'r';
-        face[0][1] = 'r';
-        face[0][2] = 'r';
-        face[1][0] = 'r';
-        face[1][1] = 'r';
-        face[1][2] = 'r';
-        face[2][0] = 'r';
-        face[2][1] = 'r';
+        face[2][2] = 'x';
     }
     if(faceString == "firstCornersRightFace"){
-        face[0][0] = 'w';
-        face[1][0] = 'w';
+        face[0][2] = 'w';
+        face[0][1] = 'w';
         face[1][1] = 'w';
-        face[2][2] = 'r';
+        face[2][0] = 'r';
     }
     if(faceString == "firstCornersBelowFace"){
         face[0][0] = 'g';
         face[0][1] = 'g';
         face[1][1] = 'g';
-        face[2][2] = 'w';
+        face[2][2] = 'g';
     }
-//    if(faceString == "firstCornersAboveFace")
-//        face[1][1] = 'r';
-//    if(faceString == "firstCornersLeftFace")
-//        face[2][1] = 'r';
-//    if(faceString == "firstCornersOppositeFace")
-//        face[2][1] = 'r';
+    if(faceString == "firstCornersAboveFace")
+        face[0][2] = 'w';
+
 
     //neighbor right
     if(faceString == "neighborRightMainFace"){
@@ -88,8 +72,8 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[1][1] = 'y';
     }
     if(faceString == "neighborRightRightFace"){
-        face[0][2] = 'b';
-        face[1][2] = 'b';
+        face[2][0] = 'b';
+        face[2][1] = 'b';
         face[1][1] = 'b';
         face[2][2] = 'b';
     }
@@ -101,43 +85,43 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[2][2] = 'o';
     }
     if(faceString == "neighborRightAboveFace"){
-        face[0][0] = 'r';
-        face[0][1] = 'r';
+        face[2][0] = 'r';
+        face[2][1] = 'r';
         face[1][1] = 'r';
-        face[0][2] = 'r';
+        face[2][2] = 'r';
     }
     if(faceString == "neighborRightLeftFace"){
-        face[0][0] = 'g';
-        face[1][0] = 'g';
         face[2][0] = 'g';
+        face[2][1] = 'g';
+        face[2][2] = 'g';
         face[1][1] = 'g';
     }
 
     //neighbor left
-    if(faceString == "neighborRightMainFace"){
+    if(faceString == "neighborLeftMainFace"){
         face[2][1] = 'g';
         face[1][1] = 'y';
     }
-    if(faceString == "neighborRightRightFace"){
+    if(faceString == "neighborLeftRightFace"){
         face[0][2] = 'b';
         face[1][2] = 'b';
         face[1][1] = 'b';
         face[2][2] = 'b';
     }
-    if(faceString == "neighborRightBelowFace"){
+    if(faceString == "neighborLeftBelowFace"){
         face[0][1] = 'o';
         face[1][1] = 'o';
         face[2][0] = 'o';
         face[2][1] = 'o';
         face[2][2] = 'o';
     }
-    if(faceString == "neighborRightAboveFace"){
+    if(faceString == "neighborLeftAboveFace"){
         face[0][0] = 'r';
         face[0][1] = 'r';
         face[1][1] = 'r';
         face[0][2] = 'r';
     }
-    if(faceString == "neighborRightLeftFace"){
+    if(faceString == "neighborLeftLeftFace"){
         face[0][0] = 'g';
         face[1][0] = 'g';
         face[2][0] = 'g';
@@ -145,16 +129,44 @@ CubeFace::CubeFace(string faceString, char faceColor)
     }
 
     //final cross
-    if(faceString == "finalCrossMainFace")
+    if(faceString == "finalCrossMainFace") {
         face[1][1] = 'r';
-    if(faceString == "finalCrossRightFace")
         face[1][0] = 'r';
+        face[0][1] = 'r';
+    }
+    if(faceString == "finalCrossRightFace")
+        face[0][1] = 'r';
     if(faceString == "finalCrossBelowFace")
         face[0][1] = 'r';
-    if(faceString == "finalCrossAboveFace")
-        face[2][1] = 'r';
-    if(faceString == "finalCrossLeftFace")
-        face[1][2] = 'r';
+
+    //final edges
+    if(faceString == "finalEdgesMainFace"){
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+        face[2][0] = 'x';
+        face[2][2] = 'x';
+    }
+    if(faceString == "finalEdgesRightFace"){
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if(faceString == "finalEdgesBelowFace"){
+        face[0][1] = 'g';
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if(faceString == "finalEdgesAboveFace"){
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if(faceString == "finalEdgesLeftFace"){
+        face[0][1] = 'o';
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if(faceString == "finalEdgesOppositeFace"){
+        face[0][2] = 'y';
+    }
 
     //final corners
     if(faceString == "finalCornersMainFace"){
@@ -163,24 +175,32 @@ CubeFace::CubeFace(string faceString, char faceColor)
         face[2][0] = 'r';
     }
     if(faceString == "finalCornersRightFace"){
-        face[0][0] = 'y';
-        face[2][2] = 'y';
+        face[0][2] = 'y';
     }
     if(faceString == "finalCornersBelowFace"){
         face[0][0] = 'b';
-        face[2][2] = 'b';
     }
     if(faceString == "finalCornersAboveFace"){
-        face[2][0] = 'y';
         face[0][2] = 'y';
     }
     if(faceString == "finalCornersLeftFace"){
         face[0][2] = 'y';
-        face[2][0] = 'y';
     }
-    if(faceString == "finalCornersOppositeFace"){
+
+    //orient corners
+    if(faceString == "orientCornersMainFace"){
+        face[2][2] = 'o';
+        face[2][0] = 'o';
+    }
+    if(faceString == "orientCornersRightFace"){
+        face[0][0] = 'y';
+    }
+    if(faceString == "orientCornersBelowFace"){
+        face[0][2] = 'b';
+        face[0][0] = 'g';
+    }
+    if(faceString == "orientCornersLeftFace"){
         face[0][2] = 'y';
-        face[2][0] = 'y';
     }
 }
 

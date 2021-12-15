@@ -36,6 +36,8 @@ private:
     QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue, pmW, pmL, pmCoal;
     b2World world;
     b2Body* ground;
+//    b2Body* leftWall;
+//    b2Body* rightWall;
     b2Body* greenCube;
     b2Body* redCube;
     b2Body* yellowCube;
