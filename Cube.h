@@ -41,7 +41,6 @@ public:
 
 private:
     QVector<CubeFace> rotatedCubeFaces;
-    QVector<CubeFace> baseCubeFaces;
     int currentFaceID = 0;
 
     static QVector<CubeFace> rotateToFace(QVector<CubeFace> original, int faceID);

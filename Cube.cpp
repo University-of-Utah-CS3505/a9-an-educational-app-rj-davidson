@@ -1,17 +1,17 @@
 #include "Cube.h"
 
 Cube::Cube(){
-    baseCubeFaces.push_back(CubeFace('g'));
-    baseCubeFaces.push_back(CubeFace('r'));
-    baseCubeFaces.push_back(CubeFace('y'));
-    baseCubeFaces.push_back(CubeFace('w'));
-    baseCubeFaces.push_back(CubeFace('o'));
-    baseCubeFaces.push_back(CubeFace('b'));
+    rotatedCubeFaces.push_back(CubeFace('g'));
+    rotatedCubeFaces.push_back(CubeFace('r'));
+    rotatedCubeFaces.push_back(CubeFace('y'));
+    rotatedCubeFaces.push_back(CubeFace('w'));
+    rotatedCubeFaces.push_back(CubeFace('o'));
+    rotatedCubeFaces.push_back(CubeFace('b'));
     setCurrentFaceID(0);
 }
 
 Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace){
-    baseCubeFaces = cubeFaces;
+    rotatedCubeFaces = cubeFaces;
 
 //    if(flipBackFace) {
 //        this->flipBackFace();
@@ -22,9 +22,9 @@ Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace){
 
 // ---------- Cube Faces ----------
 void Cube::flipBackFace() {
-    baseCubeFaces[5].rotateClockwise();
-    baseCubeFaces[5].rotateClockwise();
-    rotatedCubeFaces = rotateToFace(baseCubeFaces, currentFaceID);
+    rotatedCubeFaces[5].rotateClockwise();
+    rotatedCubeFaces[5].rotateClockwise();
+    rotatedCubeFaces = rotateToFace(rotatedCubeFaces, currentFaceID);
 }
 
 QVector<CubeFace> Cube::getAllFaces()
@@ -34,9 +34,9 @@ QVector<CubeFace> Cube::getAllFaces()
 
 void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace)
 {
-    baseCubeFaces.clear();
+    rotatedCubeFaces.clear();
     for(int i=0; i<6; i++){
-        baseCubeFaces.push_back(newCubeFaces.at(i));
+        rotatedCubeFaces.push_back(newCubeFaces.at(i));
     }
 
 //    if(flipBackFace) {
@@ -58,7 +58,7 @@ int Cube::getCurrentFaceID()
 
 void Cube::setCurrentFaceID(int num)
 {
-    rotatedCubeFaces = rotateToFace(baseCubeFaces, num);
+    rotatedCubeFaces = rotateToFace(rotatedCubeFaces, num);
     currentFaceID = num;
 }
 
