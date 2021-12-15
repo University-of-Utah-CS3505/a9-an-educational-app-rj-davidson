@@ -1,7 +1,7 @@
 #include "CubeCelebration.h"
 #include "ui_CubeCelebration.h"
 
-CubeCelebration::CubeCelebration(QWidget *parent, bool *solved) :
+CubeCelebration::CubeCelebration(QWidget *parent) :
     QDialog(parent),
     pmGreen(":/img/green.png"),
     pmRed(":/img/red.png"),
@@ -10,14 +10,11 @@ CubeCelebration::CubeCelebration(QWidget *parent, bool *solved) :
     pmOrange(":/img/orange.png"),
     pmBlue(":/img/blue.png"),
     pmW(":/img/takethew.png"),
-    pmL(":/img/holdthel.png"),
-    pmCoal(":/img/coal.png"),
     world(b2Vec2(0.0f, 10.0f)),
     worldTimer(this),
     ui(new Ui::CubeCelebration)
 {
     ui->setupUi(this);
-    completed = solved;
 
     setFocusPolicy(Qt::FocusPolicy::StrongFocus);
     pmGreen = pmGreen.scaled(30, 30, Qt::KeepAspectRatio);
@@ -27,8 +24,6 @@ CubeCelebration::CubeCelebration(QWidget *parent, bool *solved) :
     pmOrange = pmOrange.scaled(30, 30, Qt::KeepAspectRatio);
     pmBlue = pmBlue.scaled(30, 30, Qt::KeepAspectRatio);
     pmW = pmW.scaled(30, 30, Qt::KeepAspectRatio);
-    pmL = pmL.scaled(30, 30, Qt::KeepAspectRatio);
-    pmCoal = pmCoal.scaled(30, 30, Qt::KeepAspectRatio);
 
     // Ground body
     b2BodyDef groundBody;
@@ -55,8 +50,6 @@ CubeCelebration::CubeCelebration(QWidget *parent, bool *solved) :
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
 
-    if(true) // change to completed
-    {
         // Blue body
         b2BodyDef blueBody;
         blueBody.type = b2_dynamicBody;
@@ -112,15 +105,13 @@ CubeCelebration::CubeCelebration(QWidget *parent, bool *solved) :
         orangeCube->SetAngularVelocity(500);
 
         // W body
-
-
-    }
-    else
-    {
-        // L body
-
-        // Coal body
-    }
+        b2BodyDef wBody;
+        wBody.type = b2_dynamicBody;
+        wBody.position.Set(rand() % 200, rand() % 200);
+        wCube = world.CreateBody(&wBody);
+        wCube->CreateFixture(&fixtureDef);
+        wCube->ApplyLinearImpulse(b2Vec2(10000, -50000), wCube->GetPosition(), true);
+        wCube->SetAngularVelocity(500);
 
     worldTimer.setInterval(1000.0 / 30.0);
     connect(&worldTimer, &QTimer::timeout, this, [=]() {
@@ -138,75 +129,86 @@ CubeCelebration::~CubeCelebration()
 void CubeCelebration::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QTransform transform;
+        // Draws blue cube
+        painter.drawRect(ground->GetTransform().p.x - 200, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(blueCube->GetAngle());
+        QPixmap blueRotation = pmBlue.transformed(transform);
+        painter.drawPixmap(blueCube->GetPosition().x - 25, blueCube->GetPosition().y - 25, blueRotation);
 
-    // Draws blue cube
-    painter.drawRect(ground->GetTransform().p.x - 200, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(blueCube->GetAngle());
-    QPixmap blueRotation = pmBlue.transformed(transform);
-    painter.drawPixmap(blueCube->GetPosition().x - 25, blueCube->GetPosition().y - 25, blueRotation);
+        //  Draws green cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(greenCube->GetAngle());
+        QPixmap greenRotation = pmGreen.transformed(transform);
+        painter.drawPixmap(greenCube->GetPosition().x - 25, greenCube->GetPosition().y - 25, greenRotation);
 
-    //  Draws green cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(greenCube->GetAngle());
-    QPixmap greenRotation = pmGreen.transformed(transform);
-    painter.drawPixmap(greenCube->GetPosition().x - 25, greenCube->GetPosition().y - 25, greenRotation);
+        // Draws red cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(redCube->GetAngle());
+        QPixmap redRotation = pmRed.transformed(transform);
+        painter.drawPixmap(redCube->GetPosition().x - 25, redCube->GetPosition().y - 25, redRotation);
 
-    // Draws red cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(redCube->GetAngle());
-    QPixmap redRotation = pmRed.transformed(transform);
-    painter.drawPixmap(redCube->GetPosition().x - 25, redCube->GetPosition().y - 25, redRotation);
+        // Draws yellow cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(yellowCube->GetAngle());
+        QPixmap yellowRotation = pmYellow.transformed(transform);
+        painter.drawPixmap(yellowCube->GetPosition().x - 25, yellowCube->GetPosition().y - 25, yellowRotation);
 
-    // Draws yellow cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(yellowCube->GetAngle());
-    QPixmap yellowRotation = pmYellow.transformed(transform);
-    painter.drawPixmap(yellowCube->GetPosition().x - 25, yellowCube->GetPosition().y - 25, yellowRotation);
+        // Draws white cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(whiteCube->GetAngle());
+        QPixmap whiteRotation = pmWhite.transformed(transform);
+        painter.drawPixmap(whiteCube->GetPosition().x - 25, whiteCube->GetPosition().y - 25, whiteRotation);
 
-    // Draws white cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(whiteCube->GetAngle());
-    QPixmap whiteRotation = pmWhite.transformed(transform);
-    painter.drawPixmap(whiteCube->GetPosition().x - 25, whiteCube->GetPosition().y - 25, whiteRotation);
+        // Draws orange cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(orangeCube->GetAngle());
+        QPixmap orangeRotation = pmOrange.transformed(transform);
+        painter.drawPixmap(orangeCube->GetPosition().x - 25, orangeCube->GetPosition().y - 25, orangeRotation);
 
-    // Draws orange cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(orangeCube->GetAngle());
-    QPixmap orangeRotation = pmOrange.transformed(transform);
-    painter.drawPixmap(orangeCube->GetPosition().x - 25, orangeCube->GetPosition().y - 25, orangeRotation);
-
+        // Draws w cube
+        painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
+        transform.rotate(wCube->GetAngle());
+        QPixmap wRotation = pmW.transformed(transform);
+        painter.drawPixmap(wCube->GetPosition().x - 25, wCube->GetPosition().y - 25, wRotation);
 }
 
 void CubeCelebration::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Space) {
-        // Blue cube
-        blueCube->SetLinearVelocity(b2Vec2(0, 0));
-        blueCube->ApplyLinearImpulse(b2Vec2(10000, -50000), blueCube->GetPosition(), true);
-        blueCube->SetAngularVelocity(500);
 
-        // Green cube
-        greenCube->SetLinearVelocity(b2Vec2(0, 0));
-        greenCube->ApplyLinearImpulse(b2Vec2(10000, -50000), greenCube->GetPosition(), true);
-        greenCube->SetAngularVelocity(500);
+            // Blue cube
+            blueCube->SetLinearVelocity(b2Vec2(0, 0));
+            blueCube->ApplyLinearImpulse(b2Vec2(10000, -50000), blueCube->GetPosition(), true);
+            blueCube->SetAngularVelocity(500);
 
-        // Red cube
-        redCube->SetLinearVelocity(b2Vec2(0, 0));
-        redCube->ApplyLinearImpulse(b2Vec2(10000, -50000), redCube->GetPosition(), true);
-        redCube->SetAngularVelocity(500);
+            // Green cube
+            greenCube->SetLinearVelocity(b2Vec2(0, 0));
+            greenCube->ApplyLinearImpulse(b2Vec2(10000, -50000), greenCube->GetPosition(), true);
+            greenCube->SetAngularVelocity(500);
 
-        // Yellow cube
-        yellowCube->SetLinearVelocity(b2Vec2(0, 0));
-        yellowCube->ApplyLinearImpulse(b2Vec2(10000, -50000), yellowCube->GetPosition(), true);
-        yellowCube->SetAngularVelocity(500);
+            // Red cube
+            redCube->SetLinearVelocity(b2Vec2(0, 0));
+            redCube->ApplyLinearImpulse(b2Vec2(10000, -50000), redCube->GetPosition(), true);
+            redCube->SetAngularVelocity(500);
 
-        // White cube
-        whiteCube->SetLinearVelocity(b2Vec2(0, 0));
-        whiteCube->ApplyLinearImpulse(b2Vec2(10000, -50000), whiteCube->GetPosition(), true);
-        whiteCube->SetAngularVelocity(500);
+            // Yellow cube
+            yellowCube->SetLinearVelocity(b2Vec2(0, 0));
+            yellowCube->ApplyLinearImpulse(b2Vec2(10000, -50000), yellowCube->GetPosition(), true);
+            yellowCube->SetAngularVelocity(500);
 
-        // Orange cube
-        orangeCube->SetLinearVelocity(b2Vec2(0, 0));
-        orangeCube->ApplyLinearImpulse(b2Vec2(10000, -50000), orangeCube->GetPosition(), true);
-        orangeCube->SetAngularVelocity(500);
+            // White cube
+            whiteCube->SetLinearVelocity(b2Vec2(0, 0));
+            whiteCube->ApplyLinearImpulse(b2Vec2(10000, -50000), whiteCube->GetPosition(), true);
+            whiteCube->SetAngularVelocity(500);
+
+            // Orange cube
+            orangeCube->SetLinearVelocity(b2Vec2(0, 0));
+            orangeCube->ApplyLinearImpulse(b2Vec2(10000, -50000), orangeCube->GetPosition(), true);
+            orangeCube->SetAngularVelocity(500);
+
+            // w cube
+            wCube->SetLinearVelocity(b2Vec2(0, 0));
+            wCube->ApplyLinearImpulse(b2Vec2(10000, -50000), wCube->GetPosition(), true);
+            wCube->SetAngularVelocity(500);
+
     }
 }

@@ -21,7 +21,7 @@ class CubeCelebration : public QDialog
     Q_OBJECT
 
 public:
-    explicit CubeCelebration(QWidget *parent = nullptr, bool *complete = nullptr);
+    explicit CubeCelebration(QWidget *parent = nullptr);
     ~CubeCelebration();
 
 
@@ -33,7 +33,7 @@ protected:
 
 private:
     Ui::CubeCelebration *ui;
-    QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue, pmW, pmL, pmCoal;
+    QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue, pmW;
     b2World world;
     b2Body* ground;
 //    b2Body* leftWall;
@@ -45,11 +45,8 @@ private:
     b2Body* orangeCube;
     b2Body* blueCube;
     b2Body* wCube;
-    b2Body* lCube;
-    b2Body* coalCube;
     QTimer worldTimer;
     std::vector<b2Body*> cubes;
-    bool completed;
 };
 
 #endif // CUBECELEBRATION_H
