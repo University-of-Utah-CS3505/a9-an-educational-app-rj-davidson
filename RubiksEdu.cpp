@@ -15,24 +15,23 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     setGridlines();
     setWindowIcon(QIcon(":/icons/app.png"));
 
-    connect(this,&RubiksEdu::sendMove,controller,&CubeController::MoveCube);
-    connect(controller,&CubeController::updateCube,this, &RubiksEdu::displayCube);
-    connect(ui->cubeWidget,SIGNAL(faceSelected(int)),controller,SLOT(switchFace(int)));
+    connect(this, &RubiksEdu::sendMove, controller, &CubeController::MoveCube);
+    connect(controller, &CubeController::updateCube, this, &RubiksEdu::displayCube);
+    connect(ui->cubeWidget, SIGNAL(faceSelected(int)), controller, SLOT(switchFace(int)));
     connect(ui->shuffleButton, &QPushButton::pressed, controller, &CubeController::buildRandomCube);
     connect(ui->buttonViewComboBox, &QComboBox::currentIndexChanged, this, &RubiksEdu::switchButtonMode);
 
     // Tutorial Widget Connections
-    connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=] (int stepIndex) {
+    connect(ui->stepSelect, &QComboBox::currentIndexChanged, this, [=](int stepIndex)
+            {
         ui->tutorialTextBrowser->setTutorialStep(stepIndex + 1);
-        controller->buildPredefinedCube(stepIndex + 1);
-    });
-    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [=] (int stepID) {
-        ui->stepSelect->setCurrentIndex(stepID-1);
-    });
-    connect(ui->homeButton, &QPushButton::pressed, this, [=] () {
+        controller->buildPredefinedCube(stepIndex + 1); });
+    connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, this, [=](int stepID)
+            { ui->stepSelect->setCurrentIndex(stepID - 1); });
+    connect(ui->homeButton, &QPushButton::pressed, this, [=]()
+            {
        ui->tutorialTextBrowser->setTutorialStep(-1);
-       ui->stepSelect->setCurrentIndex(-1);
-    });
+       ui->stepSelect->setCurrentIndex(-1); });
     connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, controller, &CubeController::buildPredefinedCube);
 
     // connect check button
@@ -40,8 +39,8 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     // connection for showing the celebration
     connect(controller, &CubeController::complete, this, &RubiksEdu::showCelebration);
 
-    //3d view stuff --------------------------------------------
-    scene3D= new QGraphicsScene;
+    // 3d view stuff --------------------------------------------
+    scene3D = new QGraphicsScene;
 
     createLeftOfCube();
     createRightOfCube();
@@ -49,13 +48,12 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
 
     scene3D->setBackgroundBrush(Qt::white);
     ui->cube3DGraphicsView->setScene(scene3D);
-    ui->cube3DGraphicsView->scale(0.75,-0.75);
+    ui->cube3DGraphicsView->scale(0.75, -0.75);
 
     connectControllerView(controller);
 
     connect(ui->orientationResetButton, &QPushButton::pressed, controller, &CubeController::reset3DCubeOrientation);
-    //end of 3d view stuff ----------------------------------
-
+    // end of 3d view stuff ----------------------------------
 
     // Displays initial cube  (3D view stuff needs to happen before this so the 3D view gets painted with 2D data)
     on_leftTopButton_clicked();
@@ -66,73 +64,77 @@ RubiksEdu::~RubiksEdu()
     delete ui;
 }
 
-void RubiksEdu::switchButtonMode(int modeID) {
-switch(modeID) {
-case 0: {
-    ui->clockwiseButton->setText("F");
-    ui->clockwiseButton->setIcon(QIcon());
+void RubiksEdu::switchButtonMode(int modeID)
+{
+    switch (modeID)
+    {
+    case 0:
+    {
+        ui->clockwiseButton->setText("F");
+        ui->clockwiseButton->setIcon(QIcon());
 
-    ui->counterClockwiseButton->setText("F'");
-    ui->counterClockwiseButton->setIcon(QIcon());
+        ui->counterClockwiseButton->setText("F'");
+        ui->counterClockwiseButton->setIcon(QIcon());
 
-    ui->leftBttmButton->setText("D'");
-    ui->leftBttmButton->setIcon(QIcon());
+        ui->leftBttmButton->setText("D'");
+        ui->leftBttmButton->setIcon(QIcon());
 
-    ui->leftTopButton->setText("U");
-    ui->leftTopButton->setIcon(QIcon());
+        ui->leftTopButton->setText("U");
+        ui->leftTopButton->setIcon(QIcon());
 
-    ui->rightBttmButton->setText("D");
-    ui->rightBttmButton->setIcon(QIcon());
+        ui->rightBttmButton->setText("D");
+        ui->rightBttmButton->setIcon(QIcon());
 
-    ui->rightTopButton->setText("U'");
-    ui->rightTopButton->setIcon(QIcon());
+        ui->rightTopButton->setText("U'");
+        ui->rightTopButton->setIcon(QIcon());
 
-    ui->bttmLeftButton->setText("L");
-    ui->bttmLeftButton->setIcon(QIcon());
+        ui->bttmLeftButton->setText("L");
+        ui->bttmLeftButton->setIcon(QIcon());
 
-    ui->bttmRightButton->setText("R'");
-    ui->bttmRightButton->setIcon(QIcon());
+        ui->bttmRightButton->setText("R'");
+        ui->bttmRightButton->setIcon(QIcon());
 
-    ui->topLeftButton->setText("L'");
-    ui->topLeftButton->setIcon(QIcon());
+        ui->topLeftButton->setText("L'");
+        ui->topLeftButton->setIcon(QIcon());
 
-    ui->topRightButton->setText("R");
-    ui->topRightButton->setIcon(QIcon());
-    break;
-}
-case 1: {
-    ui->clockwiseButton->setText("");
-    ui->clockwiseButton->setIcon(QIcon(":/icons/F.png"));
+        ui->topRightButton->setText("R");
+        ui->topRightButton->setIcon(QIcon());
+        break;
+    }
+    case 1:
+    {
+        ui->clockwiseButton->setText("");
+        ui->clockwiseButton->setIcon(QIcon(":/icons/F.png"));
 
-    ui->counterClockwiseButton->setText("");
-    ui->counterClockwiseButton->setIcon(QIcon(":/icons/F-counter.png"));
+        ui->counterClockwiseButton->setText("");
+        ui->counterClockwiseButton->setIcon(QIcon(":/icons/F-counter.png"));
 
-    ui->leftBttmButton->setText("");
-    ui->leftBttmButton->setIcon(QIcon(":/icons/left.png"));
+        ui->leftBttmButton->setText("");
+        ui->leftBttmButton->setIcon(QIcon(":/icons/left.png"));
 
-    ui->leftTopButton->setText("");
-    ui->leftTopButton->setIcon(QIcon(":/icons/left.png"));
+        ui->leftTopButton->setText("");
+        ui->leftTopButton->setIcon(QIcon(":/icons/left.png"));
 
-    ui->rightBttmButton->setText("");
-    ui->rightBttmButton->setIcon(QIcon(":/icons/right.png"));
+        ui->rightBttmButton->setText("");
+        ui->rightBttmButton->setIcon(QIcon(":/icons/right.png"));
 
-    ui->rightTopButton->setText("");
-    ui->rightTopButton->setIcon(QIcon(":/icons/right.png"));
+        ui->rightTopButton->setText("");
+        ui->rightTopButton->setIcon(QIcon(":/icons/right.png"));
 
-    ui->bttmLeftButton->setText("");
-    ui->bttmLeftButton->setIcon(QIcon(":/icons/down.png"));
+        ui->bttmLeftButton->setText("");
+        ui->bttmLeftButton->setIcon(QIcon(":/icons/down.png"));
 
-    ui->bttmRightButton->setText("");
-    ui->bttmRightButton->setIcon(QIcon(":/icons/down.png"));
+        ui->bttmRightButton->setText("");
+        ui->bttmRightButton->setIcon(QIcon(":/icons/down.png"));
 
-    ui->topLeftButton->setText("");
-    ui->topLeftButton->setIcon(QIcon(":/icons/up.png"));
+        ui->topLeftButton->setText("");
+        ui->topLeftButton->setIcon(QIcon(":/icons/up.png"));
 
-    ui->topRightButton->setText("");
-    ui->topRightButton->setIcon(QIcon(":/icons/up.png"));
-    break;
-}
-}
+        ui->topRightButton->setText("");
+        ui->topRightButton->setIcon(QIcon(":/icons/up.png"));
+        break;
+    }
+    }
 }
 
 void RubiksEdu::on_topLeftButton_clicked()
@@ -140,55 +142,48 @@ void RubiksEdu::on_topLeftButton_clicked()
     emit sendMove(7);
 }
 
-
 void RubiksEdu::on_topRightButton_clicked()
 {
     emit sendMove(6);
 }
-
 
 void RubiksEdu::on_leftTopButton_clicked()
 {
     emit sendMove(0);
 }
 
-
 void RubiksEdu::on_leftBttmButton_clicked()
 {
     emit sendMove(1);
 }
-
 
 void RubiksEdu::on_bttmLeftButton_clicked()
 {
     emit sendMove(2);
 }
 
-
 void RubiksEdu::on_bttmRightButton_clicked()
 {
     emit sendMove(3);
 }
-
 
 void RubiksEdu::on_rightBttmButton_clicked()
 {
     emit sendMove(4);
 }
 
-
 void RubiksEdu::on_rightTopButton_clicked()
 {
     emit sendMove(5);
 }
 
-void RubiksEdu::displayCube(std::vector<QImage> faces)
+void RubiksEdu::displayCube(QVector<QImage> faces)
 {
     QImage altSideFace = faces.back();
     faces.pop_back();
     QImage altTopFace = faces.back();
     faces.pop_back();
-    QImage farRightFace = faces.back();
+    QImage backFace = faces.back();
     faces.pop_back();
     QImage bottomFace = faces.back();
     faces.pop_back();
@@ -200,18 +195,19 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     faces.pop_back();
     QImage centerFace = faces.back();
     faces.pop_back();
-    QImage centerFaceScaled = centerFace.scaled(120,120);
-    QImage rightFaceScaled = rightFace.scaled(120,120);
-    QImage leftFaceScaled = leftFace.scaled(120,120);
-    QImage topFaceScaled = topFace.scaled(120,120);
-    QImage bottomFaceScaled = bottomFace.scaled(120,120);
-    QImage farRightFaceScaled = farRightFace.scaled(120,120);
+    QImage centerFaceScaled = centerFace.scaled(120, 120);
+    QImage rightFaceScaled = rightFace.scaled(120, 120);
+    QImage leftFaceScaled = leftFace.scaled(120, 120);
+    QImage topFaceScaled = topFace.scaled(120, 120);
+    QImage bottomFaceScaled = bottomFace.scaled(120, 120);
+    QImage backFaceScaled = backFace.scaled(120, 120);
+
     ui->face0->setPixmap(QPixmap::fromImage(centerFaceScaled));
     ui->face1->setPixmap(QPixmap::fromImage(leftFaceScaled));
     ui->face2->setPixmap(QPixmap::fromImage(topFaceScaled));
     ui->face3->setPixmap(QPixmap::fromImage(rightFaceScaled));
     ui->face4->setPixmap(QPixmap::fromImage(bottomFaceScaled));
-    ui->face5->setPixmap(QPixmap::fromImage(farRightFaceScaled));
+    ui->face5->setPixmap(QPixmap::fromImage(backFaceScaled));
     ui->face0Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face1Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face2Gridline->setPixmap(QPixmap::fromImage(gridLines));
@@ -221,7 +217,7 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face0Alt->setPixmap(QPixmap::fromImage(centerFaceScaled));
     ui->face1Alt->setPixmap(QPixmap::fromImage(leftFaceScaled));
     ui->face4Alt->setPixmap(QPixmap::fromImage(bottomFaceScaled));
-    ui->face5Alt->setPixmap(QPixmap::fromImage(farRightFaceScaled));
+    ui->face5Alt->setPixmap(QPixmap::fromImage(backFaceScaled));
     ui->face0AltGridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face1AltGridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face4AltGridline->setPixmap(QPixmap::fromImage(gridLines));
@@ -244,19 +240,18 @@ void RubiksEdu::on_clockwiseButton_clicked()
     emit sendMove(8);
 }
 
-
 void RubiksEdu::on_counterClockwiseButton_clicked()
 {
     emit sendMove(9);
 }
 
-
 // 3D Cube View code starts here--------------------------------------------------------------------------
 /*
  *
  */
-void RubiksEdu::cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces){
-    //qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
+void RubiksEdu::cube3DpaintVisibleFacesSimple(QVector<char> &visibleFaces)
+{
+    // qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
     repaintLeftFace(getColorFromChar(visibleFaces.at(0)));
     repaintRightFace(getColorFromChar(visibleFaces.at(1)));
     repaintTopFace(getColorFromChar(visibleFaces.at(2)));
@@ -265,8 +260,9 @@ void RubiksEdu::cube3DpaintVisibleFacesSimple(std::vector<char> &visibleFaces){
 /*
  *
  */
-void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces){
-    //qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
+void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces)
+{
+    // qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
     repaintLeftFace(visibleFaces.at(0));
     repaintRightFace(visibleFaces.at(1));
     repaintTopFace(visibleFaces.at(2));
@@ -275,41 +271,44 @@ void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces){
 /*
  *
  */
-QColor RubiksEdu::getColorFromChar(char charColor){
+QColor RubiksEdu::getColorFromChar(char charColor)
+{
 
-    switch(charColor){
-        case 'r':
-            return Qt::red;
-        case 'g':
-            return QColor("green");//Qt::green;
-        case 'b':
-            return Qt::blue;
-        case 'w':
-            return Qt::white;
-        case 'o':
-            return QColor("orange");//QColor(255,165,0);
-        case 'y':
-            return Qt::yellow;
-        default:
-            return Qt::gray;
+    switch (charColor)
+    {
+    case 'r':
+        return Qt::red;
+    case 'g':
+        return QColor("green"); // Qt::green;
+    case 'b':
+        return Qt::blue;
+    case 'w':
+        return Qt::white;
+    case 'o':
+        return QColor("orange"); // QColor(255,165,0);
+    case 'y':
+        return Qt::yellow;
+    default:
+        return Qt::gray;
     }
 }
 
 /*
  *3d
-*/
-void RubiksEdu::repaintLeftFace(CubeFace faceToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintLeftFace(CubeFace faceToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        int xPosCorrected = 2-xPos; //change xPosition so that 0 element is on left and 2 element is on right.
-                                    //This ensures the face 0,0 point is on the bottom left corner for every face
-        std::vector<char> column = faceToPaint.getCol(xPosCorrected);
+        int xPosCorrected = 2 - xPos; // change xPosition so that 0 element is on left and 2 element is on right.
+                                      // This ensures the face 0,0 point is on the bottom left corner for every face
+        QVector<char> column = faceToPaint.getCol(xPosCorrected);
 
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
             QColor currentColor = getColorFromChar(column.at(yPos));
 
-            int vctrIndex = xPosCorrected*3+yPos;
+            int vctrIndex = xPosCorrected * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -318,17 +317,18 @@ void RubiksEdu::repaintLeftFace(CubeFace faceToPaint){
 
 /*
  *3d
-*/
-void RubiksEdu::repaintRightFace(CubeFace faceToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintRightFace(CubeFace faceToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        std::vector<char> column = faceToPaint.getCol(xPos);
+        QVector<char> column = faceToPaint.getCol(xPos);
 
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
             QColor currentColor = getColorFromChar(column.at(yPos));
 
-            int vctrIndex = xPos*3+yPos;
+            int vctrIndex = xPos * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -337,17 +337,18 @@ void RubiksEdu::repaintRightFace(CubeFace faceToPaint){
 
 /*
  *3d
-*/
-void RubiksEdu::repaintTopFace(CubeFace faceToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintTopFace(CubeFace faceToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        std::vector<char> column = faceToPaint.getCol(xPos);
+        QVector<char> column = faceToPaint.getCol(xPos);
 
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
             QColor currentColor = getColorFromChar(column.at(yPos));
 
-            int vctrIndex = xPos*3+yPos;
+            int vctrIndex = xPos * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
             tempItemReference->setBrush(currentColor);
         }
@@ -356,15 +357,16 @@ void RubiksEdu::repaintTopFace(CubeFace faceToPaint){
 
 /*
  *3d
-*/
-void RubiksEdu::repaintLeftFace(QColor colorToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintLeftFace(QColor colorToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        int xPosCorrected = 2-xPos; //change xPosition so that 0 element is on left and 2 element is on right.
-                                    //This ensures the face 0,0 point is on the bottom left corner for every face
-        for(int yPos = 0; yPos<3; yPos++)
+        int xPosCorrected = 2 - xPos; // change xPosition so that 0 element is on left and 2 element is on right.
+                                      // This ensures the face 0,0 point is on the bottom left corner for every face
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            int vctrIndex = xPosCorrected*3+yPos;
+            int vctrIndex = xPosCorrected * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceLeft.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -373,13 +375,14 @@ void RubiksEdu::repaintLeftFace(QColor colorToPaint){
 
 /*
  *3d
-*/
-void RubiksEdu::repaintRightFace(QColor colorToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintRightFace(QColor colorToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            int vctrIndex = xPos*3+yPos;
+            int vctrIndex = xPos * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceRight.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -388,13 +391,14 @@ void RubiksEdu::repaintRightFace(QColor colorToPaint){
 
 /*
  *3d
-*/
-void RubiksEdu::repaintTopFace(QColor colorToPaint){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::repaintTopFace(QColor colorToPaint)
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            int vctrIndex = xPos*3+yPos;
+            int vctrIndex = xPos * 3 + yPos;
             QGraphicsPathItem *tempItemReference = vctrVisibleFaceTop.at(vctrIndex);
             tempItemReference->setBrush(colorToPaint);
         }
@@ -403,7 +407,7 @@ void RubiksEdu::repaintTopFace(QColor colorToPaint){
 
 /*
  *3d
-*/
+ */
 void RubiksEdu::on_pushLeftBtn_clicked()
 {
     emit send3DRotation("Left");
@@ -411,15 +415,15 @@ void RubiksEdu::on_pushLeftBtn_clicked()
 
 /*
  *3d
-*/
+ */
 void RubiksEdu::on_pushRightBtn_clicked()
 {
-        emit send3DRotation("Right");
+    emit send3DRotation("Right");
 }
 
 /*
  *3d
-*/
+ */
 void RubiksEdu::on_pushUpBtn_clicked()
 {
     emit send3DRotation("Up");
@@ -427,32 +431,34 @@ void RubiksEdu::on_pushUpBtn_clicked()
 
 /*
  *3d
-*/
-void RubiksEdu::connectControllerView(CubeController *controller){
-    connect(this, &RubiksEdu::send3DRotation,controller,&CubeController::rotationCube);
+ */
+void RubiksEdu::connectControllerView(CubeController *controller)
+{
+    connect(this, &RubiksEdu::send3DRotation, controller, &CubeController::rotationCube);
     connect(controller, &CubeController::update3DCubeViewSimple, this, &RubiksEdu::cube3DpaintVisibleFacesSimple);
     connect(controller, &CubeController::update3DCubeView, this, &RubiksEdu::cube3DpaintVisibleFaces);
 }
 
 /*
  *left side
-*/
-void RubiksEdu::createLeftOfCube(){
+ */
+void RubiksEdu::createLeftOfCube()
+{
 
-    for(int xPos = 0; xPos<3; xPos++)
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        int xPosCorrected = 2-xPos; //change xPosition so that 0 element is on left and 2 element is on right.
-                                    //This ensures the face 0,0 point is on the bottom left corner for every face
-        for(int yPos = 0; yPos<3; yPos++)
+        int xPosCorrected = 2 - xPos; // change xPosition so that 0 element is on left and 2 element is on right.
+                                      // This ensures the face 0,0 point is on the bottom left corner for every face
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            point1x = -eSize*xPosCorrected*xScale;
-            point1y = eSize*yPos+eSize*xPosCorrected*yScale;
-            point2x = -eSize*(xPosCorrected+1)*xScale;
-            point2y = eSize*yPos+eSize*yScale+eSize*xPosCorrected*yScale;
-            point3x = -eSize*(xPosCorrected+1)*xScale;
-            point3y = eSize*(yPos+1)+eSize*yScale+eSize*xPosCorrected*yScale;
-            point4x = -eSize*xPosCorrected*xScale;
-            point4y = eSize*(yPos+1)+eSize*xPosCorrected*yScale;
+            point1x = -eSize * xPosCorrected * xScale;
+            point1y = eSize * yPos + eSize * xPosCorrected * yScale;
+            point2x = -eSize * (xPosCorrected + 1) * xScale;
+            point2y = eSize * yPos + eSize * yScale + eSize * xPosCorrected * yScale;
+            point3x = -eSize * (xPosCorrected + 1) * xScale;
+            point3y = eSize * (yPos + 1) + eSize * yScale + eSize * xPosCorrected * yScale;
+            point4x = -eSize * xPosCorrected * xScale;
+            point4y = eSize * (yPos + 1) + eSize * xPosCorrected * yScale;
 
             QPainterPath path1;
 
@@ -468,26 +474,25 @@ void RubiksEdu::createLeftOfCube(){
             tempItemReference->setBrush(Qt::yellow);
         }
     }
-
-
 }
 
 /*
  *right side
-*/
-void RubiksEdu::createRightOfCube(){
-    for(int xPos = 0; xPos<3; xPos++)
+ */
+void RubiksEdu::createRightOfCube()
+{
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            point1x = eSize*xPos*xScale;
-            point1y = eSize*yPos+eSize*xPos*yScale;
-            point2x = eSize*(xPos+1)*xScale;
-            point2y = eSize*yPos+eSize*yScale+eSize*xPos*yScale;
-            point3x = eSize*(xPos+1)*xScale;
-            point3y = eSize*(yPos+1)+eSize*yScale+eSize*xPos*yScale;
-            point4x = eSize*xPos*xScale;
-            point4y = eSize*(yPos+1)+eSize*xPos*yScale;
+            point1x = eSize * xPos * xScale;
+            point1y = eSize * yPos + eSize * xPos * yScale;
+            point2x = eSize * (xPos + 1) * xScale;
+            point2y = eSize * yPos + eSize * yScale + eSize * xPos * yScale;
+            point3x = eSize * (xPos + 1) * xScale;
+            point3y = eSize * (yPos + 1) + eSize * yScale + eSize * xPos * yScale;
+            point4x = eSize * xPos * xScale;
+            point4y = eSize * (yPos + 1) + eSize * xPos * yScale;
 
             QPainterPath path2;
 
@@ -503,27 +508,27 @@ void RubiksEdu::createRightOfCube(){
 
             tempItemReference->setBrush(Qt::red);
         }
-
     }
 }
 
 /*
  *top side
-*/
-void RubiksEdu::createTopOfCube(){
+ */
+void RubiksEdu::createTopOfCube()
+{
 
-    for(int xPos = 0; xPos<3; xPos++)
+    for (int xPos = 0; xPos < 3; xPos++)
     {
-        for(int yPos = 0; yPos<3; yPos++)
+        for (int yPos = 0; yPos < 3; yPos++)
         {
-            point1x = (xPos-yPos)*eSize*xScale;
-            point1y = cubeSize+(xPos+yPos)*eSize*yScale;
-            point2x = (xPos+1-yPos)*eSize*xScale;
-            point2y = cubeSize+(xPos+yPos)*eSize*yScale+eSize*yScale;
-            point3x = (xPos-yPos)*eSize*xScale;
-            point3y = cubeSize+(xPos+yPos+1)*eSize*yScale+eSize*yScale;
-            point4x = (xPos-1-yPos)*eSize*xScale;
-            point4y = cubeSize+(xPos+yPos)*eSize*yScale+eSize*yScale;
+            point1x = (xPos - yPos) * eSize * xScale;
+            point1y = cubeSize + (xPos + yPos) * eSize * yScale;
+            point2x = (xPos + 1 - yPos) * eSize * xScale;
+            point2y = cubeSize + (xPos + yPos) * eSize * yScale + eSize * yScale;
+            point3x = (xPos - yPos) * eSize * xScale;
+            point3y = cubeSize + (xPos + yPos + 1) * eSize * yScale + eSize * yScale;
+            point4x = (xPos - 1 - yPos) * eSize * xScale;
+            point4y = cubeSize + (xPos + yPos) * eSize * yScale + eSize * yScale;
 
             QPainterPath path3;
 
@@ -533,7 +538,6 @@ void RubiksEdu::createTopOfCube(){
             path3.lineTo(point4x, point4y);
             path3.lineTo(point1x, point1y);
 
-
             QGraphicsPathItem *tempItemReference;
             tempItemReference = scene3D->addPath(path3);
             vctrVisibleFaceTop.append(tempItemReference);
@@ -541,16 +545,15 @@ void RubiksEdu::createTopOfCube(){
             tempItemReference->setBrush(Qt::green);
         }
     }
-
 }
-
 
 void RubiksEdu::on_checkButton_clicked()
 {
     emit checkButton();
 }
 
-void RubiksEdu::showCelebration(bool complete) {
+void RubiksEdu::showCelebration()
+{
     CubeCelebration c;
     c.exec();
 }

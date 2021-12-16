@@ -9,10 +9,11 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QTimer>
+#include <vector>
 
-
-namespace Ui {
-class CubeCelebration;
+namespace Ui
+{
+    class CubeCelebration;
 }
 
 class CubeCelebration : public QDialog
@@ -23,22 +24,28 @@ public:
     explicit CubeCelebration(QWidget *parent = nullptr);
     ~CubeCelebration();
 
-
 signals:
 
 protected:
-    void paintEvent(QPaintEvent* event) override;
-    void keyPressEvent(QKeyEvent* event) override;
+    void paintEvent(QPaintEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
 private:
     Ui::CubeCelebration *ui;
-    QPixmap pm;
+    QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue, pmW;
     b2World world;
-    b2Body* ground;
-    b2Body* cube;
+    b2Body *ground;
+    //    b2Body* leftWall;
+    //    b2Body* rightWall;
+    b2Body *greenCube;
+    b2Body *redCube;
+    b2Body *yellowCube;
+    b2Body *whiteCube;
+    b2Body *orangeCube;
+    b2Body *blueCube;
+    b2Body *wCube;
     QTimer worldTimer;
-
+    std::vector<b2Body *> cubes;
 };
 
 #endif // CUBECELEBRATION_H
-

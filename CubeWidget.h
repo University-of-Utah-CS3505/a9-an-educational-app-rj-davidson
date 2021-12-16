@@ -12,7 +12,6 @@ public:
     explicit CubeWidget(QWidget *parent = nullptr);
 
 signals:
-
 };
 
 #endif // CUBEWIDGET_H

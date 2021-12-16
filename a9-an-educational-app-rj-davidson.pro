@@ -64,5 +64,3 @@ PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 
 RESOURCES += \
     tutorial-html/resources.qrc
-
-DISTFILES +=

@@ -10,11 +10,10 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     CubeController m;
-    RubiksEdu w(nullptr,&m);
+    RubiksEdu w(nullptr, &m);
 
     w.setFixedSize(w.size());
     w.show();
 
-
-   return a.exec();
+    return a.exec();
 }

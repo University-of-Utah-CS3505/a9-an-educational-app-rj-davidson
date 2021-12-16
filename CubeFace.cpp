@@ -2,16 +2,20 @@
 
 CubeFace::CubeFace()
 {
-    std::vector<char> row(3, 'g');
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, 'g');
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
+}
 
+CubeFace::CubeFace(QVector<QVector<char> > face)
+{
+    this->face = face;
 }
 
 CubeFace::CubeFace(char faceColor)
 {
-    std::vector<char> row(3, faceColor);
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, faceColor);
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
 }
 
@@ -22,200 +26,251 @@ CubeFace::CubeFace(const CubeFace &other)
 
 CubeFace::CubeFace(string faceString, char faceColor)
 {
-    std::vector<char> row(3, faceColor);
-    std::vector<std::vector<char> > completeFace(3, row);
+    QVector<char> row(3, faceColor);
+    QVector<QVector<char> > completeFace(3, row);
     face = completeFace;
-    //start cross
-    if(faceString == "firstCrossMainFace") {
+    // start cross
+    if (faceString == "firstCrossMainFace")
+    {
         face[1][1] = 'r';
         face[1][0] = 'r';
         face[0][1] = 'r';
         face[1][2] = 'r';
         face[2][1] = 'g';
     }
-    if(faceString == "firstCrossRightFace") {
-        face[1][0] = 'w';
+    if (faceString == "firstCrossRightFace")
+    {
+        face[0][1] = 'w';
         face[1][1] = 'w';
     }
-    if(faceString == "firstCrossBelowFace") {
+    if (faceString == "firstCrossBelowFace")
+    {
         face[0][1] = 'r';
         face[1][1] = 'g';
     }
-//    if(faceString == ""){
-//        face[2][1] = 'b';
-//        face[1][1] = 'b';
-//    }
-//    if(faceString == "firstCrossLeftFace")
-//        face[2][1] = 'r';
 
-    //first corners
-    if(faceString == "firstCornersMainFace"){
-        face[0][0] = 'r';
-        face[0][1] = 'r';
-        face[0][2] = 'r';
-        face[1][0] = 'r';
-        face[1][1] = 'r';
-        face[1][2] = 'r';
-        face[2][0] = 'r';
-        face[2][1] = 'r';
+    // first corners
+    if (faceString == "firstCornersMainFace")
+    {
+        face[2][2] = 'x';
     }
-    if(faceString == "firstCornersRightFace"){
-        face[0][0] = 'w';
-        face[1][0] = 'w';
+    if (faceString == "firstCornersRightFace")
+    {
+        face[0][2] = 'w';
+        face[0][1] = 'w';
         face[1][1] = 'w';
-        face[2][2] = 'r';
+        face[2][0] = 'r';
     }
-    if(faceString == "firstCornersBelowFace"){
+    if (faceString == "firstCornersBelowFace")
+    {
         face[0][0] = 'g';
         face[0][1] = 'g';
         face[1][1] = 'g';
-        face[2][2] = 'w';
+        face[2][2] = 'g';
     }
-//    if(faceString == "firstCornersAboveFace")
-//        face[1][1] = 'r';
-//    if(faceString == "firstCornersLeftFace")
-//        face[2][1] = 'r';
-//    if(faceString == "firstCornersOppositeFace")
-//        face[2][1] = 'r';
+    if (faceString == "firstCornersAboveFace")
+        face[0][2] = 'w';
 
-    //neighbor right
-    if(faceString == "neighborRightMainFace"){
+    // neighbor right
+    if (faceString == "neighborRightMainFace")
+    {
         face[2][1] = 'b';
         face[1][1] = 'y';
     }
-    if(faceString == "neighborRightRightFace"){
-        face[0][2] = 'b';
-        face[1][2] = 'b';
+    if (faceString == "neighborRightRightFace")
+    {
+        face[2][0] = 'b';
+        face[2][1] = 'b';
         face[1][1] = 'b';
         face[2][2] = 'b';
     }
-    if(faceString == "neighborRightBelowFace"){
+    if (faceString == "neighborRightBelowFace")
+    {
         face[0][1] = 'o';
         face[1][1] = 'o';
         face[2][0] = 'o';
         face[2][1] = 'o';
         face[2][2] = 'o';
     }
-    if(faceString == "neighborRightAboveFace"){
-        face[0][0] = 'r';
-        face[0][1] = 'r';
+    if (faceString == "neighborRightAboveFace")
+    {
+        face[2][0] = 'r';
+        face[2][1] = 'r';
         face[1][1] = 'r';
-        face[0][2] = 'r';
+        face[2][2] = 'r';
     }
-    if(faceString == "neighborRightLeftFace"){
-        face[0][0] = 'g';
-        face[1][0] = 'g';
+    if (faceString == "neighborRightLeftFace")
+    {
         face[2][0] = 'g';
+        face[2][1] = 'g';
+        face[2][2] = 'g';
         face[1][1] = 'g';
     }
 
-    //neighbor left
-    if(faceString == "neighborRightMainFace"){
+    // neighbor left
+    if (faceString == "neighborLeftMainFace")
+    {
         face[2][1] = 'g';
         face[1][1] = 'y';
     }
-    if(faceString == "neighborRightRightFace"){
+    if (faceString == "neighborLeftRightFace")
+    {
         face[0][2] = 'b';
         face[1][2] = 'b';
         face[1][1] = 'b';
         face[2][2] = 'b';
     }
-    if(faceString == "neighborRightBelowFace"){
+    if (faceString == "neighborLeftBelowFace")
+    {
         face[0][1] = 'o';
         face[1][1] = 'o';
         face[2][0] = 'o';
         face[2][1] = 'o';
         face[2][2] = 'o';
     }
-    if(faceString == "neighborRightAboveFace"){
+    if (faceString == "neighborLeftAboveFace")
+    {
         face[0][0] = 'r';
         face[0][1] = 'r';
         face[1][1] = 'r';
         face[0][2] = 'r';
     }
-    if(faceString == "neighborRightLeftFace"){
+    if (faceString == "neighborLeftLeftFace")
+    {
         face[0][0] = 'g';
         face[1][0] = 'g';
         face[2][0] = 'g';
         face[1][1] = 'g';
     }
 
-    //final cross
-    if(faceString == "finalCrossMainFace")
+    // final cross
+    if (faceString == "finalCrossMainFace")
+    {
         face[1][1] = 'r';
-    if(faceString == "finalCrossRightFace")
         face[1][0] = 'r';
-    if(faceString == "finalCrossBelowFace")
         face[0][1] = 'r';
-    if(faceString == "finalCrossAboveFace")
-        face[2][1] = 'r';
-    if(faceString == "finalCrossLeftFace")
-        face[1][2] = 'r';
+    }
+    if (faceString == "finalCrossRightFace")
+        face[0][1] = 'r';
+    if (faceString == "finalCrossBelowFace")
+        face[0][1] = 'r';
 
-    //final corners
-    if(faceString == "finalCornersMainFace"){
+    // final edges
+    if (faceString == "finalEdgesMainFace")
+    {
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+        face[2][0] = 'x';
+        face[2][2] = 'x';
+    }
+    if (faceString == "finalEdgesRightFace")
+    {
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if (faceString == "finalEdgesBelowFace")
+    {
+        face[0][1] = 'g';
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if (faceString == "finalEdgesAboveFace")
+    {
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if (faceString == "finalEdgesLeftFace")
+    {
+        face[0][1] = 'o';
+        face[0][0] = 'x';
+        face[0][2] = 'x';
+    }
+    if (faceString == "finalEdgesOppositeFace")
+    {
+        face[0][2] = 'y';
+    }
+
+    // final corners
+    if (faceString == "finalCornersMainFace")
+    {
         face[0][0] = 'o';
         face[0][2] = 'g';
         face[2][0] = 'r';
     }
-    if(faceString == "finalCornersRightFace"){
-        face[0][0] = 'y';
-        face[2][2] = 'y';
+    if (faceString == "finalCornersRightFace")
+    {
+        face[0][2] = 'y';
     }
-    if(faceString == "finalCornersBelowFace"){
+    if (faceString == "finalCornersBelowFace")
+    {
         face[0][0] = 'b';
-        face[2][2] = 'b';
     }
-    if(faceString == "finalCornersAboveFace"){
-        face[2][0] = 'y';
+    if (faceString == "finalCornersAboveFace")
+    {
         face[0][2] = 'y';
     }
-    if(faceString == "finalCornersLeftFace"){
+    if (faceString == "finalCornersLeftFace")
+    {
         face[0][2] = 'y';
-        face[2][0] = 'y';
     }
-    if(faceString == "finalCornersOppositeFace"){
+
+    // orient corners
+    if (faceString == "orientCornersMainFace")
+    {
+        face[2][2] = 'o';
+        face[2][0] = 'o';
+    }
+    if (faceString == "orientCornersRightFace")
+    {
+        face[0][0] = 'y';
+    }
+    if (faceString == "orientCornersBelowFace")
+    {
+        face[0][2] = 'b';
+        face[0][0] = 'g';
+    }
+    if (faceString == "orientCornersLeftFace")
+    {
         face[0][2] = 'y';
-        face[2][0] = 'y';
     }
 }
 
-std::vector<std::vector<char>> CubeFace::getFace()
+QVector<QVector<char> > CubeFace::getFace()
 {
     return face;
 }
 
-std::vector<char> CubeFace::getRow(int y)
+QVector<char> CubeFace::getRow(int y)
 {
     return face[y];
 }
 
-std::vector<char> CubeFace::getCol(int x)
+QVector<char> CubeFace::getCol(int x)
 {
-    std::vector<char> col;
-    for (int i = 0; i < (int) face.size(); i++)
+    QVector<char> col;
+    for (int i = 0; i < (int)face.size(); i++)
         col.push_back(face[i][x]);
     return col;
 }
 
-void CubeFace::setRow(int y, std::vector<char> row)
+void CubeFace::setRow(int y, QVector<char> row)
 {
     face[y] = row;
 }
 
-void CubeFace::setCol(int x, std::vector<char> col)
+void CubeFace::setCol(int x, QVector<char> col)
 {
-    for (int i = 0; i < (int) face.size(); i++)
+    for (int i = 0; i < (int)face.size(); i++)
         face[i][x] = col[i];
 }
 
 void CubeFace::rotateClockwise()
 {
-    const std::vector<char> r0 = getRow(0);
-    const std::vector<char> r1 = getRow(1);
-    const std::vector<char> r2 = getRow(2);
+    const QVector<char> r0 = getRow(0);
+    const QVector<char> r1 = getRow(1);
+    const QVector<char> r2 = getRow(2);
 
-    for (int i = 0; i < (int) face.size(); i++)
+    for (int i = 0; i < (int)face.size(); i++)
     {
         face[i][0] = r2[i];
         face[i][1] = r1[i];
@@ -225,11 +280,11 @@ void CubeFace::rotateClockwise()
 
 void CubeFace::rotateCounterClockwise()
 {
-    const std::vector<char> c0 = getCol(0);
-    const std::vector<char> c1 = getCol(1);
-    const std::vector<char> c2 = getCol(2);
+    const QVector<char> c0 = getCol(0);
+    const QVector<char> c1 = getCol(1);
+    const QVector<char> c2 = getCol(2);
 
-    for (int i = 0; i < (int) face.size(); i++)
+    for (int i = 0; i < (int)face.size(); i++)
     {
         face[2][i] = c0[i];
         face[1][i] = c1[i];
@@ -242,8 +297,8 @@ void CubeFace::rotateCounterClockwise()
  */
 void CubeFace::flipVertically()
 {
-    std::vector<char> r0 = getRow(0);
-    std::vector<char> r2 = getRow(2);
+    QVector<char> r0 = getRow(0);
+    QVector<char> r2 = getRow(2);
 
     setRow(0, r2);
     setRow(2, r0);
@@ -254,8 +309,8 @@ void CubeFace::flipVertically()
  */
 void CubeFace::flipHorizontally()
 {
-    std::vector<char> c0 = getCol(0);
-    std::vector<char> c2 = getCol(2);
+    QVector<char> c0 = getCol(0);
+    QVector<char> c2 = getCol(2);
 
     setCol(0, c2);
     setCol(2, c0);
@@ -264,7 +319,7 @@ void CubeFace::flipHorizontally()
 bool CubeFace::complete()
 {
     char standard = face[0][0];
-    for (std::vector<char> row : face)
+    for (QVector<char> row : face)
     {
         for (char c : row)
         {
@@ -279,9 +334,9 @@ QImage CubeFace::toQImage()
 {
     QImage image(3, 3, QImage::Format_RGBA64);
 
-    for (int i = 0; i < (int) face.size(); i++)
+    for (int i = 0; i < (int)face.size(); i++)
     {
-        for (int j = 0; j < (int) face[i].size(); j++)
+        for (int j = 0; j < (int)face[i].size(); j++)
         {
             image.setPixelColor(j,i,getColor(i,j));
         }
@@ -381,7 +436,6 @@ QColor CubeFace::getColor(int i, int j){
 void CubeFace::printDebug(){
     for (int irow = 0; irow < 3; irow++)
     {
-        qDebug()<< face[irow][0] << "," << face[irow][1] << "," << face[irow][2];
+        qDebug() << face[irow][0] << "," << face[irow][1] << "," << face[irow][2];
     }
 }
-
