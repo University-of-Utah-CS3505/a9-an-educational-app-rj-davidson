@@ -63,11 +63,20 @@ Cube CubeBuilder::generateDebugCube() {
     QVector<CubeFace> faces{CubeFace(face0Chars), CubeFace(face1Chars), CubeFace(face2Chars), CubeFace(face3Chars), CubeFace(face4Chars), CubeFace(face5Chars)};
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
+    // No solve mode
+    c.setSolverFunction([](Cube)->bool{
+        return false;
+    });
     return c;
 }
 
 Cube CubeBuilder::generateSolvedCube() {
-    return Cube();
+    Cube c;
+    // No solve mode
+    c.setSolverFunction([](Cube)->bool{
+        return false;
+    });
+    return c;
 }
 Cube CubeBuilder::generateTutorialStep1Cube(){
     Cube c;
@@ -86,9 +95,6 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     faces.append(CubeFace("firstCrossOppositeFace", 'x'));
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
-    c.setSolverFunction([](Cube c)->bool{
-        return true;
-    });
     return c;
 }
 

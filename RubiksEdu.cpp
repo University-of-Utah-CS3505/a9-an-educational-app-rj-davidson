@@ -18,7 +18,11 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     connect(this, &RubiksEdu::sendMove, controller, &CubeController::MoveCube);
     connect(controller, &CubeController::updateCube, this, &RubiksEdu::displayCube);
     connect(ui->cubeWidget, SIGNAL(faceSelected(int)), controller, SLOT(switchFace(int)));
+
+    // Settings
     connect(ui->shuffleButton, &QPushButton::pressed, controller, &CubeController::buildRandomCube);
+    connect(ui->debugCube, &QPushButton::pressed, controller, &CubeController::buildDebugCube);
+    connect(ui->solvedCube, &QPushButton::pressed, controller, &CubeController::buildSolvedCube);
     connect(ui->buttonViewComboBox, &QComboBox::currentIndexChanged, this, &RubiksEdu::switchButtonMode);
 
     // Tutorial Widget Connections
