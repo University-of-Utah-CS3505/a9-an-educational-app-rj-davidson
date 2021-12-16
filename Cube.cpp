@@ -223,8 +223,8 @@ QVector<QImage> Cube::toQImageList()
     QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
-    list.push_back(rotated[2].toQImageAlt(1));
-    list.push_back(rotated[3].toQImageAlt(2));
+    list.push_back(tempCubeFaces[2].toQImageAlt(1));
+    list.push_back(tempCubeFaces[3].toQImageAlt(2));
     return list;
 }
 

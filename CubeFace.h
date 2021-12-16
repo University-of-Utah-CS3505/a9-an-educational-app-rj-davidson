@@ -45,7 +45,7 @@ public:
     void printDebug();
 
 private:
-    std::vector<std::vector<char>> face;
+    QVector<QVector<char> > face;
     QColor getColor(int, int);
 };
 
