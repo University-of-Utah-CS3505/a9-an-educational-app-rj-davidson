@@ -41,11 +41,11 @@ public:
     QImage toQImage();
     QImage toQImageAlt(int);
 
-
+    bool equals(CubeFace);
     void printDebug();
 
 private:
-    QVector<QVector<char> > face;
+    QVector<QVector<char>> face;
     QColor getColor(int, int);
 };
 

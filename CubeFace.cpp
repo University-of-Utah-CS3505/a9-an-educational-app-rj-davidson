@@ -433,6 +433,18 @@ QColor CubeFace::getColor(int i, int j){
     }
 }
 
+bool CubeFace::equals(CubeFace other) {
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            if(face[i][j] != other.face[i][j]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 void CubeFace::printDebug(){
     for (int irow = 0; irow < 3; irow++)
     {

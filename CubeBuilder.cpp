@@ -95,6 +95,35 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     faces.append(CubeFace("firstCrossOppositeFace", 'x'));
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
+
+    c.setSolverFunction([](Cube c)->bool{
+        c = c.getBaseCube();
+        CubeFace frontSolution(QVector<QVector<char>>{
+                                   QVector<char>{'x', 'g', 'x' },
+                                   QVector<char>{'x', 'g', 'x' },
+                                   QVector<char>{'x', 'x', 'x' }
+                               });
+        CubeFace upSolution(QVector<QVector<char>>{
+                                   QVector<char>{'x', 'r', 'x' },
+                                   QVector<char>{'r', 'r', 'r' },
+                                   QVector<char>{'x', 'r', 'x' }
+                               });
+        CubeFace rightSolution(QVector<QVector<char>>{
+                                   QVector<char>{'x', 'w', 'x' },
+                                   QVector<char>{'x', 'w', 'x' },
+                                   QVector<char>{'x', 'x', 'x' }
+                               });
+        CubeFace emptyFace('x');
+        bool frontCorrect = c.getFace(0).equals(frontSolution);
+        bool leftCorrect = c.getFace(1).equals(emptyFace);
+        bool upCorrect = c.getFace(2).equals(upSolution);
+        bool rightCorrect = c.getFace(3).equals(rightSolution);
+        bool downCorrect = c.getFace(4).equals(emptyFace);
+        bool backCorrect = c.getFace(5).equals(emptyFace);
+
+    return frontCorrect && leftCorrect && upCorrect && rightCorrect && downCorrect && backCorrect;
+    });
+
     return c;
 }
 
