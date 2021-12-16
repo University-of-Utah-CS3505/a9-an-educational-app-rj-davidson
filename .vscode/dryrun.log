@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/c/Users/elukn/OneDrive/Documents/CS3505/CS3505AssignmentCode/A9/a9-an-educational-app-rj-davidson'
+make: Leaving directory '/c/Users/elukn/OneDrive/Documents/CS3505/CS3505AssignmentCode/A9/a9-an-educational-app-rj-davidson'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+ 
