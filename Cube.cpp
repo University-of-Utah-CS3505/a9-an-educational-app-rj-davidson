@@ -1,734 +1,393 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ *           Orion Santiago
+ *           Ronnie Koe
+ *           Maiko Tuitupou
+ *           Elizabeth Thomas
+ *           Alex Gill
+ * Cube.cpp
+*/
+
 #include "Cube.h"
 
-Cube::Cube(int style)
-{
-    currentFace = 0;
-    switch(style) {
-        case 0:
-        cubeFaces.push_back(CubeFace('g'));
-        cubeFaces.push_back(CubeFace('r'));
-        cubeFaces.push_back(CubeFace('y'));
-        cubeFaces.push_back(CubeFace('w'));
-        cubeFaces.push_back(CubeFace('o'));
-        cubeFaces.push_back(CubeFace('b'));
-        break;
-    case 1:
-        cubeFaces.push_back(CubeFace("firstCrossMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCrossOppositeFace", 'x'));
-        break;
-    case 2:
-        cubeFaces.push_back(CubeFace("firstCornersMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace("firstCornersOppositeFace", 'x'));
-        break;
-    case 3:
-        cubeFaces.push_back(CubeFace("neighborRightMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborRightLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborRightAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborRightRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborRightBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace('w'));
-        break;
-    case 4:
-        cubeFaces.push_back(CubeFace("neighborLeftMainFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborLeftLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborLeftAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborLeftRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("neighborLeftBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace('w'));
-        break;
-    case 5:
-        cubeFaces.push_back(CubeFace("finalCrossMainFace", 'x'));      
-        cubeFaces.push_back(CubeFace("finalCrossLeftFace", 'x'));
-        cubeFaces.push_back(CubeFace("finalCrossAboveFace", 'x'));
-        cubeFaces.push_back(CubeFace("finalCrossRightFace", 'x'));
-        cubeFaces.push_back(CubeFace("finalCrossBelowFace", 'x'));
-        cubeFaces.push_back(CubeFace('w'));
-        break;
-    case 6:
-        cubeFaces.push_back(CubeFace("finalCornersMainFace", 'y'));
-        cubeFaces.push_back(CubeFace("finalCornersLeftFace", 'g'));
-        cubeFaces.push_back(CubeFace("finalCornersAboveFace", 'r'));
-        cubeFaces.push_back(CubeFace("finalCornersRightFace", 'b'));
-        cubeFaces.push_back(CubeFace("finalCornersBelowFace", 'o'));
-        cubeFaces.push_back(CubeFace('w'));
-        break;
-    }
-}
-
 Cube::Cube(){
-    currentFace = 0;
-
-        cubeFaces.push_back(CubeFace('g'));
-        cubeFaces.push_back(CubeFace('r'));
-        cubeFaces.push_back(CubeFace('y'));
-        cubeFaces.push_back(CubeFace('w'));
-        cubeFaces.push_back(CubeFace('o'));
-        cubeFaces.push_back(CubeFace('b'));
+    coreCubeFaces.push_back(CubeFace('g'));
+    coreCubeFaces.push_back(CubeFace('r'));
+    coreCubeFaces.push_back(CubeFace('y'));
+    coreCubeFaces.push_back(CubeFace('w'));
+    coreCubeFaces.push_back(CubeFace('o'));
+    coreCubeFaces.push_back(CubeFace('b'));
+    setCurrentFaceID(0);
 }
 
-/*
- *
- *this is a method for the 3d cube so that the converted copy of the data
- *can be stored in the 3d cube model
- *
-*/
-Cube::Cube(QVector<CubeFace> &newCubeFaces){
-    currentFace = 0;
-    for(int i=0; i<6; i++){
-        cubeFaces.push_back(newCubeFaces.at(i));
+Cube::Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace){
+    coreCubeFaces = cubeFaces;
+
+    if(flipBackFace) {
+        this->flipBackFace();
     }
+
+    setCurrentFaceID(0);
 }
 
-void Cube::move(int moveID)
+// ---------- Cube Faces ----------
+void Cube::flipBackFace() {
+    coreCubeFaces[5].flipHorizontally();
+    rotatedCubeFaces = convertCoreToRotated(coreCubeFaces, currentFaceID);
+}
+
+QVector<CubeFace> Cube::getAllFaces()
 {
-    switch (moveID)
-    {
-        case 0:
-            leftTop();
-            break;
-        case 1:
-            leftBttm();
-            break;
-        case 2:
-            bttmLeft();
-            break;
-        case 3:
-            bttmRight();
-            break;
-        case 4:
-            rightBttm();
-            break;
-        case 5:
-            rightTop();
-            break;
-        case 6:
-            topRight();
-            break;
-        case 7:
-            topLeft();
-            break;
-        case 8:
-            clockwiseMove();
-            break;
-        case 9:
-            counterClockwiseMove();
-            break;
-        default:
-            topLeft();
+    return rotatedCubeFaces;
+}
+
+void Cube::setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace)
+{
+    coreCubeFaces = newCubeFaces;
+
+    if(flipBackFace) {
+        this->flipBackFace();
     }
+
+    setCurrentFaceID(0);
 }
 
-// Left Controls
-void Cube::leftTop()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            y2Clockwise();
-            break;
-        case 2: // y2
-            b5Clockwise();
-            break;
-        case 3: // w3
-            y2Clockwise();
-            break;
-        case 4: // o4
-            g0Clockwise();
-            break;
-        case 5: // b5
-            y2Clockwise();
-            break;
-        default: // g0
-            y2Clockwise();
-    }
-}
-
-void Cube::leftBttm()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            o4CounterClockwise();
-            break;
-        case 2: // y2
-            g0CounterClockwise();
-            break;
-        case 3: // w3
-            o4CounterClockwise();
-            break;
-        case 4: // o4
-            b5CounterClockwise();
-            break;
-        case 5: // b5
-            o4CounterClockwise();
-            break;
-        default: // g0
-            o4CounterClockwise();
-    }
-}
-
-// Bottom Controls
-void Cube::bttmLeft()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            b5Clockwise();
-            break;
-        case 2: // y2
-            r1Clockwise();
-            break;
-        case 3: // w3
-            g0Clockwise();
-            break;
-        case 4: // o4
-            r1Clockwise();
-            break;
-        case 5: // b5
-            w3Clockwise();
-            break;
-        default: // g0
-            r1Clockwise();
-    }
-}
-
-void Cube::bttmRight()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            g0CounterClockwise();
-            break;
-        case 2: // y2
-            w3CounterClockwise();
-            break;
-        case 3: // w3
-            b5CounterClockwise();
-            break;
-        case 4: // o4
-            w3CounterClockwise();
-            break;
-        case 5: // b5
-            r1CounterClockwise();
-            break;
-        default: // g0
-            w3CounterClockwise();
-    }
-}
-
-// Right Controls
-void Cube::rightBttm()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            o4Clockwise();
-            break;
-        case 2: // y2
-            g0Clockwise();
-            break;
-        case 3: // w3
-            o4Clockwise();
-            break;
-        case 4: // o4
-            b5Clockwise();
-            break;
-        case 5: // b5
-            o4Clockwise();
-            break;
-        default: // g0
-            o4Clockwise();
-    }
-}
-
-void Cube::rightTop()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            y2CounterClockwise();
-            break;
-        case 2: // y2
-            b5CounterClockwise();
-            break;
-        case 3: // w3
-            y2CounterClockwise();
-            break;
-        case 4: // o4
-            g0CounterClockwise();
-            break;
-        case 5: // b5
-            y2CounterClockwise();
-            break;
-        default: // g0
-            y2CounterClockwise();
-    }
-}
-
-// Top Controls
-void Cube::topRight()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            g0Clockwise();
-            break;
-        case 2: // y2
-            w3Clockwise();
-            break;
-        case 3: // w3
-            b5Clockwise();
-            break;
-        case 4: // o4
-            w3Clockwise();
-            break;
-        case 5: // b5
-            r1Clockwise();
-            break;
-        default: // g0
-            w3Clockwise();
-    }
-}
-
-void Cube::topLeft()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            b5CounterClockwise();
-            break;
-        case 2: // y2
-            r1CounterClockwise();
-            break;
-        case 3: // w3
-            g0CounterClockwise();
-            break;
-        case 4: // o4
-            r1CounterClockwise();
-            break;
-        case 5: // b5
-            w3CounterClockwise();
-            break;
-        default: // g0
-            r1CounterClockwise();
-    }
-}
-
-void Cube::clockwiseMove()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            r1CounterClockwise();
-            break;
-        case 2: // y2
-            y2CounterClockwise();
-            break;
-        case 3: // w3
-            w3CounterClockwise();
-            break;
-        case 4: // o4
-            o4CounterClockwise();
-            break;
-        case 5: // b5
-            b5CounterClockwise();
-            break;
-        default: // g0
-            g0CounterClockwise();
-    }
-}
-
-void Cube::counterClockwiseMove()
-{
-    switch (currentFace)
-    {
-        case 1: // r1
-            r1CounterClockwise();
-            break;
-        case 2: // y2
-            y2CounterClockwise();
-            break;
-        case 3: // w3
-            w3CounterClockwise();
-            break;
-        case 4: // o4
-            o4CounterClockwise();
-            break;
-        case 5: // b5
-            b5CounterClockwise();
-            break;
-        default: // g0
-            g0CounterClockwise();
-    }
-}
-
-// Moves
-void Cube::g0Clockwise()
-{
-    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
-    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
-    std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
-    std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
-
-    // Set y2 row 2 to r1Temp
-    cubeFaces[2].setRow(2, r1Temp);
-    // Set w3 col 0 to y2Temp
-    cubeFaces[3].setCol(0, y2Temp);
-    // Set o4 row 0 to w3Temp
-    cubeFaces[4].setRow(0, w3Temp);
-    // Set r1 col 2 to o4Temp
-    cubeFaces[1].setCol(2, o4Temp);
-    // Rotate g0 Clockwise
-    cubeFaces[0].rotateClockwise();
-}
-
-void Cube::g0CounterClockwise()
-{
-    std::vector<char> r1Temp = cubeFaces[1].getCol(2);
-    std::vector<char> o4Temp = cubeFaces[4].getRow(0);
-    std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(0);
-    std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getRow(2);
-
-    // Set o4 row 0 to r1Temp
-    cubeFaces[4].setRow(0, r1Temp);
-    // Set w3 col 0 to o4Temp
-    cubeFaces[3].setCol(0, o4Temp);
-    // Set y2 row 2 to w3Temp
-    cubeFaces[2].setRow(2, w3Temp);
-    // Set r1 col 2 to y2Temp
-    cubeFaces[1].setCol(2, y2Temp);
-    // Rotate g0 Counter Clockwise
-    cubeFaces[0].rotateCounterClockwise();
-}
-
-void Cube::r1Clockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
-    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
-    std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
-    std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
-
-    // Set o4 col 0 to g0Temp
-    cubeFaces[4].setCol(0, g0Temp);
-    // Set b5 col 2 to o4Temp
-    cubeFaces[5].setCol(2, o4Temp);
-    // Set y2 col 0 to b5Temp
-    cubeFaces[2].setCol(0, b5Temp);
-    // Set g0 col 0 to y2Temp
-    cubeFaces[0].setCol(0, y2Temp);
-    // Rotate r1 Clockwise
-    cubeFaces[1].rotateClockwise();
-}
-
-void Cube::r1CounterClockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getCol(0);
-    std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(2);
-    std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getCol(0);
-
-    // Set y2 col 0 to g0Temp
-    cubeFaces[2].setCol(0, g0Temp);
-    // Set b5 col 2 to y2Temp
-    cubeFaces[5].setCol(2, y2Temp);
-    // Set o4 col 0 to b5Temp
-    cubeFaces[4].setCol(0, b5Temp);
-    // Set g0 col 0 to o4Temp
-    cubeFaces[0].setCol(0, o4Temp);
-    // Rotate r1 Counter Clockwise
-    cubeFaces[1].rotateCounterClockwise();
-}
-
-void Cube::y2CounterClockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
-
-    // Set w3 row 2 to g0Temp
-    cubeFaces[3].setRow(0, g0Temp);
-    // Set b5 row 2 to w3Temp
-    cubeFaces[5].setRow(0, w3Temp);
-    // Set r1 row 2 to b5Temp
-    cubeFaces[1].setRow(0, b5Temp);
-    // Set g0 row 2 to r1Temp
-    cubeFaces[0].setRow(0, r1Temp);
-    // Rotate y2 Counter Clockwise
-    cubeFaces[2].rotateCounterClockwise();
-}
-
-void Cube::y2Clockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getRow(0);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(0);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(0);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(0);
-
-    // Set r1 row 0 to g0Temp
-    cubeFaces[1].setRow(0, g0Temp);
-    // Set b5 row 0 to r1Temp
-    cubeFaces[5].setRow(0, r1Temp);
-    // Set w3 row 0 to b5Temp
-    cubeFaces[3].setRow(0, b5Temp);
-    // Set g0 row 0 to w3Temp
-    cubeFaces[0].setRow(0, w3Temp);
-    // Rotate y2 Clockwise
-    cubeFaces[2].rotateClockwise();
-}
-
-void Cube::w3Clockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
-    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
-    std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
-    std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
-
-    // Set y2 col 2 to g0Temp
-    cubeFaces[2].setCol(2, g0Temp);
-    // Set b5 col 0 to y2Temp
-    cubeFaces[5].setCol(0, y2Temp);
-    // Set o4 col 2 to b5Temp
-    cubeFaces[4].setCol(2, b5Temp);
-    // Set g0 col 2 to o4Temp
-    cubeFaces[0].setCol(2, o4Temp);
-    // Rotate w3 Clockwise
-    cubeFaces[3].rotateClockwise();
-}
-
-void Cube::w3CounterClockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getCol(2);
-    std::vector<char> o4Temp = cubeFaces[4].getCol(2);
-    std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> b5Temp = cubeFaces[5].getCol(0);
-    std::reverse(b5Temp.begin(), b5Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getCol(2);
-
-    // Set o4 col 2 to g0Temp
-    cubeFaces[4].setCol(2, g0Temp);
-    // Set b5 col 0 to o4Temp
-    cubeFaces[5].setCol(0, o4Temp);
-    // Set y2 col 2 to b5Temp
-    cubeFaces[2].setCol(2, b5Temp);
-    // Set g0 col 2 to y2Temp
-    cubeFaces[0].setCol(2, y2Temp);
-    // Rotate w3 Counter Clockwise
-    cubeFaces[3].rotateCounterClockwise();
-}
-
-void Cube::o4Clockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
-
-    // Set w3 row 2 to g0Temp
-    cubeFaces[3].setRow(2, g0Temp);
-    // Set b5 row 2 to w3Temp
-    cubeFaces[5].setRow(2, w3Temp);
-    // Set r1 row 2 to b5Temp
-    cubeFaces[1].setRow(2, b5Temp);
-    // Set g0 row 2 to r1Temp
-    cubeFaces[0].setRow(2, r1Temp);
-    // Rotate o4 Clockwise
-    cubeFaces[4].rotateClockwise();
-}
-
-void Cube::o4CounterClockwise()
-{
-    std::vector<char> g0Temp = cubeFaces[0].getRow(2);
-    std::vector<char> r1Temp = cubeFaces[1].getRow(2);
-    std::vector<char> b5Temp = cubeFaces[5].getRow(2);
-    std::vector<char> w3Temp = cubeFaces[3].getRow(2);
-
-    // Set r1 row 2 to g0Temp
-    cubeFaces[1].setRow(2, g0Temp);
-    // Set b5 row 2 to r1Temp
-    cubeFaces[5].setRow(2, r1Temp);
-    // Set w3 row 2 to b5Temp
-    cubeFaces[3].setRow(2, b5Temp);
-    // Set g0 row 2 to w3Temp
-    cubeFaces[0].setRow(2, w3Temp);
-    // Rotate 04 Counter Clockwise
-    cubeFaces[4].rotateCounterClockwise();
-}
-
-void Cube::b5Clockwise()
-{
-    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
-    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
-    std::reverse(o4Temp.begin(), o4Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
-    std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
-
-    // Set o4 row 2 to r1Temp
-    cubeFaces[4].setRow(2, r1Temp);
-    // Set w3 col 2 to o4Temp
-    cubeFaces[3].setCol(2, o4Temp);
-    // Set y2 row 0 to w3Temp
-    cubeFaces[2].setRow(0, w3Temp);
-    // Set r1 col 0 to y2Temp
-    cubeFaces[1].setCol(0, y2Temp);
-    // Rotate b5 Clockwise
-    cubeFaces[5].rotateClockwise();
-}
-
-void Cube::b5CounterClockwise()
-{
-    std::vector<char> r1Temp = cubeFaces[1].getCol(0);
-    std::vector<char> y2Temp = cubeFaces[2].getRow(0);
-    std::reverse(y2Temp.begin(), y2Temp.end());
-    std::vector<char> w3Temp = cubeFaces[3].getCol(2);
-    std::reverse(w3Temp.begin(), w3Temp.end());
-    std::vector<char> o4Temp = cubeFaces[4].getRow(2);
-
-    // Set y2 row 0 to r1Temp
-    cubeFaces[2].setRow(0, r1Temp);
-    // Set w3 col 2 to y2Temp
-    cubeFaces[3].setCol(2, y2Temp);
-    // Set o4 row 2 to w3Temp
-    cubeFaces[4].setRow(2, w3Temp);
-    // Set r1 col 0 to o4Temp
-    cubeFaces[1].setCol(0, o4Temp);
-    // Rotate b5 Counter Clockwise
-    cubeFaces[5].rotateCounterClockwise();
-}
-
-// Getters
 CubeFace Cube::getFace(int i)
 {
-    return cubeFaces[i];
-}
-
-std::vector<CubeFace> Cube::getCube()
-{
-    return cubeFaces;
-}
-
-/*
- * Allows cube data to be set from a list of faces. Used to store data for the 3d cube model
- */
-void Cube::setCube(QVector<CubeFace> newCubeFaces)
-{
-    cubeFaces.clear();
-    for(int i=0; i<6; i++){
-        cubeFaces.push_back(newCubeFaces.at(i));
+    if(i == 5) {
+        CubeFace back = rotatedCubeFaces[i];
+        back.flipHorizontally();
+        return back;
     }
+    return rotatedCubeFaces[i];
 }
 
-int Cube::getCurrentFace()
+int Cube::getCurrentFaceID()
 {
-    return currentFace;
+    return currentFaceID;
 }
 
-// Setters
-void Cube::setCurrentFace(int num)
+void Cube::setCurrentFaceID(int num)
 {
-    currentFace = num;
+    rotatedCubeFaces = convertCoreToRotated(coreCubeFaces, num);
+    currentFaceID = num;
 }
 
-// Solved Check
-bool Cube::isComplete()
-{
-    for(CubeFace f : cubeFaces)
-        if (!f.complete())
-            return false;
-    return true;
-}
+// ------------ Moves ---------
+void Cube::moveF(RotationDirection dir) {
+    QVector<char> lCol = rotatedCubeFaces[1].getCol(2);
+    QVector<char> uRow = rotatedCubeFaces[2].getRow(2);
+    QVector<char> rCol = rotatedCubeFaces[3].getCol(0);
+    QVector<char> dRow = rotatedCubeFaces[4].getRow(0);
 
-// Converts Cube to List of QImages
-std::vector<QImage> Cube::toQImageList()
-{
-    std::vector<CubeFace> tempCubeFaces;
-    switch (currentFace)
-    {
-    case 1:
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces[2].rotateCounterClockwise();
-        tempCubeFaces[4].rotateClockwise();
-        break;
-    case 2:
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces[1].rotateClockwise();
-        tempCubeFaces[3].rotateCounterClockwise();
-        tempCubeFaces[4].rotateCounterClockwise();
-        tempCubeFaces[4].rotateCounterClockwise();
-        tempCubeFaces[5].rotateCounterClockwise();
-        tempCubeFaces[5].rotateCounterClockwise();
-        break;
-    case 3:
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[4].rotateCounterClockwise();
-        break;
-    case 4:
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces[1].rotateCounterClockwise();
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[3].rotateClockwise();
-        tempCubeFaces[5].rotateClockwise();
-        tempCubeFaces[5].rotateClockwise();
-        break;
-    case 5:
-        tempCubeFaces.push_back(cubeFaces[5]);
-        tempCubeFaces.push_back(cubeFaces[3]);
-        tempCubeFaces.push_back(cubeFaces[2]);
-        tempCubeFaces.push_back(cubeFaces[1]);
-        tempCubeFaces.push_back(cubeFaces[4]);
-        tempCubeFaces.push_back(cubeFaces[0]);
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[2].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
-        tempCubeFaces[4].rotateClockwise();
-        break;
-    default:
-        tempCubeFaces = cubeFaces;
+    if(dir == CLOCKWISE) {
+        std::reverse(lCol.begin(), lCol.end());
+        std::reverse(rCol.begin(), rCol.end());
+        rotatedCubeFaces[0].rotateClockwise();
+        rotatedCubeFaces[1].setCol(2, dRow);
+        rotatedCubeFaces[2].setRow(2, lCol);
+        rotatedCubeFaces[3].setCol(0, uRow);
+        rotatedCubeFaces[4].setRow(0, rCol);
+    } else {
+        std::reverse(uRow.begin(), uRow.end());
+        std::reverse(dRow.begin(), dRow.end());
+        rotatedCubeFaces[0].rotateCounterClockwise();
+        rotatedCubeFaces[1].setCol(2, uRow);
+        rotatedCubeFaces[2].setRow(2, rCol);
+        rotatedCubeFaces[3].setCol(0, dRow);
+        rotatedCubeFaces[4].setRow(0, lCol);
     }
 
-    std::vector<QImage> list;
+    coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
+}
+
+void Cube::moveU(RotationDirection dir) {
+    rotatedCubeFaces[5].flipHorizontally();
+    QVector<char> lRow = rotatedCubeFaces[1].getRow(0);
+    QVector<char> fRow = rotatedCubeFaces[0].getRow(0);
+    QVector<char> rRow = rotatedCubeFaces[3].getRow(0);
+    QVector<char> bRow = rotatedCubeFaces[5].getRow(0);
+    if(dir == CLOCKWISE) {
+        rotatedCubeFaces[2].rotateClockwise();
+        rotatedCubeFaces[1].setRow(0, fRow);
+        rotatedCubeFaces[0].setRow(0, rRow);
+        rotatedCubeFaces[3].setRow(0, bRow);
+        rotatedCubeFaces[5].setRow(0, lRow);
+    } else {
+        rotatedCubeFaces[2].rotateCounterClockwise();
+        rotatedCubeFaces[1].setRow(0, bRow);
+        rotatedCubeFaces[0].setRow(0, lRow);
+        rotatedCubeFaces[3].setRow(0, fRow);
+        rotatedCubeFaces[5].setRow(0, rRow);
+    }
+    rotatedCubeFaces[5].flipHorizontally();
+
+    coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
+}
+
+void Cube::moveD(RotationDirection dir) {
+    rotatedCubeFaces[5].flipHorizontally();
+    QVector<char> lRow = rotatedCubeFaces[1].getRow(2);
+    QVector<char> fRow = rotatedCubeFaces[0].getRow(2);
+    QVector<char> rRow = rotatedCubeFaces[3].getRow(2);
+    QVector<char> bRow = rotatedCubeFaces[5].getRow(2);
+    if(dir == CLOCKWISE) {
+        rotatedCubeFaces[4].rotateClockwise();
+        rotatedCubeFaces[1].setRow(2, bRow);
+        rotatedCubeFaces[0].setRow(2, lRow);
+        rotatedCubeFaces[3].setRow(2, fRow);
+        rotatedCubeFaces[5].setRow(2, rRow);
+    } else {
+        rotatedCubeFaces[4].rotateCounterClockwise();
+        rotatedCubeFaces[1].setRow(2, fRow);
+        rotatedCubeFaces[0].setRow(2, rRow);
+        rotatedCubeFaces[3].setRow(2, bRow);
+        rotatedCubeFaces[5].setRow(2, lRow);
+    }
+    rotatedCubeFaces[5].flipHorizontally();
+
+    coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
+}
+
+void Cube::moveL(RotationDirection dir) {
+    QVector<char> fCol = rotatedCubeFaces[0].getCol(0);
+    QVector<char> dCol = rotatedCubeFaces[4].getCol(0);
+    QVector<char> bCol = rotatedCubeFaces[5].getCol(0);
+    std::reverse(bCol.begin(), bCol.end());
+    QVector<char> uCol = rotatedCubeFaces[2].getCol(0);
+
+    if(dir == CLOCKWISE) {
+        rotatedCubeFaces[1].rotateClockwise();
+        rotatedCubeFaces[0].setCol(0, uCol);
+        rotatedCubeFaces[4].setCol(0, fCol);
+        rotatedCubeFaces[5].setCol(0, dCol);
+        rotatedCubeFaces[2].setCol(0, bCol);
+    } else {
+        rotatedCubeFaces[1].rotateCounterClockwise();
+        rotatedCubeFaces[0].setCol(0, dCol);
+        rotatedCubeFaces[4].setCol(0, bCol);
+        rotatedCubeFaces[5].setCol(0, uCol);
+        rotatedCubeFaces[2].setCol(0, fCol);
+    }
+
+    bCol = rotatedCubeFaces[5].getCol(0);
+    std::reverse(bCol.begin(), bCol.end());
+    rotatedCubeFaces[5].setCol(0, bCol);
+
+    coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
+}
+
+void Cube::moveR(RotationDirection dir) {
+    QVector<char> fCol = rotatedCubeFaces[0].getCol(2);
+    QVector<char> dCol = rotatedCubeFaces[4].getCol(2);
+    QVector<char> bCol = rotatedCubeFaces[5].getCol(2);
+    std::reverse(bCol.begin(), bCol.end());
+    QVector<char> uCol = rotatedCubeFaces[2].getCol(2);
+
+    if(dir == CLOCKWISE) {
+        rotatedCubeFaces[3].rotateClockwise();
+        rotatedCubeFaces[0].setCol(2, dCol);
+        rotatedCubeFaces[4].setCol(2, bCol);
+        rotatedCubeFaces[5].setCol(2, uCol);
+        rotatedCubeFaces[2].setCol(2, fCol);
+    } else {
+        rotatedCubeFaces[3].rotateCounterClockwise();
+        rotatedCubeFaces[0].setCol(2, uCol);
+        rotatedCubeFaces[4].setCol(2, fCol);
+        rotatedCubeFaces[5].setCol(2, dCol);
+        rotatedCubeFaces[2].setCol(2, bCol);
+    }
+
+    bCol = rotatedCubeFaces[5].getCol(2);
+    std::reverse(bCol.begin(), bCol.end());
+    rotatedCubeFaces[5].setCol(2, bCol);
+
+    coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
+}
+
+// ----------- Solve Function --------
+bool Cube::isSolved()
+{
+    return cubeSolverFunc(*this);
+}
+
+void Cube::setSolverFunction(std::function<bool(Cube)> func) {
+    cubeSolverFunc = func;
+}
+
+// -------- Converters -----------
+Cube Cube::getBaseCube() {
+    Cube c;
+    c.setCubeFaces(coreCubeFaces, false);
+    return c;
+}
+
+QVector<QImage> Cube::toQImageList()
+{
+    QVector<CubeFace> tempCubeFaces = rotatedCubeFaces;
+
+    // Flip the back face for display
+    tempCubeFaces[5].flipHorizontally();
+
+    QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
+    list.push_back(tempCubeFaces[2].toQImageAlt(1));
+    list.push_back(tempCubeFaces[3].toQImageAlt(2));
     return list;
+}
+
+QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int targetFaceID) {
+    QVector<CubeFace> rotated;
+    original[5].flipHorizontally();
+    switch (targetFaceID)
+    {
+    case 0:
+        rotated = original;
+        break;
+    case 1:
+        rotated.push_back(original[1]);
+        rotated.push_back(original[5]);
+        rotated.push_back(original[2]);
+        rotated.push_back(original[0]);
+        rotated.push_back(original[4]);
+        rotated.push_back(original[3]);
+        rotated[2].rotateCounterClockwise();
+        rotated[4].rotateClockwise();
+        break;
+    case 2:
+        rotated.push_back(original[2]);
+        rotated.push_back(original[1]);
+        rotated.push_back(original[5]);
+        rotated.push_back(original[3]);
+        rotated.push_back(original[0]);
+        rotated.push_back(original[4]);
+        rotated[1].rotateClockwise();
+        rotated[3].rotateCounterClockwise();
+        rotated[5].rotateCounterClockwise();
+        rotated[5].rotateCounterClockwise();
+        rotated[2].rotateCounterClockwise();
+        rotated[2].rotateCounterClockwise();
+        break;
+    case 3:
+        rotated.push_back(original[3]);
+        rotated.push_back(original[0]);
+        rotated.push_back(original[2]);
+        rotated.push_back(original[5]);
+        rotated.push_back(original[4]);
+        rotated.push_back(original[1]);
+        rotated[2].rotateClockwise();
+        rotated[4].rotateCounterClockwise();
+        break;
+    case 4:
+        rotated.push_back(original[4]);
+        rotated.push_back(original[1]);
+        rotated.push_back(original[0]);
+        rotated.push_back(original[3]);
+        rotated.push_back(original[5]);
+        rotated.push_back(original[2]);
+        rotated[1].rotateCounterClockwise();
+        rotated[5].rotateClockwise();
+        rotated[5].rotateClockwise();
+        rotated[3].rotateClockwise();
+        rotated[4].rotateClockwise();
+        rotated[4].rotateClockwise();
+        break;
+    case 5:
+        rotated.push_back(original[5]);
+        rotated.push_back(original[3]);
+        rotated.push_back(original[2]);
+        rotated.push_back(original[1]);
+        rotated.push_back(original[4]);
+        rotated.push_back(original[0]);
+        rotated[2].rotateClockwise();
+        rotated[2].rotateClockwise();
+        rotated[4].rotateClockwise();
+        rotated[4].rotateClockwise();
+        break;
+    //default:
+        //qDebug() << "Invalid cube face ID";
+    }
+    rotated[5].flipHorizontally();
+
+    return rotated;
+}
+
+QVector<CubeFace> Cube::convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID) {
+    QVector<CubeFace> core;
+    rotated[5].flipHorizontally();
+    switch (currentFaceID)
+    {
+    case 0: // Front
+        core = rotated;
+        break;
+    case 1: // Left
+        rotated[2].rotateClockwise();
+        rotated[4].rotateCounterClockwise();
+        core.push_back(rotated[3]);
+        core.push_back(rotated[0]);
+        core.push_back(rotated[2]);
+        core.push_back(rotated[5]);
+        core.push_back(rotated[4]);
+        core.push_back(rotated[1]);
+        break;
+    case 2: // Top
+        rotated[1].rotateCounterClockwise();
+        rotated[3].rotateClockwise();
+        rotated[5].rotateClockwise();
+        rotated[5].rotateClockwise();
+        rotated[2].rotateClockwise();
+        rotated[2].rotateClockwise();
+        core.push_back(rotated[4]);
+        core.push_back(rotated[1]);
+        core.push_back(rotated[0]);
+        core.push_back(rotated[3]);
+        core.push_back(rotated[5]);
+        core.push_back(rotated[2]);
+        break;
+    case 3: // Right
+        rotated[2].rotateCounterClockwise();
+        rotated[4].rotateClockwise();
+        core.push_back(rotated[1]);
+        core.push_back(rotated[5]);
+        core.push_back(rotated[2]);
+        core.push_back(rotated[0]);
+        core.push_back(rotated[4]);
+        core.push_back(rotated[3]);
+        break;
+    case 4: // Down
+        rotated[1].rotateClockwise();
+        rotated[5].rotateCounterClockwise();
+        rotated[5].rotateCounterClockwise();
+        rotated[3].rotateCounterClockwise();
+        rotated[4].rotateCounterClockwise();
+        rotated[4].rotateCounterClockwise();
+        core.push_back(rotated[2]);
+        core.push_back(rotated[1]);
+        core.push_back(rotated[5]);
+        core.push_back(rotated[3]);
+        core.push_back(rotated[0]);
+        core.push_back(rotated[4]);
+        break;
+    case 5: // Back
+        rotated[2].rotateCounterClockwise();
+        rotated[2].rotateCounterClockwise();
+        rotated[4].rotateCounterClockwise();
+        rotated[4].rotateCounterClockwise();
+        core.push_back(rotated[5]);
+        core.push_back(rotated[3]);
+        core.push_back(rotated[2]);
+        core.push_back(rotated[1]);
+        core.push_back(rotated[4]);
+        core.push_back(rotated[0]);
+        break;
+//    default:
+//        qDebug() << "Invalid cube face ID";
+    }
+
+    core[5].flipHorizontally();
+
+    return core;
 }

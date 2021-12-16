@@ -11,9 +11,10 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     Cube.cpp \
+    CubeBuilder.cpp \
+    CubeCelebration.cpp \
     CubeController.cpp \
     CubeFace.cpp \
-    CubeWidget.cpp \
     Model3DCube.cpp \
     TutorialBrowser.cpp \
     ViewCube.cpp \
@@ -22,15 +23,17 @@ SOURCES += \
 
 HEADERS += \
     Cube.h \
+    CubeBuilder.h \
+    CubeCelebration.h \
     CubeController.h \
     CubeFace.h \
-    CubeWidget.h \
     Model3DCube.h \
     RubiksEdu.h \
      TutorialBrowser.h \
      ViewCube.h
 
 FORMS += \
+    CubeCelebration.ui \
     RubiksEdu.ui
 
 
@@ -58,6 +61,4 @@ PRE_TARGETDEPS += $$PWD/windows/box2d-master/build/bin/libbox2d.a
 }
 
 RESOURCES += \
-    tutorial-html/tutorial.qrc
-
-DISTFILES +=
+    tutorial-html/resources.qrc

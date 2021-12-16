@@ -1,0 +1,46 @@
+<RCC>
+    <qresource prefix="/html">
+        <file>home.html</file>
+        <file>step1.html</file>
+        <file>step2.html</file>
+        <file>step3.html</file>
+        <file>step4.html</file>
+        <file>step5.html</file>
+        <file>step6.html</file>
+        <file>step7.html</file>
+        <file>step8.html</file>
+        <file>reference.html</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>img/part2-cube-example.png</file>
+        <file>img/move-counter-D.png</file>
+        <file>img/move-counter-F.png</file>
+        <file>img/move-counter-L.png</file>
+        <file>img/move-counter-R.png</file>
+        <file>img/move-counter-U.png</file>
+        <file>img/move-D.png</file>
+        <file>img/move-F.png</file>
+        <file>img/move-L.png</file>
+        <file>img/move-R.png</file>
+        <file>img/move-U.png</file>
+        <file>icons/home.png</file>
+        <file>icons/reset.png</file>
+        <file>icons/app.png</file>
+        <file>img/2d-notation.png</file>
+        <file>img/part5-possible-cross-positions.png</file>
+        <file>img/rubiks-notation.jpg</file>
+        <file>img/step7-algorithm-diagram.svg</file>
+        <file>icons/down.png</file>
+        <file>icons/F.png</file>
+        <file>icons/F-counter.png</file>
+        <file>icons/left.png</file>
+        <file>icons/right.png</file>
+        <file>icons/up.png</file>
+        <file>img/green.png</file>
+        <file>img/red.png</file>
+        <file>img/yellow.png</file>
+        <file>img/white.png</file>
+        <file>img/orange.png</file>
+        <file>img/blue.png</file>
+    </qresource>
+</RCC>

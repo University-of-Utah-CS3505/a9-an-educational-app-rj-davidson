@@ -1,196 +1,250 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ *           Orion Santiago
+ *           Ronnie Koe
+ *           Maiko Tuitupou
+ *           Elizabeth Thomas
+ *           Alex Gill
+ * CubeController.cpp
+*/
+
 #include "CubeController.h"
-#include <stdlib.h>
-#include <iostream>
+#include "CubeBuilder.h"
 
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
-    //setupAndRandomizeCube();
-    setUpFirstCross();
-//    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
+    setUserCube(CubeBuilder::generateRandomCube());
+    lastNontutorialCube = userCube;
 
-    //3D cube view connections
+    // 3D cube view connections
     connect(this, &CubeController::updateUserRotation, &cube3D, &Model3DCube::update3DOrientation);
     connect(this, &CubeController::cube1DUpdated, &cube3D, &Model3DCube::update3DCube);
     connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCubeViewSimple);
     connect(&cube3D, &Model3DCube::notify3DCubeView, this, &CubeController::update3DCubeView);
-
-    //TODO need to make connection from rubiks to celebration when the cube is solved
-
 }
-
 
 void CubeController::switchFace(int faceNumber)
 {
-    std::cout << "Current Face: " << faceNumber << std::endl;
-    switch(userCube.getCurrentFace())
+    switch (userCube.getCurrentFaceID())
     {
-        case 1:
-            if (faceNumber == 1)
-                userCube.setCurrentFace(5);
-            else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
-            else if (faceNumber == 3)
-                userCube.setCurrentFace(0);
-            else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
-            else if (faceNumber == 5)
-                userCube.setCurrentFace(3);
-            break;
-        case 2:
-            if (faceNumber == 1)
-                userCube.setCurrentFace(1);
-            else if (faceNumber == 2)
-                userCube.setCurrentFace(5);
-            else if (faceNumber == 3)
-                userCube.setCurrentFace(3);
-            else if (faceNumber == 4)
-                userCube.setCurrentFace(0);
-            else if (faceNumber == 5)
-                userCube.setCurrentFace(4);
-            break;
-        case 3:
-            if (faceNumber == 1)
-                userCube.setCurrentFace(0);
-            else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
-            else if (faceNumber == 3)
-                userCube.setCurrentFace(5);
-            else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
-            else if (faceNumber == 5)
-                userCube.setCurrentFace(1);
-            break;
-        case 4:
-            if (faceNumber == 1)
-                userCube.setCurrentFace(1);
-            else if (faceNumber == 2)
-                userCube.setCurrentFace(0);
-            else if (faceNumber == 3)
-                userCube.setCurrentFace(3);
-            else if (faceNumber == 4)
-                userCube.setCurrentFace(5);
-            else if (faceNumber == 5)
-                userCube.setCurrentFace(2);
-            break;
-        case 5:
-            if (faceNumber == 1)
-                userCube.setCurrentFace(3);
-            else if (faceNumber == 2)
-                userCube.setCurrentFace(2);
-            else if (faceNumber == 3)
-                userCube.setCurrentFace(1);
-            else if (faceNumber == 4)
-                userCube.setCurrentFace(4);
-            else if (faceNumber == 5)
-                userCube.setCurrentFace(0);
-            break;
-        default:
-            userCube.setCurrentFace(faceNumber);
+    case 1:
+        if (faceNumber == 1)
+            userCube.setCurrentFaceID(5);
+        else if (faceNumber == 2)
+            userCube.setCurrentFaceID(2);
+        else if (faceNumber == 3)
+            userCube.setCurrentFaceID(0);
+        else if (faceNumber == 4)
+            userCube.setCurrentFaceID(4);
+        else if (faceNumber == 5)
+            userCube.setCurrentFaceID(3);
+        break;
+    case 2:
+        if (faceNumber == 1)
+            userCube.setCurrentFaceID(1);
+        else if (faceNumber == 2)
+            userCube.setCurrentFaceID(5);
+        else if (faceNumber == 3)
+            userCube.setCurrentFaceID(3);
+        else if (faceNumber == 4)
+            userCube.setCurrentFaceID(0);
+        else if (faceNumber == 5)
+            userCube.setCurrentFaceID(4);
+        break;
+    case 3:
+        if (faceNumber == 1)
+            userCube.setCurrentFaceID(0);
+        else if (faceNumber == 2)
+            userCube.setCurrentFaceID(2);
+        else if (faceNumber == 3)
+            userCube.setCurrentFaceID(5);
+        else if (faceNumber == 4)
+            userCube.setCurrentFaceID(4);
+        else if (faceNumber == 5)
+            userCube.setCurrentFaceID(1);
+        break;
+    case 4:
+        if (faceNumber == 1)
+            userCube.setCurrentFaceID(1);
+        else if (faceNumber == 2)
+            userCube.setCurrentFaceID(0);
+        else if (faceNumber == 3)
+            userCube.setCurrentFaceID(3);
+        else if (faceNumber == 4)
+            userCube.setCurrentFaceID(5);
+        else if (faceNumber == 5)
+            userCube.setCurrentFaceID(2);
+        break;
+    case 5:
+        if (faceNumber == 1)
+            userCube.setCurrentFaceID(3);
+        else if (faceNumber == 2)
+            userCube.setCurrentFaceID(2);
+        else if (faceNumber == 3)
+            userCube.setCurrentFaceID(1);
+        else if (faceNumber == 4)
+            userCube.setCurrentFaceID(4);
+        else if (faceNumber == 5)
+            userCube.setCurrentFaceID(0);
+        break;
+    default:
+        userCube.setCurrentFaceID(faceNumber);
     }
+
     emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
+    emit cube1DUpdated(userCube); // this signal passes the cube data to Model3DCube
 }
 
-void CubeController::MoveCube(int moveClicked){
-    userCube.move(moveClicked);
-    emit updateCube(userCube.toQImageList());
-    emit cubeComplete(userCube.isComplete());
-
-    //for 3D cube view
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
-}
-
-void CubeController::setEduMode(int mode)
+void CubeController::MoveCube(int moveClicked)
 {
-    switch(mode)
+    switch (moveClicked)
     {
-//    case 0:
-//        setUpFirstCross();
-//        break;
-//    case 1:
-//        setUpFirstCorners();
-//        break;
-//    case 2:
-//        setUpNeighbors();
-//        break;
-//    case 3:
-//        setUpBottomCross();
-//        break;
-//    case 4:
-//        setUpFinalCorners();
-//        break;
+    case 0:
+        userCube.moveU(CLOCKWISE);
+        break;
+    case 1:
+        userCube.moveD(COUNTERCLOCKWISE);
+        break;
+    case 2:
+        userCube.moveL(CLOCKWISE);
+        break;
+    case 3:
+        userCube.moveR(COUNTERCLOCKWISE);
+        break;
+    case 4:
+        userCube.moveD(CLOCKWISE);
+        break;
+    case 5:
+        userCube.moveU(COUNTERCLOCKWISE);
+        break;
+    case 6:
+        userCube.moveR(CLOCKWISE);
+        break;
+    case 7:
+        userCube.moveL(COUNTERCLOCKWISE);
+        break;
+    case 8:
+        userCube.moveF(CLOCKWISE);
+        break;
+    case 9:
+        userCube.moveF(COUNTERCLOCKWISE);
+        break;
 //    default:
-//        setupAndRandomizeCube();
+//        qDebug() << "ERROR: Cube Move";
+    }
+    emit updateCube(userCube.toQImageList());
+
+    // for 3D cube view
+    emit cube1DUpdated(userCube); // this signal passes the cube data to Model3DCube
+
+    if(userCube.isSolved()) {
+        emit complete();
     }
 }
 
-
-void CubeController::setupAndRandomizeCube()
+void CubeController::buildPredefinedCube(int cubeID)
 {
-    //make new cube object here
-
-    for (int i = 0; i < 20; i++)
+    switch (cubeID)
     {
-        int randomMove = rand() % 7 + 0;
-        int randomFace = rand() % 5 + 0;
-        userCube.setCurrentFace(randomFace);
-        MoveCube(randomMove);
-        // Randomize Moves and Store to
-        //make a bunch of random cubes
-        //randomize face 0-5
-        //randomize moveid 0-7
+    case 1:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep1Cube());
+        break;
     }
-    //set new cube object but don't modify the cube in use until the very end this way it gets sent in the end
-    userCube.setCurrentFace(0);
+    case 2:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep2Cube());
+        break;
+    }
+    case 3:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep3Cube());
+        break;
+    }
+    case 4:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep4Cube());
+        break;
+    }
+    case 5:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep5Cube());
+        break;
+    }
+    case 6:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep6Cube());
+        break;
+    }
+    case 7:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep7Cube());
+        break;
+    }
+    case 8:
+    {
+        setUserCube(CubeBuilder::generateTutorialStep8Cube());
+        break;
+    }
+    default:
+    {
+        setUserCube(lastNontutorialCube);
+    }
+    }
+}
+
+void CubeController::buildRandomCube()
+{
+    setUserCube(CubeBuilder::generateRandomCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::buildDebugCube()
+{
+    setUserCube(CubeBuilder::generateDebugCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::buildSolvedCube()
+{
+    setUserCube(CubeBuilder::generateSolvedCube());
+    lastNontutorialCube = userCube;
+}
+
+void CubeController::setUserCube(Cube c)
+{
+    userCube = c;
+
     emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
+    emit cube1DUpdated(userCube);
 }
 
-void CubeController::setUpFirstCross()
+// cube3Dview methods
+/*
+ * Resets the orientation to the base position (matches tutorial)
+ * Added by: Maiko Tuitupou
+ */
+void CubeController::reset3DCubeOrientation()
 {
-    userCube = Cube(6);
-    userCube.setCurrentFace(0);
-    emit updateCube(userCube.toQImageList());
-    emit cube1DUpdated(userCube);  //this signal passes the cube data to Model3DCube
-//    Cube newCube = Cube(1);
+    cube3D.resetOrientation();
 }
-
-void CubeController::setUpFirstCorners()
-{
-
-}
-
-void CubeController::setUpNeighbors()
-{
-
-}
-
-void CubeController::setUpBottomCross()
-{
-
-}
-
-void CubeController::setUpFinalCorners()
-{
-
-}
-
-
-//cube3Dview methods
 
 /*
  * Send direction to rotate 3D cube to model so that the orientation can be updated
  *
  * Based on what button was pressed in the view.  Either sends "Up", "Left", or "Right"
-*/
-void CubeController::rotationCube(const string & dirRotate){
-     emit updateUserRotation(dirRotate);
+ */
+void CubeController::rotationCube(const string &dirRotate)
+{
+    emit updateUserRotation(dirRotate);
 }
 
 /*
  * Sends 3D cube data to view to paint
  */
-void CubeController::on_cube3DdataUpdated(std::vector<char> &visibleFaceData){
+void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData)
+{
     emit update3DCubeViewSimple(visibleFaceData);
 }
-

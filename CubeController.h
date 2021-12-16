@@ -1,60 +1,63 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ *           Orion Santiago
+ *           Ronnie Koe
+ *           Maiko Tuitupou
+ *           Elizabeth Thomas
+ *           Alex Gill
+ * CubeController.h
+*/
+
 #ifndef CUBECONTROLLER_H
 #define CUBECONTROLLER_H
 
 #include <QWidget>
 #include <QImage>
 #include <vector>
-
 #include "Cube.h"
 #include "ViewCube.h"
 #include "Model3DCube.h"
 
-
-
-class CubeController: public QWidget
+class CubeController : public QWidget
 {
     Q_OBJECT
 public:
     explicit CubeController(QWidget *parent = nullptr);
 
 signals:
-    void updateCube(std::vector<QImage>);
-    void cubeComplete(bool); // emits true if the cube is completely solved
+    void updateCube(QVector<QImage>);
 
-    //cube3Dview signals
+    // cube3Dview signals
     void updateUserRotation(const string &dirRotate);
-    void update3DCubeViewSimple(std::vector<char> &visibleFaces);
+    void update3DCubeViewSimple(QVector<char> &visibleFaces);
     void update3DCubeView(QVector<CubeFace> &visibleFaces);
-    void cube1DUpdated(Cube &cube); //needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
+    void cube1DUpdated(Cube &cube); // needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
 
-
+    // Emits if the user completes a step of the tutorial
+    void complete();
 
 private:
     Cube userCube;
+    Cube lastNontutorialCube;
+    void setUserCube(Cube c);
 
-    //3d cube stuff
+    // 3d cube stuff
     Model3DCube cube3D;
 
-
-
-    void setupAndRandomizeCube();
-    void setUpFirstCross();
-    void setUpFirstCorners();
-    void setUpNeighbors();
-    void setUpBottomCross();
-    void setUpFinalCorners();
-
-
-public:
-    void setEduMode(int);
-
 public slots:
+    void buildPredefinedCube(int cubeID);
+    void buildRandomCube();
+    void buildDebugCube();
+    void buildSolvedCube();
     void switchFace(int);
     void MoveCube(int);
 
-    //cube3Dview slots
+    // cube3Dview slots
+    void reset3DCubeOrientation();
     void rotationCube(const string &dirRotate);
-    void on_cube3DdataUpdated(std::vector<char> &visibleFaceData);
+    void on_cube3DdataUpdated(QVector<char> &visibleFaceData);
 };
 
 #endif // CUBECONTROLLER_H

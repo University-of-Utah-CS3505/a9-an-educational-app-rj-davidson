@@ -1,5 +1,16 @@
-#include "RubiksEdu.h"
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ *           Orion Santiago
+ *           Ronnie Koe
+ *           Maiko Tuitupou
+ *           Elizabeth Thomas
+ *           Alex Gill
+ * main.cpp
+*/
 
+#include "RubiksEdu.h"
 #include "CubeController.h"
 #include "TutorialBrowser.h"
 #include <QApplication>
@@ -11,12 +22,9 @@ int main(int argc, char *argv[])
 #endif
     QApplication a(argc, argv);
     CubeController m;
-    TutorialBrowser tutorial;
-    RubiksEdu w(nullptr,&m,&tutorial);
-
+    RubiksEdu w(nullptr, &m);
     w.setFixedSize(w.size());
     w.show();
 
-
-   return a.exec();
+    return a.exec();
 }

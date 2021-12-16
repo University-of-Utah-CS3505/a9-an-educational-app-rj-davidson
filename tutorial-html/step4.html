@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html>
 <header>
-  <style>
-  </style>
-  </header>
+</header>
+
 <body>
+    <h1>Step 4: Solve the Neighbor's Edges (F2L)</h1>
+    <p>Starting here, we will <b>need</b> to use algorithms to solve the remainder of the cube. So, if you don't feel comfortable with the notation yet, we recommend checking the cube basics page. This step is called <b>F2L</b> which stands for first two
+        layers. There are two symetric algorithms that we will use to solve this. They will be referred to as <b>F2L Right</b> and
+        <b>F2L Left</b>. These algorithms will move the edge located at the top middle on the front face to the front right and front left positions respectively. You will want to aline top middle edge so that the color of that edge that is visible on
+        the front face matches the color of the face. Then you will use the following algorithms.</p>
+    <div class="algorithm" align="center">
+        <h3>F2L Right</h3>
+        <p> To place the top edge into the right edge position.
+        </p>
+        <div>
+            <div>
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-R.png" source=":/img/move-R.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-R.png" source=":/img/move-counter-R.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-F.png" source=":/img/move-counter-F.png" width="50">
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-F.png" source=":/img/move-F.png" width="50">
+            </div>
+            <div>
+                <code>U R U' R' U' F' U F</code>
+            </div>
+        </div>
+    </div>
+    <div class="algorithm" align="center">
+        <h3>F2L Left</h3>
+        <p> To place the top edge into the left edge position.
+        </p>
+        <div>
+            <div>
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-L.png" source=":/img/move-counter-L.png" width="50">
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-L.png" source=":/img/move-L.png" width="50">
+                <img src="img/move-U.png" source=":/img/move-U.png" width="50">
+                <img src="img/move-F.png" source=":/img/move-F.png" width="50">
+                <img src="img/move-counter-U.png" source=":/img/move-counter-U.png" width="50">
+                <img src="img/move-counter-F.png" source=":/img/move-counter-F.png" width="50">
+            </div>
+            <div>
+                <code>U' L' U L U F U' F'</code>
+            </div>
+        </div>
+    </div>
+    <h2>Wrong Orientation</h2>
+    <p>If there is an edge piece that is in the correct position but oriented incorrectly, you can use either of these algorithms <u>twice</u> to rotate it to the correct position.</p>
 
-<h1>Step 4: Solve the Neighbor's Edges</h1>
-
+    <footer>
+        <div align="left">
+            <a href="qrc:/html/step3.html">&laquo; Previous</a>
+        </div>
+        <div align="right">
+            <a href="qrc:/html/step5.html">Next &raquo;</a>
+        </div>
+    </footer>
 </body>
+
 </html>
