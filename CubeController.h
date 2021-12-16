@@ -17,7 +17,6 @@ public:
 
 signals:
     void updateCube(QVector<QImage>);
-    void cubeComplete(bool); // emits true if the cube is completely solved
 
     // cube3Dview signals
     void updateUserRotation(const string &dirRotate);
@@ -48,7 +47,6 @@ public slots:
     void reset3DCubeOrientation();
     void rotationCube(const string &dirRotate);
     void on_cube3DdataUpdated(QVector<char> &visibleFaceData);
-    void checkCompletion();
 };
 
 #endif // CUBECONTROLLER_H

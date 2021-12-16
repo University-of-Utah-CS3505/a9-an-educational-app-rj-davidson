@@ -34,8 +34,6 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
        ui->stepSelect->setCurrentIndex(-1); });
     connect(ui->tutorialTextBrowser, &TutorialBrowser::tutorialStepChanged, controller, &CubeController::buildPredefinedCube);
 
-    // connect check button
-    connect(ui->checkButton, &QPushButton::clicked, controller, &CubeController::checkCompletion);
     // connection for showing the celebration
     connect(controller, &CubeController::complete, this, &RubiksEdu::showCelebration);
 

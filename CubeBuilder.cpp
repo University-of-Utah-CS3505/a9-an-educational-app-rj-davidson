@@ -86,6 +86,9 @@ Cube CubeBuilder::generateTutorialStep2Cube(){
     faces.append(CubeFace("firstCrossOppositeFace", 'x'));
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
+    c.setSolverFunction([](Cube c)->bool{
+        return true;
+    });
     return c;
 }
 

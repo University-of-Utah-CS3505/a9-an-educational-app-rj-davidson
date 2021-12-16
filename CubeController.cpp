@@ -130,10 +130,13 @@ void CubeController::MoveCube(int moveClicked)
         qDebug() << "ERROR: Cube Move";
     }
     emit updateCube(userCube.toQImageList());
-    emit cubeComplete(userCube.isSolved());
 
     // for 3D cube view
     emit cube1DUpdated(userCube); // this signal passes the cube data to Model3DCube
+
+    if(userCube.isSolved()) {
+        emit complete();
+    }
 }
 
 void CubeController::buildPredefinedCube(int cubeID)
@@ -241,8 +244,3 @@ void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData)
     emit update3DCubeViewSimple(visibleFaceData);
 }
 
-void CubeController::checkCompletion()
-{
-    bool c = userCube.isSolved();
-    emit complete();
-}
