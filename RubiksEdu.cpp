@@ -184,6 +184,8 @@ void RubiksEdu::on_rightTopButton_clicked()
 
 void RubiksEdu::displayCube(std::vector<QImage> faces)
 {
+    QImage altSideFace = faces.back();
+    faces.pop_back();
     QImage altTopFace = faces.back();
     faces.pop_back();
     QImage farRightFace = faces.back();
@@ -216,10 +218,21 @@ void RubiksEdu::displayCube(std::vector<QImage> faces)
     ui->face3Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face4Gridline->setPixmap(QPixmap::fromImage(gridLines));
     ui->face5Gridline->setPixmap(QPixmap::fromImage(gridLines));
-    ui->face2Alt->setPixmap((QPixmap::fromImage(altTopFace.mirrored(false,true))));
+    ui->face0Alt->setPixmap(QPixmap::fromImage(centerFaceScaled));
+    ui->face1Alt->setPixmap(QPixmap::fromImage(leftFaceScaled));
+    ui->face4Alt->setPixmap(QPixmap::fromImage(bottomFaceScaled));
+    ui->face5Alt->setPixmap(QPixmap::fromImage(farRightFaceScaled));
+    ui->face0AltGridline->setPixmap(QPixmap::fromImage(gridLines));
+    ui->face1AltGridline->setPixmap(QPixmap::fromImage(gridLines));
+    ui->face4AltGridline->setPixmap(QPixmap::fromImage(gridLines));
+    ui->face5AltGridline->setPixmap(QPixmap::fromImage(gridLines));
+    ui->face2Alt->setPixmap(QPixmap::fromImage(altTopFace.mirrored(false,true)));
     ui->face2AltGridline->setPixmap(QPixmap::fromImage(testGrid.mirrored(false,true)));
     QTransform matrix;
     QImage rotatedImg = testGrid.transformed(matrix.rotate(90.0));
+    QTransform sideMatrix;
+    QImage rotatedSideFace = altSideFace.transformed(sideMatrix.rotate(90.0));
+    ui->face3Alt->setPixmap(QPixmap::fromImage(rotatedSideFace.mirrored(true,true)));
     ui->face3AltGridline->setPixmap(QPixmap::fromImage(rotatedImg));
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );

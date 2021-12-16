@@ -38,7 +38,7 @@ public:
     bool complete();
 
     QImage toQImage();
-    QImage toQImageAlt();
+    QImage toQImageAlt(int);
 
 
     void printDebug();

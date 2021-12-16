@@ -668,7 +668,9 @@ std::vector<QImage> Cube::toQImageList()
     std::vector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
-    list.push_back(tempCubeFaces[2].toQImageAlt());
+
+    list.push_back(tempCubeFaces[2].toQImageAlt(1));
+    list.push_back(tempCubeFaces[3].toQImageAlt(2));
     return list;
 }
 

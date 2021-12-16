@@ -290,7 +290,8 @@ QImage CubeFace::toQImage()
     return image;
 }
 
-QImage CubeFace::toQImageAlt()
+
+QImage CubeFace::toQImageAlt(int swit)
 {
     QImage image(205, 85, QImage::Format_RGBA64);
     double angle = 45 * 3.14159265/180;
@@ -298,36 +299,62 @@ QImage CubeFace::toQImageAlt()
     {
         for (int i = 0; i < 120 ; i++)
         {
-            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(0,0));
+            if(i+j >= j && i < 40 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,0));
             }
-            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(1,0));
+            if(i+j >= 40 + j && i < 80 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,0));
             }
-            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 0 && j < 40 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(2,0));
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,0));
             }
-            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(0,1));
+            if(i+j >= j && i+j < 40 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,1));
             }
-            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(1,1));
+            if(i+j >= 40 + j && i+j < 80 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,1));
             }
-            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 40 * cos(angle) && j < 80 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(2,1));
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,1));
             }
-            if(i+j*cos(angle) >= j*sin(angle) && i+j*cos(angle) < 40 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(0,2));
+            if(i+j >= j && i+j < 40 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,2));
             }
-            if(i+j*cos(angle) >= 40 + j*sin(angle) && i+j*cos(angle) < 80 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(1,2));
+            if(i+j >= 40 + j && i+j < 80 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,2));
             }
-            if(i+j*cos(angle) >= 80 + j*sin(angle) && i+j*cos(angle) < 120 + j*cos(angle) && j >= 80 * cos(angle) && j < 120 * cos(angle)){
-                image.setPixelColor(i+j*cos(angle),j,getColor(2,2));
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,2));
             }
         }
     }
-
     return image;
 }
 
