@@ -195,7 +195,6 @@ void Cube::moveR(RotationDirection dir) {
     coreCubeFaces = convertRotatedToCore(rotatedCubeFaces, currentFaceID);
 }
 
-
 // ----------- Solve Function --------
 bool Cube::isSolved()
 {
@@ -296,8 +295,8 @@ QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int tar
         rotated[4].rotateClockwise();
         rotated[4].rotateClockwise();
         break;
-    default:
-        qDebug() << "Invalid cube face ID";
+    //default:
+        //qDebug() << "Invalid cube face ID";
     }
     rotated[5].flipHorizontally();
 
@@ -307,7 +306,6 @@ QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int tar
 QVector<CubeFace> Cube::convertRotatedToCore(QVector<CubeFace> rotated, int currentFaceID) {
     QVector<CubeFace> core;
     rotated[5].flipHorizontally();
-    qDebug() << currentFaceID;
     switch (currentFaceID)
     {
     case 0: // Front
@@ -373,8 +371,8 @@ QVector<CubeFace> Cube::convertRotatedToCore(QVector<CubeFace> rotated, int curr
         core.push_back(rotated[4]);
         core.push_back(rotated[0]);
         break;
-    default:
-        qDebug() << "Invalid cube face ID";
+//    default:
+//        qDebug() << "Invalid cube face ID";
     }
 
     core[5].flipHorizontally();

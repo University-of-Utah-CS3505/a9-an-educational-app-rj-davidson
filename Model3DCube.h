@@ -12,17 +12,12 @@
 #include <QPainterPath>
 #include <QRectF>
 #include <QSize>
-#include <QDebug>
 #include <QImage>
 #include <QByteArray>
 #include <QVector>
-#include <iostream>
 #include <QString>
 #include <QPushButton>
-
 #include "Cube.h"
-
-using namespace std;
 
 /*
  * the model will need to know the way each face needs to look and keep track of the
@@ -80,10 +75,7 @@ private:
     Cube cube3D;
 
     void convertCube1DtoCube3D();
-    // int conversionMap[6] = {2,1,3,4,0,5}; //cubeStyle0
-    // int conversionMap[6] = {0,2,5,4,1,3}; //cubeStyle6
     int conversionMap[6] = {1, 0, 3, 5, 2, 4}; // cubeStyle6
-    // int conversionMap[6] = {0,1,2,3,4,5};
 
     // the model will need to know the visible faces
     void updateVisibleFaces();
@@ -92,7 +84,6 @@ private:
     void setRotationToCurrentFace();
 
     // the model will need to save the 3dcube orientation
-
     // Data for orientation code
     yAxis yAxisPosition = up;
     xAxis xAxisPosition = deg90;
@@ -103,10 +94,6 @@ private:
 
     void helper_decrease_angle();
     void helper_increase_angle();
-
-    // orientation test functions
-    void printOrientation();
-
     int cubeStyle = 0;
 };
 

@@ -1,5 +1,4 @@
 #include "ViewCube.h"
-#include <iostream>
 
 ViewCube::ViewCube(QWidget *parent) : QWidget(parent)
 {

@@ -1,5 +1,3 @@
-// Linked to the Model
-
 #ifndef CUBE_H
 #define CUBE_H
 
@@ -8,6 +6,7 @@
 #include <QImage>
 #include <algorithm>
 
+// Which direction the cube is being rotated
 enum RotationDirection
 {
     CLOCKWISE,
@@ -20,16 +19,19 @@ public:
     Cube();
     Cube(QVector<CubeFace> &cubeFaces, bool flipBackFace);
 
+    // Setter
     void setCubeFaces(QVector<CubeFace> newCubeFaces, bool flipBackFace);
 
     void flipBackFace();
 
+    // Moves/rotations
     void moveF(RotationDirection dir);
     void moveU(RotationDirection dir);
     void moveD(RotationDirection dir);
     void moveL(RotationDirection dir);
     void moveR(RotationDirection dir);
 
+    // Getters
     Cube getBaseCube();
     QVector<CubeFace> getAllFaces();
     CubeFace getFace(int);

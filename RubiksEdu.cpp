@@ -1,7 +1,5 @@
 #include "RubiksEdu.h"
 #include "ui_RubiksEdu.h"
-#include <iostream>
-
 #include <QMenuBar>
 #include <QMainWindow>
 #include <QAction>
@@ -55,7 +53,6 @@ RubiksEdu::RubiksEdu(QWidget *parent, CubeController *controller)
     connectControllerView(controller);
 
     connect(ui->orientationResetButton, &QPushButton::pressed, controller, &CubeController::reset3DCubeOrientation);
-    // end of 3d view stuff ----------------------------------
 
     // Displays initial cube  (3D view stuff needs to happen before this so the 3D view gets painted with 2D data)
     on_leftTopButton_clicked();
@@ -234,7 +231,6 @@ void RubiksEdu::displayCube(QVector<QImage> faces)
     ui->face3AltGridline->setPixmap(QPixmap::fromImage(rotatedImg));
     ui->face0->setScaledContents( true );
     ui->face0->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
-
 }
 
 void RubiksEdu::on_clockwiseButton_clicked()
@@ -247,32 +243,20 @@ void RubiksEdu::on_counterClockwiseButton_clicked()
     emit sendMove(9);
 }
 
-// 3D Cube View code starts here--------------------------------------------------------------------------
-/*
- *
- */
 void RubiksEdu::cube3DpaintVisibleFacesSimple(QVector<char> &visibleFaces)
 {
-    // qDebug()<< "cube3DpainVisibleFacesSimple" << visibleFaces.size();
     repaintLeftFace(getColorFromChar(visibleFaces.at(0)));
     repaintRightFace(getColorFromChar(visibleFaces.at(1)));
     repaintTopFace(getColorFromChar(visibleFaces.at(2)));
 }
 
-/*
- *
- */
 void RubiksEdu::cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces)
 {
-    // qDebug()<< "cube3DpainVisibleFaces" << visibleFaces.size();
     repaintLeftFace(visibleFaces.at(0));
     repaintRightFace(visibleFaces.at(1));
     repaintTopFace(visibleFaces.at(2));
 }
 
-/*
- *
- */
 QColor RubiksEdu::getColorFromChar(char charColor)
 {
 
@@ -446,7 +430,6 @@ void RubiksEdu::connectControllerView(CubeController *controller)
  */
 void RubiksEdu::createLeftOfCube()
 {
-
     for (int xPos = 0; xPos < 3; xPos++)
     {
         int xPosCorrected = 2 - xPos; // change xPosition so that 0 element is on left and 2 element is on right.
@@ -518,7 +501,6 @@ void RubiksEdu::createRightOfCube()
  */
 void RubiksEdu::createTopOfCube()
 {
-
     for (int xPos = 0; xPos < 3; xPos++)
     {
         for (int yPos = 0; yPos < 3; yPos++)
@@ -549,11 +531,7 @@ void RubiksEdu::createTopOfCube()
     }
 }
 
-void RubiksEdu::on_checkButton_clicked()
-{
-    emit checkButton();
-}
-
+// Displays celebration window
 void RubiksEdu::showCelebration()
 {
     CubeCelebration c;
@@ -579,5 +557,4 @@ void RubiksEdu::setGridlines(){
         testGrid.setPixelColor(i+56,56,QColor(0,0,0,255));
         testGrid.setPixelColor(i+84,84,QColor(0,0,0,255));
     }
-
 }

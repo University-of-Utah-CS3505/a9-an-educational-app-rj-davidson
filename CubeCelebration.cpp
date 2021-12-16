@@ -38,14 +38,6 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
 
-    // Properties for take the w sign
-    b2PolygonShape dynamicRect;
-    dynamicRect.SetAsBox(70, 15);
-    b2FixtureDef fixtureDefRect;
-    fixtureDefRect.shape = &dynamicRect;
-    fixtureDefRect.density = 2.0f;
-    fixtureDefRect.friction = 0.3f;
-
     // Blue body
     b2BodyDef blueBody;
     blueBody.type = b2_dynamicBody;
@@ -100,6 +92,7 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
     orangeCube->ApplyLinearImpulse(b2Vec2(10000, -50000), orangeCube->GetPosition(), true);
     orangeCube->SetAngularVelocity(500);
 
+    // Updates each of the cube faces
     worldTimer.setInterval(1000.0 / 30.0);
     connect(&worldTimer, &QTimer::timeout, this, [=]()
             {
@@ -117,6 +110,7 @@ void CubeCelebration::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     QTransform transform;
+
     // Draws blue cube
     painter.drawRect(ground->GetTransform().p.x - 200, ground->GetTransform().p.y - 10, 400, 5.0f);
     transform.rotate(blueCube->GetAngle());
@@ -158,7 +152,6 @@ void CubeCelebration::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Space)
     {
-
         // Blue cube
         blueCube->SetLinearVelocity(b2Vec2(0, 0));
         blueCube->ApplyLinearImpulse(b2Vec2(10000, -50000), blueCube->GetPosition(), true);

@@ -162,15 +162,6 @@ void Model3DCube::updateVisibleFaces()
     visibleFaces.push_back(topFace);
 
     emit notify3DCubeView(visibleFaces);
-
-    // simple tester code:
-    // left, right, up is correct order in vector
-    //    visibleFacesSimple.clear();
-    //    visibleFacesSimple.push_back(cube3DFaceData.at(xAxisPosition));
-    //    visibleFacesSimple.push_back(cube3DFaceData.at(getRightVisibleFacePosition()));
-    //    visibleFacesSimple.push_back(cube3DFaceData.at(yAxisPosition+4));
-    //    qDebug()<< "updateVisibleFacesSimple: " << visibleFacesSimple.size();
-    // emit notify3DCubeViewSimple(visibleFacesSimple);
 }
 
 /*
@@ -257,8 +248,6 @@ void Model3DCube::rotate_right()
         // xAxis angle goes up when rotated to the left when the yAxis is down
         helper_increase_angle();
     }
-
-    printOrientation();
 }
 
 /*
@@ -277,8 +266,6 @@ void Model3DCube::rotate_left()
         // xAxis angle goes down when rotated to the left when the yAxis is down
         helper_decrease_angle();
     }
-
-    printOrientation();
 }
 
 /*
@@ -296,15 +283,4 @@ void Model3DCube::rotate_up()
     }
 
     yAxisPosition = (enum yAxis)((yAxisPosition + 1) % 2);
-
-    printOrientation();
 }
-
-void Model3DCube::printOrientation()
-{
-    QVector<QString> xOrentations = {"deg0", "deg90", "deg180", "deg270"};
-    QVector<QString> yOrentations = {"up", "down"};
-    qDebug() << "xAxisPosition: " << xOrentations.at(xAxisPosition) << "\tyAxisPosition: " << yOrentations.at(yAxisPosition);
-}
-
-// end of orientation code -------------------------------------------------------------------------------------------------------

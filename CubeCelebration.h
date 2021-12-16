@@ -32,7 +32,11 @@ protected:
 
 private:
     Ui::CubeCelebration *ui;
+
+    // Pixmap for each cube face
     QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue;
+
+    // Box2D bodies for each cube
     b2World world;
     b2Body *ground;
     b2Body *greenCube;
@@ -41,8 +45,9 @@ private:
     b2Body *whiteCube;
     b2Body *orangeCube;
     b2Body *blueCube;
+
+    // Timer for updating
     QTimer worldTimer;
-    std::vector<b2Body *> cubes;
 };
 
 #endif // CUBECELEBRATION_H

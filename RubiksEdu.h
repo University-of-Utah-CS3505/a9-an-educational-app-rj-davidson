@@ -9,8 +9,6 @@
 #include <vector>
 #include <QGraphicsScene>
 
-using namespace std;
-
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -28,27 +26,18 @@ public:
 
 private slots:
     void switchButtonMode(int modeID);
-
     void on_topLeftButton_clicked();
-
     void on_topRightButton_clicked();
-
     void on_leftTopButton_clicked();
-
     void on_leftBttmButton_clicked();
-
     void on_bttmLeftButton_clicked();
-
     void on_bttmRightButton_clicked();
-
     void on_rightBttmButton_clicked();
     void on_rightTopButton_clicked();
-    void displayCube(QVector<QImage>);
-
     void on_clockwiseButton_clicked();
-
     void on_counterClockwiseButton_clicked();
 
+    void displayCube(QVector<QImage>);
     void showCelebration();
 
     // cube3Dview stuff
@@ -59,11 +48,8 @@ private slots:
     void cube3DpaintVisibleFacesSimple(QVector<char> &visibleFaces);
     void cube3DpaintVisibleFaces(QVector<CubeFace> &visibleFaces);
 
-    void on_checkButton_clicked();
-
 signals:
     void sendMove(int);
-    void checkButton();
     // cube3Dview stuff
     void send3DRotation(const string &dirRotation);
 

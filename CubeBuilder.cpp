@@ -329,7 +329,6 @@ Cube CubeBuilder::generateTutorialStep6Cube(){
 }
 
 Cube CubeBuilder::generateTutorialStep7Cube(){
-    // TODO: Implement correctly
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("finalCornersBelowFace", 'o'));
@@ -344,7 +343,6 @@ Cube CubeBuilder::generateTutorialStep7Cube(){
 }
 
 Cube CubeBuilder::generateTutorialStep8Cube(){
-    // TODO: Implement correctly
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("orientCornersBelowFace", 'o'));

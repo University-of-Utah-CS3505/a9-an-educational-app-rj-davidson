@@ -5,6 +5,8 @@
 
 class CubeBuilder
 {
+
+// Will build the cube based on what the user is on
 public:
     static Cube generateRandomCube();
     static Cube generateDebugCube();

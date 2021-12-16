@@ -1,22 +1,16 @@
 #include "CubeController.h"
 #include "CubeBuilder.h"
-#include <stdlib.h>
-#include <iostream>
 
 CubeController::CubeController(QWidget *parent) : QWidget(parent)
 {
     setUserCube(CubeBuilder::generateRandomCube());
     lastNontutorialCube = userCube;
 
-    //    connect(this,&CubeController::makeNew3DCube,&cube3DView,&View3DCube::createUser3DCube);
-
     // 3D cube view connections
     connect(this, &CubeController::updateUserRotation, &cube3D, &Model3DCube::update3DOrientation);
     connect(this, &CubeController::cube1DUpdated, &cube3D, &Model3DCube::update3DCube);
     connect(&cube3D, &Model3DCube::notify3DCubeViewSimple, this, &CubeController::update3DCubeViewSimple);
     connect(&cube3D, &Model3DCube::notify3DCubeView, this, &CubeController::update3DCubeView);
-
-    // TODO need to make connection from rubiks to celebration when the cube is solved
 }
 
 void CubeController::switchFace(int faceNumber)
@@ -86,7 +80,6 @@ void CubeController::switchFace(int faceNumber)
     default:
         userCube.setCurrentFaceID(faceNumber);
     }
-    qDebug() << "Current Face: " << userCube.getCurrentFaceID();
 
     emit updateCube(userCube.toQImageList());
     emit cube1DUpdated(userCube); // this signal passes the cube data to Model3DCube
@@ -126,8 +119,8 @@ void CubeController::MoveCube(int moveClicked)
     case 9:
         userCube.moveF(COUNTERCLOCKWISE);
         break;
-    default:
-        qDebug() << "ERROR: Cube Move";
+//    default:
+//        qDebug() << "ERROR: Cube Move";
     }
     emit updateCube(userCube.toQImageList());
 
@@ -243,4 +236,3 @@ void CubeController::on_cube3DdataUpdated(QVector<char> &visibleFaceData)
 {
     emit update3DCubeViewSimple(visibleFaceData);
 }
-

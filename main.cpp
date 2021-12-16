@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     CubeController m;
     RubiksEdu w(nullptr, &m);
-
     w.setFixedSize(w.size());
     w.show();
 

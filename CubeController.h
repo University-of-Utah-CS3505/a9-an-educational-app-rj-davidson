@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QImage>
 #include <vector>
-
 #include "Cube.h"
 #include "ViewCube.h"
 #include "Model3DCube.h"
@@ -24,12 +23,12 @@ signals:
     void update3DCubeView(QVector<CubeFace> &visibleFaces);
     void cube1DUpdated(Cube &cube); // needs to be emitted every time 1D cube is updated so 3D cube can stay in sync
 
+    // Emits if the user completes a step of the tutorial
     void complete();
 
 private:
     Cube userCube;
     Cube lastNontutorialCube;
-
     void setUserCube(Cube c);
 
     // 3d cube stuff
