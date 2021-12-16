@@ -229,17 +229,6 @@ Cube CubeBuilder::generateTutorialStep4Cube(){
 }
 
 Cube CubeBuilder::generateTutorialStep5Cube(){
-//    Cube c;
-//    QVector<CubeFace> faces;
-//    faces.append(CubeFace("neighborLeftMainFace", 'x'));
-//    faces.append(CubeFace("neighborLeftLeftFace", 'x'));
-//    faces.append(CubeFace("neighborLeftAboveFace", 'x'));
-//    faces.append(CubeFace("neighborLeftRightFace", 'x'));
-//    faces.append(CubeFace("neighborLeftBelowFace", 'x'));
-//    faces.append(CubeFace('w'));
-//    c.setCubeFaces(faces);
-//    c.setCurrentFace(0);
-//    return c;
     Cube c;
     QVector<CubeFace> faces;
     faces.append(CubeFace("finalCrossBelowFace", 'x'));
@@ -250,6 +239,34 @@ Cube CubeBuilder::generateTutorialStep5Cube(){
     faces.append(CubeFace("finalCrossAboveFace", 'x'));
     c.setCubeFaces(faces, true);
     c.setCurrentFaceID(0);
+
+    c.setSolverFunction([](Cube c)->bool{
+        c = c.getBaseCube();
+        CubeFace frontSolution('x');
+        CubeFace leftSolution('x');
+        CubeFace upSolution(QVector<QVector<char>>{
+                                   QVector<char>{'x', 'r', 'x' },
+                                   QVector<char>{'r', 'r', 'r' },
+                                   QVector<char>{'x', 'r', 'x' }
+                               });
+        CubeFace rightSolution('x');
+        CubeFace downSolution(QVector<QVector<char>>{
+                                   QVector<char>{'w', 'w', 'w' },
+                                   QVector<char>{'w', 'w', 'w' },
+                                   QVector<char>{'w', 'w', 'w' }
+                               });
+        CubeFace backSolution('x');
+        CubeFace emptyFace('x');
+        bool frontCorrect = c.getFace(0).equals(frontSolution);
+        bool leftCorrect = c.getFace(1).equals(leftSolution);
+        bool upCorrect = c.getFace(2).equals(upSolution);
+        bool rightCorrect = c.getFace(3).equals(rightSolution);
+        bool downCorrect = c.getFace(4).equals(downSolution);
+        bool backCorrect = c.getFace(5).equals(backSolution);
+
+    return frontCorrect && leftCorrect && upCorrect && rightCorrect && downCorrect && backCorrect;
+    });
+
     return c;
 }
 
