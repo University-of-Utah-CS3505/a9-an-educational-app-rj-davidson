@@ -223,6 +223,8 @@ QVector<QImage> Cube::toQImageList()
     QVector<QImage> list;
     for (CubeFace f : tempCubeFaces)
         list.push_back(f.toQImage());
+    list.push_back(tempCubeFaces[2].toQImageAlt(1));
+    list.push_back(tempCubeFaces[3].toQImageAlt(2));
     return list;
 }
 
@@ -297,7 +299,6 @@ QVector<CubeFace> Cube::convertCoreToRotated(QVector<CubeFace> original, int tar
     default:
         qDebug() << "Invalid cube face ID";
     }
-
     rotated[5].flipHorizontally();
 
     return rotated;

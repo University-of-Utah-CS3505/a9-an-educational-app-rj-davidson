@@ -79,6 +79,7 @@ private:
     void createLeftOfCube();
     void createRightOfCube();
     void createTopOfCube();
+    void setGridlines();
     const float cubeSize = 120;
     const float eSize = cubeSize / 3; // size of each element
 
@@ -101,5 +102,7 @@ private:
     void repaintTopFace(CubeFace faceToPaint);
 
     QColor getColorFromChar(char charColor);
+    QImage gridLines;
+    QImage testGrid;
 };
 #endif // RUBIKSEDU_H

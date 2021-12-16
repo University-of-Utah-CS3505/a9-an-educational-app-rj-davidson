@@ -338,37 +338,102 @@ QImage CubeFace::toQImage()
     {
         for (int j = 0; j < (int)face[i].size(); j++)
         {
-            switch (face[i][j])
-            {
-            case 'g':
-                image.setPixelColor(j, i, QColor("green"));
-                break;
-            case 'r':
-                image.setPixelColor(j, i, QColor("red"));
-                break;
-            case 'y':
-                image.setPixelColor(j, i, QColor("yellow"));
-                break;
-            case 'w':
-                image.setPixelColor(j, i, QColor("white"));
-                break;
-            case 'o':
-                image.setPixelColor(j, i, QColor("orange"));
-                break;
-            case 'x':
-                image.setPixelColor(j, i, QColor("grey"));
-                break;
-            default:
-                image.setPixelColor(j, i, QColor("blue"));
-            }
+            image.setPixelColor(j,i,getColor(i,j));
         }
     }
 
     return image;
 }
 
-void CubeFace::printDebug()
+
+QImage CubeFace::toQImageAlt(int swit)
 {
+    QImage image(205, 85, QImage::Format_RGBA64);
+    double angle = 45 * 3.14159265/180;
+    for (int j = 0; j < 85 ; j++)
+    {
+        for (int i = 0; i < 120 ; i++)
+        {
+            if(i+j >= j && i < 40 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,0));
+            }
+            if(i+j >= 40 + j && i < 80 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,0));
+            }
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 0 && j < 40 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(2,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,0));
+            }
+            if(i+j >= j && i+j < 40 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,1));
+            }
+            if(i+j >= 40 + j && i+j < 80 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,1));
+            }
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 40 * cos(angle) && j < 80 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(1,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,1));
+            }
+            if(i+j >= j && i+j < 40 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,0));
+                else
+                    image.setPixelColor(i+j,j,getColor(2,2));
+            }
+            if(i+j >= 40 + j && i+j < 80 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,1));
+                else
+                    image.setPixelColor(i+j,j,getColor(1,2));
+            }
+            if(i+j >= 80 + j && i+j < 120 + j && j >= 80 * cos(angle) && j < 120 * cos(angle)){
+                if (swit == 1)
+                    image.setPixelColor(i+j,j,getColor(0,2));
+                else
+                    image.setPixelColor(i+j,j,getColor(0,2));
+            }
+        }
+    }
+    return image;
+}
+
+QColor CubeFace::getColor(int i, int j){
+    switch(face[i][j])
+    {
+        case 'g':
+            return QColor("green");
+        case 'r':
+            return QColor("red");
+        case 'y':
+            return QColor("yellow");
+        case 'w':
+            return QColor("white");
+        case 'o':
+            return QColor("orange");
+        case 'x':
+            return QColor("grey");
+        default:
+            return QColor("blue");
+    }
+}
+
+void CubeFace::printDebug(){
     for (int irow = 0; irow < 3; irow++)
     {
         qDebug() << face[irow][0] << "," << face[irow][1] << "," << face[irow][2];

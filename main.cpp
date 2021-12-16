@@ -1,5 +1,4 @@
 #include "RubiksEdu.h"
-
 #include "CubeController.h"
 #include "TutorialBrowser.h"
 #include <QApplication>

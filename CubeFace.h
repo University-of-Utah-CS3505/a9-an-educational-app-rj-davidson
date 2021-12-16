@@ -39,11 +39,14 @@ public:
     bool complete();
 
     QImage toQImage();
+    QImage toQImageAlt(int);
+
 
     void printDebug();
 
 private:
     QVector<QVector<char> > face;
+    QColor getColor(int, int);
 };
 
 #endif // CUBEFACE_H
