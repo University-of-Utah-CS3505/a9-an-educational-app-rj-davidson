@@ -1,3 +1,10 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ * ViewCube.cpp
+*/
+
 #include "ViewCube.h"
 
 ViewCube::ViewCube(QWidget *parent) : QWidget(parent)

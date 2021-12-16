@@ -1,3 +1,11 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Ronnie Koe
+ *           Maiko Tuitupou
+ * TutorialBrowser.cpp
+*/
+
 #include "TutorialBrowser.h"
 #include <QTextDocument>
 

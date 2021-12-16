@@ -1,3 +1,10 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Elizabeth Thomas
+ * Model3DCube.h
+*/
+
 #ifndef MODEL3DCUBE_H
 #define MODEL3DCUBE_H
 

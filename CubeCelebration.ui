@@ -38,14 +38,22 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>100</y>
-     <width>47</width>
-     <height>13</height>
+     <x>20</x>
+     <y>20</y>
+     <width>260</width>
+     <height>200</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>28</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>Congrats</string>
+    <string>Congratulations</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

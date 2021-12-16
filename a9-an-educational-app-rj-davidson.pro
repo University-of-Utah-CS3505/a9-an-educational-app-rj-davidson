@@ -15,7 +15,6 @@ SOURCES += \
     CubeCelebration.cpp \
     CubeController.cpp \
     CubeFace.cpp \
-    CubeWidget.cpp \
     Model3DCube.cpp \
     TutorialBrowser.cpp \
     ViewCube.cpp \
@@ -28,7 +27,6 @@ HEADERS += \
     CubeCelebration.h \
     CubeController.h \
     CubeFace.h \
-    CubeWidget.h \
     Model3DCube.h \
     RubiksEdu.h \
      TutorialBrowser.h \

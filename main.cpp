@@ -1,3 +1,15 @@
+/*
+ * Lacking Ideas - Rubiks Educational App
+ * CS 3505 - A9 - An Education App
+ * @authors: Robert Davidson
+ *           Orion Santiago
+ *           Ronnie Koe
+ *           Maiko Tuitupou
+ *           Elizabeth Thomas
+ *           Alex Gill
+ * main.cpp
+*/
+
 #include "RubiksEdu.h"
 #include "CubeController.h"
 #include "TutorialBrowser.h"
