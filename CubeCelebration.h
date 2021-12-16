@@ -32,18 +32,15 @@ protected:
 
 private:
     Ui::CubeCelebration *ui;
-    QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue, pmW;
+    QPixmap pmGreen, pmRed, pmYellow, pmWhite, pmOrange, pmBlue;
     b2World world;
     b2Body *ground;
-    //    b2Body* leftWall;
-    //    b2Body* rightWall;
     b2Body *greenCube;
     b2Body *redCube;
     b2Body *yellowCube;
     b2Body *whiteCube;
     b2Body *orangeCube;
     b2Body *blueCube;
-    b2Body *wCube;
     QTimer worldTimer;
     std::vector<b2Body *> cubes;
 };

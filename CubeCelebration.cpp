@@ -8,7 +8,6 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
                                                     pmWhite(":/img/white.png"),
                                                     pmOrange(":/img/orange.png"),
                                                     pmBlue(":/img/blue.png"),
-                                                    pmW(":/img/takethew.png"),
                                                     world(b2Vec2(0.0f, 10.0f)),
                                                     worldTimer(this),
                                                     ui(new Ui::CubeCelebration)
@@ -22,7 +21,6 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
     pmWhite = pmWhite.scaled(30, 30, Qt::KeepAspectRatio);
     pmOrange = pmOrange.scaled(30, 30, Qt::KeepAspectRatio);
     pmBlue = pmBlue.scaled(30, 30, Qt::KeepAspectRatio);
-    pmW = pmW.scaled(140, 30, Qt::KeepAspectRatio);
 
     // Ground body
     b2BodyDef groundBody;
@@ -31,14 +29,6 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
     b2PolygonShape groundBox;
     groundBox.SetAsBox(200, 10.0f);
     ground->CreateFixture(&groundBox, 0.0f);
-
-    //    // Right wall
-    //    b2BodyDef rightWallBody;
-    //    rightWallBody.position.Set(100, 100);
-    //    rightWall = world.CreateBody(&rightWallBody);
-    //    b2PolygonShape rightWallBox;
-    //    rightWallBox.SetAsBox(10, 10.0f);
-    //    rightWall->CreateFixture(&rightWallBox, 0.0f);
 
     // Properties for each cube
     b2PolygonShape dynamicBox;
@@ -110,15 +100,6 @@ CubeCelebration::CubeCelebration(QWidget *parent) : QDialog(parent),
     orangeCube->ApplyLinearImpulse(b2Vec2(10000, -50000), orangeCube->GetPosition(), true);
     orangeCube->SetAngularVelocity(500);
 
-    // W body
-    b2BodyDef wBody;
-    wBody.type = b2_dynamicBody;
-    wBody.position.Set(rand() % 200, rand() % 200);
-    wCube = world.CreateBody(&wBody);
-    wCube->CreateFixture(&fixtureDefRect);
-    wCube->ApplyLinearImpulse(b2Vec2(10000, -50000), wCube->GetPosition(), true);
-    wCube->SetAngularVelocity(500);
-
     worldTimer.setInterval(1000.0 / 30.0);
     connect(&worldTimer, &QTimer::timeout, this, [=]()
             {
@@ -171,12 +152,6 @@ void CubeCelebration::paintEvent(QPaintEvent *event)
     transform.rotate(orangeCube->GetAngle());
     QPixmap orangeRotation = pmOrange.transformed(transform);
     painter.drawPixmap(orangeCube->GetPosition().x - 25, orangeCube->GetPosition().y - 25, orangeRotation);
-
-    // Draws w cube
-    painter.drawRect(ground->GetTransform().p.x - 100, ground->GetTransform().p.y - 10, 400, 5.0f);
-    transform.rotate(wCube->GetAngle());
-    QPixmap wRotation = pmW.transformed(transform);
-    painter.drawPixmap(wCube->GetPosition().x - 25, wCube->GetPosition().y - 25, wRotation);
 }
 
 void CubeCelebration::keyPressEvent(QKeyEvent *event)
@@ -213,10 +188,5 @@ void CubeCelebration::keyPressEvent(QKeyEvent *event)
         orangeCube->SetLinearVelocity(b2Vec2(0, 0));
         orangeCube->ApplyLinearImpulse(b2Vec2(10000, -50000), orangeCube->GetPosition(), true);
         orangeCube->SetAngularVelocity(500);
-
-        // w cube
-        wCube->SetLinearVelocity(b2Vec2(0, 0));
-        wCube->ApplyLinearImpulse(b2Vec2(10000, -50000), wCube->GetPosition(), true);
-        wCube->SetAngularVelocity(500);
     }
 }
